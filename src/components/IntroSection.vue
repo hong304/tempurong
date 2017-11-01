@@ -1,6 +1,6 @@
 <template>
 	<div class="container">
-		<h1>{{introTitle}}</h1>
+		<h2>{{introTitle}}</h2>
 		<p>{{introContent}}</p>
 	</div>
 </template>

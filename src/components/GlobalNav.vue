@@ -1,5 +1,5 @@
 <template>
-	<nav id="global-nav" class="navbar navbar-default">
+	<nav id="global-nav" class="navbar">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" @click="showNavbar=!showNavbar">

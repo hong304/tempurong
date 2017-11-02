@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import IntroSection from '../components/IntroSection.vue'
+  import IntroSection from '../components/paragraph/IntroParagraph.vue'
 
   export default {
     name: 'Rooms',

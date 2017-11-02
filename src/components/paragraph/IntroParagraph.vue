@@ -1,8 +1,8 @@
 <template>
-	<div class="container">
+	<section>
 		<h2>{{introTitle}}</h2>
 		<p>{{introContent}}</p>
-	</div>
+	</section>
 </template>
 
 <script>
@@ -24,3 +24,20 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+	@import '../../assets/style/setting';
+	section {
+		padding: 3rem 0;
+	}
+	h2, p {
+		color: $brand-secondary;
+	}
+	h2 {
+		display: inline-block;
+		text-transform: uppercase;
+		border-bottom: 1px solid $brand-primary;
+		padding: 0 1rem 1.75rem;
+		margin-bottom: 2rem;
+	}
+</style>

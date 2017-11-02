@@ -8,20 +8,22 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<router-link :to="{ path: '/' }" class="navbar-brand" role="button">Logo</router-link>
 			</div>
 			<collapse class="navbar-collapse" v-model="showNavbar">
-				<ul class="nav navbar-nav">
-					<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-					<li><router-link :to="{ path: '/about' }">About</router-link></li>
-					<li><router-link :to="{ path: '/rooms' }">Rooms</router-link></li>
-					<li><router-link :to="{ path: '/activities' }">Activities</router-link></li>
-					<li><router-link :to="{ path: '/food' }">Food</router-link></li>
-					<li><router-link :to="{ path: '/contact' }">Contact</router-link></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><router-link :to="{ path: '/book' }">Book</router-link></li>
-				</ul>
+				<div class="navbar-wrapper">
+					<ul class="nav navbar-nav">
+						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+						<li><router-link :to="{ path: '/about' }" class="navbar-link">About</router-link></li>
+						<li><router-link :to="{ path: '/rooms' }" class="navbar-link">Rooms & Amenities</router-link></li>
+						<li><router-link :to="{ path: '/activities' }" class="navbar-link">Activities</router-link></li>
+					</ul>
+					<router-link :to="{ path: '/' }" class="navbar-brand" role="button">Logo</router-link>
+					<ul class="nav navbar-nav">
+						<li><router-link :to="{ path: '/food' }" class="navbar-link">Food</router-link></li>
+						<li><router-link :to="{ path: '/contact' }" class="navbar-link">Contact</router-link></li>
+						<li><router-link :to="{ path: '/book' }" class="navbar-link">Book Now</router-link></li>
+					</ul>
+				</div>
 			</collapse>
 		</div>
 	</nav>
@@ -37,3 +39,22 @@
     }
   }
 </script>
+
+<style lang="scss" scoped>
+	@import '../assets/style/setting';
+	.navbar-wrapper {
+		margin: 0 auto;
+		.navbar-brand {
+			width: 14%;
+		}
+		.navbar-nav {
+			width: 43%;
+			& > li {
+				width: 33.3%;
+				.navbar-link {
+					color: $brand-secondary;
+				}
+			}
+		}
+	}
+</style>

@@ -23,3 +23,6 @@
   }
 </script>
 
+<style lang="scss">
+	@import './assets/style/main';
+</style>

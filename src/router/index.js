@@ -13,6 +13,7 @@ import Book from '@/views/Book'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {path: '/', name: 'Home', component: Home},
     {path: '/about', name: 'About', component: About},

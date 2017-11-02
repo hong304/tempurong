@@ -10,10 +10,11 @@ import VueI18n from 'vue-i18n'
 import messages from './i18n/locale'
 import * as uiv from 'uiv'
 
-Vue.use(uiv)
+window._ = require('lodash')
 
 Vue.config.productionTip = false
 Vue.use(VueI18n)
+Vue.use(uiv)
 
 const i18n = new VueI18n({
   locale: 'en',

@@ -1,6 +1,7 @@
 <template>
 	<div class="container">
 		<carousel></carousel>
+		<booking-nav></booking-nav>
 		<h1>{{ msg }}</h1>
 		<h2>Essential Links</h2>
 		<alert type="success"><b>Well done!</b> You successfully read this important alert message.</alert>
@@ -26,12 +27,14 @@
 <script>
   import IntroSection from '../components/paragraph/IntroParagraph.vue'
   import Carousel from '../components/image/Carousel.vue'
+  import BookingNav from '../components/booking/BookingNav.vue'
 
   export default {
     name: 'Home',
     components: {
       'intro-section': IntroSection,
-      'carousel': Carousel
+      'carousel': Carousel,
+      'booking-nav': BookingNav
     },
     data () {
       return {

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap": "3.3.7",
+    "lodash": "^4.17.4",
     "uiv": "^0.12.2",
     "vue": "^2.5.2",
     "vue-i18n": "^7.3.2",

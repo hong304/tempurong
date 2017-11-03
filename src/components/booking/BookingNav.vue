@@ -1,9 +1,14 @@
 <template>
-    <section>
-        <div>
-            <HotelDatePicker :startDate="new Date()"/>
-        </div>
-    </section>
+	<section>
+		<div class="picker-nav-bar">
+			<div class="picker-input">
+				<HotelDatePicker :startDate="new Date()" />
+			</div>
+			<div class="picker-button">
+				<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">Book Now</router-link>
+			</div>
+		</div>
+	</section>
 </template>
 
 <script>
@@ -11,11 +16,69 @@
 
   export default {
     components: {
-      'HotelDatePicker': HotelDatePicker
+      HotelDatePicker
     },
     data () {
-      return {
-      }
+      return {}
     }
   }
 </script>
+
+<style lang="scss">
+	@import '../../assets/style/setting';
+	.picker-nav-bar {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: center;
+		background-color: $brand-primary;
+		& > div {
+			flex: 0 0 auto;
+			align-self: center;
+		}
+		.picker-input {
+			height: 40px;
+			margin: 1rem 0.5rem 1rem 1rem;
+			.datepicker__wrapper {
+				height: 40px;
+				background-color: transparent;
+				background-image: url('../../assets/img/calendar.svg');
+				.datepicker__dummy-wrapper {
+					border-color: white;
+					border-radius: 5px;
+					.datepicker__dummy-input {
+						height: 40px;
+						color: white;
+						&::placeholder {
+							color: white;
+						}
+						&:first-child {
+							background-image: url('../../assets/img/arrow.svg')
+						}
+					}
+				}
+				.datepicker__clear-button {
+					color: white;
+					margin: 2px -2px 0 0;
+
+				}
+			}
+		}
+		.picker-button {
+			align-self: center;
+			line-height: 40px;
+			margin: 1rem 1rem 1rem 0.5rem;
+			padding: 0 2rem;
+			background-color: white;
+			border-radius: 5px;
+			& > a {
+				color: $brand-primary;
+				&:hover, &:focus {
+					text-decoration: none;
+				}
+			}
+		}
+		.datepicker {
+			top: 40px;
+		}
+	}
+</style>

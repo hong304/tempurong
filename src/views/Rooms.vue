@@ -1,18 +1,20 @@
 <template>
 	<div id="rooms">
-		<intro-section :introTitle="introTitle"></intro-section>
+		<content-title :contentTitle="titleOne"></content-title>
 	</div>
 </template>
 
 <script>
-  import IntroSection from '../components/paragraph/IntroParagraph.vue'
+  import ContentTitle from '../components/paragraph/ContentTitle.vue'
 
   export default {
     name: 'Rooms',
-    components: {IntroSection},
+    components: {
+      ContentTitle
+    },
     data () {
       return {
-        introTitle: 'Rooms'
+        titleOne: 'Rooms'
       }
     }
   }

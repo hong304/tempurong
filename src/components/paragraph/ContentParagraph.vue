@@ -1,21 +1,12 @@
 <template>
-	<section>
-		<h2>{{introTitle}}</h2>
-		<p>{{introContent}}</p>
-	</section>
+	<p>{{contentParagraph}}</p>
 </template>
 
 <script>
   export default {
-    name: 'intro-section',
+    name: 'content-paragraph',
     props: {
-      introTitle: {
-        type: String,
-        default: function () {
-          return 'Hi, I\'m default title here.'
-        }
-      },
-      introContent: {
+      contentParagraph: {
         type: String,
         default: function () {
           return 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
@@ -27,17 +18,7 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	section {
-		padding: 3rem 0;
-	}
-	h2, p {
+	p {
 		color: $brand-secondary;
-	}
-	h2 {
-		display: inline-block;
-		text-transform: uppercase;
-		border-bottom: 1px solid $brand-primary;
-		padding: 0 1rem 1.75rem;
-		margin-bottom: 2rem;
 	}
 </style>

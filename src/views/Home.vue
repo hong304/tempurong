@@ -2,43 +2,30 @@
 	<div class="container">
 		<carousel></carousel>
 		<booking-nav></booking-nav>
-		<h1>{{ msg }}</h1>
-		<h2>Essential Links</h2>
-		<alert type="success"><b>Well done!</b> You successfully read this important alert message.</alert>
-		<ul>
-			<li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-			<li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-			<li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-			<li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-			<br>
-			<li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-		</ul>
-		<intro-section></intro-section>
-		<h2>Ecosystem</h2>
-		<ul>
-			<li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-			<li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-			<li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-			<li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-		</ul>
+		<section class="margin-of-section">
+			<content-title :contentTitle="titleOne"></content-title>
+			<content-paragraph ></content-paragraph>
+		</section>
 	</div>
 </template>
 
 <script>
-  import IntroSection from '../components/paragraph/IntroParagraph.vue'
+  import ContentTitle from '../components/paragraph/ContentTitle.vue'
+  import ContentParagraph from '../components/paragraph/ContentParagraph.vue'
   import Carousel from '../components/image/Carousel.vue'
   import BookingNav from '../components/booking/BookingNav.vue'
 
   export default {
     name: 'Home',
     components: {
-      'intro-section': IntroSection,
-      'carousel': Carousel,
-      'booking-nav': BookingNav
+      ContentParagraph,
+      ContentTitle,
+      Carousel,
+      BookingNav
     },
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        titleOne: 'Welcome to Tempurong'
       }
     }
   }

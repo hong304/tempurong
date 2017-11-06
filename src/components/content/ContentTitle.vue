@@ -23,7 +23,10 @@
 		text-transform: uppercase;
 		border-bottom: 1px solid $brand-primary;
 		padding: 0 1rem 1.75rem;
+		min-width: 40%;
+		margin-top: 0;
 		margin-bottom: 2rem;
+		font-weight: bold;
 		color: $brand-secondary;
 	}
 </style>

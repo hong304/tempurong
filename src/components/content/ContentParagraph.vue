@@ -20,5 +20,6 @@
 	@import '../../assets/style/setting';
 	p {
 		color: $brand-secondary;
+		margin-bottom: 0;
 	}
 </style>

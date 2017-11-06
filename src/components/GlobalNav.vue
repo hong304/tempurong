@@ -13,26 +13,14 @@
                 <div class="navbar-wrapper">
                     <ul class="nav navbar-nav">
                         <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-                        <li>
-                            <router-link :to="{ path: '/about' }" class="navbar-link">About</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{ path: '/rooms' }" class="navbar-link">Rooms & Amenities</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{ path: '/activities' }" class="navbar-link">Activities</router-link>
+                        <li v-for="link in lLinks">
+                            <router-link :to="{ path: link.path }" class="navbar-link">{{ link.name }}</router-link>
                         </li>
                     </ul>
                     <router-link :to="{ path: '/' }" class="navbar-brand" role="button">Logo</router-link>
                     <ul class="nav navbar-nav">
-                        <li>
-                            <router-link :to="{ path: '/food' }" class="navbar-link">Food</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{ path: '/contact' }" class="navbar-link">Contact</router-link>
-                        </li>
-                        <li>
-                            <router-link :to="{ path: '/book' }" class="navbar-link">Book Now</router-link>
+                        <li v-for="link in rLinks">
+                            <router-link :to="{ path: link.path }" class="navbar-link">{{ link.name }}</router-link>
                         </li>
                     </ul>
                 </div>
@@ -46,7 +34,17 @@
     name: 'global-nav',
     data () {
       return {
-        showNavbar: false
+        showNavbar: false,
+        lLinks: [
+          { path: '/about', name: 'About' },
+          { path: '/rooms', name: 'Rooms & Amenities' },
+          { path: '/activities', name: 'Activities' }
+        ],
+        rLinks: [
+          { path: '/food', name: 'Food' },
+          { path: '/contact', name: 'Contact' },
+          { path: '/book', name: 'Book Now' }
+        ]
       }
     }
   }

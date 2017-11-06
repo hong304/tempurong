@@ -1,20 +1,68 @@
 <template>
-    <div class="container">
-        <carousel></carousel>
-        <booking-nav></booking-nav>
-        <section class="margin-of-section">
-            <content-title :contentTitle="titleOne"></content-title>
-            <content-paragraph></content-paragraph>
-        </section>
-        <section>
-            <content-title :contentTitle="titleTwo"></content-title>
-            <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <card></card>
-                </div>
-            </div>
-        </section>
-    </div>
+	<div class="container">
+		<carousel></carousel>
+		<booking-nav></booking-nav>
+		<section class="padding-of-section mt-5">
+			<content-title :contentTitle="titleOne"></content-title>
+			<content-paragraph></content-paragraph>
+		</section>
+		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5">
+			<content-title :contentTitle="titleTwo"></content-title>
+			<div class="row mt-5">
+				<div class="col-xs-12 col-md-6">
+					<card></card>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<card></card>
+				</div>
+			</div>
+		</section>
+		<section class="pt-5 pb-5">
+			<image-divider
+					:infoParagraph="imageDividerParagraph"
+					:buttonText="buttonText"
+					:buttonPath="buttonPath"
+			></image-divider>
+		</section>
+		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5">
+			<content-title :contentTitle="titleThree"></content-title>
+			<div class="row mt-5">
+				<div class="col-xs-12 col-md-6">
+					<card></card>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<card></card>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<card :isLastTwo=true></card>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<card :isLastTwo=true></card>
+				</div>
+			</div>
+		</section>
+		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5 pt-5 pb-5">
+			<content-title :contentTitle="titleFour"></content-title>
+			<div class="row">
+				<circle-thumb-card :imgRight=true :isFirst=true></circle-thumb-card>
+				<circle-thumb-card :isLast=true></circle-thumb-card>
+			</div>
+		</section>
+		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5 pt-5 pb-5">
+			<content-title :contentTitle="titleFive"></content-title>
+			<div class="row">
+				<div class="col-md-4 col-xs-12">
+					<testimonal></testimonal>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<testimonal></testimonal>
+				</div>
+				<div class="col-md-4 col-xs-12">
+					<testimonal></testimonal>
+				</div>
+			</div>
+		</section>
+	</div>
 </template>
 
 <script>
@@ -23,6 +71,9 @@
   import Carousel from '../components/image/Carousel.vue'
   import BookingNav from '../components/booking/BookingNav.vue'
   import Card from '../components/image/Card.vue'
+  import ImageDivider from '../components/image/ImageDivider.vue'
+  import CircleThumbCard from '../components/image/CircleThumbCard.vue'
+  import Testimonal from '../components/content/Testimonial.vue'
 
   export default {
     name: 'Home',
@@ -31,12 +82,21 @@
       ContentTitle,
       Carousel,
       BookingNav,
-      Card
+      Card,
+      ImageDivider,
+      CircleThumbCard,
+      Testimonal
     },
     data () {
       return {
         titleOne: 'Welcome to Tempurong',
-        titleTwo: 'Activities'
+        titleTwo: 'Services',
+        imageDividerParagraph: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
+        buttonPath: '#',
+        buttonText: 'More Rooms',
+        titleThree: 'Activities',
+        titleFour: 'Features',
+        titleFive: 'Reviews'
       }
     }
   }
@@ -44,21 +104,21 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    h1, h2 {
-        font-weight: normal;
-    }
+	h1, h2 {
+		font-weight: normal;
+	}
 
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
+	ul {
+		list-style-type: none;
+		padding: 0;
+	}
 
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
+	li {
+		display: inline-block;
+		margin: 0 10px;
+	}
 
-    a {
-        color: #42b983;
-    }
+	a {
+		color: #42b983;
+	}
 </style>

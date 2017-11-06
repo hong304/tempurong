@@ -4,7 +4,7 @@
 
 <script>
   export default {
-    name: 'content-paragraph',
+    name: 'content-content',
     props: {
       contentParagraph: {
         type: String,

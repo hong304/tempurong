@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ContentTitle from '../components/paragraph/ContentTitle.vue'
+  import ContentTitle from '../components/content/ContentTitle.vue'
 
   export default {
     name: 'Activities',

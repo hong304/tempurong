@@ -5,7 +5,7 @@
 		</div>
 		<div class="info-wrapper">
 			<h3>{{ cardTitle }}</h3>
-			<router-link :to="cardPath" class="card-link">More</router-link>
+			<router-link :to="cardPath" class="btn btn-main">More</router-link>
 			<p>{{ cardIntro }}</p>
 		</div>
 	</div>
@@ -77,21 +77,10 @@
 					clear: both;
 				}
 			}
-			.card-link {
-				display: inline-block;
+			.btn-main {
 				float: right;
-				background-color: $brand-primary;
-				color: white;
-				border-radius: 5px;
 				margin-top: calc(20px - 0.2rem);
-				padding: 0.45rem 1.25rem;
-				font-size: 0.95em;
 				line-height: calc(24px - 0.5rem);
-				transition: background-color 250ms linear;
-				&:hover, &:focus {
-					text-decoration: none;
-					background-color: $brand-secondary;
-				}
 			}
 		}
 	}

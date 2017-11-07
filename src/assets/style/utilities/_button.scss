@@ -1,0 +1,48 @@
+@import '../setting';
+
+.btn {
+  display: inline-block;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: none;
+  &:hover, &:focus, &:active {
+    outline: none;
+    box-shadow: none;
+  }
+  &.btn-main {
+    background-color: $brand-primary;
+    color: white;
+    padding: 0.45rem 1.25rem;
+    font-size: 0.95em;
+    transition: background-color 250ms linear;
+    &:hover, &:focus {
+      text-decoration: none;
+      background-color: $brand-secondary;
+    }
+  }
+  &.btn-border {
+    padding: 0.75rem 1.25rem;
+    color: white;
+    border: 1px solid white;
+    background-color: transparent;
+    transition: background-color 250ms linear, color 250ms linear;
+    &:hover, &:focus {
+      background-color: white;
+      color: $brand-primary;
+      text-decoration: none;
+    }
+  }
+  &.btn-text-only {
+    background: none;
+    border: none;
+    border-radius: 0;
+  }
+}
+button {
+  outline: none;
+  box-shadow: none;
+  &:hover, &:focus, &:active {
+    outline: none;
+    box-shadow: none;
+  }
+}

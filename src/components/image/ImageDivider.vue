@@ -8,7 +8,7 @@
 				<h3 v-show="infoTitle">{{ infoTitle }}</h3>
 				<p v-show="infoParagraph">{{ infoParagraph }}</p>
 			</div>
-			<router-link v-show="buttonPath" :to="buttonPath" class="divider-link">{{ buttonText }}</router-link>
+			<router-link v-show="buttonPath" :to="buttonPath" class="btn btn-border">{{ buttonText }}</router-link>
 		</div>
 	</div>
 </template>
@@ -90,20 +90,9 @@
 				margin-bottom: 0;
 			}
 		}
-		.divider-link {
+		.btn-border {
 			flex: 0 0 auto;
 			margin-top: 2rem;
-			padding: 0.75rem 1.25rem;
-			color: white;
-			border: 1px solid white;
-			background-color: transparent;
-			border-radius: 5px;
-			transition: background-color 250ms linear, color 250ms linear;
-			&:hover, &:focus {
-				background-color: white;
-				color: $brand-primary;
-				text-decoration: none;
-			}
 		}
 	}
 </style>

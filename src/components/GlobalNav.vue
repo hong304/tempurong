@@ -45,7 +45,7 @@
         rLinks: [
           {path: '/food', name: 'Food'},
           {path: '/contact', name: 'Contact'},
-          {path: '/book', name: 'Book Now'}
+          {path: '/reservations', name: 'Reservations'}
         ]
       }
     },

@@ -8,7 +8,7 @@ import Rooms from '@/views/Rooms'
 import Activities from '@/views/Activities'
 import Food from '@/views/Food'
 import Contact from '@/views/Contact'
-import Book from '@/views/Book'
+import Reservations from '@/views/Reservations'
 
 Vue.use(Router)
 
@@ -21,6 +21,6 @@ export default new Router({
     {path: '/activities', name: 'Activities', component: Activities},
     {path: '/food', name: 'Food', component: Food},
     {path: '/contact', name: 'Contact', component: Contact},
-    {path: '/book', name: 'Book', component: Book}
+    {path: '/reservations', name: 'Reservations', component: Reservations}
   ]
 })

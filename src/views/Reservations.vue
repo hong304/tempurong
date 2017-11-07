@@ -1,20 +1,29 @@
 <template>
-	<div id="book">
-		<content-title :contentTitle="titleOne"></content-title>
+	<div class="container" id="reservations">
+		<section class="my-5 pt-5">
+			<div class="row">
+				<div class="col-xs-12">
+					<content-title :contentTitle="titleOne"></content-title>
+					<content-paragraph></content-paragraph>
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 
 <script>
   import ContentTitle from '../components/content/ContentTitle.vue'
+  import ContentParagraph from '../components/content/ContentParagraph.vue'
 
   export default {
     components: {
-      ContentTitle
+      ContentTitle,
+      ContentParagraph
     },
     name: 'Book',
     data () {
       return {
-        titleOne: 'Book'
+        titleOne: 'Reservations'
       }
     }
   }

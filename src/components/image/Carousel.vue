@@ -1,22 +1,24 @@
 <template>
 	<section>
-		<carousel :indicators="indicators" :controls="!controls" :interval="interval" ref="carousel">
-			<slide v-for="(slide, index) in slides" :key="index">
-				<div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0? '#866809' : '#866809'}"></div>
-				<div class="carousel-caption">
-					<h3>This is {{slide.title}}</h3>
-				</div>
-			</slide>
-			<!-- custom indicators -->
-			<template slot="indicators" slot-scope="props">
-				<ol class="carousel-indicators custom-carousel-indicators">
-					<li v-for="(slide, index) in slides"
-							:class="{active:index === props.activeIndex}"
-							@click="props.select(index)">
-					</li>
-				</ol>
-			</template>
-		</carousel>
+		<div class="row">
+			<carousel :indicators="indicators" :controls="!controls" :interval="interval" ref="carousel">
+				<slide v-for="(slide, index) in slides" :key="index">
+					<div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0? '#866809' : '#866809'}"></div>
+					<div class="carousel-caption">
+						<h3>This is {{slide.title}}</h3>
+					</div>
+				</slide>
+				<!-- custom indicators -->
+				<template slot="indicators" slot-scope="props">
+					<ol class="carousel-indicators custom-carousel-indicators">
+						<li v-for="(slide, index) in slides"
+								:class="{active:index === props.activeIndex}"
+								@click="props.select(index)">
+						</li>
+					</ol>
+				</template>
+			</carousel>
+		</div>
 	</section>
 </template>
 <script>

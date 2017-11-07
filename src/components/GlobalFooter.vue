@@ -2,21 +2,21 @@
 	<footer class="padding-of-section pb-0">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-12">
+				<div class="col-md-4 col-xs-12">
 					<h3>Tempurong Golden Beach Resort</h3>
 				</div>
-				<div class="col-md-4 col-12">
+				<div class="col-md-4 col-xs-12">
 					<h4>Address</h4>
-					<p class="mb-5">{{ address }}</p>
+					<p class="mb-md-5 mb-4">{{ address }}</p>
 					<h4>Tel</h4>
-					<p class="mb-5">{{ contactNumber }}</p>
+					<p class="mb-md-5 mb-4">{{ contactNumber }}</p>
 					<h4>Payment Accepted by</h4>
-					<ul class="payment-icon">
+					<ul class="payment-icon mb-md-0 mb-4">
 						<li>master-card</li>
 						<li>visa-card</li>
 					</ul>
 				</div>
-				<div class="col-md-4 col-12">
+				<div class="col-md-4 col-xs-12">
 					<h4>Quick Menu</h4>
 					<ul>
 						<li v-for="link in links">
@@ -83,6 +83,9 @@
 			}
 			.row {
 				padding: 7.5rem 15rem 1rem;
+				@media screen and (max-width: 767px) {
+					padding: 3.5rem 0 1rem;
+				}
 			}
 			ul {
 				list-style-type: none;

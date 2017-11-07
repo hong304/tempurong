@@ -1,11 +1,13 @@
 <template>
 	<section>
-		<div class="picker-nav-bar">
-			<div class="picker-input">
-				<HotelDatePicker :startDate="new Date()" />
-			</div>
-			<div class="picker-button">
-				<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">Book Now</router-link>
+		<div class="row">
+			<div class="picker-nav-bar">
+				<div class="picker-input">
+					<HotelDatePicker :startDate="new Date()" />
+				</div>
+				<div class="picker-button">
+					<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">Book Now</router-link>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -28,16 +30,22 @@
 	@import '../../assets/style/setting';
 	.picker-nav-bar {
 		display: flex;
-		flex-flow: row nowrap;
+		flex-flow: row wrap;
 		justify-content: center;
 		background-color: $brand-primary;
 		& > div {
 			flex: 0 0 auto;
 			align-self: center;
+			@media screen and (max-width: 767px) {
+				flex: 1 1 100%;
+			}
 		}
 		.picker-input {
 			height: 40px;
 			margin: 1rem 0.5rem 1rem 1rem;
+			@media screen and (max-width: 767px) {
+				margin: 1rem 1rem 0.5rem;
+			}
 			.datepicker__wrapper {
 				height: 40px;
 				background-color: transparent;
@@ -58,7 +66,7 @@
 				}
 				.datepicker__clear-button {
 					color: white;
-					margin: 2px -2px 0 0;
+					margin: 0 -2px 0 0;
 
 				}
 			}
@@ -70,6 +78,9 @@
 			padding: 0 2rem;
 			background-color: white;
 			border-radius: 5px;
+			@media screen and (max-width: 767px) {
+				margin: 0.5rem 1rem 1rem;
+			}
 			& > a {
 				color: $brand-primary;
 				&:hover, &:focus {

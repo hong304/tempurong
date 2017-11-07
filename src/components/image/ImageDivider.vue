@@ -3,7 +3,7 @@
 		<div class="image-bg">
 			<img :src="imageSrc"/>
 		</div>
-		<div class="overlay-info-wrapper">
+		<div class="overlay-info-wrapper px-4 px-md-0">
 			<div class="content-wrapper">
 				<h3 v-show="infoTitle">{{ infoTitle }}</h3>
 				<p v-show="infoParagraph">{{ infoParagraph }}</p>
@@ -56,12 +56,19 @@
 		color: white;
 	}
 	.image-bg {
+		overflow-x: hidden;
 		& > img {
 			width: 100%;
 			height: auto;
+			@media screen and (max-width: 767px) {
+				position: relative;
+				width: auto;
+				height: 35vh;
+				left: 50%;
+				transform: translateX(-50%);
+			}
 		}
 	}
-
 	.overlay-info-wrapper {
 		position: absolute;
 		display: flex;

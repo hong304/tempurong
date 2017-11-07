@@ -6,7 +6,7 @@
 			<content-title :contentTitle="titleOne"></content-title>
 			<content-paragraph></content-paragraph>
 		</section>
-		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5">
+		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="titleTwo"></content-title>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-md-6">
@@ -18,13 +18,15 @@
 			</div>
 		</section>
 		<section class="pt-5 pb-5">
-			<image-divider
-					:infoParagraph="imageDividerParagraph"
-					:buttonText="buttonText"
-					:buttonPath="buttonPath"
-			></image-divider>
+			<div class="row">
+				<image-divider
+						:infoParagraph="imageDividerParagraph"
+						:buttonText="buttonText"
+						:buttonPath="buttonPath"
+				></image-divider>
+			</div>
 		</section>
-		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5">
+		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="titleThree"></content-title>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-md-6">
@@ -41,14 +43,14 @@
 				</div>
 			</div>
 		</section>
-		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5 pt-5 pb-5">
+		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="titleFour"></content-title>
-			<div class="row">
+			<div class="row m-0">
 				<circle-thumb-card :imgRight=true :isFirst=true></circle-thumb-card>
 				<circle-thumb-card :isLast=true></circle-thumb-card>
 			</div>
 		</section>
-		<section class="padding-of-section ml-5 mr-5 pl-5 pr-5 pt-5 pb-5">
+		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="titleFive"></content-title>
 			<div class="row">
 				<div class="col-md-4 col-xs-12">

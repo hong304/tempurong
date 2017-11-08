@@ -35,7 +35,6 @@
     name: 'global-nav',
     data () {
       return {
-        isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
         showNavbar: false,
         lLinks: [
           {path: '/about', name: 'About'},
@@ -49,16 +48,8 @@
         ]
       }
     },
-    beforeDestroy: function () {
-      window.removeEventListener('resize', this.handleResize)
-    },
-    methods: {
-      handleResize () {
-        this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-      }
-    },
-    mounted () {
-      window.addEventListener('resize', this.handleResize)
+    props: {
+      isMobile: this.isMobile
     }
   }
 </script>
@@ -69,6 +60,7 @@
 	.navbar {
 		margin-bottom: 0;
 	}
+
 	.navbar-default {
 		background: none;
 		border: none;
@@ -84,6 +76,7 @@
 			}
 		}
 	}
+
 	.navbar-wrapper {
 		margin: 0 auto;
 		.navbar-brand {

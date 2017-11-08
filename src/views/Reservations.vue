@@ -16,7 +16,7 @@
 					<room-card></room-card>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<booking-sticky></booking-sticky>
+					<booking-sticky :isMobile="isMobile"></booking-sticky>
 				</div>
 			</div>
 		</section>
@@ -41,6 +41,9 @@
       return {
         titleOne: 'Reservations'
       }
+    },
+    props: {
+      isMobile: this.isMobile
     }
   }
 </script>

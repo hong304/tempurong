@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 // bootstrap 3
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../static/themify-icons.css'
 
 import Vue from 'vue'
 import App from '@/App'

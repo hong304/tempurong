@@ -18,6 +18,7 @@ Vue.use(uiv)
 
 const i18n = new VueI18n({
   locale: 'en',
+  fallbackLocale: 'en',
   messages
 })
 
@@ -27,5 +28,5 @@ new Vue({
   router,
   template: '<App/>',
   components: {App},
-  i18n
+  i18n: i18n
 })

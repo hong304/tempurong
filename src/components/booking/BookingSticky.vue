@@ -30,75 +30,6 @@
 					></multiselect>
 				</div>
 			</div>
-			<div class="picker-input">
-				<div>
-					<HotelDatePicker :startDate="new Date()"/>
-				</div>
-				<div>
-					<multiselect
-							v-model="selectedOne"
-							:options="optionsOne"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect>
-				</div>
-				<div>
-					<multiselect
-							v-model="selectedTwo"
-							:options="optionsTwo"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect>
-				</div>
-			</div>
-			<div class="picker-input">
-				<div>
-					<HotelDatePicker :startDate="new Date()"/>
-				</div>
-				<div>
-					<multiselect
-							v-model="selectedOne"
-							:options="optionsOne"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect>
-				</div>
-				<div>
-					<multiselect
-							v-model="selectedTwo"
-							:options="optionsTwo"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect>
-				</div>
-			</div>
-			<div class="picker-input">
-				<div>
-					<HotelDatePicker :startDate="new Date()"/>
-				</div>
-				<div>
-					<multiselect
-							v-model="selectedOne"
-							:options="optionsOne"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect>
-				</div>
-				<div>
-					<multiselect
-							v-model="selectedTwo"
-							:options="optionsTwo"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect>
-				</div>
-			</div>
 			<div class="sticky-footer">
 				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }">Book</button>
 			</div>
@@ -160,7 +91,7 @@
 	@import '../../assets/style/setting';
 
 	.booking-sticky {
-		border: 1px solid #dddddd;
+		border: 1px solid $light-grey;
 		padding: 2rem;
 		color: $brand-secondary;
 		text-align: left;
@@ -184,7 +115,7 @@
 	.summary-shorthand {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
-		border-bottom: 1px solid #dddddd;
+		border-bottom: 1px solid $light-grey;
 		@media screen and (max-width: 767px) {
 			min-height: calc(8vh);
 			margin-bottom: 1.5rem;
@@ -208,6 +139,7 @@
 
 	.summary-detail {
 		overflow-y: scroll;
+		overflow-x: hidden;
 	}
 
 	.multiselect {

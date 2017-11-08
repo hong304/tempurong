@@ -24,10 +24,10 @@
 </template>
 
 <script>
-  import ContentTitle from '../components/content/ContentTitle.vue'
-  import ContentParagraph from '../components/content/ContentParagraph.vue'
-  import RoomCard from '../components/booking/RoomCard.vue'
-  import BookingSticky from '../components/booking/BookingSticky.vue'
+  import ContentTitle from '@/components/content/ContentTitle.vue'
+  import ContentParagraph from '@/components/content/ContentParagraph.vue'
+  import RoomCard from '@/components/booking/RoomCard.vue'
+  import BookingSticky from '@/components/booking/BookingSticky.vue'
 
   export default {
     components: {
@@ -36,7 +36,7 @@
       ContentTitle,
       ContentParagraph
     },
-    name: 'Book',
+    name: 'Reservations',
     data () {
       return {
         titleOne: 'Reservations'

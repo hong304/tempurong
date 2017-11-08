@@ -3,30 +3,33 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
-					<h3>Tempurong Golden Beach Resort</h3>
+					<h3 v-html="$t('companyName')"></h3>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<h4>Address</h4>
-					<p class="mb-md-5 mb-4">{{ address }}</p>
-					<h4>Tel</h4>
-					<p class="mb-md-5 mb-4">{{ contactNumber }}</p>
-					<h4>Payment Accepted by</h4>
+					<h4>{{ $t("address.title") }}</h4>
+					<p class="mb-md-5 mb-4">{{ $t("address.address") }}</p>
+					<h4>{{ $t("tel.title") }}</h4>
+					<p class="mb-md-5 mb-4">{{ $t("tel.tel") }}</p>
+					<h4>{{ $t("paymentAccept.title") }}</h4>
 					<ul class="payment-icon mb-md-0 mb-4">
-						<li>master-card</li>
-						<li>visa-card</li>
+						<li>{{ $t("paymentAccept.master") }}</li>
+						<li>{{ $t("paymentAccept.visa") }}</li>
 					</ul>
 				</div>
 				<div class="col-md-4 col-xs-12">
-					<h4>Quick Menu</h4>
+					<h4>{{ $t("menu.quickMenu") }}</h4>
 					<ul>
-						<li v-for="link in links">
-							<router-link :to="{ path: link.path }" class="footer-link">{{ link.name }}</router-link>
-						</li>
+						<li><router-link :to="{ path: '/about' }" class="footer-link">{{ $t("menu.about") }}</router-link></li>
+						<li><router-link :to="{ path: '/rooms' }" class="footer-link">{{ $t("menu.rooms") }}</router-link></li>
+						<li><router-link :to="{ path: '/activities' }" class="footer-link">{{ $t("menu.activities") }}</router-link></li>
+						<li><router-link :to="{ path: '/food' }" class="footer-link">{{ $t("menu.food") }}</router-link></li>
+						<li><router-link :to="{ path: '/contact' }" class="footer-link">{{ $t("menu.contact") }}</router-link></li>
+						<li><router-link :to="{ path: '/reservations' }" class="footer-link">{{ $t("menu.reservations") }}</router-link></li>
 					</ul>
 				</div>
 			</div>
 			<div class="row">
-				<p class="copy-right">&#169; CopyRight 2017 Tempurong Golden Beach Resort. All Rights Reserved.</p>
+				<p class="copy-right">{{ $t("copyright") }}</p>
 			</div>
 		</div>
 	</footer>

@@ -14,42 +14,56 @@
 				<div class="navbar-wrapper">
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-						<li v-for="link in lLinks">
-							<router-link :to="{ path: link.path }" class="navbar-link">{{ link.name }}</router-link>
-						</li>
+						<li><router-link :to="{ path: '/about' }" class="navbar-link">{{ $t("menu.about") }}</router-link></li>
+						<li><router-link :to="{ path: '/rooms'}" class="navbar-link">{{ $t("menu.room") }}</router-link></li>
+						<li><router-link :to="{ path: '/activities'}" class="navbar-link">{{ $t("menu.activities") }}</router-link></li>
 					</ul>
 					<router-link :to="{ path: '/' }" v-show="!isMobile" class="navbar-brand" role="button">Logo</router-link>
 					<ul class="nav navbar-nav">
-						<li v-for="link in rLinks">
-							<router-link :to="{ path: link.path }" class="navbar-link">{{ link.name }}</router-link>
-						</li>
+						<li><router-link :to="{path: '/food'}" class="navbar-link">{{ $t("menu.food") }}</router-link></li>
+						<li><router-link :to="{path: '/contact'}" class="navbar-link">{{ $t("menu.contact") }}</router-link></li>
+						<li><router-link :to="{path: '/reservations'}" class="navbar-link">{{ $t("menu.reservation") }}</router-link></li>
 					</ul>
 				</div>
 			</collapse>
 		</div>
+		<multiselect
+						v-model="language"
+						:options="languageOptions"
+						:searchable="false"
+						:close-on-select="true"
+						:showLabels="false"
+						placeholder="Languages"
+		></multiselect>
 	</nav>
 </template>
 
 <script>
+  import Multiselect from 'vue-multiselect'
+
   export default {
     name: 'global-nav',
+    components: {
+      Multiselect
+    },
     data () {
       return {
         showNavbar: false,
-        lLinks: [
-          {path: '/about', name: 'About'},
-          {path: '/rooms', name: 'Rooms & Amenities'},
-          {path: '/activities', name: 'Activities'}
-        ],
-        rLinks: [
-          {path: '/food', name: 'Food'},
-          {path: '/contact', name: 'Contact'},
-          {path: '/reservations', name: 'Reservations'}
-        ]
+        language: '',
+        languageOptions: [this.$i18n.getLocaleMessage('en').language, this.$i18n.getLocaleMessage('sc').language]
       }
     },
     props: {
       isMobile: this.isMobile
+    },
+    watch: {
+      language (val) {
+        if (val.indexOf('English') !== -1) {
+          this.$i18n.locale = 'en'
+        } else {
+          this.$i18n.locale = 'sc'
+        }
+      }
     }
   }
 </script>
@@ -60,7 +74,6 @@
 	.navbar {
 		margin-bottom: 0;
 	}
-
 	.navbar-default {
 		background: none;
 		border: none;
@@ -76,7 +89,6 @@
 			}
 		}
 	}
-
 	.navbar-wrapper {
 		margin: 0 auto;
 		.navbar-brand {

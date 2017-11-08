@@ -37,34 +37,7 @@
 
 <script>
   export default {
-    name: 'global-footer',
-    props: {
-      address: {
-        type: String,
-        default: function () {
-          return 'Jalan Kampung Tempurung Kuala Penyu 89740'
-        }
-      },
-      contactNumber: {
-        type: String,
-        default: function () {
-          return '+60 88-230 916'
-        }
-      },
-      links: {
-        default: function () {
-          return [
-            {path: '/', name: 'Home'},
-            {path: '/about', name: 'About'},
-            {path: '/rooms', name: 'Rooms & Amenities'},
-            {path: '/activities', name: 'Activities'},
-            {path: '/food', name: 'Food'},
-            {path: '/contact', name: 'Contact'},
-            {path: '/book', name: 'Book Now'}
-          ]
-        }
-      }
-    }
+    name: 'global-footer'
   }
 </script>
 

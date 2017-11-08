@@ -23,5 +23,46 @@ module.exports = {
     master: 'master-card',
     visa: 'visa-card'
   },
-  copyright: '© CopyRight 2017 Tempurong Golden Beach Resort. All Rights Reserved.'
+  copyright: '© CopyRight 2017 Tempurong Golden Beach Resort. All Rights Reserved.',
+  pages: {
+    home: {
+      welcome: 'Welcome to Tempurong',
+      services: 'Services',
+      activities: 'Activities',
+      features: 'Features',
+      reviews: 'Reviews'
+    },
+    about: {
+      pageTitle: 'About'
+    },
+    rooms: {
+      pageTitle: 'Rooms & Amenities'
+    },
+    activities: {
+      pageTitle: 'Activities'
+    },
+    food: {
+      pageTitle: 'Food'
+    },
+    contact: {
+      pageTitle: 'Contact'
+    },
+    reservations: {
+      pageTitle: 'Reservations'
+    }
+  },
+  datePicker: {
+    night: 'Night',
+    nights: 'Nights',
+    'day-names': ['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'],
+    'check-in': 'Check-in',
+    'check-out': 'Check-Out',
+    'month-names': ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  },
+  button: {
+    book: 'Book',
+    bookNow: 'Book Now',
+    more: 'More',
+    moreRooms: 'More Rooms'
+  }
 }

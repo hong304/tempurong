@@ -5,7 +5,7 @@
 		</div>
 		<div class="info-wrapper">
 			<h3>{{ cardTitle }}</h3>
-			<router-link :to="cardPath" class="btn btn-main">More</router-link>
+			<router-link :to="cardPath" class="btn btn-main">{{ buttonText }}</router-link>
 			<p>{{ cardIntro }}</p>
 		</div>
 	</div>
@@ -42,6 +42,12 @@
         type: String,
         default: function () {
           return '#'
+        }
+      },
+      buttonText: {
+        type: String,
+        default: function () {
+          return 'More'
         }
       }
     }

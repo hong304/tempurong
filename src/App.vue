@@ -9,8 +9,8 @@
 </template>
 
 <script>
-  import GlobalNav from './components/GlobalNav.vue'
-  import GlobalFooter from './components/GlobalFooter.vue'
+  import GlobalNav from '@/components/GlobalNav.vue'
+  import GlobalFooter from '@/components/GlobalFooter.vue'
 
   export default {
     name: 'app',

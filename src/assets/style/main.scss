@@ -32,6 +32,12 @@
   }
 }
 
+.multiselect--disabled {
+  background: none !important;
+  .multiselect__current, .multiselect__select {
+    background: none !important;
+  }
+}
 
 @import './utilities/spacing';
 @import './utilities/button';

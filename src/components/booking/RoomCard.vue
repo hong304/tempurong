@@ -1,5 +1,5 @@
 <template>
-	<div class="rooom-card row">
+	<div class="room-card row">
 		<div class="image-thumb-wrapper col-md-5 col-xs-12">
 			<img :src="imageSrc"/>
 		</div>
@@ -11,16 +11,33 @@
 					<li></li>
 				</ul>
 				<div class="rooms-extra">
-					<div><multiselect
-							v-model="selected"
-							:options="options"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
-					></multiselect></div>
-					<div>
-						extra mattress with breakfast (MYR30 per night)<br>
-						<span>*max 1 extra mattress per room</span>
+					<div class="extra-breakfast">
+						<div><multiselect
+								v-model="selected"
+								:options="options"
+								:searchable="false"
+								:close-on-select="true"
+								:showLabels="false"
+								:disabled="!counter"
+						></multiselect></div>
+						<div>
+							extra breakfast (MYR12 per night)<br>
+							<span>*max 1 extra breakfast per room</span>
+						</div>
+					</div>
+					<div class="extra-mattress">
+						<div><multiselect
+								v-model="selected"
+								:options="options"
+								:searchable="false"
+								:close-on-select="true"
+								:showLabels="false"
+								:disabled="!counter"
+						></multiselect></div>
+						<div>
+							extra mattress (MYR18 per night)<br>
+							<span>*max 1 extra mattress per room</span>
+						</div>
 					</div>
 				</div>
 				<div class="rooms-footer">
@@ -110,12 +127,12 @@
           let t = (this.show) ? 'hide details >' : 'more details >'
           return t
         }
-      }
+      },
+      show: false
     },
     data () {
       return {
-        counter: 0,
-        show: false
+        counter: 0
       }
     }
   }
@@ -152,17 +169,23 @@
 				margin-bottom: 1rem;
 			}
 			.rooms-extra {
-				& > div {
-					display: inline-block;
-					line-height: 20px;
-					&:first-of-type {
-						float: left;
-					}
-					&:last-of-type {
-						width: calc(100% - 60px);
-						& > span {
-							color: $brand-primary;
-							font-style: italic;
+				.extra-breakfast {
+					margin-bottom: 0.5rem;
+				}
+				.extra-breakfast, .extra-mattress {
+					& > div {
+						display: inline-block;
+						line-height: 20px;
+						&:first-of-type {
+							float: left;
+						}
+						&:last-of-type {
+							width: calc(100% - 60px);
+							& > span {
+								color: $brand-primary;
+								font-weight: bold;
+								font-style: italic;
+							}
 						}
 					}
 				}
@@ -188,7 +211,7 @@
 			border-radius: 50%;
 			padding: 0;
 			line-height: 25px;
-			font-size: 16px;
+			font-size: 15px;
 			vertical-align: middle;
 			outline: none;
 		}

@@ -48,22 +48,13 @@
     },
     data () {
       return {
-        isMobile: /iPhone|iPad|iPod|Android/i.test(navigator.userAgent),
         showNavbar: false,
         language: '',
         languageOptions: [this.$i18n.getLocaleMessage('en').language, this.$i18n.getLocaleMessage('sc').language]
       }
     },
-    beforeDestroy: function () {
-      window.removeEventListener('resize', this.handleResize)
-    },
-    methods: {
-      handleResize () {
-        this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-      }
-    },
-    mounted () {
-      window.addEventListener('resize', this.handleResize)
+    props: {
+      isMobile: this.isMobile
     },
     watch: {
       language (val) {

@@ -29,9 +29,9 @@
 						<button type="button" @click="show=!show" class="btn btn-text-only">{{ buttonText }}</button>
 					</span>
 					<span class="rooms-number">
-						<button type="button" @click="counter -= 1" class="btn btn-minus" :disabled="!counter">-</button>
+						<button type="button" @click="counter -= 1" class="btn btn-minus" :disabled="!counter"><span class="ti-minus"></span></button>
 						<span class="counter-num">{{ counter }}</span>
-						<button type="button" @click="counter += 1" class="btn btn-plus">+</button>
+						<button type="button" @click="counter += 1" class="btn btn-plus"><span class="ti-plus"></span></button>
 					</span>
 				</div>
 			</div>
@@ -110,12 +110,12 @@
           let t = (this.show) ? 'hide details >' : 'more details >'
           return t
         }
-      },
-      show: false
+      }
     },
     data () {
       return {
-        counter: 0
+        counter: 0,
+        show: false
       }
     }
   }
@@ -159,6 +159,7 @@
 						float: left;
 					}
 					&:last-of-type {
+						width: calc(100% - 60px);
 						& > span {
 							color: $brand-primary;
 							font-style: italic;
@@ -187,7 +188,7 @@
 			border-radius: 50%;
 			padding: 0;
 			line-height: 25px;
-			font-size: 30px;
+			font-size: 16px;
 			vertical-align: middle;
 			outline: none;
 		}

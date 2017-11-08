@@ -20,6 +20,18 @@
       background-color: $brand-secondary;
     }
   }
+  &.btn-secondary {
+    background-color: $brand-secondary;
+    color: white;
+    padding: 0.45rem 1.25rem;
+    font-size: 0.95em;
+    transition: background-color 250ms linear, color 250ms linear;
+    &:hover, &:focus {
+      text-decoration: none;
+      color: $brand-secondary;
+      background-color: white;
+    }
+  }
   &.btn-border {
     padding: 0.75rem 1.25rem;
     color: white;
@@ -42,7 +54,7 @@ button {
   outline: none;
   box-shadow: none;
   &:hover, &:focus, &:active {
-    outline: none;
-    box-shadow: none;
+    outline: none !important;
+    box-shadow: none !important;
   }
 }

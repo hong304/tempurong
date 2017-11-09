@@ -5,7 +5,7 @@ module.exports = {
     quickMenu: 'Quick Menu',
     about: 'About',
     rooms: 'Rooms & Amenities',
-    activities: 'Activities',
+    activities: 'Area & Activities',
     food: 'Food',
     contact: 'Contact',
     reservations: 'Reservations'
@@ -39,7 +39,7 @@ module.exports = {
       pageTitle: 'Rooms & Amenities'
     },
     activities: {
-      pageTitle: 'Activities'
+      pageTitle: 'Area & Activities'
     },
     food: {
       pageTitle: 'Food'

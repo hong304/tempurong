@@ -12,28 +12,32 @@
 				</ul>
 				<div class="rooms-extra">
 					<div class="extra-breakfast">
-						<div><multiselect
-								v-model="selected"
-								:options="options"
-								:searchable="false"
-								:close-on-select="true"
-								:showLabels="false"
-								:disabled="!counter"
-						></multiselect></div>
+						<div>
+							<multiselect
+									v-model="selected"
+									:options="options"
+									:searchable="false"
+									:close-on-select="true"
+									:showLabels="false"
+									:disabled="!counter"
+							></multiselect>
+						</div>
 						<div>
 							extra breakfast (MYR12 per night)<br>
 							<span>*max 1 extra breakfast per room</span>
 						</div>
 					</div>
 					<div class="extra-mattress">
-						<div><multiselect
-								v-model="selected"
-								:options="options"
-								:searchable="false"
-								:close-on-select="true"
-								:showLabels="false"
-								:disabled="!counter"
-						></multiselect></div>
+						<div>
+							<multiselect
+									v-model="selected"
+									:options="options"
+									:searchable="false"
+									:close-on-select="true"
+									:showLabels="false"
+									:disabled="!counter"
+							></multiselect>
+						</div>
 						<div>
 							extra mattress (MYR18 per night)<br>
 							<span>*max 1 extra mattress per room</span>
@@ -46,7 +50,8 @@
 						<button type="button" @click="show=!show" class="btn btn-text-only">{{ buttonText }}</button>
 					</span>
 					<span class="rooms-number">
-						<button type="button" @click="counter -= 1" class="btn btn-minus" :disabled="!counter"><span class="ti-minus"></span></button>
+						<button type="button" @click="counter -= 1" class="btn btn-minus" :disabled="!counter"><span
+								class="ti-minus"></span></button>
 						<span class="counter-num">{{ counter }}</span>
 						<button type="button" @click="counter += 1" class="btn btn-plus"><span class="ti-plus"></span></button>
 					</span>
@@ -55,7 +60,8 @@
 			<collapse v-model="show">
 				<div class="well" style="margin-bottom: 0">
 					<h5>The Room</h5>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 					<h5>Amenities</h5>
 					<ul class="icon-list">
 						<li></li>
@@ -65,7 +71,8 @@
 						<li></li>
 					</ul>
 					<h5>Cancellations</h5>
-					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p>
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 					<h5>Safety features</h5>
 					<ul class="info-list">
 						<li></li>
@@ -85,45 +92,32 @@
       Multiselect
     },
     props: {
-      imageSrc: {
-        type: String,
-        default: function () {
-          return '/static/img/demo-room.jpg'
-        }
-      },
-      infoTitle: {
-        type: String,
-        default: function () {
-          return 'Default title'
-        }
-      },
-      infoPrice: {
-        type: String,
-        default: function () {
-          return '1,999'
+      resData: {
+        type: Object,
+        default: () => {
+          return {
+            imageSrc: '/static/img/demo-room.jpg',
+            infoTitle: 'Default title',
+            infoPrice: 1999,
+            availableRooms: 0
+          }
         }
       },
       selected: {
         type: Number,
-        default: function () {
+        default: () => {
           return 0
         }
       },
       options: {
         type: Array,
-        default: function () {
+        default: () => {
           return [0, 1]
-        }
-      },
-      availableRooms: {
-        type: String,
-        default: function () {
-          return '0'
         }
       },
       buttonText: {
         type: String,
-        default: function () {
+        default: () => {
           let t = (this.show) ? 'hide details >' : 'more details >'
           return t
         }
@@ -132,7 +126,11 @@
     },
     data () {
       return {
-        counter: 0
+        counter: 0,
+        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-room.jpg',
+        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : 'Default title',
+        infoPrice: (this.resData.infoPrice) ? this.resData.infoPrice : 1999,
+        availableRooms: (this.resData.availableRooms) ? this.resData.availableRooms : 0
       }
     }
   }
@@ -147,6 +145,7 @@
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
+
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;
@@ -224,6 +223,7 @@
 			float: right;
 		}
 	}
+
 	.well {
 		border: none;
 		border-radius: 0;
@@ -238,10 +238,12 @@
 			}
 		}
 	}
+
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
+
 	.multiselect {
 		display: inline-block;
 		width: 50px;

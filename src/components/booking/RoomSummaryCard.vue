@@ -23,65 +23,36 @@
   export default {
     name: 'room-summary-card',
     props: {
-      imageSrc: {
-        type: String,
-        default: function () {
-          return '/static/img/demo-room.jpg'
-        }
-      },
-      infoTitle: {
-        type: String,
-        default: function () {
-          return 'Large Room'
-        }
-      },
-      numberOfRoom: {
-        type: Number,
-        default: function () {
-          return 1
-        }
-      },
-      priceOfRoom: {
-        type: Number,
-        default: function () {
-          return 274
-        }
-      },
-      totalNight: {
-        type: Number,
-        default: function () {
-          return 6
-        }
-      },
-      totalRooms: {
-        type: Number,
-        default: function () {
-          return 0
-        }
-      },
-      addExtra: {
-        type: Boolean,
-        default: function () {
-          return false
-        }
-      },
-      totalExtraMattress: {
-        type: Number,
-        default: function () {
-          return 2
-        }
-      },
-      totalCost: {
-        type: Number,
-        default: function () {
-          return 1999
+      resData: {
+        type: Object,
+        default: () => {
+          return {
+            imageSrc: '/static/img/demo-room.jpg',
+            infoTitle: 'Large Room',
+            numberOfRoom: 0,
+            priceOfRoom: 274,
+            totalNight: 0,
+            totalRooms: 0,
+            addExtra: false,
+            totalExtraMattress: 0,
+            totalCost: 0
+          }
         }
       }
     },
     data () {
       return {
         counter: 0,
-        show: false
+        show: false,
+        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-room.jpg',
+        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : 'Large Room',
+        numberOfRoom: (this.resData.numberOfRoom) ? this.resData.numberOfRoom : 0,
+        priceOfRoom: (this.resData.priceOfRoom) ? this.resData.priceOfRoom : 274,
+        totalNight: (this.resData.totalNight) ? this.resData.totalNight : 0,
+        totalRooms: (this.resData.totalRooms) ? this.resData.totalRooms : 0,
+        addExtra: (this.resData.addExtra) ? this.resData.addExtra : false,
+        totalExtraMattress: (this.resData.totalExtraMattress) ? this.resData.totalExtraMattress : 0,
+        totalCost: (this.resData.totalCost) ? this.resData.totalCost : 0
       }
     }
   }

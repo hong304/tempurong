@@ -5,10 +5,10 @@
 		</div>
 		<div class="overlay-info-wrapper px-4 px-md-0">
 			<div class="content-wrapper">
-				<h3 v-show="infoTitle">{{ infoTitle }}</h3>
-				<p v-show="infoParagraph">{{ infoParagraph }}</p>
+				<h3 v-if="infoTitle">{{ infoTitle }}</h3>
+				<p v-if="infoParagraph">{{ infoParagraph }}</p>
 			</div>
-			<router-link v-show="buttonPath" :to="buttonPath" class="btn btn-border">{{ buttonText }}</router-link>
+			<router-link v-if="buttonPath" :to="buttonPath" class="btn btn-border">{{ buttonText }}</router-link>
 		</div>
 	</div>
 </template>
@@ -17,32 +17,30 @@
   export default {
     name: 'image-divider',
     props: {
-      imageSrc: {
-        type: String,
-        default: function () {
-          return '/static/img/demo-image-divider.jpg'
-        }
-      },
-      infoTitle: {
-        default: function () {
-          return false
-        }
-      },
-      infoParagraph: {
-        default: function () {
-          return false
-        }
-      },
-      buttonPath: {
-        default: function () {
-          return false
+      resData: {
+        type: Object,
+        default: () => {
+          return {
+            imageSrc: '/static/img/demo-image-divider.jpg',
+            infoTitle: false,
+            infoParagraph: false,
+            buttonPath: false
+          }
         }
       },
       buttonText: {
         type: String,
-        default: function () {
+        default: () => {
           return 'More'
         }
+      }
+    },
+    data () {
+      return {
+        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-image-divider.jpg',
+        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : false,
+        infoParagraph: (this.resData.infoParagraph) ? this.resData.infoParagraph : false,
+        buttonPath: (this.resData.buttonPath) ? this.resData.buttonPath : false
       }
     }
   }
@@ -55,6 +53,7 @@
 		position: relative;
 		color: white;
 	}
+
 	.image-bg {
 		overflow-x: hidden;
 		& > img {
@@ -69,6 +68,7 @@
 			}
 		}
 	}
+
 	.overlay-info-wrapper {
 		position: absolute;
 		display: flex;

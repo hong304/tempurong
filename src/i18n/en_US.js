@@ -63,7 +63,8 @@ module.exports = {
     book: 'Book',
     bookNow: 'Book Now',
     more: 'More',
-    moreRooms: 'More Rooms'
+    moreRooms: 'More Rooms',
+    moreDetails: 'More Details'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',
@@ -78,6 +79,13 @@ module.exports = {
         adults: '{count} adults | {count} adult | {count} adults',
         childrenTitle: 'Children',
         children: '{count} children | {count} child | {count} children'
+      },
+      roomCard: {
+        extraBreakfast: 'extra breakfast (MYR12 per night)',
+        breakfastRemarks: '* max 1 extra breakfast per room',
+        extraMattress: 'extra mattress (MYR18 per night)',
+        mattressRemarks: '* max 1 extra mattress per room',
+        roomAvailable: '{count} rooms available | {count} room available | {count} rooms available'
       }
     }
   }

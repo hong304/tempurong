@@ -6,7 +6,7 @@
 		<div class="info-wrapper col-md-7 col-xs-12">
 			<div class="content-wrapper">
 				<h3>{{ infoTitle }}</h3>
-				<h4>{{ infoPrice }}</h4>
+				<h4>${{ infoPrice }}</h4>
 				<ul class="icon-list">
 					<li></li>
 				</ul>
@@ -23,8 +23,8 @@
 							></multiselect>
 						</div>
 						<div>
-							extra breakfast (MYR12 per night)<br>
-							<span>*max 1 extra breakfast per room</span>
+							{{ $t('components.booking.roomCard.extraBreakfast') }}<br>
+							<span>{{ $t('components.booking.roomCard.breakfastRemarks') }}</span>
 						</div>
 					</div>
 					<div class="extra-mattress">
@@ -39,15 +39,15 @@
 							></multiselect>
 						</div>
 						<div>
-							extra mattress (MYR18 per night)<br>
-							<span>*max 1 extra mattress per room</span>
+							{{ $t('components.booking.roomCard.extraMattress') }}<br>
+							<span>{{ $t('components.booking.roomCard.mattressRemarks') }}</span>
 						</div>
 					</div>
 				</div>
 				<div class="rooms-footer">
 					<span>
-						{{ availableRooms }} rooms available |
-						<button type="button" @click="show=!show" class="btn btn-text-only">{{ buttonText }}</button>
+						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms} ) }} |
+						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails') }} > </button>
 					</span>
 					<span class="rooms-number">
 						<button type="button" @click="counter -= 1" class="btn btn-minus" :disabled="!counter"><span

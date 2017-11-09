@@ -63,7 +63,8 @@ module.exports = {
     book: '預訂',
     bookNow: '立即預訂',
     more: '更多',
-    moreRooms: '更多房間'
+    moreRooms: '更多房間',
+    moreDetails: '更多詳情'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',
@@ -78,6 +79,13 @@ module.exports = {
         adults: '{count} 位成人 | {count} 位成人 | {count} 位成人',
         childrenTitle: '小孩',
         children: '{count} 位小孩 | {count} 位小孩 | {count} 位小孩'
+      },
+      roomCard: {
+        extraBreakfast: '加早餐 (MYR12 每天)',
+        breakfastRemarks: '* 每間房間最多只能加一份早餐',
+        extraMattress: '加床褥 (MYR18 每晚)',
+        mattressRemarks: '* 每間房間最多只能加一張床褥',
+        roomAvailable: '尚餘{count}間房間 | 尚餘{count}間房間 | 尚餘{count}間房間'
       }
     }
   }

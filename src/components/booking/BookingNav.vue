@@ -3,10 +3,11 @@
 		<div class="row">
 			<div class="picker-nav-bar">
 				<div class="picker-input">
-					<HotelDatePicker :startDate="new Date()" />
+					<HotelDatePicker :startDate="new Date()" :i18n="datepicker"/>
 				</div>
 				<div class="picker-button">
-					<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">Book Now</router-link>
+					<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">{{ $t('button.bookNow') }}
+					</router-link>
 				</div>
 			</div>
 		</div>
@@ -21,13 +22,20 @@
       HotelDatePicker
     },
     data () {
-      return {}
+      return {
+      }
+    },
+    computed: {
+      datepicker: function () {
+        return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+      }
     }
   }
 </script>
 
 <style lang="scss">
 	@import '../../assets/style/setting';
+	
 	.picker-nav-bar {
 		display: flex;
 		flex-flow: row wrap;
@@ -67,7 +75,7 @@
 				.datepicker__clear-button {
 					color: white;
 					margin: 0 -2px 0 0;
-
+					
 				}
 			}
 		}

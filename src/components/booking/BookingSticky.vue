@@ -4,11 +4,12 @@
 						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
-			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{totalPrice}} MYR</h2>
+			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{totalPrice}} MYR
+			</h2>
 			<h4 class="total-guests">
-				<strong>{{$tc('components.booking.bookingSticky.guests', totalGuests, {count: totalGuests}) }}</strong>
-				({{$tc('components.booking.bookingSticky.days', totalDays, {count: totalDays})}},
-				{{$tc('components.booking.bookingSticky.nights', totalNights, {count: totalNights})}})
+				<strong>{{ $tc('components.booking.bookingSticky.guests', totalGuests, {count: totalGuests}) }}</strong>
+				({{ $tc('dateUnit.days', totalDays, {count: totalDays}) }},
+				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
 		</div>
 		<div class="summary-detail">

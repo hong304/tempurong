@@ -65,13 +65,15 @@ module.exports = {
     more: '更多',
     moreRooms: '更多房间'
   },
+  dateUnit: {
+    days: '{count} 日 | {count} 日 | {count} 日',
+    nights: '{count} 晚 | {count} 晚 | {count} 晚'
+  },
   components: {
     booking: {
       bookingSticky: {
         total: '总共',
         guests: '{count} 人 | {count} 人 | {count} 人',
-        days: '{count} 日 | {count} 日 | {count} 日',
-        nights: '{count} 夜 | {count} 夜 | {count} 夜',
         adultTitle: '成人',
         adults: '{count} 位成人 | {count} 位成人 | {count} 位成人',
         childrenTitle: '小孩',

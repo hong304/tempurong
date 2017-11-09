@@ -14,12 +14,12 @@
 					<div class="extra-breakfast">
 						<div>
 							<multiselect
-									v-model="selected"
-									:options="options"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-									:disabled="!counter"
+											v-model="selected"
+											:options="options"
+											:searchable="false"
+											:close-on-select="true"
+											:showLabels="false"
+											:disabled="!counter"
 							></multiselect>
 						</div>
 						<div>
@@ -30,12 +30,12 @@
 					<div class="extra-mattress">
 						<div>
 							<multiselect
-									v-model="selected"
-									:options="options"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-									:disabled="!counter"
+											v-model="selected"
+											:options="options"
+											:searchable="false"
+											:close-on-select="true"
+											:showLabels="false"
+											:disabled="!counter"
 							></multiselect>
 						</div>
 						<div>
@@ -46,12 +46,13 @@
 				</div>
 				<div class="rooms-footer">
 					<span>
-						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms} ) }} |
-						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails') }} > </button>
+						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
+						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails')
+							}} > </button>
 					</span>
 					<span class="rooms-number">
 						<button type="button" @click="counter -= 1" class="btn btn-minus" :disabled="!counter"><span
-								class="ti-minus"></span></button>
+										class="ti-minus"></span></button>
 						<span class="counter-num">{{ counter }}</span>
 						<button type="button" @click="counter += 1" class="btn btn-plus"><span class="ti-plus"></span></button>
 					</span>
@@ -59,24 +60,20 @@
 			</div>
 			<collapse v-model="show">
 				<div class="well" style="margin-bottom: 0">
-					<h5>The Room</h5>
+					<h5>{{ $t('components.booking.roomCard.description') }}</h5>
 					<p>
 						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<h5>Amenities</h5>
+					<h5>{{ $t('components.booking.roomCard.amenities') }}</h5>
 					<ul class="icon-list">
 						<li></li>
 					</ul>
-					<h5>House Rules</h5>
+					<h5>{{ $t('components.booking.roomCard.resortPolicy') }}</h5>
 					<ul class="info-list">
 						<li></li>
 					</ul>
-					<h5>Cancellations</h5>
+					<h5>{{ $t('components.booking.roomCard.cancellations') }}</h5>
 					<p>
 						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<h5>Safety features</h5>
-					<ul class="info-list">
-						<li></li>
-					</ul>
 				</div>
 			</collapse>
 		</div>
@@ -139,19 +136,19 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.rooom-card {
 		border-bottom: 2px solid $brand-primary;
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
-
+	
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;
 		}
 	}
-
+	
 	.info-wrapper {
 		text-align: left;
 		color: $brand-secondary;
@@ -223,7 +220,7 @@
 			float: right;
 		}
 	}
-
+	
 	.well {
 		border: none;
 		border-radius: 0;
@@ -238,12 +235,12 @@
 			}
 		}
 	}
-
+	
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
-
+	
 	.multiselect {
 		display: inline-block;
 		width: 50px;

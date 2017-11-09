@@ -85,7 +85,11 @@ module.exports = {
         breakfastRemarks: '* 每间房间最多只能加一份早餐',
         extraMattress: '加床褥 (MYR18 每晚)',
         mattressRemarks: '* 每间房间最多只能加一张床褥',
-        roomAvailable: '尚馀{count}间房间 | 尚馀{count}间房间 | 尚馀{count}间房间'
+        roomAvailable: '尚馀{count}间房间 | 尚馀{count}间房间 | 尚馀{count}间房间',
+        description: '详情',
+        amenities: '设施',
+        resortPolicy: '度假村政策',
+        cancellations: '取消政策'
       }
     }
   }

@@ -70,10 +70,11 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	.navbar {
 		margin-bottom: 0;
 	}
+	
 	.navbar-default {
 		background: none;
 		border: none;
@@ -89,6 +90,7 @@
 			}
 		}
 	}
+	
 	.navbar-wrapper {
 		margin: 0 auto;
 		.navbar-brand {

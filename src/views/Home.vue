@@ -3,17 +3,17 @@
 		<carousel></carousel>
 		<booking-nav></booking-nav>
 		<section class="padding-of-section mt-5">
-			<content-title :contentTitle="titleOne"></content-title>
+			<content-title :contentTitle="$t('pages.home.welcome')"></content-title>
 			<content-paragraph></content-paragraph>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5">
-			<content-title :contentTitle="titleTwo"></content-title>
+			<content-title :contentTitle="$t('pages.home.services')"></content-title>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-md-6">
-					<card></card>
+					<card :buttonText="$t('button.more')"></card>
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<card></card>
+					<card :buttonText="$t('button.more')"></card>
 				</div>
 			</div>
 		</section>
@@ -21,37 +21,37 @@
 			<div class="row">
 				<image-divider
 						:infoParagraph="imageDividerParagraph"
-						:buttonText="buttonText"
+						:buttonText="$t('button.moreRooms')"
 						:buttonPath="buttonPath"
 				></image-divider>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5">
-			<content-title :contentTitle="titleThree"></content-title>
+			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-md-6">
-					<card></card>
+					<card :buttonText="$t('button.more')"></card>
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<card></card>
+					<card :buttonText="$t('button.more')"></card>
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<card :isLastTwo=true></card>
+					<card :isLastTwo=true :buttonText="$t('button.more')"></card>
 				</div>
 				<div class="col-xs-12 col-md-6">
-					<card :isLastTwo=true></card>
+					<card :isLastTwo=true :buttonText="$t('button.more')"></card>
 				</div>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
-			<content-title :contentTitle="titleFour"></content-title>
+			<content-title :contentTitle="$t('pages.home.features')"></content-title>
 			<div class="row m-0">
-				<circle-thumb-card :imgRight=true :isFirst=true></circle-thumb-card>
-				<circle-thumb-card :isLast=true></circle-thumb-card>
+				<circle-thumb-card :imgRight=true :isFirst=true :buttonText="$t('button.more')"></circle-thumb-card>
+				<circle-thumb-card :isLast=true :buttonText="$t('button.more')"></circle-thumb-card>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
-			<content-title :contentTitle="titleFive"></content-title>
+			<content-title :contentTitle="$t('pages.home.reviews')"></content-title>
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
 					<testimonal></testimonal>

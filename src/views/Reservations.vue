@@ -3,7 +3,7 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="$('pages.reservations.pageTitle')"></content-title>
+					<content-title :contentTitle="$t('pages.reservations.pageTitle')"></content-title>
 					<content-paragraph></content-paragraph>
 				</div>
 			</div>

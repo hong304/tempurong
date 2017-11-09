@@ -26,7 +26,7 @@
       }
     },
     computed: {
-      datepicker: function () {
+      datepicker: () => {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       }
     }

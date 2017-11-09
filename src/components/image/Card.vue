@@ -1,12 +1,12 @@
 <template>
-	<div class="card" :class="{ last: isLastTwo }">
+	<div class="card">
 		<div class="image-wrapper">
 			<img :src="imageSrc"/>
 		</div>
 		<div class="info-wrapper">
-			<h3>{{ cardTitle }}</h3>
-			<router-link :to="cardPath" class="btn btn-main">{{ buttonText }}</router-link>
-			<p>{{ cardIntro }}</p>
+			<h3>{{ infoTitle }}</h3>
+			<router-link :to="buttonPath" class="btn btn-main">{{ buttonText }}</router-link>
+			<p>{{ infoParagraph }}</p>
 		</div>
 	</div>
 </template>
@@ -15,40 +15,30 @@
   export default {
     name: 'card',
     props: {
-      isLastTwo: {
-        default: function () {
-          return false
-        }
-      },
-      imageSrc: {
-        type: String,
-        default: function () {
-          return '/static/img/demo-image-01.jpg'
-        }
-      },
-      cardTitle: {
-        type: String,
-        default: function () {
-          return 'I\'m a sample title'
-        }
-      },
-      cardIntro: {
-        type: String,
-        default: function () {
-          return 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.'
-        }
-      },
-      cardPath: {
-        type: String,
-        default: function () {
-          return '#'
+      resData: {
+        type: Object,
+        default: () => {
+          return {
+            imageSrc: '/static/img/demo-image-01.jpg',
+            infoTitle: 'I\'m a sample title',
+            infoParagraph: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
+            buttonPath: '#'
+          }
         }
       },
       buttonText: {
         type: String,
-        default: function () {
+        default: () => {
           return 'More'
         }
+      }
+    },
+    data () {
+      return {
+        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-image-01.jpg',
+        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : 'I\'m sample title.',
+        infoParagraph: (this.resData.infoParagraph) ? this.resData.infoParagraph : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
+        buttonPath: (this.resData.buttonPath) ? this.resData.buttonPath : '#'
       }
     }
   }

@@ -20,49 +20,44 @@
     name: 'circle-thumb-card',
     props: {
       imgRight: {
-        default: function () {
+        default: () => {
           return false
         }
       },
       isFirst: {
-        default: function () {
+        default: () => {
           return false
         }
       },
       isLast: {
-        default: function () {
+        default: () => {
           return false
         }
       },
-      imageSrc: {
-        type: String,
-        default: function () {
-          return '/static/img/demo-image-divider.jpg'
-        }
-      },
-      infoTitle: {
-        type: String,
-        default: function () {
-          return 'I\'m default title.'
-        }
-      },
-      infoParagraph: {
-        type: String,
-        default: function () {
-          return 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.'
-        }
-      },
-      buttonPath: {
-        type: String,
-        default: function () {
-          return '#'
+      resData: {
+        type: Object,
+        default: () => {
+          return {
+            imageSrc: '/static/img/demo-image-divider.jpg',
+            infoTitle: 'I\'m default title.',
+            infoParagraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+            buttonPath: '#'
+          }
         }
       },
       buttonText: {
         type: String,
-        default: function () {
+        default: () => {
           return 'More'
         }
+      }
+    },
+    data () {
+      return {
+        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-image-divider.jpg',
+        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : 'I\'m default title.',
+        infoParagraph: (this.resData.infoParagraph) ? this.resData.infoParagraph : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+        buttonPath: (this.resData.buttonPath) ? this.resData.buttonPath : '#'
       }
     }
   }
@@ -77,8 +72,8 @@
 		&.image-on-right {
 			@media screen and (min-width: 768px) {
 				.circle-border {
-					 order: 12;
-				 }
+					order: 12;
+				}
 				.info-wrapper {
 					order: 1;
 				}

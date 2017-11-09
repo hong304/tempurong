@@ -8,7 +8,7 @@
     props: {
       contentTitle: {
         type: String,
-        default: function () {
+        default: () => {
           return 'I\'m default title.'
         }
       }

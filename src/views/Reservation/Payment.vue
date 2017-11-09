@@ -10,7 +10,51 @@
 		<section class="py-5">
 			<div class="row">
 				<div class="col-xs-12">
-
+					<div class="payment-wrapper">
+						<div class="payment-header">
+							<h3>Contact information</h3>
+						</div>
+						<div class="payment-body">
+							<div class="row">
+								<div class="col-md-6 col-xs-12">
+									<input v-model="firstName" placeholder="First Name">
+								</div>
+								<div class="col-md-6 col-xs-12">
+									<input v-model="lastName" placeholder="Last Name">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<input v-model="email" placeholder="Email">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<textarea v-model="Remark" placeholder="Remark"></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<textarea v-model="additionalNote"
+														placeholder="Additional notes (airport pickup, interested in activities etc."></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p>Terms & Conditions</p>
+									<input type="checkbox" id="tcAgree" v-model="checked">
+									<label
+											for="tcAgree">I have read and agree to the above Terms and Conditions and cancellation policy.</label>
+								</div>
+							</div>
+						</div>
+						<div class="payment-footer">
+							<h3>Total Amount: <span class="total-price">{{ totalPrice }}MYR</span></h3>
+							<button class="btn btn-main">
+								<icon name="cc-paypal" scale="2"></icon>
+								<span>Check out</span></button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -19,15 +63,27 @@
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
+  import 'vue-awesome/icons/cc-paypal'
+  import Icon from 'vue-awesome/components/Icon'
 
   export default {
     components: {
-      ContentTitle
+      ContentTitle,
+      Icon
     },
     name: 'reservations-payment',
+    props: {
+      firstName: {type: String},
+      lastName: {type: String},
+      email: {type: String},
+      Remark: {type: String},
+      additionalNote: {type: String},
+      checked: {type: Boolean}
+    },
     data () {
       return {
-        ContentTitle: 'Payment'
+        titleOne: 'Payment',
+        totalPrice: 0
       }
     }
   }
@@ -36,4 +92,82 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
+
+	.payment-wrapper {
+		margin: 0 5rem;
+		padding: 5rem;
+		color: $brand-secondary;
+		border: 1px solid $light-grey;
+		text-align: left;
+		h3 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			margin: 0;
+		}
+		p {
+			margin-top: 3rem;
+			margin-bottom: 0;
+			font-size: 2rem;
+		}
+	}
+
+	.payment-header {
+		text-transform: uppercase;
+		margin-bottom: 3rem;
+	}
+
+	.payment-body {
+		margin-bottom: 4rem;
+		input, textarea {
+			width: 100%;
+			margin: 1.5rem 0;
+			line-height: 3rem;
+			border: none;
+			border-bottom: 1px solid $brand-primary;
+			&:hover, &:focus, &:active {
+				outline: none !important;
+				box-shadow: none !important;
+				border-bottom-color: $brand-secondary;
+			}
+			&::placeholder {
+				color: $light-grey;
+			}
+		}
+		input[type=checkbox] {
+			width: auto;
+			margin-top: 0;
+		}
+		textarea {
+			resize: none;
+		}
+		label {
+			font-weight: 400;
+		}
+	}
+
+	.payment-footer {
+		text-align: right;
+		h3 {
+			margin-bottom: 1.5rem;
+		}
+		.total-price {
+			&:before {
+				content: '$';
+				margin-right: 0.5rem;
+			}
+		}
+	}
+
+	.btn-main {
+		text-transform: uppercase;
+		.fa-icon, span {
+			float: left;
+		}
+		.fa-icon {
+			margin-right: 0.5rem;
+		}
+		span {
+			line-height: 2em;
+		}
+	}
 </style>

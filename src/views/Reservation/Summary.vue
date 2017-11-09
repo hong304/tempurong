@@ -50,7 +50,7 @@
       RoomSummaryCard,
       ContentTitle
     },
-    name: 'ReservationsSummary',
+    name: 'reservations-summary',
     data () {
       return {
         titleOne: 'Booking Summary',

@@ -10,6 +10,7 @@ import Food from '@/views/Food'
 import Contact from '@/views/Contact'
 import Reservations from '@/views/Reservations'
 import Summary from '@/views/Reservation/Summary'
+import Payment from '@/views/Reservation/Payment'
 
 Vue.use(Router)
 
@@ -23,6 +24,7 @@ export default new Router({
     {path: '/food', name: 'Food', component: Food},
     {path: '/contact', name: 'Contact', component: Contact},
     {path: '/reservations', name: 'Reservations', component: Reservations},
-    {path: '/summary', name: 'Summary', component: Summary}
+    {path: '/summary', name: 'Summary', component: Summary},
+    {path: '/payment', name: 'Payment', component: Payment}
   ]
 })

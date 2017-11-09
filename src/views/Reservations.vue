@@ -39,11 +39,25 @@
     name: 'Reservations',
     data () {
       return {
-        titleOne: 'Reservations'
+        titleOne: 'Reservations',
+        rooms: []
       }
     },
     props: {
       isMobile: this.isMobile
+    },
+    methods: {
+      fetchRooms: function () {
+        this.axios.get('/api/room').then((response) => {
+          this.rooms = response.data
+          console.log(response.data)
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
+    mounted: function () {
+      this.fetchRooms()
     }
   }
 </script>

@@ -64,5 +64,19 @@ module.exports = {
     bookNow: 'Book Now',
     more: 'More',
     moreRooms: 'More Rooms'
+  },
+  components: {
+    booking: {
+      bookingSticky: {
+        total: 'Total',
+        guests: '{count} guests | {count} guest | {count} guests',
+        days: '{count} days | {count} day | {count} days',
+        nights: '{count} nights | {count} night | {count} nights',
+        adultTitle: 'Adults',
+        adults: '{count} adults | {count} adult | {count} adults',
+        childrenTitle: 'Children',
+        children: '{count} children | {count} child | {count} children'
+      }
+    }
   }
 }

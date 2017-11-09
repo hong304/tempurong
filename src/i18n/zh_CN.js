@@ -64,5 +64,19 @@ module.exports = {
     bookNow: '立即预订',
     more: '更多',
     moreRooms: '更多房间'
+  },
+  components: {
+    booking: {
+      bookingSticky: {
+        total: '总共',
+        guests: '{count} 人 | {count} 人 | {count} 人',
+        days: '{count} 日 | {count} 日 | {count} 日',
+        nights: '{count} 夜 | {count} 夜 | {count} 夜',
+        adultTitle: '成人',
+        adults: '{count} 位成人 | {count} 位成人 | {count} 位成人',
+        childrenTitle: '小孩',
+        children: '{count} 位小孩 | {count} 位小孩 | {count} 位小孩'
+      }
+    }
   }
 }

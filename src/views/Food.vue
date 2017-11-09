@@ -1,6 +1,6 @@
 <template>
 	<div id="food">
-		<content-title :contentTitle="titleOne"></content-title>
+		<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
 	</div>
 </template>
 

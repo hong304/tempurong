@@ -142,7 +142,6 @@
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
-	
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;

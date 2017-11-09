@@ -85,7 +85,11 @@ module.exports = {
         breakfastRemarks: '* max 1 extra breakfast per room',
         extraMattress: 'extra mattress (MYR18 per night)',
         mattressRemarks: '* max 1 extra mattress per room',
-        roomAvailable: '{count} rooms available | {count} room available | {count} rooms available'
+        roomAvailable: '{count} rooms available | {count} room available | {count} rooms available',
+        description: 'Description',
+        amenities: 'Amenities',
+        resortPolicy: 'Resort Policy',
+        cancellations: 'Cancellations'
       }
     }
   }

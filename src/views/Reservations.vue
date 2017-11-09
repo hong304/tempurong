@@ -48,7 +48,7 @@
     },
     methods: {
       fetchRooms: function () {
-        this.axios.get('/api/room').then((response) => {
+        this.axios.get('/api/room-type').then((response) => {
           this.rooms = response.data
           console.log(response.data)
         }, (error) => {

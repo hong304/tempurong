@@ -9,37 +9,24 @@
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.services')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-md-6">
-					<card :buttonText="$t('button.more')"></card>
-				</div>
-				<div class="col-xs-12 col-md-6">
-					<card :buttonText="$t('button.more')"></card>
+				<div class="col-xs-12 col-md-6" v-for="(item, index) in servicesData" :item="item" :index="index" :key="item.id">
+					<card :resData="item" :buttonText="$t('button.more')"></card>
 				</div>
 			</div>
 		</section>
 		<section class="pt-5 pb-5">
 			<div class="row">
 				<image-divider
-						:infoParagraph="imageDividerParagraph"
+						:resData="imageDividerData"
 						:buttonText="$t('button.moreRooms')"
-						:buttonPath="buttonPath"
 				></image-divider>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-md-6">
-					<card :buttonText="$t('button.more')"></card>
-				</div>
-				<div class="col-xs-12 col-md-6">
-					<card :buttonText="$t('button.more')"></card>
-				</div>
-				<div class="col-xs-12 col-md-6">
-					<card :isLastTwo=true :buttonText="$t('button.more')"></card>
-				</div>
-				<div class="col-xs-12 col-md-6">
-					<card :isLastTwo=true :buttonText="$t('button.more')"></card>
+				<div class="col-xs-12 col-md-6" v-for="(item, index) in activitiesData" :item="item" :index="index" :key="item.id">
+					<card :buttonText="$t('button.more')" :class="{ last: index == 2 || index == 3 }"></card>
 				</div>
 			</div>
 		</section>
@@ -93,9 +80,32 @@
       return {
         titleOne: 'Welcome to Tempurong',
         titleTwo: 'Services',
-        imageDividerParagraph: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
-        buttonPath: '#',
-        buttonText: 'More Rooms',
+        servicesData: [
+          {
+            infoTitle: 'Service card 1'
+          },
+          {
+            infoTitle: 'Service card 2'
+          }
+        ],
+        imageDividerData: {
+          infoParagraph: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
+          buttonPath: '#'
+        },
+        activitiesData: [
+          {
+            infoTitle: 'Activities card 1'
+          },
+          {
+            infoTitle: 'Activities card 2'
+          },
+          {
+            infoTitle: 'Activities card 3'
+          },
+          {
+            infoTitle: 'Activities card 4'
+          }
+        ],
         titleThree: 'Activities',
         titleFour: 'Features',
         titleFive: 'Reviews'

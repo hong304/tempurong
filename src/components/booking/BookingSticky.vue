@@ -1,37 +1,43 @@
 <template>
 	<div class="booking-sticky" :class="{ shown: show }">
-		<button type="button" v-show="isMobile" @click="show=!show" class="btn btn-close"><span :class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
+		<button type="button" v-show="isMobile" @click="show=!show" class="btn btn-close"><span
+						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
-			<h2 class="total-price"><strong>Total</strong> ${{totalPrice}} myr</h2>
-			<h4 class="total-guests"><strong>{{totalGuests}} guests</strong> ({{totalDays}} days, {{totalNights}} nights)</h4>
+			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{totalPrice}} MYR</h2>
+			<h4 class="total-guests">
+				<strong>{{$tc('components.booking.bookingSticky.guests', totalGuests, {count: totalGuests}) }}</strong>
+				({{$tc('components.booking.bookingSticky.days', totalDays, {count: totalDays})}},
+				{{$tc('components.booking.bookingSticky.nights', totalNights, {count: totalNights})}})
+			</h4>
 		</div>
 		<div class="summary-detail">
 			<div class="picker-input">
 				<div>
-					<HotelDatePicker :startDate="new Date()"/>
+					<HotelDatePicker :startDate="new Date()" :i18n="datepicker"/>
 				</div>
 				<div>
 					<multiselect
-							v-model="selectedOne"
-							:options="optionsOne"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
+									v-model="selectedOne"
+									:options="optionsOne"
+									:searchable="false"
+									:close-on-select="true"
+									:showLabels="false"
 					></multiselect>
 				</div>
 				<div>
 					<multiselect
-							v-model="selectedTwo"
-							:options="optionsTwo"
-							:searchable="false"
-							:close-on-select="true"
-							:showLabels="false"
+									v-model="selectedTwo"
+									:options="optionsTwo"
+									:searchable="false"
+									:close-on-select="true"
+									:showLabels="false"
 					></multiselect>
 				</div>
 			</div>
 			<div class="sticky-footer">
-				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }">Book</button>
+				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }">{{ $t('button.book') }}
+				</button>
 			</div>
 		</div>
 	</div>
@@ -80,7 +86,14 @@
         totalGuests: '10',
         totalDays: '7',
         totalNights: '6',
-        show: false
+        show: false,
+        adults: 0,
+        children: 0
+      }
+    },
+    computed: {
+      datepicker: function () {
+        return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       }
     }
   }
@@ -89,7 +102,7 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.booking-sticky {
 		border: 1px solid $light-grey;
 		padding: 2rem;
@@ -111,7 +124,7 @@
 			}
 		}
 	}
-
+	
 	.summary-shorthand {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
@@ -136,23 +149,23 @@
 			}
 		}
 	}
-
+	
 	.summary-detail {
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-
+	
 	.multiselect {
 		color: $brand-secondary;
 	}
-
+	
 	.btn-main, .btn-secondary {
 		display: block;
 		width: 100%;
 		font-size: 1.5rem;
 		font-weight: bold;
 	}
-
+	
 	.btn-close {
 		position: absolute;
 		right: 0.5rem;
@@ -170,7 +183,7 @@
 
 <style lang="scss">
 	@import '../../assets/style/setting';
-
+	
 	.picker-input {
 		margin: 1rem 0;
 		padding-bottom: 2rem;
@@ -203,11 +216,11 @@
 			.datepicker__clear-button {
 				color: $brand-secondary;
 				margin: 0 -2px 0 0;
-
+				
 			}
 		}
 	}
-
+	
 	.datepicker {
 		top: 40px;
 	}

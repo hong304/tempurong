@@ -11,6 +11,7 @@ import Contact from '@/views/Contact'
 import Reservations from '@/views/Reservations'
 import Summary from '@/views/Reservation/Summary'
 import Payment from '@/views/Reservation/Payment'
+import SuccessfulBooked from '@/views/Reservation/SuccessfulBooked'
 
 Vue.use(Router)
 
@@ -25,6 +26,7 @@ export default new Router({
     {path: '/contact', name: 'Contact', component: Contact},
     {path: '/reservations', name: 'Reservations', component: Reservations},
     {path: '/summary', name: 'Summary', component: Summary},
-    {path: '/payment', name: 'Payment', component: Payment}
+    {path: '/payment', name: 'Payment', component: Payment},
+    {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked}
   ]
 })

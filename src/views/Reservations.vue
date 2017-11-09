@@ -3,7 +3,7 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="titleOne"></content-title>
+					<content-title :contentTitle="$t('pages.reservations.pageTitle')"></content-title>
 					<content-paragraph></content-paragraph>
 				</div>
 			</div>
@@ -39,11 +39,25 @@
     name: 'Reservations',
     data () {
       return {
-        titleOne: 'Reservations'
+        titleOne: 'Reservations',
+        rooms: []
       }
     },
     props: {
       isMobile: this.isMobile
+    },
+    methods: {
+      fetchRooms: function () {
+        this.axios.get('/api/room-type').then((response) => {
+          this.rooms = response.data
+          console.log(response.data)
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
+    mounted: function () {
+      this.fetchRooms()
     }
   }
 </script>

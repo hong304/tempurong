@@ -1,6 +1,6 @@
 <template>
 	<div id="rooms">
-		<content-title :contentTitle="titleOne"></content-title>
+		<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
 	</div>
 </template>
 
@@ -14,7 +14,6 @@
     },
     data () {
       return {
-        titleOne: 'Rooms'
       }
     }
   }

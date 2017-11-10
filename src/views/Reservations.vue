@@ -11,7 +11,9 @@
 		<section class="py-5">
 			<div class="row">
 				<div class="col-md-8 col-xs-12">
-					
+					<div class="picker-input">
+						<HotelDatePicker :startDate="new Date()" :i18n="datepicker"/>
+					</div>
 					<div v-for="(item, index) in roomTypes">
 						<room-card :result="item" :index="index" v-on:roomUpdates="roomDataUpdate"></room-card>
 					</div>
@@ -29,13 +31,15 @@
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
   import RoomCard from '@/components/booking/RoomCard.vue'
   import BookingSticky from '@/components/booking/BookingSticky.vue'
+  import HotelDatePicker from 'vue-hotel-datepicker'
 
   export default {
     components: {
       BookingSticky,
       RoomCard,
       ContentTitle,
-      ContentParagraph
+      ContentParagraph,
+      HotelDatePicker
     },
     name: 'Reservations',
     data () {
@@ -65,27 +69,57 @@
     mounted: function () {
       this.fetchRooms()
     },
+    computed: {
+      datepicker: function () {
+        return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+      }
+    },
     watch: {}
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-	h1, h2 {
-		font-weight: normal;
+<style lang="scss">
+	@import '../assets/style/setting';
+
+	.picker-input {
+		margin: 0 0 1rem;
+		padding-bottom: 2rem;
+		& > div {
+			height: 40px;
+			margin-bottom: 1rem;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+		.datepicker__wrapper {
+			height: 40px;
+			background-color: transparent;
+			background-image: url('../assets/img/calendar-brand-sec.svg');
+			.datepicker__dummy-wrapper {
+				border-color: $light-grey;
+				border-radius: 5px;
+				.datepicker__dummy-input {
+					height: 40px;
+					color: $brand-secondary;
+					&::placeholder {
+						color: $brand-secondary;
+					}
+					&:first-child {
+						background-image: url('../assets/img/arrow-brand-sec.svg')
+					}
+				}
+			}
+			.datepicker__clear-button {
+				color: $brand-secondary;
+				margin: 0 -2px 0 0;
+
+			}
+		}
 	}
-	
-	ul {
-		list-style-type: none;
-		padding: 0;
+
+	.datepicker {
+		top: 40px;
 	}
-	
-	li {
-		display: inline-block;
-		margin: 0 10px;
-	}
-	
-	a {
-		color: #42b983;
-	}
+
 </style>

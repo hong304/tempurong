@@ -1,7 +1,7 @@
 <template>
 	<div class="booking-sticky" :class="{ shown: show }">
 		<button type="button" v-show="isMobile" @click="show=!show" class="btn btn-close"><span
-						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
+				:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
 			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{totalPrice}} MYR
@@ -11,30 +11,35 @@
 				({{ $tc('dateUnit.days', totalDays, {count: totalDays}) }},
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
+			<p class="check-in-out"><span class="ti-calendar"></span> {{checkInData}} - {{checkOutData}}</p>
 		</div>
 		<div class="summary-detail">
 			<div class="picker-input">
-				<div>
-					<HotelDatePicker :startDate="new Date()" :i18n="datepicker"/>
+
+				<div class="no-of-people">
+					<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
+					<span class="controls">
+						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
+										:disabled="!counterAdults"><span
+								class="ti-minus"></span></button>
+						<span class="counter-num">{{ counterAdults }}</span>
+						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
+								class="ti-plus"></span></button>
+					</span>
 				</div>
-				<div>
-					<multiselect
-									v-model="selectedOne"
-									:options="optionsOne"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-					></multiselect>
+
+				<div class="no-of-people">
+					<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
+					<span class="controls">
+						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
+										:disabled="!counterChildren"><span
+								class="ti-minus"></span></button>
+						<span class="counter-num">{{ counterChildren }}</span>
+						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
+								class="ti-plus"></span></button>
+					</span>
 				</div>
-				<div>
-					<multiselect
-									v-model="selectedTwo"
-									:options="optionsTwo"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-					></multiselect>
-				</div>
+
 			</div>
 			<div class="sticky-footer">
 				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }">{{ $t('button.book') }}
@@ -45,13 +50,11 @@
 </template>
 
 <script>
-  import HotelDatePicker from 'vue-hotel-datepicker'
   import Multiselect from 'vue-multiselect'
 
   export default {
     name: 'booking-sticky',
     components: {
-      HotelDatePicker,
       Multiselect
     },
     props: {
@@ -89,12 +92,28 @@
         totalNights: '6',
         show: false,
         adults: 0,
-        children: 0
+        children: 0,
+        checkInData: '2017-12-01',
+        checkOutData: '2017-12-07',
+        counterAdults: 0,
+        counterChildren: 0
       }
     },
-    computed: {
-      datepicker: function () {
-        return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+    methods: {
+      changePeopleNumber (type, people) {
+        if (people) {
+          if (type === 'minus') {
+            this.counterChildren--
+          } else if (type === 'add') {
+            this.counterChildren++
+          }
+        } else {
+          if (type === 'minus') {
+            this.counterAdults--
+          } else if (type === 'add') {
+            this.counterAdults++
+          }
+        }
       }
     }
   }
@@ -103,7 +122,7 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	.booking-sticky {
 		border: 1px solid $light-grey;
 		padding: 2rem;
@@ -125,7 +144,7 @@
 			}
 		}
 	}
-	
+
 	.summary-shorthand {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
@@ -149,24 +168,65 @@
 				margin: 0;
 			}
 		}
+		.check-in-out {
+			margin: 0.5rem 0 0;
+		}
 	}
-	
+
+	.picker-input {
+		margin: 0 0 2rem;
+		padding-bottom: 2rem;
+		border-bottom: 1px solid $brand-secondary;
+		& > div {
+			height: 34px;
+			margin-bottom: 1rem;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+			.people-title {
+				line-height: 34px;
+				float: left;
+			}
+			.controls {
+				float: right;
+				.btn-minus, .btn-plus {
+					background-color: transparent;
+					color: $brand-primary;
+					width: 25px;
+					height: 25px;
+					border: 1px solid $brand-primary;
+					border-radius: 50%;
+					padding: 0;
+					line-height: 25px;
+					font-size: 15px;
+					vertical-align: middle;
+					outline: none;
+				}
+			}
+		}
+	}
+
 	.summary-detail {
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-	
+
 	.multiselect {
 		color: $brand-secondary;
 	}
-	
+
 	.btn-main, .btn-secondary {
 		display: block;
 		width: 100%;
 		font-size: 1.5rem;
 		font-weight: bold;
 	}
-	
+
 	.btn-close {
 		position: absolute;
 		right: 0.5rem;
@@ -180,49 +240,4 @@
 		z-index: 1;
 	}
 
-</style>
-
-<style lang="scss">
-	@import '../../assets/style/setting';
-	
-	.picker-input {
-		margin: 1rem 0;
-		padding-bottom: 2rem;
-		border-bottom: 1px solid $brand-secondary;
-		& > div {
-			height: 40px;
-			margin-bottom: 1rem;
-			&:last-of-type {
-				margin-bottom: 0;
-			}
-		}
-		.datepicker__wrapper {
-			height: 40px;
-			background-color: transparent;
-			background-image: url('../../assets/img/calendar-brand-sec.svg');
-			.datepicker__dummy-wrapper {
-				border-color: $brand-secondary;
-				border-radius: 5px;
-				.datepicker__dummy-input {
-					height: 40px;
-					color: $brand-secondary;
-					&::placeholder {
-						color: $brand-secondary;
-					}
-					&:first-child {
-						background-image: url('../../assets/img/arrow-brand-sec.svg')
-					}
-				}
-			}
-			.datepicker__clear-button {
-				color: $brand-secondary;
-				margin: 0 -2px 0 0;
-				
-			}
-		}
-	}
-	
-	.datepicker {
-		top: 40px;
-	}
 </style>

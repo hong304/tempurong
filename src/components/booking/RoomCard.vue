@@ -116,7 +116,13 @@
           return t
         }
       },
-      show: false
+      show: false,
+      index: {
+        type: Number,
+        default: function () {
+          return 0
+        }
+      }
     },
     data () {
       return {
@@ -124,17 +130,25 @@
         info: {},
         no_of_rooms: [],
         mattress: 0,
-        breakfast: 0
+        breakfast: 0,
+        roomObject: {
+          index: this.index,
+          room: {
+            type: 1,
+            noOfRoom: 3
+          }
+        }
       }
     },
     methods: {
       totalRooms (typeId) {
         this.counter++
+        this.roomObject.room.noOfRoom = this.counter
 //        this.no_of_rooms[typeId]['breakfast'] = 1
-        console.log(this.no_of_rooms)
+        this.$emit('roomUpdates', this.roomObject)
+//        console.log(this.no_of_rooms)
       }
-    },
-    computed: {}
+    }
   }
 </script>
 

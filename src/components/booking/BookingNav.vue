@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="picker-nav-bar">
 				<div class="picker-input">
-					<HotelDatePicker :startDate="new Date()" :i18n="datepicker"/>
+					<HotelDatePicker :startDate="new Date()" :i18n="defineDatePicker()"/>
 				</div>
 				<div class="picker-button">
 					<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">{{ $t('button.bookNow') }}
@@ -23,11 +23,13 @@
     },
     data () {
       return {
-        datepicker: this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       }
     },
-    computed: {
-      datepicker: () => {
+    mounted: function () {
+//      this.defineDatePicker()
+    },
+    methods: {
+      defineDatePicker: function () {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       }
     }

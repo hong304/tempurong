@@ -23,6 +23,7 @@
     },
     data () {
       return {
+        datepicker: this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       }
     },
     computed: {

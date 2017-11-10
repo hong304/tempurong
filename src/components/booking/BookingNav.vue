@@ -26,7 +26,6 @@
       }
     },
     mounted: function () {
-//      this.defineDatePicker()
     },
     methods: {
       defineDatePicker: function () {

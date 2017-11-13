@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.17.0",
+    "babel-polyfill": "^6.26.0",
     "bootstrap": "3.3.7",
     "lodash": "^4.17.4",
     "uiv": "^0.12.2",

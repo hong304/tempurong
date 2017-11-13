@@ -10,6 +10,7 @@ import router from './router/index'
 import VueI18n from 'vue-i18n'
 import messages from './i18n/locale'
 import * as uiv from 'uiv'
+import 'babel-polyfill'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 

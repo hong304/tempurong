@@ -12,7 +12,7 @@
 			<div class="row">
 				<div class="col-md-8 col-xs-12">
 					<div class="picker-input">
-						<HotelDatePicker :startDate="new Date()" :i18n="defineDatePicker()"/>
+						<HotelDatePicker :startDate="new Date()" :i18n="defineDatePicker()" v-on:checkInChanged="getValue($event)" v-on:checkOutChanged="getValue($event)"/>
 					</div>
 					<div v-for="(item, index) in roomTypes">
 						<room-card :result="item" :index="index" v-on:roomUpdates="roomDataUpdate"></room-card>
@@ -67,6 +67,9 @@
       },
       defineDatePicker: function () {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+      },
+      getValue: (date) => {
+        console.log(date)
       }
     },
     mounted: function () {
@@ -79,7 +82,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 	@import '../../assets/style/setting';
-	
+
 	.picker-input {
 		margin: 0 0 1rem;
 		padding-bottom: 2rem;
@@ -111,11 +114,11 @@
 			.datepicker__clear-button {
 				color: $brand-secondary;
 				margin: 0 -2px 0 0;
-				
+
 			}
 		}
 	}
-	
+
 	.datepicker {
 		top: 40px;
 	}

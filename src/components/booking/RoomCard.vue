@@ -1,9 +1,9 @@
 <template>
 	<div class="room-card row">
-		<div class="image-thumb-wrapper col-md-5 col-xs-12">
+		<div class="image-thumb-wrapper col-sm-5 col-xs-12">
 			<img :src="imageSrc"/>
 		</div>
-		<div class="info-wrapper col-md-7 col-xs-12">
+		<div class="info-wrapper col-sm-7 col-xs-12">
 			<div class="content-wrapper">
 				<h3 v-html="result['name_'+$i18n.locale]"></h3>
 				<h4>${{ result.price }}</h4>

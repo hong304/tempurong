@@ -113,7 +113,9 @@
 			}
 		}
 		.info-wrapper {
-			flex: 0 0 calc(100% - 35vh - 12rem);
+			flex-basis: calc(100% - 35vh - 12rem);
+			flex-grow: 0;
+			flex-shrink: 0;
 			align-self: center;
 			text-align: left;
 			@media screen and (max-width: 767px) {

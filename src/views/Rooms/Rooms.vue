@@ -8,10 +8,10 @@
 				</div>
 			</div>
 			<div class="row my-5 pt-5 room-select">
-				<div class="col-md-6 col-xs-12">
+				<div class="col-sm-6 col-xs-12">
 					<room-type-card></room-type-card>
 				</div>
-				<div class="col-md-6 col-xs-12">
+				<div class="col-sm-6 col-xs-12">
 					<room-type-card></room-type-card>
 				</div>
 			</div>
@@ -39,18 +39,20 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-	@import '../assets/style/setting';
+	@import '../../assets/style/setting';
 
 	.room-select {
 		& > div {
 			padding-top: 4rem;
 			padding-bottom: 4rem;
-			&:first-of-type {
-				padding-right: 4rem;
-				border-right: 1px solid $light-grey;
-			}
-			&:last-of-type {
-				padding-left: 4rem;
+			@media screen and (min-width: 767px) {
+				&:first-of-type {
+					padding-right: 4rem;
+					border-right: 1px solid $light-grey;
+				}
+				&:last-of-type {
+					padding-left: 4rem;
+				}
 			}
 		}
 	}
@@ -145,8 +147,8 @@
 </style>
 
 <style lang="scss">
-	@import '../../node_modules/slick-carousel/slick/slick';
-	@import '../assets/style/setting';
+	@import '../../../node_modules/slick-carousel/slick/slick';
+	@import '../../assets/style/setting';
 
 	.slick-slider {
 		.slick-slide {

@@ -4,8 +4,12 @@
 			<div class="row mb-5">
 				<div class="col-xs-12">
 					<ol>
-						<li><button class="btn btn-text-only active">Sea view</button></li>
-						<li><button class="btn btn-text-only">River view</button></li>
+						<li>
+							<button class="btn btn-text-only active">Sea view</button>
+						</li>
+						<li>
+							<button class="btn btn-text-only">River view</button>
+						</li>
 					</ol>
 				</div>
 			</div>
@@ -36,7 +40,8 @@
 			<div class="row mt-5">
 				<div class="col-xs-12">
 					<ul class="icon-list">
-						<li>{{roomData.detail.guest}} guests (adding 1 extra mattress for max.{{roomData.detail.maxGuest}} guests)</li>
+						<li>{{roomData.detail.guest}} guests (adding 1 extra mattress for max.{{roomData.detail.maxGuest}} guests)
+						</li>
 						<li>{{roomData.detail.queenBed}} queen beds</li>
 						<li>
 							{{roomData.detail.extraMattress}} extra mattress with breakfast (MYR30 per night)
@@ -65,7 +70,8 @@
 							<li>Check out by 12PM</li>
 						</ul>
 						<h5>{{ $t('components.booking.roomCard.cancellations') }}</h5>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+						<p>
+							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 						<h5>Safety features</h5>
 						<ul class="info-list">
 							<li>Smoke detector</li>
@@ -108,7 +114,17 @@
           slidesToScroll: 1,
           centerMode: true,
           prevArrow: '<button type="button" class="slick-prev"><span class="ti-angle-left"></span></button>',
-          nextArrow: '<button type="button" class="slick-next"><span class="ti-angle-right"></span></button>'
+          nextArrow: '<button type="button" class="slick-next"><span class="ti-angle-right"></span></button>',
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                centerMode: true
+              }
+            }
+          ]
         },
         navImageSrc: [
           'http://placehold.it/2000x1000',

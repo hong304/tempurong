@@ -16,10 +16,10 @@
 						</div>
 						<div class="payment-body">
 							<div class="row">
-								<div class="col-md-6 col-xs-12">
+								<div class="col-sm-6 col-xs-12">
 									<input v-model="firstName" placeholder="First Name">
 								</div>
-								<div class="col-md-6 col-xs-12">
+								<div class="col-sm-6 col-xs-12">
 									<input v-model="lastName" placeholder="Last Name">
 								</div>
 							</div>

@@ -64,7 +64,8 @@ module.exports = {
     bookNow: '立即預訂',
     more: '更多',
     moreRooms: '更多房間',
-    moreDetails: '更多詳情'
+    moreDetails: '更多詳情',
+    viewActivities: '更多景點及活動'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

@@ -49,6 +49,10 @@
 			background-color: $brand-primary;
 			color: white;
 			text-align: left;
+			@media screen and (max-width: 991px) {
+				width: 100%;
+				margin: 0;
+			}
 			h3, h4 {
 				font-weight: bold;
 				margin-top: 0;
@@ -59,6 +63,9 @@
 			}
 			.row {
 				padding: 7.5rem 15rem 1rem;
+				@media screen and (max-width: 991px) {
+					padding: 3.5rem 1rem 1rem;
+				}
 				@media screen and (max-width: 767px) {
 					padding: 3.5rem 0 1rem;
 				}

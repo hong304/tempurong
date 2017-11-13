@@ -13,11 +13,11 @@
 					<div class="summary-wrapper">
 						<div class="summary-header">
 							<div class="row">
-								<div class="col-md-6 col-xs-12">
+								<div class="col-sm-6 col-xs-12">
 									<h3>{{ checkInDate }} - {{ checkOutDate }}</h3>
 									<p>({{ totalDays }} days, {{ totalNights }} nights)</p>
 								</div>
-								<div class="col-md-6 col-xs-12">
+								<div class="col-sm-6 col-xs-12">
 									<h3>{{ totalGuests }} Guests</h3>
 									<p>({{ totalAdults }} adults, {{ totalChildren }} children)</p>
 								</div>

@@ -128,9 +128,10 @@
 		padding: 2rem;
 		color: $brand-secondary;
 		text-align: left;
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 991px) {
 			position: fixed;
 			height: 100vh;
+			width: 100vw;
 			top: calc(100vh - 8vh - 3.25rem);
 			left: 0;
 			padding: calc(1.5rem) 1.5rem 1.5rem;
@@ -142,6 +143,9 @@
 			&.shown {
 				top: 0;
 			}
+		}
+		@media screen and (max-width: 767px) {
+			top: calc(100vh - 12vh - 3.25rem);
 		}
 	}
 

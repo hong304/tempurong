@@ -4,14 +4,15 @@ import Router from 'vue-router'
 // page view
 import Home from '@/views/Home'
 import About from '@/views/About'
-import Rooms from '@/views/Rooms'
+import Rooms from '@/views/Rooms/Rooms'
+import RoomDetail from '@/views/Rooms/RoomDetail'
 import Activities from '@/views/Activities'
 import Food from '@/views/Food'
 import Contact from '@/views/Contact'
-import Reservations from '@/views/Reservations'
-import Summary from '@/views/Reservation/Summary'
-import Payment from '@/views/Reservation/Payment'
-import SuccessfulBooked from '@/views/Reservation/SuccessfulBooked'
+import Reservations from '@/views/Reservations/Reservations'
+import Summary from '@/views/Reservations/Summary'
+import Payment from '@/views/Reservations/Payment'
+import SuccessfulBooked from '@/views/Reservations/SuccessfulBooked'
 
 Vue.use(Router)
 
@@ -21,6 +22,7 @@ export default new Router({
     {path: '/', name: 'Home', component: Home},
     {path: '/about', name: 'About', component: About},
     {path: '/rooms', name: 'Rooms', component: Rooms},
+    {path: '/rooms/detail', name: 'RoomDetail', component: RoomDetail},
     {path: '/activities', name: 'Activities', component: Activities},
     {path: '/food', name: 'Food', component: Food},
     {path: '/contact', name: 'Contact', component: Contact},

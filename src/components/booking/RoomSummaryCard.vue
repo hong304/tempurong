@@ -1,9 +1,9 @@
 <template>
 	<div class="room-summary row">
-		<div class="image-thumb-wrapper col-md-3 col-xs-12">
+		<div class="image-thumb-wrapper col-sm-3 col-xs-12">
 			<img :src="imageSrc"/>
 		</div>
-		<div class="info-wrapper col-md-9 col-xs-12">
+		<div class="info-wrapper col-sm-9 col-xs-12">
 			<div class="content-group">
 				<h3 class="room-type">{{ infoTitle }}</h3>
 				<h3 class="num-of-rooms">{{ numberOfRoom }}</h3>
@@ -11,8 +11,7 @@
 			<div class="content-group">6 guests</div>
 			<div class="content-group">
 				<p class="price-and-nights">{{ priceOfRoom }} MYR <span v-if="totalRooms">x {{ totalRooms }} rooms</span>
-					x {{ totalNight }} nights <span v-if="addExtra" class="extra-note">(including {{ totalExtraMattress
-						}} extra mattress with breakfast)</span></p>
+					x {{ totalNight }} nights <span v-if="addExtra" class="extra-note">(including {{ totalExtraMattress }} extra mattress with breakfast)</span></p>
 				<p class="total-cost">{{ totalCost }} MYR</p>
 			</div>
 		</div>

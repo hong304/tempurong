@@ -9,7 +9,7 @@
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.services')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-md-6" v-for="(item, index) in servicesData" :item="item" :index="index" :key="item.id">
+				<div class="col-xs-12 col-sm-6" v-for="(item, index) in servicesData" :item="item" :index="index" :key="item.id">
 					<card :resData="item" :buttonText="$t('button.more')"></card>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-md-6" v-for="(item, index) in activitiesData" :item="item" :index="index" :key="item.id">
+				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index" :key="item.id">
 					<card :buttonText="$t('button.more')" :class="{ last: index == 2 || index == 3 }"></card>
 				</div>
 			</div>

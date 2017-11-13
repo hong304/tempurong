@@ -78,7 +78,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-	@import '../assets/style/setting';
+	@import '../../assets/style/setting';
 	
 	.picker-input {
 		margin: 0 0 1rem;
@@ -93,7 +93,7 @@
 		.datepicker__wrapper {
 			height: 40px;
 			background-color: transparent;
-			background-image: url('../assets/img/calendar-brand-sec.svg');
+			background-image: url('../../assets/img/calendar-brand-sec.svg');
 			.datepicker__dummy-wrapper {
 				border-color: $light-grey;
 				border-radius: 5px;
@@ -104,7 +104,7 @@
 						color: $brand-secondary;
 					}
 					&:first-child {
-						background-image: url('../assets/img/arrow-brand-sec.svg')
+						background-image: url('../../assets/img/arrow-brand-sec.svg')
 					}
 				}
 			}

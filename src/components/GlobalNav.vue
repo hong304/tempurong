@@ -14,26 +14,39 @@
 				<div class="navbar-wrapper">
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
-						<li><router-link :to="{ path: '/about' }" class="navbar-link">{{ $t("menu.about") }}</router-link></li>
-						<li><router-link :to="{ path: '/rooms'}" class="navbar-link">{{ $t("menu.rooms") }}</router-link></li>
-						<li><router-link :to="{ path: '/activities'}" class="navbar-link">{{ $t("menu.activities") }}</router-link></li>
+						<li>
+							<router-link :to="{ path: '/about' }" class="navbar-link">{{ $t("menu.about") }}
+							</router-link>
+						</li>
+						<li>
+							<router-link :to="{ path: '/rooms'}" class="navbar-link">{{ $t("menu.rooms") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{ path: '/activities'}" class="navbar-link">{{ $t("menu.activities") }}</router-link>
+						</li>
 					</ul>
 					<router-link :to="{ path: '/' }" v-show="!isMobile" class="navbar-brand" role="button">Logo</router-link>
 					<ul class="nav navbar-nav">
-						<li><router-link :to="{path: '/food'}" class="navbar-link">{{ $t("menu.food") }}</router-link></li>
-						<li><router-link :to="{path: '/contact'}" class="navbar-link">{{ $t("menu.contact") }}</router-link></li>
-						<li><router-link :to="{path: '/reservations'}" class="navbar-link">{{ $t("menu.reservations") }}</router-link></li>
+						<li>
+							<router-link :to="{path: '/food'}" class="navbar-link">{{ $t("menu.food") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{path: '/contact'}" class="navbar-link">{{ $t("menu.contact") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{path: '/reservations'}" class="navbar-link">{{ $t("menu.reservations") }}</router-link>
+						</li>
 					</ul>
 				</div>
 			</collapse>
 		</div>
 		<multiselect
-						v-model="language"
-						:options="languageOptions"
-						:searchable="false"
-						:close-on-select="true"
-						:showLabels="false"
-						placeholder="Languages"
+				v-model="language"
+				:options="languageOptions"
+				:searchable="false"
+				:close-on-select="true"
+				:showLabels="false"
+				placeholder="Languages"
 		></multiselect>
 	</nav>
 </template>
@@ -70,11 +83,11 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
+
 	.navbar {
 		margin-bottom: 0;
 	}
-	
+
 	.navbar-default {
 		background: none;
 		border: none;
@@ -90,7 +103,7 @@
 			}
 		}
 	}
-	
+
 	.navbar-wrapper {
 		margin: 0 auto;
 		.navbar-brand {

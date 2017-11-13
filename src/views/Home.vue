@@ -1,5 +1,5 @@
 <template>
-	<div class="container">
+	<div class="container" id="home">
 		<carousel></carousel>
 		<booking-nav></booking-nav>
 		<section class="padding-of-section mt-5">

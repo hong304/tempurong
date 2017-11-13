@@ -123,4 +123,8 @@
 		top: 40px;
 	}
 
+	.datepicker__month-day {
+		cursor: pointer;
+	}
+
 </style>

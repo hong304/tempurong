@@ -5,12 +5,30 @@
 		</div>
 		<div class="info-wrapper col-sm-7 col-xs-12">
 			<div class="content-wrapper">
-				<h3 v-html="result['name_'+$i18n.locale]"></h3>
-				<h4>${{ result.price }}</h4>
+				<div class="room-header">
+					<span class="rooms-number">
+						<button type="button" @click="changeRoom('minus')" class="btn btn-minus"
+										:disabled="!counter"><span
+								class="ti-minus"></span></button>
+						<span class="counter-num">{{ counter }}</span>
+						<button type="button" @click="changeRoom('add')" class="btn btn-plus"><span
+								class="ti-plus"></span></button>
+					</span>
+					<h3 v-html="result['name_'+$i18n.locale]"></h3>
+					<h4>${{ result.price }}</h4>
+				</div>
 				<ul class="icon-list">
-					<li></li>
+					<li>{{ resData.guests }} guests <span v-if="(resData.guests < 5)">(adding 1 extra mattress for max.5 guests)</span></li>
+					<li>{{ resData.queenBeds }} queen beds</li>
 				</ul>
-				<div class="rooms-extra">
+				<div class="rooms-footer">
+					<span>
+						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
+						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails')
+							}} > </button>
+					</span>
+				</div>
+				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
 						<div>
 							<multiselect
@@ -43,21 +61,6 @@
 							<span>{{ $t('components.booking.roomCard.mattressRemarks') }}</span>
 						</div>
 					</div>
-				</div>
-				<div class="rooms-footer">
-					<span>
-						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
-						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails')
-							}} > </button>
-					</span>
-					<span class="rooms-number">
-						<button type="button" @click="changeRoom('minus')" class="btn btn-minus"
-										:disabled="!counter"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counter }}</span>
-						<button type="button" @click="changeRoom('add')" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
-					</span>
 				</div>
 			</div>
 			<collapse v-model="show">
@@ -92,6 +95,16 @@
     },
     props: {
       result: {type: Object},
+      resData: {
+        type: Object,
+        default: function () {
+          return {
+            'guests': 4,
+            'queenBeds': 2,
+            'doubleDeckers': 0
+          }
+        }
+      },
       imageSrc: {
         type: String,
         default: function () {
@@ -134,7 +147,8 @@
           }
         },
         breakfast_select: [],
-        mattress_select: []
+        mattress_select: [],
+        needExtra: false
       }
     },
     methods: {
@@ -162,8 +176,8 @@
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
 
-	.rooom-card {
-		border-bottom: 2px solid $brand-primary;
+	.room-card {
+		border-bottom: 1px solid $brand-primary;
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
@@ -178,16 +192,25 @@
 		text-align: left;
 		color: $brand-secondary;
 		.content-wrapper {
-			& > h3, & > h4 {
-				margin: 0;
-				text-transform: uppercase;
-			}
-			& > h3 {
-				font-weight: bold;
-			}
-			& > h4 {
-				font-weight: 100;
-				margin-bottom: 1rem;
+			display: flex;
+			flex-flow: row wrap;
+			.room-header {
+				flex: 1 0 auto;
+				& > h3, & > h4 {
+					margin: 0;
+					text-transform: uppercase;
+				}
+				& > h3 {
+					display: inline-block;
+					font-weight: bold;
+				}
+				& > h4 {
+					font-weight: 100;
+					margin-bottom: 1rem;
+				}
+				.rooms-number {
+					float: right;
+				}
 			}
 			.rooms-extra {
 				.extra-breakfast {
@@ -212,6 +235,7 @@
 				}
 			}
 			.rooms-footer {
+				align-self: flex-end;
 				margin-top: 1.5rem;
 				margin-bottom: 1.5rem;
 			}
@@ -240,9 +264,6 @@
 			font-size: 2rem;
 			line-height: 25px;
 			vertical-align: middle;
-		}
-		.rooms-number {
-			float: right;
 		}
 	}
 

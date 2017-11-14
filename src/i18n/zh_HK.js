@@ -65,7 +65,8 @@ module.exports = {
     more: '更多',
     moreRooms: '更多房間',
     moreDetails: '更多詳情',
-    moreAreaAndActivities: '更多景點及活動'
+    moreAreaAndActivities: '更多景點及活動',
+    submit: '提交'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

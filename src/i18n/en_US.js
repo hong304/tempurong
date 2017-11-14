@@ -65,7 +65,7 @@ module.exports = {
     more: 'More',
     moreRooms: 'More Rooms',
     moreDetails: 'More Details',
-    viewActivities: 'View Activities'
+    moreAreaAndActivities: 'More Area & Activities'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',

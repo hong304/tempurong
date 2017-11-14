@@ -72,7 +72,7 @@
 							</div>
 							<div class="btn-group">
 								<router-link :to="cfa.buttonPath" class="btn btn-border">{{ $t('button.bookNow') }}</router-link>
-								<router-link :to="cfa.buttonPathTwo" class="btn btn-border">{{ $t('button.viewActivities') }}</router-link>
+								<router-link :to="cfa.buttonPathTwo" class="btn btn-border">{{ $t('button.moreAreaAndActivities') }}</router-link>
 							</div>
 						</div>
 					</div>

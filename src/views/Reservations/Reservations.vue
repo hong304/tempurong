@@ -1,33 +1,33 @@
 <template>
-	<div class="container" id="reservations">
-		<section class="padding-of-section mt-5 py-3 py-sm-5">
-			<div class="row mb-0 mb-sm-5">
-				<div class="col-xs-12">
-					<content-title :contentTitle="$t('pages.reservations.pageTitle')"></content-title>
-					<content-paragraph></content-paragraph>
-				</div>
-			</div>
-		</section>
-		<div class="overlay-wrapper my-5" v-if="!optionSelected">
-			<div class="overlay-options">
-				<div class="picker-input">
-					<HotelDatePicker class="custom-picker"
-													 :startDate="new Date()"
-													 :i18n="defineDatePicker()"
-													 v-on:checkInChanged="checkIn = $event"
-													 v-on:checkOutChanged="checkOut = $event"
-					></HotelDatePicker>
-					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>Please select check in and check out date.
-					</h5>
-					<div class="no-of-people">
-						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
-						<span class="controls">
+    <div class="container" id="reservations">
+        <section class="padding-of-section mt-5 py-3 py-sm-5">
+            <div class="row mb-0 mb-sm-5">
+                <div class="col-xs-12">
+                    <content-title :contentTitle="$t('pages.reservations.pageTitle')"></content-title>
+                    <content-paragraph></content-paragraph>
+                </div>
+            </div>
+        </section>
+        <div class="overlay-wrapper my-5" v-if="!optionSelected">
+            <div class="overlay-options">
+                <div class="picker-input">
+                    <HotelDatePicker class="custom-picker"
+                                     :startDate="new Date()"
+                                     :i18n="defineDatePicker()"
+                                     v-on:checkInChanged="checkIn = $event"
+                                     v-on:checkOutChanged="checkOut = $event"
+                    ></HotelDatePicker>
+                    <h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>Please select check in and check out date.
+                    </h5>
+                    <div class="no-of-people">
+                        <span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
+                        <span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
+                                :disabled="!counterAdults"><span
+                                class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterAdults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+                                class="ti-plus"></span></button>
 						</span>
 					</div>
 
@@ -50,59 +50,58 @@
 			</div>
 		</div>
 
-		<section class="pb-5" v-if="optionSelected">
-			<div class="row py-5">
-				<div class="col-md-8 col-xs-12">
-					<div class="picker-input">
-						<HotelDatePicker
-								:startDate="checkIn"
-								:endData="checkOut"
-								:i18n="defineDatePicker()"
-								v-on:checkInChanged="checkIn = $event"
-								v-on:checkOutChanged="checkOutDate($event)"
-						></HotelDatePicker>
-						<div class="no-of-people">
-							<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
-							<span class="controls">
+        <section class="pb-5" v-if="optionSelected">
+            <div class="row py-5">
+                <div class="col-md-8 col-xs-12">
+                    <div class="picker-input">
+                        <HotelDatePicker
+                                :startDate="new Date()"
+                                :i18n="defineDatePicker()"
+                                v-on:checkInChanged="checkIn = $event"
+                                v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
+
+                        <div class="no-of-people">
+                            <span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
+                            <span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
+                                :disabled="!counterAdults"><span
+                                class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterAdults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+                                class="ti-plus"></span></button>
 						</span>
-						</div>
+                        </div>
 
-						<div class="no-of-people">
-							<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
-							<span class="controls">
+                        <div class="no-of-people">
+                            <span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
+                            <span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-										:disabled="!counterChildren"><span
-								class="ti-minus"></span></button>
+                                :disabled="!counterChildren"><span
+                                class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterChildren }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+                                class="ti-plus"></span></button>
 						</span>
-						</div>
+                        </div>
 
-					</div>
-					<div v-for="(item, index) in roomTypes">
-						<room-card :result="item" :index="index" :availableRooms="rooms[item.id]"
-											 v-on:roomUpdates="roomDataUpdate"></room-card>
-					</div>
-				</div>
-				<div class="col-md-4 col-xs-12">
-					<booking-sticky
-							:isMobile="isMobile"
-							:totalAdults="counterAdults"
-							:totalChildren="counterChildren"
-							:checkInDate="checkIn"
-							:checkOutDate="checkOut"
-					></booking-sticky>
-				</div>
-			</div>
-		</section>
-	</div>
+                    </div>
+                    <div v-for="(item, index) in roomTypes">
+                        <room-card :result="item" :index="index" :availableRooms="rooms[item.id]"
+                                   v-on:roomUpdates="roomDataUpdate"></room-card>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <booking-sticky
+                            :isMobile="isMobile"
+                            :totalAdults="counterAdults"
+                            :totalChildren="counterChildren"
+                            :checkInDate="checkIn"
+                            :checkOutDate="checkOut"
+                    ></booking-sticky>
+                </div>
+            </div>
+        </section>
+    </div>
 </template>
 
 <script>
@@ -180,7 +179,8 @@
         })
       },
       checkOutDate: function (date) {
-        this.checkOut = date
+        this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
+        this.checkOut = this.$moment(date).format('YYYY-MM-DD')
         this.getAvailableRooms()
       },
       changePeopleNumber (type, people) {

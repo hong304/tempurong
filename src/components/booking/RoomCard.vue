@@ -24,7 +24,7 @@
 				</ul>
 
 				<div class="rooms-body">
-					<input type="checkbox" id="checkbox" @click="checkExtra()">
+					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress">
 					<label for="checkbox"> Extra mattress or breakfast</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
@@ -163,12 +163,11 @@
       }
     },
     methods: {
-      checkExtra () {
+      handleBreakfastMattress () {
+        this.needExtra = !this.needExtra
         if (!this.needExtra) {
-          this.needExtra = true
-        } else {
-          this.roomObject.room.breakfast = this.roomObject.room.mattress = 0
-          this.needExtra = false
+          this.roomObject.room.breakfast = 0
+          this.roomObject.room.mattress = 0
         }
       },
       changeRoom (type) {
@@ -186,7 +185,14 @@
         }
         this.roomObject.room.noOfRoom = this.counter
 //        this.no_of_rooms[typeId]['breakfast'] = 1
-        this.$emit('roomUpdates', this.roomObject)
+      }
+    },
+    watch: {
+      'roomObject': {
+        handler: function (val) {
+          this.$emit('roomUpdates', this.roomObject)
+        },
+        deep: true
       }
     }
   }

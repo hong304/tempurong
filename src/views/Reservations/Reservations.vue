@@ -16,7 +16,7 @@
                                      :i18n="defineDatePicker()"
                                      v-on:checkInChanged="checkIn = $event"
                                      v-on:checkOutChanged="checkOut = $event"
-                    />
+                    ></HotelDatePicker>
                     <h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>Please select check in and check out date.
                     </h5>
                     <div class="no-of-people">
@@ -55,11 +55,10 @@
                 <div class="col-md-8 col-xs-12">
                     <div class="picker-input">
                         <HotelDatePicker
-                                :startDate="checkIn"
-                                :endData="checkOut"
+                                :startDate="new Date()"
                                 :i18n="defineDatePicker()"
                                 v-on:checkInChanged="checkIn = $event"
-                                v-on:checkOutChanged="checkOutDate($event)"/>
+                                v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
 
                         <div class="no-of-people">
                             <span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
@@ -180,7 +179,8 @@
         })
       },
       checkOutDate: function (date) {
-        this.checkOut = date
+        this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
+        this.checkOut = this.$moment(date).format('YYYY-MM-DD')
         this.getAvailableRooms()
       },
       changePeopleNumber (type, people) {

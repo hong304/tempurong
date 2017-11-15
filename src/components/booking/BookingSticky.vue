@@ -27,6 +27,16 @@
 				</div>
 
 			</div>
+			<div class="sticky-body">
+				<div class="room-summary" v-for="item in resData">
+					<h4>{{ item.type }}</h4>
+					<ul class="text-list">
+						<li>${{ item.total_cost }} MYR for {{ totalNights }}nights</li>
+						<li v-if="item.extra_breakfast">(including {{ item.extra_breakfast }} extra breakfast</li>
+						<li v-if="item.extra_mattress">(including {{ item.extra_mattress }} extra mattress</li>
+					</ul>
+				</div>
+			</div>
 			<div class="sticky-footer">
 				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }">{{ $t('button.book') }}
 				</button>
@@ -90,7 +100,8 @@
         default: function () {
           return 0
         }
-      }
+      },
+      resData: {type: Array}
     },
     data () {
       return {
@@ -113,6 +124,17 @@
       totalNights: function () {
         return this.totalDays - 1
       }
+    },
+    watch: {
+      'resData': {
+        handler: function (val) {
+          console.log(val)
+          console.log(this.resData)
+        },
+        deep: true
+      }
+    },
+    mounted: function () {
     }
   }
 </script>
@@ -179,8 +201,8 @@
 		margin: 0 0 2rem;
 		padding-bottom: 2rem;
 		border-bottom: 1px solid $brand-secondary;
-		& > div {
-			height: 34px;
+		.no-of-people {
+			height: 20px;
 			margin-bottom: 1rem;
 			&:last-of-type {
 				margin-bottom: 0;
@@ -191,7 +213,7 @@
 				clear: both;
 			}
 			.people-title {
-				line-height: 34px;
+				margin-bottom: 0;
 				.people-number {
 					float: right;
 				}

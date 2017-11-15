@@ -8,10 +8,11 @@
 				<div class="room-header">
 					<span class="rooms-number">
 						<button type="button" @click="changeRoom('minus')" class="btn btn-minus"
-										:disabled="!counter"><span
+										:disabled="!counterRooms"><span
 								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counter }}</span>
-						<button type="button" @click="changeRoom('add')" class="btn btn-plus"><span
+						<span class="counter-num">{{ counterRooms }}</span>
+						<button type="button" @click="changeRoom('add')" class="btn btn-plus"
+										:disabled="counterRooms >= availableRooms"><span
 								class="ti-plus"></span></button>
 					</span>
 					<h3 v-html="result['name_'+$i18n.locale]"></h3>
@@ -38,7 +39,7 @@
 									:close-on-select="true"
 									:showLabels="false"
 									:hide-selected="true"
-									:disabled="!counter"
+									:disabled="!counterRooms"
 							></multiselect>
 						</div>
 						<div>
@@ -56,7 +57,7 @@
 									:close-on-select="true"
 									:showLabels="false"
 									:hide-selected="true"
-									:disabled="!counter"
+									:disabled="!counterRooms"
 							></multiselect>
 						</div>
 						<div>
@@ -145,14 +146,14 @@
     },
     data () {
       return {
-        counter: 0,
+        counterRooms: 0,
         info: {},
         no_of_rooms: [],
         roomObject: {
           index: this.index,
           room: {
-            type: 1,
-            noOfRoom: 3,
+            type: this.result.id,
+            noOfRoom: 0,
             breakfast: 0,
             mattress: 0
           }
@@ -175,15 +176,15 @@
         this.mattress_options = []
         this.roomObject.room.breakfast = this.roomObject.room.mattress = 0
         if (type === 'minus') {
-          this.counter--
+          this.counterRooms--
         } else if (type === 'add') {
-          this.counter++
+          this.counterRooms++
         }
-        for (var i = 0; i <= this.counter; i++) {
+        for (var i = 0; i <= this.counterRooms; i++) {
           this.breakfast_options.push(i)
           this.mattress_options.push(i)
         }
-        this.roomObject.room.noOfRoom = this.counter
+        this.roomObject.room.noOfRoom = this.counterRooms
 //        this.no_of_rooms[typeId]['breakfast'] = 1
       }
     },
@@ -193,6 +194,9 @@
           this.$emit('roomUpdates', this.roomObject)
         },
         deep: true
+      },
+      availableRooms: function () {
+        this.counterRooms = 0
       }
     }
   }

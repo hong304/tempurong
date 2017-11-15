@@ -28,11 +28,17 @@
   }
 }
 
-.multiselect__option--selected.multiselect__option--highlight {
+
+.multiselect__option--selected.multiselect__option--highlight, .datepicker__month-day--first-day-selected, .datepicker__month-day--last-day-selected {
   background: $brand-secondary !important;
 }
-.multiselect__option--highlight {
+.multiselect__option--highlight, .datepicker__month-day--selected {
   background: $brand-primary !important;
+}
+.datepicker__month-day--selected {
+  &:hover {
+    color: white !important;
+  }
 }
 
 .multiselect--disabled {
@@ -45,3 +51,8 @@
 
 @import './utilities/spacing';
 @import './utilities/button';
+
+
+.error-message {
+  color: red;
+}

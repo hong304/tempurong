@@ -4,40 +4,26 @@
 				:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
-			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{totalPrice}} MYR
+			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{ totalPrice }} MYR
 			</h2>
 			<h4 class="total-guests">
 				<strong>{{ $tc('components.booking.bookingSticky.guests', totalGuests, {count: totalGuests}) }}</strong>
 				({{ $tc('dateUnit.days', totalDays, {count: totalDays}) }},
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
-			<p class="check-in-out"><span class="ti-calendar"></span> {{checkInData}} - {{checkOutData}}</p>
+			<p class="check-in-out"><span class="ti-calendar"></span> {{checkInDate}} - {{checkOutDate}}</p>
 		</div>
 		<div class="summary-detail">
 			<div class="picker-input">
 
-				<div class="no-of-people">
-					<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
-					<span class="controls">
-						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterAdults }}</span>
-						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
-					</span>
+				<div class="no-of-people" v-show="totalAdults">
+					<p class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}} <span
+							class="people-number">{{ totalAdults }}</span></p>
 				</div>
 
-				<div class="no-of-people">
-					<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
-					<span class="controls">
-						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-										:disabled="!counterChildren"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterChildren }}</span>
-						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
-					</span>
+				<div class="no-of-people" v-show="totalChildren">
+					<p class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}} <span class="people-number">{{ totalChildren
+						}}</span></p>
 				</div>
 
 			</div>
@@ -82,38 +68,50 @@
         default: function () {
           return ['1 Children', '2 Children', '3 Children', '4 Children']
         }
+      },
+      checkInDate: {
+        default: function () {
+          return new Date()
+        }
+      },
+      checkOutDate: {
+        default: function () {
+          return new Date()
+        }
+      },
+      totalAdults: {
+        type: Number,
+        default: function () {
+          return 0
+        }
+      },
+      totalChildren: {
+        type: Number,
+        default: function () {
+          return 0
+        }
       }
     },
     data () {
       return {
-        totalPrice: '12,345',
-        totalGuests: '10',
-        totalDays: '7',
-        totalNights: '6',
-        show: false,
-        adults: 0,
-        children: 0,
-        checkInData: '2017-12-01',
-        checkOutData: '2017-12-07',
-        counterAdults: 0,
-        counterChildren: 0
+        show: false
       }
     },
-    methods: {
-      changePeopleNumber (type, people) {
-        if (people) {
-          if (type === 'minus') {
-            this.counterChildren--
-          } else if (type === 'add') {
-            this.counterChildren++
-          }
-        } else {
-          if (type === 'minus') {
-            this.counterAdults--
-          } else if (type === 'add') {
-            this.counterAdults++
-          }
-        }
+    computed: {
+      totalPrice: function () {
+        return 0
+      },
+      totalGuests: function () {
+        return this.totalAdults + this.totalChildren
+      },
+      totalDays: function () {
+        let i = this.$moment(this.checkInDate)
+        let o = this.$moment(this.checkOutDate)
+        let days = o.diff(i, 'days')
+        return days
+      },
+      totalNights: function () {
+        return this.totalDays - 1
       }
     }
   }
@@ -194,7 +192,9 @@
 			}
 			.people-title {
 				line-height: 34px;
-				float: left;
+				.people-number {
+					float: right;
+				}
 			}
 			.controls {
 				float: right;

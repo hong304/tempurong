@@ -13,6 +13,7 @@ import * as uiv from 'uiv'
 import 'babel-polyfill'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import moment from 'vue-moment'
 
 window._ = require('lodash')
 
@@ -20,6 +21,7 @@ Vue.config.productionTip = false
 Vue.use(VueI18n)
 Vue.use(uiv)
 Vue.use(VueAxios, axios)
+Vue.use(moment)
 
 const i18n = new VueI18n({
   locale: 'en',

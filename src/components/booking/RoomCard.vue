@@ -21,12 +21,10 @@
 					<li>{{ resData.guests }} guests <span v-if="(resData.guests < 5)">(adding 1 extra mattress for max.5 guests)</span></li>
 					<li>{{ resData.queenBeds }} queen beds</li>
 				</ul>
-				<div class="rooms-footer">
-					<span>
-						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
-						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails')
-							}} > </button>
-					</span>
+
+				<div class="rooms-body">
+					<input type="checkbox" id="checkbox" @click="needExtra=!needExtra">
+					<label for="checkbox"> Extra mattress or breakfast</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
@@ -61,6 +59,14 @@
 							<span>{{ $t('components.booking.roomCard.mattressRemarks') }}</span>
 						</div>
 					</div>
+				</div>
+
+				<div class="rooms-footer">
+					<span>
+						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
+						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails')
+							}} > </button>
+					</span>
 				</div>
 			</div>
 			<collapse v-model="show">
@@ -192,10 +198,7 @@
 		text-align: left;
 		color: $brand-secondary;
 		.content-wrapper {
-			display: flex;
-			flex-flow: row wrap;
 			.room-header {
-				flex: 1 0 auto;
 				& > h3, & > h4 {
 					margin: 0;
 					text-transform: uppercase;
@@ -234,10 +237,12 @@
 					}
 				}
 			}
+			.room-body {
+				display: block;
+			}
 			.rooms-footer {
-				align-self: flex-end;
-				margin-top: 1.5rem;
-				margin-bottom: 1.5rem;
+				margin-top: 0.5rem;
+				margin-bottom: 0rem;
 			}
 		}
 		.btn-text-only {
@@ -294,112 +299,9 @@
 		margin-right: 1rem;
 		color: $brand-secondary;
 	}
-
+</style>
+<style lang="scss">
 	@import '../../assets/style/setting';
-
-	.rooom-card {
-		border-bottom: 2px solid $brand-primary;
-		padding-bottom: 2.5rem;
-		margin-bottom: 2.5rem;
-	}
-
-	.image-thumb-wrapper {
-		& > img {
-			width: 100%;
-		}
-	}
-
-	.info-wrapper {
-		text-align: left;
-		color: $brand-secondary;
-		.content-wrapper {
-			& > h3, & > h4 {
-				margin: 0;
-				text-transform: uppercase;
-			}
-			& > h3 {
-				font-weight: bold;
-			}
-			& > h4 {
-				font-weight: 100;
-				margin-bottom: 1rem;
-			}
-			.rooms-extra {
-				.extra-breakfast {
-					margin-bottom: 0.5rem;
-				}
-				.extra-breakfast, .extra-mattress {
-					& > div {
-						display: inline-block;
-						line-height: 20px;
-						&:first-of-type {
-							float: left;
-						}
-						&:last-of-type {
-							width: calc(100% - 60px);
-							& > span {
-								color: $brand-primary;
-								font-weight: bold;
-								font-style: italic;
-							}
-						}
-					}
-				}
-			}
-			.rooms-footer {
-				margin-top: 1.5rem;
-				margin-bottom: 1.5rem;
-			}
-		}
-		.btn-text-only {
-			color: $brand-primary;
-			padding: 0.5rem 0;
-			&:hover, &:focus {
-				color: $brand-secondary;
-			}
-		}
-		.btn-minus, .btn-plus {
-			background-color: transparent;
-			color: $brand-primary;
-			width: 25px;
-			height: 25px;
-			border: 1px solid $brand-primary;
-			border-radius: 50%;
-			padding: 0;
-			line-height: 25px;
-			font-size: 15px;
-			vertical-align: middle;
-			outline: none;
-		}
-		.counter-num {
-			font-size: 2rem;
-			line-height: 25px;
-			vertical-align: middle;
-		}
-		.rooms-number {
-			float: right;
-		}
-	}
-
-	.well {
-		border: none;
-		border-radius: 0;
-		box-shadow: none;
-		& > h5 {
-			font-weight: bold;
-			margin-top: 2rem;
-			margin-bottom: 0.5rem;
-			font-size: 1.5rem;
-			&:first-of-type {
-				margin-top: 0;
-			}
-		}
-	}
-
-	ul {
-		list-style-type: none;
-		padding-left: 0;
-	}
 
 	.multiselect {
 		display: inline-block;

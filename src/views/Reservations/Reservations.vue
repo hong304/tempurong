@@ -1,7 +1,7 @@
 <template>
 	<div class="container" id="reservations">
-		<section class="padding-of-section mt-5 py-5">
-			<div class="row mb-5">
+		<section class="padding-of-section mt-5 py-3 py-sm-5">
+			<div class="row mb-0 mb-sm-5">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.reservations.pageTitle')"></content-title>
 					<content-paragraph></content-paragraph>
@@ -17,8 +17,7 @@
 													 v-on:checkInChanged="checkIn = $event"
 													 v-on:checkOutChanged="checkOutDate($event)"
 					/>
-					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>
-						Please select check in and check out date.</h5>
+					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>Please select check in and check out date.</h5>
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 						<span class="controls">
@@ -42,8 +41,7 @@
 								class="ti-plus"></span></button>
 						</span>
 					</div>
-					<h5 class="error-message" v-if="errorPeople"><span class="ti-alert"></span> Please select at least one guest.
-					</h5>
+					<h5 class="error-message" v-if="errorPeople"><span class="ti-alert"></span> Please select at least one guest.</h5>
 
 				</div>
 				<button type="button" class="btn btn-main" @click="checkSelected">{{$t('button.submit')}}</button>
@@ -60,6 +58,31 @@
 								:i18n="defineDatePicker()"
 								v-on:checkInChanged="checkIn = $event"
 								v-on:checkOutChanged="checkOutDate($event)"/>
+
+						<div class="no-of-people">
+							<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
+							<span class="controls">
+						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
+										:disabled="!counterAdults"><span
+								class="ti-minus"></span></button>
+						<span class="counter-num">{{ counterAdults }}</span>
+						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
+								class="ti-plus"></span></button>
+						</span>
+						</div>
+
+						<div class="no-of-people">
+							<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
+							<span class="controls">
+						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
+										:disabled="!counterChildren"><span
+								class="ti-minus"></span></button>
+						<span class="counter-num">{{ counterChildren }}</span>
+						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
+								class="ti-plus"></span></button>
+						</span>
+						</div>
+
 					</div>
 					<div v-for="(item, index) in roomTypes">
 						<room-card :result="item" :index="index" v-on:roomUpdates="roomDataUpdate"></room-card>
@@ -186,62 +209,76 @@
 		background-color: white;
 		min-height: 30vh;
 		.overlay-options {
-			flex: 0 0 auto;
+			flex: 0 1 auto;
 			align-self: center;
 			display: inline-block;
 			padding: 2.5rem;
-			.picker-input {
-				margin: 0 0 1rem;
-				padding-bottom: 0;
-				& > div {
-					height: 40px;
-					margin-bottom: 1rem;
-					&:last-of-type {
-						margin-bottom: 0;
-					}
-					&.no-of-people {
-						display: inline-block;
-						min-height: 27px;
-						width: calc(50% - 0.75rem);
-						padding: 0.5rem 1.5rem;
-						border: 1px solid $light-grey;
-						border-radius: 5px;
-						color: $brand-secondary;
-						background-color: white;
-						&:last-of-type {
-							margin: 0 0 0 1rem;
-						}
-						.people-title {
-							line-height: 27px;
-							margin-right: 0.5rem;
-						}
-						.controls {
-							.btn-minus, .btn-plus {
-								background-color: transparent;
-								color: $brand-primary;
-								width: 25px;
-								height: 25px;
-								border: 1px solid $brand-primary;
-								border-radius: 50%;
-								padding: 0;
-								line-height: 25px;
-								font-size: 15px;
-								vertical-align: middle;
-								outline: none;
-							}
-						}
-					}
-				}
+			@media screen and (max-width: 767px) {
+				padding: 0;
 			}
 			.btn-main {
 				padding: 0.75rem 3rem;
 				border: 1px solid #ECBE03;
 				text-transform: uppercase;
 				font-weight: bold;
+				@media screen and (max-width: 767px) {
+					width: 100%;
+				}
 			}
 		}
 		.error-message {
 			color: red;
+		}
+	}
+
+	.picker-input {
+		margin: 0 0 2rem;
+		padding-bottom: 0;
+		& > div {
+			height: 40px;
+			margin-bottom: 1rem;
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+			&.no-of-people {
+				display: inline-block;
+				min-height: 27px;
+				width: calc(50% - 0.75rem);
+				padding: 0.5rem 1.5rem;
+				border: 1px solid $light-grey;
+				border-radius: 5px;
+				color: $brand-secondary;
+				background-color: white;
+				@media screen and (max-width: 767px) {
+					width: 100%;
+					margin-top: -0.5rem;
+				}
+				&:last-of-type {
+					margin: 0 0 0 1rem;
+					@media screen and (max-width: 767px) {
+						margin: 0;
+					}
+				}
+				.people-title {
+					line-height: 27px;
+					margin-right: 0.5rem;
+				}
+				.controls {
+					.btn-minus, .btn-plus {
+						background-color: transparent;
+						color: $brand-primary;
+						width: 25px;
+						height: 25px;
+						border: 1px solid $brand-primary;
+						border-radius: 50%;
+						padding: 0;
+						line-height: 25px;
+						font-size: 15px;
+						vertical-align: middle;
+						outline: none;
+					}
+				}
+			}
 		}
 	}
 

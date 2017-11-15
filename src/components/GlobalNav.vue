@@ -8,7 +8,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<router-link :to="{ path: '/' }" v-show="isMobile" class="navbar-brand" role="button">Logo</router-link>
+				<router-link :to="{ path: '/' }" class="navbar-brand" role="button">Logo</router-link>
 			</div>
 			<collapse class="navbar-collapse" v-model="showNavbar">
 				<div class="navbar-wrapper">
@@ -24,9 +24,6 @@
 						<li>
 							<router-link :to="{ path: '/activities'}" class="navbar-link">{{ $t("menu.activities") }}</router-link>
 						</li>
-					</ul>
-					<router-link :to="{ path: '/' }" v-show="!isMobile" class="navbar-brand" role="button">Logo</router-link>
-					<ul class="nav navbar-nav">
 						<li>
 							<router-link :to="{path: '/food'}" class="navbar-link">{{ $t("menu.food") }}</router-link>
 						</li>
@@ -37,17 +34,20 @@
 							<router-link :to="{path: '/reservations'}" class="navbar-link">{{ $t("menu.reservations") }}</router-link>
 						</li>
 					</ul>
+					<div class="nav navbar-nav navbar-right">
+						<multiselect
+								class="lang-select"
+								v-model="language"
+								:options="languageOptions"
+								:searchable="false"
+								:close-on-select="true"
+								:showLabels="false"
+								:placeholder="' '"
+						></multiselect>
+					</div>
 				</div>
 			</collapse>
 		</div>
-		<multiselect
-				v-model="language"
-				:options="languageOptions"
-				:searchable="false"
-				:close-on-select="true"
-				:showLabels="false"
-				placeholder="Languages"
-		></multiselect>
 	</nav>
 </template>
 
@@ -106,25 +106,61 @@
 
 	.navbar-wrapper {
 		margin: 0 auto;
-		.navbar-brand {
-			width: 14%;
-		}
 		.navbar-nav {
-			width: 43%;
-			@media screen and (max-width: 767px) {
-				width: 100%;
-				margin: 0;
-				text-align: left;
-			}
+			display: inline-block;
+			float: none;
 			& > li {
-				width: 33.3%;
-				@media screen and (max-width: 767px) {
-					width: 100%;
-				}
 				.navbar-link {
 					color: $brand-secondary;
 				}
 			}
+		}
+	}
+
+	.multiselect {
+		padding: 15px;
+		line-height: 20px;
+	}
+</style>
+
+<style lang="scss">
+	@import '../assets/style/setting';
+
+	.lang-select {
+		position: relative !important;
+		box-sizing: border-box !important;
+		color: $brand-secondary !important;
+		width: 70px !important;
+		min-height: inherit !important;
+		text-align: center !important;
+		&:before {
+			font-family: "themify";
+			content: "\e665";
+			display: block;
+		}
+		&:focus, &:active {
+			outline: none !important;
+			box-shadow: none !important;
+		}
+		.multiselect__select, .multiselect__tags {
+			display: none;
+		}
+		.multiselect__content-wrapper {
+			position: absolute;
+			width: auto;
+			right: 0;
+			margin-top: 0.5rem;
+			border: 1px solid $brand-secondary;
+			border-radius: 5px;
+			& > ul {
+				list-style-type: none;
+				margin-top: -6px;
+				margin-bottom: 0;
+				background: none;
+			}
+		}
+		.multiselect__option {
+			min-height: 30px;
 		}
 	}
 </style>

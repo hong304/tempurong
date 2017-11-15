@@ -13,23 +13,26 @@
 }
 
 .multiselect {
-  .multiselect__select {
-    width: 25px;
-    padding: 0;
-  }
-  .multiselect__tags {
-    border-color: $brand-secondary;
-    .multiselect__single {
-      margin-bottom: 6px;
-      margin-top: 2px;
+  &.custom-multiselect {
+    .multiselect__select {
+      width: 25px;
+      padding: 0;
+    }
+    .multiselect__tags {
+      border-color: $brand-secondary;
+      .multiselect__single {
+        margin-bottom: 6px;
+        margin-top: 2px;
+      }
     }
   }
-  .multiselect__option--selected.multiselect__option--highlight {
-    background: $brand-secondary;
-  }
-  .multiselect__option--highlight {
-    background: $brand-primary;
-  }
+}
+
+.multiselect__option--selected.multiselect__option--highlight {
+  background: $brand-secondary !important;
+}
+.multiselect__option--highlight {
+  background: $brand-primary !important;
 }
 
 .multiselect--disabled {
@@ -38,6 +41,7 @@
     background: none !important;
   }
 }
+
 
 @import './utilities/spacing';
 @import './utilities/button';

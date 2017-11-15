@@ -18,23 +18,26 @@
 					<h4>${{ result.price }}</h4>
 				</div>
 				<ul class="icon-list">
-					<li>{{ resData.guests }} guests <span v-if="(resData.guests < 5)">(adding 1 extra mattress for max.5 guests)</span></li>
+					<li>{{ resData.guests }} guests <span
+							v-if="(resData.guests < 5)">(adding 1 extra mattress for max.5 guests)</span></li>
 					<li>{{ resData.queenBeds }} queen beds</li>
 				</ul>
 
 				<div class="rooms-body">
-					<input type="checkbox" id="checkbox" @click="needExtra=!needExtra">
+					<input type="checkbox" id="checkbox" @click="checkExtra()">
 					<label for="checkbox"> Extra mattress or breakfast</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
 						<div>
 							<multiselect
+									class="extra-select custom-multiselect"
 									v-model="roomObject.room.breakfast"
-									:options="breakfast_select"
+									:options="breakfast_options"
 									:searchable="false"
 									:close-on-select="true"
 									:showLabels="false"
+									:hide-selected="true"
 									:disabled="!counter"
 							></multiselect>
 						</div>
@@ -46,11 +49,13 @@
 					<div class="extra-mattress">
 						<div>
 							<multiselect
+									class="extra-select custom-multiselect"
 									v-model="roomObject.room.mattress"
-									:options="mattress_select"
+									:options="mattress_options"
 									:searchable="false"
 									:close-on-select="true"
 									:showLabels="false"
+									:hide-selected="true"
 									:disabled="!counter"
 							></multiselect>
 						</div>
@@ -152,33 +157,41 @@
             mattress: 0
           }
         },
-        breakfast_select: [],
-        mattress_select: [],
+        breakfast_options: [],
+        mattress_options: [],
         needExtra: false
       }
     },
     methods: {
+      checkExtra () {
+        if (!this.needExtra) {
+          this.needExtra = true
+        } else {
+          this.roomObject.room.breakfast = this.roomObject.room.mattress = 0
+          this.needExtra = false
+        }
+      },
       changeRoom (type) {
-        this.breakfast_select = []
-        this.roomObject.room.breakfast = 0
+        this.breakfast_options = []
+        this.mattress_options = []
+        this.roomObject.room.breakfast = this.roomObject.room.mattress = 0
         if (type === 'minus') {
           this.counter--
         } else if (type === 'add') {
           this.counter++
         }
         for (var i = 0; i <= this.counter; i++) {
-          this.breakfast_select.push(i)
+          this.breakfast_options.push(i)
+          this.mattress_options.push(i)
         }
         this.roomObject.room.noOfRoom = this.counter
 //        this.no_of_rooms[typeId]['breakfast'] = 1
         this.$emit('roomUpdates', this.roomObject)
-        console.log(this.breakfast_select)
       }
     }
   }
 </script>
 
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
 
@@ -292,18 +305,7 @@
 		padding-left: 0;
 	}
 
-	.multiselect {
-		display: inline-block;
-		width: 50px;
-		min-height: 30px;
-		margin-right: 1rem;
-		color: $brand-secondary;
-	}
-</style>
-<style lang="scss">
-	@import '../../assets/style/setting';
-
-	.multiselect {
+	.extra-select {
 		display: inline-block;
 		width: 50px;
 		min-height: 30px;

@@ -17,7 +17,7 @@
 													 v-on:checkInChanged="checkIn = $event"
 													 v-on:checkOutChanged="checkOut = $event"
 					></HotelDatePicker>
-					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>Please select check in and check out date.
+					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>{{ $t('error.checkInOut') }}
 					</h5>
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
@@ -43,7 +43,7 @@
 						</span>
 					</div>
 					<h5 class="error-message" v-if="errorPeople"><span class="ti-alert"></span>
-						Please select at least one guest.</h5>
+						{{ $t('error.noOfGuest') }}</h5>
 
 				</div>
 				<button type="button" class="btn btn-main" @click="checkSelected">{{$t('button.submit')}}</button>
@@ -85,7 +85,7 @@
 						</div>
 
 						<h5 class="error-message" v-if="errorTotalGuest"><span class="ti-alert"></span>
-							Please select at least one guest.</h5>
+							{{ $t('error.noOfGuest') }}</h5>
 
 					</div>
 					<div v-for="(item, index) in roomTypes">

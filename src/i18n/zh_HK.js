@@ -94,5 +94,9 @@ module.exports = {
         cancellations: '取消政策'
       }
     }
+  },
+  error: {
+    checkInOut: '請選擇入住及退房日期。',
+    noOfGuest: '請選擇最少一位客人。'
   }
 }

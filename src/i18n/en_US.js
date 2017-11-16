@@ -94,5 +94,9 @@ module.exports = {
         cancellations: 'Cancellations'
       }
     }
+  },
+  error: {
+    checkInOut: 'Please select check in and check out date.',
+    noOfGuest: 'Please select at least one guest.'
   }
 }

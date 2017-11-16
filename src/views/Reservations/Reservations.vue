@@ -12,95 +12,97 @@
 			<div class="overlay-options">
 				<div class="picker-input">
 					<HotelDatePicker class="custom-picker"
-													 :startDate="new Date()"
-													 :i18n="defineDatePicker()"
-													 v-on:checkInChanged="checkIn = $event"
-													 v-on:checkOutChanged="checkOut = $event"
-					></HotelDatePicker>
-					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>Please select check in and check out date.
+					                 :startDate="new Date()"
+					                 :i18n="defineDatePicker()"
+					                 v-on:checkInChanged="checkIn = $event"
+					                 v-on:checkOutChanged="checkOut = $event">
+					</HotelDatePicker>
+					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>{{ $t('error.checkInOut') }}
 					</h5>
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 						<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
+						        :disabled="!counterAdults"><span
+										class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterAdults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 					</div>
-
+					
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
 						<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-										:disabled="!counterChildren"><span
-								class="ti-minus"></span></button>
+						        :disabled="!counterChildren"><span
+										class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterChildren }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 					</div>
 					<h5 class="error-message" v-if="errorPeople"><span class="ti-alert"></span>
-						Please select at least one guest.</h5>
-
+						{{ $t('error.noOfGuest') }}</h5>
+				
 				</div>
 				<button type="button" class="btn btn-main" @click="checkSelected">{{$t('button.submit')}}</button>
 			</div>
 		</div>
-
+		
 		<section class="pb-5" v-if="optionSelected">
 			<div class="row py-5">
 				<div class="col-md-8 col-xs-12">
 					<div class="picker-input">
 						<HotelDatePicker
-								:startDate="new Date()"
-								:i18n="defineDatePicker()"
-								v-on:checkInChanged="checkIn = $event"
-								v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
-
+										:startDate="new Date()"
+										:i18n="defineDatePicker()"
+										v-on:checkInChanged="checkIn = $event"
+										v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
+						
 						<div class="no-of-people">
 							<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 							<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
+						        :disabled="!counterAdults"><span
+										class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterAdults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 						</div>
-
+						
 						<div class="no-of-people">
 							<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
 							<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-										:disabled="!counterChildren"><span
-								class="ti-minus"></span></button>
+						        :disabled="!counterChildren"><span
+										class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterChildren }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 						</div>
-
+						
 						<h5 class="error-message" v-if="errorTotalGuest"><span class="ti-alert"></span>
-							Please select at least one guest.</h5>
-
+							{{ $t('error.noOfGuest') }}</h5>
+					
 					</div>
 					<div v-for="(item, index) in roomTypes">
 						<room-card :result="item" :index="index" :availableRooms="rooms[item.id]"
-											 v-on:roomUpdates="roomDataUpdate"></room-card>
+						           v-on:roomUpdates="roomDataUpdate"></room-card>
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<booking-sticky
-							:isMobile="isMobile"
-							:totalAdults="counterAdults"
-							:totalChildren="counterChildren"
-							:checkInDate="checkIn"
-							:checkOutDate="checkOut"
-							:resData="roomObjects"
+									:isMobile="isMobile"
+									:totalAdults="counterAdults"
+									:totalChildren="counterChildren"
+									:checkInDate="checkIn"
+									:checkOutDate="checkOut"
+									:resData="orderDetails.roomObjects"
+									:totalRooms="totalRooms"
+									:totalPrice="orderDetails.totalPrice"
 					></booking-sticky>
 				</div>
 			</div>
@@ -130,16 +132,22 @@
         optionSelected: false,
         errorDate: false,
         errorPeople: false,
-        titleOne: 'Reservations',
         roomTypes: [],
-        roomObjects: [],
         rooms: [],
         checkIn: ' ',
         checkOut: ' ',
         counterAdults: 0,
         counterChildren: 0,
         errorTotalGuest: false,
-        abc: 0
+        totalRooms: 0,
+        orderDetails: {
+          checkIn: '',
+          checkOut: '',
+          adults: 0,
+          children: 0,
+          totalPrice: 0,
+          roomObjects: []
+        }
       }
     },
     props: {
@@ -147,7 +155,10 @@
     },
     methods: {
       checkSelected: function () {
+        // use to check the first step of input in reservation page
+        // check the checkin out date first
         if (this.checkIn !== '' && this.checkOut !== '') {
+          // check how many guest are there
           if (this.counterAdults > 0 || this.counterChildren > 0) {
             this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
             this.checkOut = this.$moment(this.checkOut).format('YYYY-MM-DD')
@@ -168,10 +179,25 @@
         })
       },
       roomDataUpdate: function (val) {
-        this.roomObjects[val.index] = val.room
-        this.roomObjects = _.merge(this.roomObjects, this.roomTypes)
-        this.abc += 1
-        console.log(this.roomObjects)
+        this.orderDetails.roomObjects[val.index] = val.room
+        this.orderDetails.roomObjects = _.merge(this.orderDetails.roomObjects, this.roomTypes)
+        // variable for calculating the total price
+        let calPrice = 0
+        let roomPrice = _.map(this.orderDetails.roomObjects, 'price')
+
+        // variable for calculating the total rooms
+        let calculated = 0
+        let result = _.map(this.orderDetails.roomObjects, 'noOfRoom')
+
+        // calculating total rooms and price
+        _.forEach(result, function (value, key) {
+          if (typeof value !== 'undefined') {
+            calculated += value
+            calPrice += (roomPrice[key] * value)
+          }
+        })
+        this.totalRooms = calculated
+        this.orderDetails.totalPrice = calPrice
       },
       defineDatePicker: function () {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
@@ -213,7 +239,7 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.overlay-wrapper {
 		position: relative;
 		display: flex;
@@ -239,7 +265,7 @@
 			}
 		}
 	}
-
+	
 	.picker-input {
 		margin: 0 0 2rem;
 		padding-bottom: 0;
@@ -294,7 +320,7 @@
 </style>
 <style lang="scss">
 	@import '../../assets/style/setting';
-
+	
 	.picker-input {
 		margin: 0 0 1rem;
 		padding-bottom: 2rem;
@@ -308,6 +334,7 @@
 				.datepicker__dummy-input {
 					height: 40px;
 					color: $brand-secondary;
+					cursor: pointer;
 					&::placeholder {
 						color: $brand-secondary;
 					}
@@ -328,15 +355,15 @@
 			.datepicker__clear-button {
 				color: $brand-secondary;
 				margin: 0 -2px 0 0;
-
+				
 			}
 		}
 	}
-
+	
 	.datepicker {
 		top: 40px;
 	}
-
+	
 	.datepicker__month-day {
 		cursor: pointer;
 	}

@@ -316,6 +316,7 @@
 				.datepicker__dummy-input {
 					height: 40px;
 					color: $brand-secondary;
+					cursor: pointer;
 					&::placeholder {
 						color: $brand-secondary;
 					}

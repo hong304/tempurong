@@ -14,8 +14,8 @@
 					<HotelDatePicker class="custom-picker"
 					                 :startDate="new Date()"
 					                 :i18n="defineDatePicker()"
-					                 v-on:checkInChanged="checkIn = $event"
-					                 v-on:checkOutChanged="checkOut = $event">
+					                 v-on:checkInChanged="orderDetails.checkIn = $event"
+					                 v-on:checkOutChanged="orderDetails.checkOut = $event">
 					</HotelDatePicker>
 					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>{{ $t('error.checkInOut') }}
 					</h5>
@@ -23,9 +23,9 @@
 						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 						<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-						        :disabled="!counterAdults"><span
+						        :disabled="!orderDetails.adults"><span
 										class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterAdults }}</span>
+						<span class="counter-num">{{ orderDetails.adults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
 										class="ti-plus"></span></button>
 						</span>
@@ -35,9 +35,9 @@
 						<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
 						<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-						        :disabled="!counterChildren"><span
+						        :disabled="!orderDetails.children"><span
 										class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterChildren }}</span>
+						<span class="counter-num">{{ orderDetails.children }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
 										class="ti-plus"></span></button>
 						</span>
@@ -57,16 +57,16 @@
 						<HotelDatePicker
 										:startDate="new Date()"
 										:i18n="defineDatePicker()"
-										v-on:checkInChanged="checkIn = $event"
+										v-on:checkInChanged="orderDetails.checkIn = $event"
 										v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
 						
 						<div class="no-of-people">
 							<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 							<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-						        :disabled="!counterAdults"><span
+						        :disabled="!orderDetails.adults"><span
 										class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterAdults }}</span>
+						<span class="counter-num">{{ orderDetails.adults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
 										class="ti-plus"></span></button>
 						</span>
@@ -76,9 +76,9 @@
 							<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
 							<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-						        :disabled="!counterChildren"><span
+						        :disabled="!orderDetails.children"><span
 										class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterChildren }}</span>
+						<span class="counter-num">{{ orderDetails.children }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
 										class="ti-plus"></span></button>
 						</span>
@@ -96,12 +96,13 @@
 				<div class="col-md-4 col-xs-12">
 					<booking-sticky
 									:isMobile="isMobile"
-									:totalAdults="counterAdults"
-									:totalChildren="counterChildren"
-									:checkInDate="checkIn"
-									:checkOutDate="checkOut"
+									:orderDetails="orderDetails"
+									:totalAdults="orderDetails.adults"
+									:totalChildren="orderDetails.children"
+									:checkInDate="orderDetails.checkIn"
+									:checkOutDate="orderDetails.checkOut"
 									:resData="orderDetails.roomObjects"
-									:totalRooms="totalRooms"
+									:totalRooms="orderDetails.totalRooms"
 									:totalPrice="orderDetails.totalPrice"
 					></booking-sticky>
 				</div>
@@ -134,18 +135,14 @@
         errorPeople: false,
         roomTypes: [],
         rooms: [],
-        checkIn: ' ',
-        checkOut: ' ',
-        counterAdults: 0,
-        counterChildren: 0,
         errorTotalGuest: false,
-        totalRooms: 0,
         orderDetails: {
           checkIn: '',
           checkOut: '',
           adults: 0,
           children: 0,
           totalPrice: 0,
+          totalRooms: 0,
           roomObjects: []
         }
       }
@@ -157,11 +154,11 @@
       checkSelected: function () {
         // use to check the first step of input in reservation page
         // check the checkin out date first
-        if (this.checkIn !== '' && this.checkOut !== '') {
+        if (this.orderDetails.checkIn !== '' && this.orderDetails.checkOut !== '') {
           // check how many guest are there
-          if (this.counterAdults > 0 || this.counterChildren > 0) {
-            this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
-            this.checkOut = this.$moment(this.checkOut).format('YYYY-MM-DD')
+          if (this.orderDetails.adults > 0 || this.orderDetails.children > 0) {
+            this.orderDetails.checkIn = this.$moment(this.orderDetails.checkIn).format('YYYY-MM-DD')
+            this.orderDetails.checkOut = this.$moment(this.orderDetails.checkOut).format('YYYY-MM-DD')
             this.optionSelected = true
             this.getAvailableRooms()
           } else {
@@ -196,7 +193,7 @@
             calPrice += (roomPrice[key] * value)
           }
         })
-        this.totalRooms = calculated
+        this.orderDetails.totalRooms = calculated
         this.orderDetails.totalPrice = calPrice
       },
       defineDatePicker: function () {
@@ -204,8 +201,8 @@
       },
       getAvailableRooms: function () {
         this.axios.post('/api/checkAvailableRooms', {
-          checkIn: this.checkIn,
-          checkOut: this.checkOut
+          checkIn: this.orderDetails.checkIn,
+          checkOut: this.orderDetails.checkOut
         }).then((response) => {
           this.rooms = response.data
         }, (error) => {
@@ -213,19 +210,19 @@
         })
       },
       checkOutDate: function (date) {
-        this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
-        this.checkOut = this.$moment(date).format('YYYY-MM-DD')
+        this.orderDetails.checkIn = this.$moment(this.orderDetails.checkIn).format('YYYY-MM-DD')
+        this.orderDetails.checkOut = this.$moment(date).format('YYYY-MM-DD')
         this.getAvailableRooms()
       },
       changePeopleNumber (type, people) {
         if (type === 'minus') {
-          people ? this.counterChildren-- : this.counterAdults--
-          if (!(this.counterAdults + this.counterChildren)) {
+          people ? this.orderDetails.children-- : this.orderDetails.adults--
+          if (!(this.orderDetails.adults + this.orderDetails.children)) {
             this.errorTotalGuest = true
-            people ? this.counterChildren += 1 : this.counterAdults += 1
+            people ? this.orderDetails.children += 1 : this.orderDetails.adults += 1
           }
         } else if (type === 'add') {
-          people ? this.counterChildren++ : this.counterAdults++
+          people ? this.orderDetails.children++ : this.orderDetails.adults++
           this.errorTotalGuest = false
         }
       }

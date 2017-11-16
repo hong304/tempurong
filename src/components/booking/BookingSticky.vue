@@ -1,34 +1,35 @@
 <template>
 	<div class="booking-sticky" :class="{ shown: show }">
 		<button type="button" v-show="isMobile" @click="show=!show" class="btn btn-close"><span
-				:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
+						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
-			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong> ${{ totalPrice }} MYR
+			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong>
+				${{ orderDetails.totalPrice }} MYR
 			</h2>
 			<h4 class="total-guests">
 				<strong>{{ $tc('components.booking.bookingSticky.guests', totalGuests, {count: totalGuests}) }}</strong>
 				({{ $tc('dateUnit.days', totalDays, {count: totalDays}) }},
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
-			<p class="check-in-out"><span class="ti-calendar"></span> {{checkInDate}} - {{checkOutDate}}</p>
+			<p class="check-in-out"><span class="ti-calendar"></span> {{orderDetails.checkIn}} - {{orderDetails.checkOut}}</p>
 		</div>
 		<div class="summary-detail">
 			<div class="picker-input">
-
-				<div class="no-of-people" v-show="totalAdults">
+				
+				<div class="no-of-people" v-show="orderDetails.adults">
 					<p class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}} <span
-							class="people-number">{{ totalAdults }}</span></p>
+									class="people-number">{{ orderDetails.adults }}</span></p>
 				</div>
-
-				<div class="no-of-people" v-show="totalChildren">
-					<p class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}} <span class="people-number">{{ totalChildren
+				
+				<div class="no-of-people" v-show="orderDetails.children">
+					<p class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}} <span class="people-number">{{ orderDetails.children
 						}}</span></p>
 				</div>
-
+			
 			</div>
-			<div class="sticky-body" v-if="totalRooms">
-				<h4>Total Booked room: {{ totalRooms }}</h4>
+			<div class="sticky-body" v-if="orderDetails.totalRooms">
+				<h4>Total Booked room: {{ orderDetails.totalRooms }}</h4>
 				<div class="room-summary" v-for="item in resData">
 					<div class="summary-details" v-if="item.noOfRoom">
 						<h4>{{ item.name_en }} x {{ item.noOfRoom }}</h4>
@@ -58,40 +59,7 @@
     },
     props: {
       isMobile: this.isMobile,
-      selectedOne: {
-        type: String,
-        default: function () {
-          return 'Adults'
-        }
-      },
-      selectedTwo: {
-        type: String,
-        default: function () {
-          return 'Children'
-        }
-      },
-      checkInDate: {
-        default: function () {
-          return new Date()
-        }
-      },
-      checkOutDate: {
-        default: function () {
-          return new Date()
-        }
-      },
-      totalAdults: {
-        type: Number,
-        default: function () {
-          return 0
-        }
-      },
-      totalChildren: {
-        type: Number,
-        default: function () {
-          return 0
-        }
-      },
+      orderDetails: this.orderDetails,
       resData: {type: Array},
       totalRooms: {type: Number},
       totalPrice: {type: Number}
@@ -103,11 +71,11 @@
     },
     computed: {
       totalGuests: function () {
-        return this.totalAdults + this.totalChildren
+        return this.orderDetails.adults + this.orderDetails.children
       },
       totalDays: function () {
-        let i = this.$moment(this.checkInDate)
-        let o = this.$moment(this.checkOutDate)
+        let i = this.$moment(this.orderDetails.checkIn)
+        let o = this.$moment(this.orderDetails.checkOut)
         let days = o.diff(i, 'days') + 1
         return days
       },
@@ -124,7 +92,7 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.booking-sticky {
 		border: 1px solid $light-grey;
 		padding: 2rem;
@@ -150,7 +118,7 @@
 			top: calc(100vh - 12vh - 3.25rem);
 		}
 	}
-
+	
 	.summary-shorthand {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
@@ -178,7 +146,7 @@
 			margin: 0.5rem 0 0;
 		}
 	}
-
+	
 	.picker-input {
 		margin: 0 0 2rem;
 		padding-bottom: 2rem;
@@ -218,23 +186,23 @@
 			}
 		}
 	}
-
+	
 	.summary-detail {
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-
+	
 	.multiselect {
 		color: $brand-secondary;
 	}
-
+	
 	.btn-main, .btn-secondary {
 		display: block;
 		width: 100%;
 		font-size: 1.5rem;
 		font-weight: bold;
 	}
-
+	
 	.btn-close {
 		position: absolute;
 		right: 0.5rem;
@@ -247,7 +215,7 @@
 		border: none;
 		z-index: 1;
 	}
-
+	
 	.sticky-body {
 		h4 {
 			text-transform: uppercase;

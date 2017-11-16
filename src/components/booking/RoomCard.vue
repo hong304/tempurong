@@ -165,13 +165,17 @@
     },
     methods: {
       handleBreakfastMattress () {
+        // if user checked the extra box will show the option
+        // to select how many mattress or breakfast they need
         this.needExtra = !this.needExtra
         if (!this.needExtra) {
+          // reset the numbers when the user deselect the checkbox
           this.roomObject.room.breakfast = 0
           this.roomObject.room.mattress = 0
         }
       },
       changeRoom (type) {
+        // will trigger once the use add / subtract the number of room
         this.breakfast_options = []
         this.mattress_options = []
         this.roomObject.room.breakfast = this.roomObject.room.mattress = 0
@@ -184,7 +188,11 @@
           this.breakfast_options.push(i)
           this.mattress_options.push(i)
         }
-        this.roomObject.room.noOfRoom = this.counterRooms
+        if (this.counterRooms > 0) {
+          this.roomObject.room.noOfRoom = this.counterRooms
+        } else {
+          this.roomObject.room.noOfRoom = 0
+        }
 //        this.no_of_rooms[typeId]['breakfast'] = 1
       }
     },

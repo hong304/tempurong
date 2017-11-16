@@ -133,6 +133,7 @@
 		width: 70px !important;
 		min-height: inherit !important;
 		text-align: center !important;
+		cursor: pointer;
 		&:before {
 			font-family: "themify";
 			content: "\e665";

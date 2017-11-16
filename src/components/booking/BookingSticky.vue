@@ -27,14 +27,17 @@
 				</div>
 
 			</div>
-			<div class="sticky-body">
+			<div class="sticky-body" v-if="totalRooms">
+				<h4>Total Booked room: {{ totalRooms }}</h4>
 				<div class="room-summary" v-for="item in resData">
-					<h4>{{ item.type }}</h4>
-					<ul class="text-list">
-						<li>${{ item.total_cost }} MYR for {{ totalNights }}nights</li>
-						<li v-if="item.extra_breakfast">(including {{ item.extra_breakfast }} extra breakfast</li>
-						<li v-if="item.extra_mattress">(including {{ item.extra_mattress }} extra mattress</li>
-					</ul>
+					<div class="summary-details" v-if="item.noOfRoom">
+						<h4>{{ item.name_en }} x {{ item.noOfRoom }}</h4>
+						<ul class="text-list">
+							<li>${{ item.price * item.noOfRoom }} MYR for {{ totalNights }} nights</li>
+							<li v-if="item.extra_breakfast">(including {{ item.extra_breakfast }} extra breakfast</li>
+							<li v-if="item.extra_mattress">(including {{ item.extra_mattress }} extra mattress</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 			<div class="sticky-footer">
@@ -61,22 +64,10 @@
           return 'Adults'
         }
       },
-      optionsOne: {
-        type: Array,
-        default: function () {
-          return ['1 Adult', '2 Adults', '3 Adults', '4 Adults']
-        }
-      },
       selectedTwo: {
         type: String,
         default: function () {
           return 'Children'
-        }
-      },
-      optionsTwo: {
-        type: Array,
-        default: function () {
-          return ['1 Children', '2 Children', '3 Children', '4 Children']
         }
       },
       checkInDate: {
@@ -101,7 +92,9 @@
           return 0
         }
       },
-      resData: {type: Array}
+      resData: {type: Array},
+      totalRooms: {type: Number},
+      totalPrice: {type: Number}
     },
     data () {
       return {
@@ -109,31 +102,20 @@
       }
     },
     computed: {
-      totalPrice: function () {
-        return 0
-      },
       totalGuests: function () {
         return this.totalAdults + this.totalChildren
       },
       totalDays: function () {
         let i = this.$moment(this.checkInDate)
         let o = this.$moment(this.checkOutDate)
-        let days = o.diff(i, 'days')
+        let days = o.diff(i, 'days') + 1
         return days
       },
       totalNights: function () {
         return this.totalDays - 1
       }
     },
-    watch: {
-      'resData': {
-        handler: function (val) {
-          console.log(val)
-          console.log(this.resData)
-        },
-        deep: true
-      }
-    },
+    watch: {},
     mounted: function () {
     }
   }
@@ -265,5 +247,22 @@
 		border: none;
 		z-index: 1;
 	}
+
+	.sticky-body {
+		h4 {
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+		.room-summary {
+			h4 {
+				margin-bottom: 0;
+			}
+			.text-list {
+				list-style-type: none;
+				padding-left: 0;
+			}
+		}
+	}
+
 
 </style>

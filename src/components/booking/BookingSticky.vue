@@ -64,22 +64,10 @@
           return 'Adults'
         }
       },
-      optionsOne: {
-        type: Array,
-        default: function () {
-          return ['1 Adult', '2 Adults', '3 Adults', '4 Adults']
-        }
-      },
       selectedTwo: {
         type: String,
         default: function () {
           return 'Children'
-        }
-      },
-      optionsTwo: {
-        type: Array,
-        default: function () {
-          return ['1 Children', '2 Children', '3 Children', '4 Children']
         }
       },
       checkInDate: {

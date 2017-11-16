@@ -179,7 +179,6 @@
           }
         })
         this.totalRooms = calculated
-        console.log(this.roomObjects)
       },
       defineDatePicker: function () {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker

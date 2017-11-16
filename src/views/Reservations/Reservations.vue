@@ -101,6 +101,7 @@
 							:checkInDate="checkIn"
 							:checkOutDate="checkOut"
 							:resData="roomObjects"
+							:totalRooms="totalRooms"
 					></booking-sticky>
 				</div>
 			</div>
@@ -139,7 +140,7 @@
         counterAdults: 0,
         counterChildren: 0,
         errorTotalGuest: false,
-        abc: 0
+        totalRooms: 0
       }
     },
     props: {
@@ -170,7 +171,14 @@
       roomDataUpdate: function (val) {
         this.roomObjects[val.index] = val.room
         this.roomObjects = _.merge(this.roomObjects, this.roomTypes)
-        this.abc += 1
+        let calculated = 0
+        let result = _.map(this.roomObjects, 'noOfRoom')
+        _.forEach(result, function (value) {
+          if (!(typeof value === 'undefined')) {
+            calculated += value
+          }
+        })
+        this.totalRooms = calculated
         console.log(this.roomObjects)
       },
       defineDatePicker: function () {

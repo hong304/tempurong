@@ -184,7 +184,11 @@
           this.breakfast_options.push(i)
           this.mattress_options.push(i)
         }
-        this.roomObject.room.noOfRoom = this.counterRooms
+        if (this.counterRooms > 0) {
+          this.roomObject.room.noOfRoom = this.counterRooms
+        } else {
+          this.roomObject.room.noOfRoom = 0
+        }
 //        this.no_of_rooms[typeId]['breakfast'] = 1
       }
     },

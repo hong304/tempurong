@@ -102,6 +102,7 @@
 							:checkOutDate="checkOut"
 							:resData="roomObjects"
 							:totalRooms="totalRooms"
+							:totalPrice="totalPrice"
 					></booking-sticky>
 				</div>
 			</div>
@@ -140,7 +141,8 @@
         counterAdults: 0,
         counterChildren: 0,
         errorTotalGuest: false,
-        totalRooms: 0
+        totalRooms: 0,
+        totalPrice: 0
       }
     },
     props: {
@@ -148,7 +150,10 @@
     },
     methods: {
       checkSelected: function () {
+        // use to check the first step of input in reservation page
+        // check the checkin out date first
         if (this.checkIn !== '' && this.checkOut !== '') {
+          // check how many guest are there
           if (this.counterAdults > 0 || this.counterChildren > 0) {
             this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
             this.checkOut = this.$moment(this.checkOut).format('YYYY-MM-DD')
@@ -171,15 +176,23 @@
       roomDataUpdate: function (val) {
         this.roomObjects[val.index] = val.room
         this.roomObjects = _.merge(this.roomObjects, this.roomTypes)
+        // variable for calculating the total price
+        let calPrice = 0
+        let roomPrice = _.map(this.roomObjects, 'price')
+
+        // variable for calculating the total rooms
         let calculated = 0
         let result = _.map(this.roomObjects, 'noOfRoom')
-        _.forEach(result, function (value) {
-          if (!(typeof value === 'undefined')) {
+
+        // calculating total rooms and price
+        _.forEach(result, function (value, key) {
+          if (typeof value !== 'undefined') {
             calculated += value
+            calPrice += (roomPrice[key] * value)
           }
         })
         this.totalRooms = calculated
-        console.log(this.roomObjects)
+        this.totalPrice = calPrice
       },
       defineDatePicker: function () {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker

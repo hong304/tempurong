@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // page view
+import MasterLayout from '@/layouts/MasterLayout'
 import Home from '@/views/Home'
 import About from '@/views/About'
 import Rooms from '@/views/Rooms/Rooms'
@@ -14,21 +15,40 @@ import Summary from '@/views/Reservations/Summary'
 import Payment from '@/views/Reservations/Payment'
 import SuccessfulBooked from '@/views/Reservations/SuccessfulBooked'
 
+// admin layout and view
+import AdminLayout from '@/layouts/AdminLayout'
+import AdminDashboard from '@/views/Admin/AdminDashboard'
+import OrderHistory from '@/views/Admin/OrderHistory'
+
 Vue.use(Router)
 
 export default new Router({
   mode: 'history',
   routes: [
-    {path: '/', name: 'Home', component: Home},
-    {path: '/about', name: 'About', component: About},
-    {path: '/rooms', name: 'Rooms', component: Rooms},
-    {path: '/rooms/detail', name: 'RoomDetail', component: RoomDetail},
-    {path: '/activities', name: 'Activities', component: Activities},
-    {path: '/food', name: 'Food', component: Food},
-    {path: '/contact', name: 'Contact', component: Contact},
-    {path: '/reservations', name: 'Reservations', component: Reservations},
-    {path: '/summary', name: 'Summary', component: Summary},
-    {path: '/payment', name: 'Payment', component: Payment},
-    {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked}
+    {
+      path: '/',
+      component: MasterLayout,
+      children: [
+        {path: '', name: 'Home', component: Home},
+        {path: 'about', name: 'About', component: About},
+        {path: 'rooms', name: 'Rooms', component: Rooms},
+        {path: 'rooms/detail', name: 'RoomDetail', component: RoomDetail},
+        {path: 'activities', name: 'Activities', component: Activities},
+        {path: 'food', name: 'Food', component: Food},
+        {path: 'contact', name: 'Contact', component: Contact},
+        {path: 'reservations', name: 'Reservations', component: Reservations},
+        {path: 'summary', name: 'Summary', component: Summary},
+        {path: 'payment', name: 'Payment', component: Payment},
+        {path: 'successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked}
+      ]
+    },
+    {
+      path: '/admin',
+      component: AdminLayout,
+      children: [
+        {path: '', name: 'AdminDashboard', component: AdminDashboard},
+        {path: 'order-history', name: 'OrderHistory', component: OrderHistory}
+      ]
+    }
   ]
 })

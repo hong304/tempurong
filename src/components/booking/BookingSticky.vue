@@ -93,7 +93,8 @@
         }
       },
       resData: {type: Array},
-      totalRooms: {type: Number}
+      totalRooms: {type: Number},
+      totalPrice: {type: Number}
     },
     data () {
       return {
@@ -101,13 +102,6 @@
       }
     },
     computed: {
-      totalPrice: function () {
-        let total = 0
-        _.forEach(this.resData, function (value) {
-          total += (value.price * value.noOfRoom)
-        })
-        return total
-      },
       totalGuests: function () {
         return this.totalAdults + this.totalChildren
       },

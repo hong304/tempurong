@@ -8,7 +8,8 @@
 				${{ orderDetails.totalPrice }} MYR
 			</h2>
 			<h4 class="total-guests">
-				<strong>{{ $tc('components.booking.bookingSticky.guests', totalGuests, {count: totalGuests}) }}</strong>
+				<strong>{{ $tc('components.booking.bookingSticky.guests', orderDetails.totalGuests, {count: orderDetails.totalGuests})
+					}}</strong>
 				({{ $tc('dateUnit.days', totalDays, {count: totalDays}) }},
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
@@ -42,7 +43,8 @@
 				</div>
 			</div>
 			<div class="sticky-footer">
-				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }">{{ $t('button.book') }}
+				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToPreview">
+					{{ $t('button.book') }}
 				</button>
 			</div>
 		</div>
@@ -81,6 +83,12 @@
       },
       totalNights: function () {
         return this.totalDays - 1
+      }
+    },
+    methods: {
+      goToPreview: function () {
+        this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
+        this.$router.push('/reservations/summary')
       }
     },
     watch: {},

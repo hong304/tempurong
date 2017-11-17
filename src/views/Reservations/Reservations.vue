@@ -12,6 +12,8 @@
 			<div class="overlay-options">
 				<div class="picker-input">
 					<HotelDatePicker class="custom-picker"
+					                 :checkIn="orderDetails.checkIn"
+					                 :checkOut="orderDetails.checkOut"
 					                 :startDate="new Date()"
 					                 :i18n="defineDatePicker()"
 					                 v-on:checkInChanged="orderDetails.checkIn = $event"
@@ -153,7 +155,7 @@
     methods: {
       checkSelected: function () {
         // use to check the first step of input in reservation page
-        // check the checkin out date first
+        // check the check in out date first
         if (this.orderDetails.checkIn !== '' && this.orderDetails.checkOut !== '') {
           // check how many guest are there
           if (this.orderDetails.adults > 0 || this.orderDetails.children > 0) {
@@ -197,6 +199,12 @@
         this.orderDetails.totalPrice = calPrice
       },
       defineDatePicker: function () {
+        if (this.orderDetails.checkIn.length !== 0) {
+          let datepickerI18n = this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+          datepickerI18n['check-in'] = this.orderDetails.checkIn
+          datepickerI18n['check-out'] = this.orderDetails.checkOut
+          return datepickerI18n
+        }
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       },
       getAvailableRooms: function () {
@@ -229,6 +237,21 @@
     },
     mounted: function () {
       this.fetchRooms()
+
+      let defaultOrderDetails = JSON.stringify({
+        checkIn: '',
+        checkOut: '',
+        adults: 0,
+        children: 0,
+        totalPrice: 0,
+        totalRooms: 0,
+        roomObjects: []
+      })
+      this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
+
+      if (this.orderDetails.checkIn.length > 0) {
+        this.optionSelected = true
+      }
     },
     watch: {}
   }

@@ -22,6 +22,7 @@
     "vue-axios": "^2.0.2",
     "vue-hotel-datepicker": "^2.0.11",
     "vue-i18n": "^7.3.2",
+    "vue-localstorage": "^0.5.0",
     "vue-moment": "^2.2.0",
     "vue-multiselect": "^2.0.6",
     "vue-router": "^3.0.1",

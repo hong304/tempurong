@@ -15,6 +15,7 @@ import 'babel-polyfill'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import moment from 'vue-moment'
+import VueLocalStorage from 'vue-localstorage'
 
 window._ = require('lodash')
 
@@ -23,6 +24,7 @@ Vue.use(VueI18n)
 Vue.use(uiv)
 Vue.use(VueAxios, axios)
 Vue.use(moment)
+Vue.use(VueLocalStorage)
 
 const i18n = new VueI18n({
   locale: 'en',

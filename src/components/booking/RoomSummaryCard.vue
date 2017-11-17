@@ -5,13 +5,14 @@
 		</div>
 		<div class="info-wrapper col-sm-9 col-xs-12">
 			<div class="content-group">
-				<h3 class="room-type">{{ infoTitle }}</h3>
-				<h3 class="num-of-rooms">{{ numberOfRoom }}</h3>
+				<h3 class="room-type">{{ roomType }}</h3>
+				<h3 class="num-of-rooms">{{ noOfRoom }}</h3>
 			</div>
 			<div class="content-group">6 guests</div>
 			<div class="content-group">
-				<p class="price-and-nights">{{ priceOfRoom }} MYR <span v-if="totalRooms">x {{ totalRooms }} rooms</span>
-					x {{ totalNight }} nights <span v-if="addExtra" class="extra-note">(including {{ totalExtraMattress }} extra mattress with breakfast)</span></p>
+				<p class="price-and-nights">{{ price }} MYR <span v-if="totalRooms">x {{ totalRooms }} rooms</span>
+					x {{ totalNights }} nights <span v-if="addExtra" class="extra-note">(including {{ totalExtraMattress
+						}} extra mattress with breakfast)</span></p>
 				<p class="total-cost">{{ totalCost }} MYR</p>
 			</div>
 		</div>
@@ -27,31 +28,35 @@
         default: () => {
           return {
             imageSrc: '/static/img/demo-room.jpg',
-            infoTitle: 'Large Room',
-            numberOfRoom: 0,
-            priceOfRoom: 274,
+            roomType: 'Large Room',
+            noOfRoom: 0,
+            price: 274,
             totalNight: 0,
             totalRooms: 0,
             addExtra: false,
-            totalExtraMattress: 0,
-            totalCost: 0
+            totalExtraMattress: 0
           }
         }
-      }
+      },
+      totalNights: { type: Number }
     },
     data () {
       return {
         counter: 0,
         show: false,
         imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-room.jpg',
-        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : 'Large Room',
-        numberOfRoom: (this.resData.numberOfRoom) ? this.resData.numberOfRoom : 0,
-        priceOfRoom: (this.resData.priceOfRoom) ? this.resData.priceOfRoom : 274,
+        roomType: (this.resData.roomType) ? this.resData.roomType : 'Large Room',
+        noOfRoom: (this.resData.noOfRoom) ? this.resData.noOfRoom : 0,
+        price: (this.resData.price) ? this.resData.price : 274,
         totalNight: (this.resData.totalNight) ? this.resData.totalNight : 0,
         totalRooms: (this.resData.totalRooms) ? this.resData.totalRooms : 0,
         addExtra: (this.resData.addExtra) ? this.resData.addExtra : false,
-        totalExtraMattress: (this.resData.totalExtraMattress) ? this.resData.totalExtraMattress : 0,
-        totalCost: (this.resData.totalCost) ? this.resData.totalCost : 0
+        totalExtraMattress: (this.resData.totalExtraMattress) ? this.resData.totalExtraMattress : 0
+      }
+    },
+    computed: {
+      totalCost: function () {
+        return this.resData.price * this.totalNights
       }
     }
   }

@@ -14,6 +14,11 @@ import Reservations from '@/views/Reservations/Reservations'
 import Summary from '@/views/Reservations/Summary'
 import Payment from '@/views/Reservations/Payment'
 import SuccessfulBooked from '@/views/Reservations/SuccessfulBooked'
+import OrderDetail from '@/views/Reservations/OrderDetail'
+
+// blank layout
+import BlankLayout from '@/layouts/BlankLayout'
+import Login from '@/views/Auth/Login'
 
 // admin layout and view
 import AdminLayout from '@/layouts/AdminLayout'
@@ -39,7 +44,15 @@ export default new Router({
         {path: 'reservations', name: 'Reservations', component: Reservations},
         {path: 'summary', name: 'Summary', component: Summary},
         {path: 'payment', name: 'Payment', component: Payment},
-        {path: 'successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked}
+        {path: 'successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
+        {path: 'order-detail', name: 'OrderDetail', component: OrderDetail}
+      ]
+    },
+    {
+      path: '/login',
+      component: BlankLayout,
+      children: [
+        {path: '', name: 'Login', component: Login}
       ]
     },
     {

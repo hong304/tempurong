@@ -42,8 +42,8 @@ export default new Router({
         {path: '/food', name: 'Food', component: Food},
         {path: '/contact', name: 'Contact', component: Contact},
         {path: '/reservations', name: 'Reservations', component: Reservations},
-        {path: '/reservations/summary', name: 'Summary', component: Summary},
-        {path: '/reservations/payment', name: 'Payment', component: Payment},
+        {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
+        {path: '/reservations/contact', name: 'ReservationContact', component: Payment},
         {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
         {path: '/order-detail', name: 'OrderDetail', component: OrderDetail}
       ]

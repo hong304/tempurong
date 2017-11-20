@@ -65,6 +65,7 @@ module.exports = {
     more: 'More',
     moreRooms: 'More Rooms',
     moreDetails: 'More Details',
+    hideDetails: 'Hide Details',
     moreAreaAndActivities: 'More Area & Activities',
     submit: 'Submit'
   },
@@ -83,10 +84,15 @@ module.exports = {
         children: '{count} children | {count} child | {count} children'
       },
       roomCard: {
+        guests: '{count} guests | {count} guest | {count} guests',
+        addMattressRemarks: '(adding 1 extra mattress for max. {count} guests)',
+        addMattressAndBreakfastOption: 'Extra mattress or breakfast',
         extraBreakfast: 'extra breakfast (MYR12 per night)',
         breakfastRemarks: '* max 1 extra breakfast per room',
         extraMattress: 'extra mattress (MYR18 per night)',
         mattressRemarks: '* max 1 extra mattress per room',
+        queenBed: '0 queen beds | 1 queen bed | {count} queen beds',
+        bunkBed: '0 bunk beds | 1 bunk bed | {count} bunk beds',
         roomAvailable: '{count} rooms available | {count} room available | {count} rooms available',
         description: 'Description',
         amenities: 'Amenities',

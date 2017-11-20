@@ -85,7 +85,7 @@
     methods: {
       goToPreview: function () {
         this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
-        this.$router.push('/reservations/contact')
+        this.$router.push({name: 'ReservationContact'})
       }
     },
     watch: {},

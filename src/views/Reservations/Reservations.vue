@@ -90,8 +90,8 @@
 							{{ $t('error.noOfGuest') }}</h5>
 					
 					</div>
-					<div v-for="(item, index) in roomTypes">
-						<room-card :result="item" :index="index" :availableRooms="rooms[item.id]"
+					<div v-for="(item, index) in orderDetails.roomObjects">
+						<room-card :result="item" :index="index" :availableRooms="item.available_room" :updated="updated"
 						           v-on:roomUpdates="roomDataUpdate"></room-card>
 					</div>
 				</div>
@@ -128,18 +128,10 @@
         optionSelected: false,
         errorDate: false,
         errorPeople: false,
-        roomTypes: [],
         rooms: [],
         errorTotalGuest: false,
-        orderDetails: {
-          checkIn: '',
-          checkOut: '',
-          adults: 0,
-          children: 0,
-          totalPrice: 0,
-          totalRooms: 0,
-          roomObjects: []
-        }
+        orderDetails: {},
+        updated: Date()
       }
     },
     props: {
@@ -163,16 +155,9 @@
           this.errorDate = true
         }
       },
-      fetchRooms: function () {
-        this.axios.get('/api/room-type').then((response) => {
-          this.roomTypes = response.data
-        }, (error) => {
-          console.log(error)
-        })
-      },
       roomDataUpdate: function (val) {
-        this.orderDetails.roomObjects[val.index] = val.room
-        this.orderDetails.roomObjects = _.merge(this.orderDetails.roomObjects, this.roomTypes)
+        this.orderDetails.roomObjects[val.index] = val
+
         // variable for calculating the total price
         let calPrice = 0
         let roomPrice = _.map(this.orderDetails.roomObjects, 'price')
@@ -192,20 +177,21 @@
         this.orderDetails.totalPrice = calPrice
       },
       defineDatePicker: function () {
-        if (this.orderDetails.checkIn.length !== 0) {
-          let datepickerI18n = this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
-          datepickerI18n['check-in'] = this.orderDetails.checkIn
-          datepickerI18n['check-out'] = this.orderDetails.checkOut
-          return datepickerI18n
+        if (typeof this.orderDetails.checkIn !== 'undefined' && this.orderDetails.checkIn.length > 0) {
+          let datePickerI18n = this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+          datePickerI18n['check-in'] = this.orderDetails.checkIn
+          datePickerI18n['check-out'] = this.orderDetails.checkOut
+          return datePickerI18n
         }
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       },
       getAvailableRooms: function () {
         this.axios.post('/api/checkAvailableRooms', {
           checkIn: this.orderDetails.checkIn,
-          checkOut: this.orderDetails.checkOut
+          checkOut: this.orderDetails.checkOut,
+          withRoomDetails: true
         }).then((response) => {
-          this.rooms = response.data
+          this.orderDetails.roomObjects = response.data
         }, (error) => {
           console.log(error)
         })
@@ -214,6 +200,7 @@
         this.orderDetails.checkIn = this.$moment(this.orderDetails.checkIn).format('YYYY-MM-DD')
         this.orderDetails.checkOut = this.$moment(date).format('YYYY-MM-DD')
         this.getAvailableRooms()
+        this.updated = Date()
       },
       changePeopleNumber (type, people) {
         if (type === 'minus') {
@@ -229,7 +216,6 @@
       }
     },
     mounted: function () {
-      this.fetchRooms()
       let defaultOrderDetails = JSON.stringify({
         checkIn: '',
         checkOut: '',
@@ -240,6 +226,7 @@
         roomObjects: []
       })
       this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
+      this.$localStorage.set('orderDetails', '')
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true

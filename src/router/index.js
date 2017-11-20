@@ -34,18 +34,18 @@ export default new Router({
       path: '/',
       component: MasterLayout,
       children: [
-        {path: '', name: 'Home', component: Home},
-        {path: 'about', name: 'About', component: About},
-        {path: 'rooms', name: 'Rooms', component: Rooms},
-        {path: 'rooms/detail', name: 'RoomDetail', component: RoomDetail},
-        {path: 'activities', name: 'Activities', component: Activities},
-        {path: 'food', name: 'Food', component: Food},
-        {path: 'contact', name: 'Contact', component: Contact},
-        {path: 'reservations', name: 'Reservations', component: Reservations},
-        {path: 'summary', name: 'Summary', component: Summary},
-        {path: 'payment', name: 'Payment', component: Payment},
-        {path: 'successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
-        {path: 'order-detail', name: 'OrderDetail', component: OrderDetail}
+        {path: '/', name: 'Home', component: Home},
+        {path: '/about', name: 'About', component: About},
+        {path: '/rooms', name: 'Rooms', component: Rooms},
+        {path: '/rooms/detail', name: 'RoomDetail', component: RoomDetail},
+        {path: '/activities', name: 'Activities', component: Activities},
+        {path: '/food', name: 'Food', component: Food},
+        {path: '/contact', name: 'Contact', component: Contact},
+        {path: '/reservations', name: 'Reservations', component: Reservations},
+        {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
+        {path: '/reservations/contact', name: 'ReservationContact', component: Payment},
+        {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
+        {path: '/order-detail', name: 'OrderDetail', component: OrderDetail}
       ]
     },
     {

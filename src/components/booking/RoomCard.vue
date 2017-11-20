@@ -8,38 +8,42 @@
 				<div class="room-header">
 					<span class="rooms-number">
 						<button type="button" @click="changeRoom('minus')" class="btn btn-minus"
-										:disabled="!counterRooms"><span
-								class="ti-minus"></span></button>
+						        :disabled="!counterRooms"><span
+										class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterRooms }}</span>
 						<button type="button" @click="changeRoom('add')" class="btn btn-plus"
-										:disabled="counterRooms >= availableRooms"><span
-								class="ti-plus"></span></button>
+						        :disabled="counterRooms >= availableRooms"><span
+										class="ti-plus"></span></button>
 					</span>
 					<h3 v-html="result['name_'+$i18n.locale]"></h3>
 					<h4>${{ result.price }}</h4>
 				</div>
 				<ul class="icon-list">
-					<li>{{ resData.guests }} guests <span
-							v-if="(resData.guests < 5)">(adding 1 extra mattress for max.5 guests)</span></li>
-					<li>{{ resData.queenBeds }} queen beds</li>
+					<li>{{ $tc('components.booking.roomCard.guests', result.capacity, {count: result.capacity})}}
+						<span v-if="(result.add_bed)">{{$t('components.booking.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
+					</li>
+					<li>{{$tc('components.booking.roomCard.queenBed', result.queen_bed, {count: result.queen_bed})}}</li>
+					<li v-if="(result.bunk_bed > 0)">
+						{{$tc('components.booking.roomCard.bunkBed', result.bunk_bed, {count: result.bunk_bed})}}
+					</li>
 				</ul>
-
+				
 				<div class="rooms-body">
 					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress">
-					<label for="checkbox"> Extra mattress or breakfast</label>
+					<label for="checkbox">{{$t('components.booking.roomCard.addMattressAndBreakfastOption')}}</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
 						<div>
 							<multiselect
-									class="extra-select custom-multiselect"
-									v-model="roomObject.room.breakfast"
-									:options="breakfast_options"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-									:hide-selected="true"
-									:disabled="!counterRooms"
+											class="extra-select custom-multiselect"
+											v-model="roomTypeCondition.room.breakfast"
+											:options="breakfast_options"
+											:searchable="false"
+											:close-on-select="true"
+											:showLabels="false"
+											:hide-selected="true"
+											:disabled="!counterRooms"
 							></multiselect>
 						</div>
 						<div>
@@ -50,14 +54,14 @@
 					<div class="extra-mattress">
 						<div>
 							<multiselect
-									class="extra-select custom-multiselect"
-									v-model="roomObject.room.mattress"
-									:options="mattress_options"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-									:hide-selected="true"
-									:disabled="!counterRooms"
+											class="extra-select custom-multiselect"
+											v-model="roomTypeCondition.room.mattress"
+											:options="mattress_options"
+											:searchable="false"
+											:close-on-select="true"
+											:showLabels="false"
+											:hide-selected="true"
+											:disabled="!counterRooms"
 							></multiselect>
 						</div>
 						<div>
@@ -66,11 +70,12 @@
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="rooms-footer">
 					<span>
 						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
-						<button type="button" @click="show=!show" class="btn btn-text-only">{{ $t('button.moreDetails')
+						<button type="button" @click="show=!show"
+						        class="btn btn-text-only">{{ (!show) ? $t('button.moreDetails') : $t('button.hideDetails')
 							}} > </button>
 					</span>
 				</div>
@@ -107,16 +112,6 @@
     },
     props: {
       result: {type: Object},
-      resData: {
-        type: Object,
-        default: function () {
-          return {
-            'guests': 4,
-            'queenBeds': 2,
-            'doubleDeckers': 0
-          }
-        }
-      },
       imageSrc: {
         type: String,
         default: function () {
@@ -129,35 +124,28 @@
           return 0
         }
       },
-      buttonText: {
-        type: String,
-        default: function () {
-          let t = (this.show) ? 'hide details >' : 'more details >'
-          return t
-        }
-      },
       show: false,
       index: {
         type: Number,
         default: function () {
           return 0
         }
+      },
+      updated: {
+        type: String
       }
     },
     data () {
       return {
-        counterRooms: 0,
-        info: {},
-        no_of_rooms: [],
-        roomObject: {
+        counterRooms: this.result.noOfRoom || 0,
+        roomTypeCondition: {
           index: this.index,
-          room: {
-            type: this.result.id,
-            noOfRoom: 0,
-            breakfast: 0,
-            mattress: 0
-          }
+          type: this.result.id,
+          noOfRoom: 0,
+          breakfast: 0,
+          mattress: 0
         },
+        roomType: this.result,
         breakfast_options: [],
         mattress_options: [],
         needExtra: false
@@ -170,15 +158,16 @@
         this.needExtra = !this.needExtra
         if (!this.needExtra) {
           // reset the numbers when the user deselect the checkbox
-          this.roomObject.room.breakfast = 0
-          this.roomObject.room.mattress = 0
+          this.roomTypeCondition.breakfast = 0
+          this.roomTypeCondition.mattress = 0
         }
       },
       changeRoom (type) {
         // will trigger once the use add / subtract the number of room
+        this.roomType.reload = false
         this.breakfast_options = []
         this.mattress_options = []
-        this.roomObject.room.breakfast = this.roomObject.room.mattress = 0
+        this.roomTypeCondition.breakfast = this.roomTypeCondition.mattress = 0
         if (type === 'minus') {
           this.counterRooms--
         } else if (type === 'add') {
@@ -189,42 +178,46 @@
           this.mattress_options.push(i)
         }
         if (this.counterRooms > 0) {
-          this.roomObject.room.noOfRoom = this.counterRooms
+          this.roomTypeCondition.noOfRoom = this.counterRooms
         } else {
-          this.roomObject.room.noOfRoom = 0
+          this.roomTypeCondition.noOfRoom = 0
         }
-//        this.no_of_rooms[typeId]['breakfast'] = 1
       }
     },
     watch: {
-      'roomObject': {
+      'roomTypeCondition': {
         handler: function (val) {
-          this.$emit('roomUpdates', this.roomObject)
+          this.roomType = _.merge(this.roomType, this.roomTypeCondition)
+          this.roomType.reload = false
+          this.$emit('roomUpdates', this.roomType)
         },
         deep: true
       },
-      availableRooms: function () {
+      updated: function () {
         this.counterRooms = 0
       }
+    },
+    mounted: function () {
+      this.counterRooms = this.result.noOfRoom || 0
     }
   }
 </script>
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.room-card {
 		border-bottom: 1px solid $brand-primary;
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
-
+	
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;
 		}
 	}
-
+	
 	.info-wrapper {
 		text-align: left;
 		color: $brand-secondary;
@@ -302,7 +295,7 @@
 			vertical-align: middle;
 		}
 	}
-
+	
 	.well {
 		border: none;
 		border-radius: 0;
@@ -317,12 +310,12 @@
 			}
 		}
 	}
-
+	
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
-
+	
 	.extra-select {
 		display: inline-block;
 		width: 50px;

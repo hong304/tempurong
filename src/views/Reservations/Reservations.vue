@@ -12,97 +12,93 @@
 			<div class="overlay-options">
 				<div class="picker-input">
 					<HotelDatePicker class="custom-picker"
-													 :startDate="new Date()"
-													 :i18n="defineDatePicker()"
-													 v-on:checkInChanged="checkIn = $event"
-													 v-on:checkOutChanged="checkOut = $event"
-					></HotelDatePicker>
+					                 :checkIn="orderDetails.checkIn"
+					                 :checkOut="orderDetails.checkOut"
+					                 :startDate="new Date()"
+					                 :i18n="defineDatePicker()"
+					                 v-on:checkInChanged="orderDetails.checkIn = $event"
+					                 v-on:checkOutChanged="orderDetails.checkOut = $event">
+					</HotelDatePicker>
 					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>{{ $t('error.checkInOut') }}
 					</h5>
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 						<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterAdults }}</span>
+						        :disabled="!orderDetails.adults"><span
+										class="ti-minus"></span></button>
+						<span class="counter-num">{{ orderDetails.adults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 					</div>
-
+					
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
 						<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-										:disabled="!counterChildren"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterChildren }}</span>
+						        :disabled="!orderDetails.children"><span
+										class="ti-minus"></span></button>
+						<span class="counter-num">{{ orderDetails.children }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 					</div>
 					<h5 class="error-message" v-if="errorPeople"><span class="ti-alert"></span>
 						{{ $t('error.noOfGuest') }}</h5>
-
+				
 				</div>
 				<button type="button" class="btn btn-main" @click="checkSelected">{{$t('button.submit')}}</button>
 			</div>
 		</div>
-
+		
 		<section class="pb-5" v-if="optionSelected">
 			<div class="row py-5">
 				<div class="col-md-8 col-xs-12">
 					<div class="picker-input">
 						<HotelDatePicker
-								:startDate="new Date()"
-								:i18n="defineDatePicker()"
-								v-on:checkInChanged="checkIn = $event"
-								v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
-
+										:startDate="new Date()"
+										:i18n="defineDatePicker()"
+										v-on:checkInChanged="orderDetails.checkIn = $event"
+										v-on:checkOutChanged="checkOutDate($event)"></HotelDatePicker>
+						
 						<div class="no-of-people">
 							<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
 							<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 0)" class="btn btn-minus"
-										:disabled="!counterAdults"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterAdults }}</span>
+						        :disabled="!orderDetails.adults"><span
+										class="ti-minus"></span></button>
+						<span class="counter-num">{{ orderDetails.adults }}</span>
 						<button type="button" @click="changePeopleNumber('add', 0)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 						</div>
-
+						
 						<div class="no-of-people">
 							<span class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}}</span>
 							<span class="controls">
 						<button type="button" @click="changePeopleNumber('minus', 1)" class="btn btn-minus"
-										:disabled="!counterChildren"><span
-								class="ti-minus"></span></button>
-						<span class="counter-num">{{ counterChildren }}</span>
+						        :disabled="!orderDetails.children"><span
+										class="ti-minus"></span></button>
+						<span class="counter-num">{{ orderDetails.children }}</span>
 						<button type="button" @click="changePeopleNumber('add', 1)" class="btn btn-plus"><span
-								class="ti-plus"></span></button>
+										class="ti-plus"></span></button>
 						</span>
 						</div>
-
+						
 						<h5 class="error-message" v-if="errorTotalGuest"><span class="ti-alert"></span>
 							{{ $t('error.noOfGuest') }}</h5>
-
+					
 					</div>
-					<div v-for="(item, index) in roomTypes">
-						<room-card :result="item" :index="index" :availableRooms="rooms[item.id]"
-											 v-on:roomUpdates="roomDataUpdate"></room-card>
+					<div v-for="(item, index) in orderDetails.roomObjects">
+						<room-card :result="item" :index="index" :availableRooms="item.available_room" :updated="updated"
+						           v-on:roomUpdates="roomDataUpdate"></room-card>
 					</div>
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<booking-sticky
-							:isMobile="isMobile"
-							:totalAdults="counterAdults"
-							:totalChildren="counterChildren"
-							:checkInDate="checkIn"
-							:checkOutDate="checkOut"
-							:resData="roomObjects"
-							:totalRooms="totalRooms"
-							:totalPrice="totalPrice"
+									:isMobile="isMobile"
+									:orderDetails="orderDetails"
 					></booking-sticky>
 				</div>
 			</div>
@@ -132,16 +128,10 @@
         optionSelected: false,
         errorDate: false,
         errorPeople: false,
-        titleOne: 'Reservations',
-        roomTypes: [],
-        roomObjects: [],
         rooms: [],
-        checkIn: ' ',
-        checkOut: ' ',
-        counterAdults: 0,
-        counterChildren: 0,
         errorTotalGuest: false,
-        totalRooms: 0
+        orderDetails: {},
+        updated: Date()
       }
     },
     props: {
@@ -150,12 +140,12 @@
     methods: {
       checkSelected: function () {
         // use to check the first step of input in reservation page
-        // check the checkin out date first
-        if (this.checkIn !== '' && this.checkOut !== '') {
+        // check the check in out date first
+        if (this.orderDetails.checkIn !== '' && this.orderDetails.checkOut !== '') {
           // check how many guest are there
-          if (this.counterAdults > 0 || this.counterChildren > 0) {
-            this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
-            this.checkOut = this.$moment(this.checkOut).format('YYYY-MM-DD')
+          if (this.orderDetails.adults > 0 || this.orderDetails.children > 0) {
+            this.orderDetails.checkIn = this.$moment(this.orderDetails.checkIn).format('YYYY-MM-DD')
+            this.orderDetails.checkOut = this.$moment(this.orderDetails.checkOut).format('YYYY-MM-DD')
             this.optionSelected = true
             this.getAvailableRooms()
           } else {
@@ -165,23 +155,16 @@
           this.errorDate = true
         }
       },
-      fetchRooms: function () {
-        this.axios.get('/api/room-type').then((response) => {
-          this.roomTypes = response.data
-        }, (error) => {
-          console.log(error)
-        })
-      },
       roomDataUpdate: function (val) {
-        this.roomObjects[val.index] = val.room
-        this.roomObjects = _.merge(this.roomObjects, this.roomTypes)
+        this.orderDetails.roomObjects[val.index] = val
+
         // variable for calculating the total price
         let calPrice = 0
-        let roomPrice = _.map(this.roomObjects, 'price')
+        let roomPrice = _.map(this.orderDetails.roomObjects, 'price')
 
         // variable for calculating the total rooms
         let calculated = 0
-        let result = _.map(this.roomObjects, 'noOfRoom')
+        let result = _.map(this.orderDetails.roomObjects, 'noOfRoom')
 
         // calculating total rooms and price
         _.forEach(result, function (value, key) {
@@ -190,42 +173,65 @@
             calPrice += (roomPrice[key] * value)
           }
         })
-        this.totalRooms = calculated
-        this.totalPrice = calPrice
+        this.orderDetails.totalRooms = calculated
+        this.orderDetails.totalPrice = calPrice
       },
       defineDatePicker: function () {
+        if (typeof this.orderDetails.checkIn !== 'undefined' && this.orderDetails.checkIn.length > 0) {
+          let datePickerI18n = this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+          datePickerI18n['check-in'] = this.orderDetails.checkIn
+          datePickerI18n['check-out'] = this.orderDetails.checkOut
+          return datePickerI18n
+        }
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       },
       getAvailableRooms: function () {
         this.axios.post('/api/checkAvailableRooms', {
-          checkIn: this.checkIn,
-          checkOut: this.checkOut
+          checkIn: this.orderDetails.checkIn,
+          checkOut: this.orderDetails.checkOut,
+          withRoomDetails: true
         }).then((response) => {
-          this.rooms = response.data
+          this.orderDetails.roomObjects = response.data
         }, (error) => {
           console.log(error)
         })
       },
       checkOutDate: function (date) {
-        this.checkIn = this.$moment(this.checkIn).format('YYYY-MM-DD')
-        this.checkOut = this.$moment(date).format('YYYY-MM-DD')
+        this.orderDetails.checkIn = this.$moment(this.orderDetails.checkIn).format('YYYY-MM-DD')
+        this.orderDetails.checkOut = this.$moment(date).format('YYYY-MM-DD')
         this.getAvailableRooms()
+        this.updated = Date()
       },
       changePeopleNumber (type, people) {
         if (type === 'minus') {
-          people ? this.counterChildren-- : this.counterAdults--
-          if (!(this.counterAdults + this.counterChildren)) {
+          people ? this.orderDetails.children-- : this.orderDetails.adults--
+          if (!(this.orderDetails.adults + this.orderDetails.children)) {
             this.errorTotalGuest = true
-            people ? this.counterChildren += 1 : this.counterAdults += 1
+            people ? this.orderDetails.children += 1 : this.orderDetails.adults += 1
           }
         } else if (type === 'add') {
-          people ? this.counterChildren++ : this.counterAdults++
+          people ? this.orderDetails.children++ : this.orderDetails.adults++
           this.errorTotalGuest = false
         }
       }
     },
     mounted: function () {
-      this.fetchRooms()
+      let defaultOrderDetails = JSON.stringify({
+        checkIn: '',
+        checkOut: '',
+        adults: 0,
+        children: 0,
+        totalPrice: 0,
+        totalRooms: 0,
+        roomObjects: []
+      })
+      this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
+      this.$localStorage.set('orderDetails', '')
+
+      if (this.orderDetails.checkIn.length > 0) {
+        this.optionSelected = true
+        this.checkSelected()
+      }
     },
     watch: {}
   }
@@ -233,7 +239,7 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.overlay-wrapper {
 		position: relative;
 		display: flex;
@@ -259,7 +265,7 @@
 			}
 		}
 	}
-
+	
 	.picker-input {
 		margin: 0 0 2rem;
 		padding-bottom: 0;
@@ -314,7 +320,7 @@
 </style>
 <style lang="scss">
 	@import '../../assets/style/setting';
-
+	
 	.picker-input {
 		margin: 0 0 1rem;
 		padding-bottom: 2rem;
@@ -349,15 +355,15 @@
 			.datepicker__clear-button {
 				color: $brand-secondary;
 				margin: 0 -2px 0 0;
-
+				
 			}
 		}
 	}
-
+	
 	.datepicker {
 		top: 40px;
 	}
-
+	
 	.datepicker__month-day {
 		cursor: pointer;
 	}

@@ -66,6 +66,7 @@ module.exports = {
     more: '更多',
     moreRooms: '更多房间',
     moreDetails: '更多详情',
+    hideDetails: '隐藏详情',
     moreAreaAndActivities: '更多景点及活动',
     submit: '提交'
   },
@@ -84,10 +85,15 @@ module.exports = {
         children: '{count} 位小孩 | {count} 位小孩 | {count} 位小孩'
       },
       roomCard: {
+        guests: '{count} 人 | {count} 人 | {count} 人',
+        addMattressRemarks: '（可加一张床褥，房间最多容纳{count}人）',
+        addMattressAndBreakfastOption: '加床褥或早餐',
         extraBreakfast: '加早餐 (MYR12 每天)',
         breakfastRemarks: '* 每间房间最多只能加一份早餐',
         extraMattress: '加床褥 (MYR18 每晚)',
         mattressRemarks: '* 每间房间最多只能加一张床褥',
+        queenBed: '0 双人大床 | 1 双人大床 | {count} 双人大床',
+        bunkBed: '0 单人双层床 | 1 单人双层床 | {count} 单人双层床',
         roomAvailable: '尚馀{count}间房间 | 尚馀{count}间房间 | 尚馀{count}间房间',
         description: '描述',
         amenities: '设施',

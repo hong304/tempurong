@@ -31,7 +31,7 @@
 			</div>
 			<div class="sticky-body" v-if="orderDetails.totalRooms">
 				<h4>Total Booked room: {{ orderDetails.totalRooms }}</h4>
-				<div class="room-summary" v-for="item in resData">
+				<div class="room-summary" v-for="item in orderDetails.roomObjects">
 					<div class="summary-details" v-if="item.noOfRoom">
 						<h4>{{ item.name_en }} x {{ item.noOfRoom }}</h4>
 						<ul class="text-list">
@@ -61,10 +61,7 @@
     },
     props: {
       isMobile: this.isMobile,
-      orderDetails: this.orderDetails,
-      resData: {type: Array},
-      totalRooms: {type: Number},
-      totalPrice: {type: Number}
+      orderDetails: this.orderDetails
     },
     data () {
       return {
@@ -88,7 +85,7 @@
     methods: {
       goToPreview: function () {
         this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
-        this.$router.push('/reservations/summary')
+        this.$router.push('/reservations/contact')
       }
     },
     watch: {},

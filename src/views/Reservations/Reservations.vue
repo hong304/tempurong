@@ -99,13 +99,6 @@
 					<booking-sticky
 									:isMobile="isMobile"
 									:orderDetails="orderDetails"
-									:totalAdults="orderDetails.adults"
-									:totalChildren="orderDetails.children"
-									:checkInDate="orderDetails.checkIn"
-									:checkOutDate="orderDetails.checkOut"
-									:resData="orderDetails.roomObjects"
-									:totalRooms="orderDetails.totalRooms"
-									:totalPrice="orderDetails.totalPrice"
 					></booking-sticky>
 				</div>
 			</div>
@@ -237,7 +230,6 @@
     },
     mounted: function () {
       this.fetchRooms()
-
       let defaultOrderDetails = JSON.stringify({
         checkIn: '',
         checkOut: '',
@@ -251,6 +243,7 @@
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true
+        this.checkSelected()
       }
     },
     watch: {}

@@ -16,6 +16,7 @@
 								<div class="col-xs-12">
 									<h3>Name : {{ clientName }}</h3>
 									<h3>Email : {{ resData.email }}</h3>
+									<h3>Transition ID : {{ resData.transition_id }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -40,7 +41,7 @@
 						<div class="summary-footer">
 							<div>
 								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
-								<button class="btn btn-main">Proceed to Payment</button>
+								<button class="btn btn-main">Refund</button>
 							</div>
 						</div>
 					</div>
@@ -59,10 +60,10 @@
       RoomSummaryCard,
       ContentTitle
     },
-    name: 'reservations-summary',
+    name: 'order-detail',
     data () {
       return {
-        titleOne: 'Booking Summary',
+        titleOne: 'Order Detail',
         checkInDate: '15 Nov 2017',
         checkOutDate: '21 Nov 2017',
         roomType: 'River View',

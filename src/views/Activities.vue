@@ -42,16 +42,37 @@
 				</div>
 			</div>
 		</section>
+		<section class="padding-of-section mt-5">
+			<div class="row pb-5">
+				<div class="col-xs-12">
+					<content-title :contentTitle="$t('pages.activities.activities')"></content-title>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-xs-12">
+					<activity-card></activity-card>
+					<activity-card></activity-card>
+					<activity-card></activity-card>
+				</div>
+			</div>
+		</section>
+		<section class="padding-of-section mt-5">
+			<enquiry-form></enquiry-form>
+		</section>
 	</div>
 </template>
 
 <script>
   import ContentTitle from '../components/content/ContentTitle.vue'
   import ContentContent from '../components/content/ContentParagraph.vue'
+  import ActivityCard from '../components/activity/ActivityCard.vue'
+  import EnquiryForm from '../components/form/EnquiryForm.vue'
 
   export default {
     name: 'Activities',
     components: {
+      EnquiryForm,
+      ActivityCard,
       ContentContent,
       ContentTitle
     },

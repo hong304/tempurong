@@ -39,7 +39,8 @@ module.exports = {
       pageTitle: 'Rooms & Amenities'
     },
     activities: {
-      pageTitle: 'Area & Activities'
+      pageTitle: 'Area & Activities',
+      activities: 'Activities'
     },
     food: {
       pageTitle: 'Food'

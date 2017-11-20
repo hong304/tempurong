@@ -39,7 +39,8 @@ module.exports = {
       pageTitle: '房间及设施'
     },
     activities: {
-      pageTitle: '推荐景点及活动'
+      pageTitle: '推荐景点及活动',
+      activities: '活动'
     },
     food: {
       pageTitle: '精彩美食'

@@ -40,6 +40,10 @@
 						<div class="summary-footer">
 							<div>
 								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
+								<!-- back button for editing the order details -->
+								<button class="btn btn-main pull-left">
+									<span class="ti-icon ti-pencil-alt"></span><span>Edit contact information</span></button>
+
 								<button class="btn btn-main">Proceed to Payment</button>
 							</div>
 						</div>
@@ -200,6 +204,9 @@
 		}
 		.btn-main {
 			text-transform: uppercase;
+			.ti-icon {
+				margin-right: 0.5rem;
+			}
 		}
 	}
 </style>

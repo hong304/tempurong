@@ -49,7 +49,10 @@
 							</div>
 						</div>
 						<div class="payment-footer">
-							<h3>Total Amount: <span class="total-price">{{ totalPrice }}MYR</span></h3>
+							<!-- back button for editing the order details -->
+							<button class="btn btn-main pull-left">
+								<span class="ti-icon ti-pencil-alt"></span><span>Edit order</span></button>
+
 							<button class="btn btn-main">
 								<icon name="cc-paypal" scale="2"></icon>
 								<span>Check out</span></button>
@@ -163,7 +166,7 @@
 		.fa-icon, span {
 			float: left;
 		}
-		.fa-icon {
+		.fa-icon, .ti-icon {
 			margin-right: 0.5rem;
 		}
 		span {

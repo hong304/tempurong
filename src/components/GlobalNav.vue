@@ -31,7 +31,7 @@
 							<router-link :to="{path: '/contact'}" class="navbar-link">{{ $t("menu.contact") }}</router-link>
 						</li>
 						<li>
-							<router-link :to="{path: '/reservations'}" class="navbar-link">{{ $t("menu.reservations") }}</router-link>
+							<router-link :to="{path: '/reservations'}" class="navbar-link reservation">{{ $t("menu.reservations") }}</router-link>
 						</li>
 					</ul>
 					<div class="nav navbar-nav navbar-right">
@@ -112,6 +112,21 @@
 			& > li {
 				.navbar-link {
 					color: $brand-secondary;
+					padding: 10px 12px;
+					margin: 5px;
+					&.reservation {
+						background-color: $brand-secondary;
+						border-radius: 5px;
+						color: white;
+						transition: background-color 150ms linear;
+						&:hover, &:focus {
+							background-color: $brand-primary;
+						}
+					}
+					&:hover, &:focus {
+						outline: none;
+						box-shadow: none;
+					}
 				}
 			}
 		}

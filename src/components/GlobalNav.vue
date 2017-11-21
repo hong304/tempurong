@@ -106,9 +106,18 @@
 	.navbar-wrapper {
 		height: 50px;
 		margin: 0 auto;
+		@media screen and (max-width: 767px) {
+			height: auto;
+		}
 		.navbar-nav {
 			display: inline-block;
 			float: none;
+			@media screen and (max-width: 767px) {
+				display: block;
+				&.navbar-right {
+					display: inline-block;
+				}
+			}
 			& > li {
 				margin: 10px 0;
 				.navbar-link {
@@ -118,6 +127,9 @@
 					border-radius: 5px;
 					border: 1px solid transparent;
 					transition: all 300ms linear;
+					@media screen and (max-width: 991px) {
+						padding: 4px 7px;
+					}
 					&.reservation {
 						border-color: $brand-secondary;
 					}

@@ -112,6 +112,10 @@
 			margin-bottom: 0;
 			font-size: 2rem;
 		}
+		@media screen and (max-width: 991px) {
+			margin: 0;
+			padding: 2rem;
+		}
 	}
 
 	.payment-header {
@@ -127,6 +131,9 @@
 			line-height: 3rem;
 			border: none;
 			border-bottom: 1px solid $brand-primary;
+			@media screen and (max-width: 467px) {
+				margin: 0.75rem 0;
+			}
 			&:hover, &:focus, &:active {
 				outline: none !important;
 				box-shadow: none !important;
@@ -139,6 +146,9 @@
 		input[type=checkbox] {
 			width: auto;
 			margin-top: 0;
+			@media screen and (max-width: 467px) {
+				margin: 0;
+			}
 		}
 		textarea {
 			resize: none;
@@ -157,6 +167,18 @@
 			&:before {
 				content: '$';
 				margin-right: 0.5rem;
+			}
+		}
+		@media screen and (max-width: 320px) {
+			button {
+				display: block;
+				width: 100%;
+				&:not(:first-of-type) {
+					margin-top: 1rem;
+				}
+			}
+			.pull-left {
+				float: none !important;
 			}
 		}
 	}

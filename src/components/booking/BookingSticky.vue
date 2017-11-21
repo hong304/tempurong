@@ -1,7 +1,7 @@
 <template>
-	<div class="booking-sticky" :class="{ shown: show }">
-		<button type="button" v-show="isMobile" @click="show=!show" class="btn btn-close"><span
-						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
+	<div class="booking-sticky" :class="{ shown: show, 'one-error': totalError == 1, 'two-error': totalError == 2 }">
+		<button type="button" @click="show=!show" class="btn btn-close"><span
+				:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
 			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong>
@@ -14,20 +14,22 @@
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
 			<p class="check-in-out"><span class="ti-calendar"></span> {{orderDetails.checkIn}} - {{orderDetails.checkOut}}</p>
+			<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span> {{ $t('error.checkInOut') }}</h5>
+			<h5 class="error-message" v-if="errorGuest"><span class="ti-alert"></span> {{ $t('error.noOfGuest') }}</h5>
 		</div>
-		<div class="summary-detail">
+		<div class="summary-detail" v-show="show">
 			<div class="picker-input">
-				
+
 				<div class="no-of-people" v-show="orderDetails.adults">
 					<p class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}} <span
-									class="people-number">{{ orderDetails.adults }}</span></p>
+							class="people-number">{{ orderDetails.adults }}</span></p>
 				</div>
-				
+
 				<div class="no-of-people" v-show="orderDetails.children">
 					<p class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}} <span class="people-number">{{ orderDetails.children
 						}}</span></p>
 				</div>
-			
+
 			</div>
 			<div class="sticky-body" v-if="orderDetails.totalRooms">
 				<h4>Total Booked room: {{ orderDetails.totalRooms }}</h4>
@@ -42,11 +44,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="sticky-footer">
-				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToPreview">
-					{{ $t('button.book') }}
-				</button>
-			</div>
+		</div>
+		<div class="sticky-footer">
+			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToPreview">
+				{{ $t('button.book') }}
+			</button>
 		</div>
 	</div>
 </template>
@@ -65,6 +67,8 @@
     },
     data () {
       return {
+        errorGuest: false,
+        errorDate: false,
         show: false
       }
     },
@@ -80,13 +84,26 @@
       },
       totalNights: function () {
         return this.totalDays - 1
+      },
+      totalError: function () {
+        if (this.errorDate && this.errorGuest) {
+          return 2
+        } else if (this.errorDate || this.errorGuest) {
+          return 1
+        } else {
+          return 0
+        }
       }
     },
     methods: {
       goToPreview: function () {
-        if (this.orderDetails.totalRooms > 0) {
-          this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
-          this.$router.push({name: 'ReservationContact'})
+        if (this.show) {
+          if (this.orderDetails.totalRooms > 0) {
+            this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
+            this.$router.push({name: 'ReservationContact'})
+          }
+        } else {
+          this.show = true
         }
       }
     }
@@ -96,7 +113,7 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	.booking-sticky {
 		border: 1px solid $light-grey;
 		padding: 2rem;
@@ -106,7 +123,7 @@
 			position: fixed;
 			height: 100vh;
 			width: 100vw;
-			top: calc(100vh - 8vh - 3.25rem);
+			top: calc(100vh - 12vh - 3.25rem);
 			left: 0;
 			padding: calc(1.5rem) 1.5rem 1.5rem;
 			background-color: $brand-primary;
@@ -117,12 +134,53 @@
 			&.shown {
 				top: 0;
 			}
+			.btn-close {
+				display: block;
+			}
 		}
-		@media screen and (max-width: 767px) {
+		@media screen and (max-width: 320px) {
+			top: calc(100vh - 16vh - 3.25rem);
+			&.two-error {
+				top: calc(100vh - 26vh - 3.25rem);
+			}
+			&.one-error {
+				top: calc(100vh - 21vh - 3.25rem);
+			}
+		}
+		@media screen and (min-width: 321px) and (max-width: 467px) {
+			top: calc(100vh - 15vh - 3.25rem);
+			&.two-error {
+				top: calc(100vh - 25vh - 3.25rem);
+			}
+			&.one-error {
+				top: calc(100vh - 20vh - 3.25rem);
+			}
+		}
+		@media screen and (min-width: 468px) and (max-width: 767px) {
+			top: calc(100vh - 14vh - 3.25rem);
+			&.two-error {
+				top: calc(100vh - 24vh - 3.25rem);
+			}
+			&.one-error {
+				top: calc(100vh - 19vh - 3.25rem);
+			}
+		}
+		@media screen and (min-width: 768px) and (max-width: 991px) {
 			top: calc(100vh - 12vh - 3.25rem);
+			&.two-error {
+				top: calc(100vh - 22vh - 3.25rem);
+			}
+			&.one-error {
+				top: calc(100vh - 17vh - 3.25rem);
+			}
+		}
+		@media screen and (min-width: 992px) {
+			.btn-close {
+				display: none;
+			}
 		}
 	}
-	
+
 	.summary-shorthand {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
@@ -136,30 +194,32 @@
 			margin: 0;
 			text-transform: uppercase;
 			@media screen and (max-width: 767px) {
-				font-size: 5vh;
+				font-size: 3vh;
 			}
 		}
 		.total-guests {
 			margin: 0.5rem 0 0;
 			@media screen and (max-width: 767px) {
-				font-size: 3vh;
+				font-size: 2.5vh;
 				margin: 0;
 			}
 		}
 		.check-in-out {
 			margin: 0.5rem 0 0;
+			@media screen and (max-width: 767px) {
+				font-size: 2.5vh;
+			}
 		}
 	}
-	
+
 	.picker-input {
 		margin: 0 0 2rem;
 		padding-bottom: 2rem;
 		border-bottom: 1px solid $brand-secondary;
 		.no-of-people {
 			height: 20px;
-			margin-bottom: 1rem;
-			&:last-of-type {
-				margin-bottom: 0;
+			&:not(:first-of-type) {
+				margin-bottom: 1rem;
 			}
 			&:after {
 				content: '';
@@ -190,23 +250,43 @@
 			}
 		}
 	}
-	
+
 	.summary-detail {
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-	
+
+	.sticky-footer {
+		@media screen and (max-width: 991px) {
+			position: fixed;
+			display: block;
+			width: 100vw;
+			left: 0;
+			bottom: 0;
+		}
+	}
+
 	.multiselect {
 		color: $brand-secondary;
 	}
-	
+
 	.btn-main, .btn-secondary {
 		display: block;
 		width: 100%;
 		font-size: 1.5rem;
 		font-weight: bold;
 	}
-	
+
+	.btn-main {
+		@media screen and (min-width: 768px) and (max-width: 991px) {
+			font-size: 2rem;
+		}
+		@media screen and (max-width: 991px) {
+			background-color: $brand-secondary;
+			border-radius: 0;
+		}
+	}
+
 	.btn-close {
 		position: absolute;
 		right: 0.5rem;
@@ -219,7 +299,7 @@
 		border: none;
 		z-index: 1;
 	}
-	
+
 	.sticky-body {
 		h4 {
 			text-transform: uppercase;
@@ -233,6 +313,16 @@
 				list-style-type: none;
 				padding-left: 0;
 			}
+		}
+		@media screen and (max-width: 991px) {
+			margin-bottom: 10vh;
+		}
+	}
+
+	.error-message {
+		margin-bottom: 0;
+		&:not(:first-of-type) {
+			margin-top: 0;
 		}
 	}
 

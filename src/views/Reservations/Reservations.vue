@@ -130,7 +130,15 @@
         errorPeople: false,
         rooms: [],
         errorTotalGuest: false,
-        orderDetails: {},
+        orderDetails: {
+          checkIn: '',
+          checkOut: '',
+          adults: 0,
+          children: 0,
+          totalPrice: 0,
+          totalRooms: 0,
+          roomObjects: []
+        },
         updated: Date()
       }
     },
@@ -200,6 +208,8 @@
         this.orderDetails.checkIn = this.$moment(this.orderDetails.checkIn).format('YYYY-MM-DD')
         this.orderDetails.checkOut = this.$moment(date).format('YYYY-MM-DD')
         this.getAvailableRooms()
+        this.orderDetails.totalRooms = 0
+        this.orderDetails.totalPrice = 0
         this.updated = Date()
       },
       changePeopleNumber (type, people) {
@@ -216,24 +226,14 @@
       }
     },
     mounted: function () {
-      let defaultOrderDetails = JSON.stringify({
-        checkIn: '',
-        checkOut: '',
-        adults: 0,
-        children: 0,
-        totalPrice: 0,
-        totalRooms: 0,
-        roomObjects: []
-      })
+      let defaultOrderDetails = JSON.stringify(this.orderDetails)
       this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
       this.$localStorage.set('orderDetails', '')
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true
-        this.checkSelected()
       }
-    },
-    watch: {}
+    }
   }
 </script>
 

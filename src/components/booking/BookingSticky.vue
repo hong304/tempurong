@@ -84,8 +84,10 @@
     },
     methods: {
       goToPreview: function () {
-        this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
-        this.$router.push({name: 'ReservationContact'})
+        if (this.orderDetails.totalRooms > 0) {
+          this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
+          this.$router.push({name: 'ReservationContact'})
+        }
       }
     },
     watch: {},

@@ -195,6 +195,7 @@
       },
       updated: function () {
         this.counterRooms = 0
+        this.roomTypeCondition.noOfRoom = 0
       }
     }
   }

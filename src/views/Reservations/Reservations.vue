@@ -226,14 +226,14 @@
       }
     },
     mounted: function () {
-      this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', this.orderDetails))
+      let defaultOrderDetails = JSON.stringify(this.orderDetails)
+      this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
       this.$localStorage.set('orderDetails', '')
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true
       }
-    },
-    watch: {}
+    }
   }
 </script>
 

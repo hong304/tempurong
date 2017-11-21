@@ -89,9 +89,6 @@
           this.$router.push({name: 'ReservationContact'})
         }
       }
-    },
-    watch: {},
-    mounted: function () {
     }
   }
 </script>

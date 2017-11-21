@@ -196,9 +196,6 @@
       updated: function () {
         this.counterRooms = 0
       }
-    },
-    mounted: function () {
-      this.counterRooms = this.result.noOfRoom || 0
     }
   }
 </script>

@@ -36,7 +36,7 @@
 							<div class="row">
 								<div class="col-xs-12">
 									<textarea v-model="additionalNote"
-														placeholder="Additional notes (airport pickup, interested in activities etc."></textarea>
+									          placeholder="Additional notes (airport pickup, interested in activities etc."></textarea>
 								</div>
 							</div>
 							<div class="row">
@@ -44,15 +44,15 @@
 									<p>Terms & Conditions</p>
 									<input type="checkbox" id="tcAgree" v-model="checked">
 									<label
-											for="tcAgree">I have read and agree to the above Terms and Conditions and cancellation policy.</label>
+													for="tcAgree">I have read and agree to the above Terms and Conditions and cancellation policy.</label>
 								</div>
 							</div>
 						</div>
 						<div class="payment-footer">
 							<!-- back button for editing the order details -->
-							<button class="btn btn-main pull-left">
+							<button class="btn btn-main pull-left" @click="goBackToReservation()">
 								<span class="ti-icon ti-pencil-alt"></span><span>Edit order</span></button>
-
+							
 							<button class="btn btn-main">
 								<icon name="cc-paypal" scale="2"></icon>
 								<span>Check out</span></button>
@@ -88,6 +88,11 @@
         titleOne: 'Payment',
         totalPrice: 0
       }
+    },
+    methods: {
+      goBackToReservation: function () {
+        this.$router.push({name: 'Reservations'})
+      }
     }
   }
 </script>
@@ -95,7 +100,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.payment-wrapper {
 		margin: 0 5rem;
 		padding: 5rem;
@@ -117,12 +122,12 @@
 			padding: 2rem;
 		}
 	}
-
+	
 	.payment-header {
 		text-transform: uppercase;
 		margin-bottom: 3rem;
 	}
-
+	
 	.payment-body {
 		margin-bottom: 4rem;
 		input, textarea {
@@ -157,7 +162,7 @@
 			font-weight: 400;
 		}
 	}
-
+	
 	.payment-footer {
 		text-align: right;
 		h3 {
@@ -182,7 +187,7 @@
 			}
 		}
 	}
-
+	
 	.btn-main {
 		text-transform: uppercase;
 		.fa-icon, span {

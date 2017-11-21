@@ -33,7 +33,8 @@ module.exports = {
       reviews: '顧客評價'
     },
     about: {
-      pageTitle: '關於我們'
+      pageTitle: '關於我們',
+      sectionTitle: '想了解更多有關 kuala penyu?'
     },
     rooms: {
       pageTitle: '房間及設施'
@@ -65,9 +66,11 @@ module.exports = {
     bookNow: '立即預訂',
     more: '更多',
     moreRooms: '更多房間',
+    viewRooms: '瀏覽房間',
     moreDetails: '更多詳情',
     hideDetails: '隱藏詳情',
     moreAreaAndActivities: '更多景點及活動',
+    discoverMore: '探索更多',
     submit: '提交'
   },
   dateUnit: {

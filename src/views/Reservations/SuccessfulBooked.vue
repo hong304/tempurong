@@ -36,7 +36,7 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import ContentContent from '../../components/content/ContentParagraph.vue'
-  import Card from '@/components/image/Card.vue'
+  import Card from '@/components/card/Card.vue'
 
   export default {
     components: {

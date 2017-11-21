@@ -21,7 +21,7 @@
 						Tempurong Golden Beach Resort is located at Tempurong Beach (or Pantai Tempurung) about 15 Kilometres away from Kuala Penyu town.</p>
 					<p>
 						Tempurung means Coconut Shell in Malay. About 200 years ago, the villagers found a coconut shell engraved with holy verses of the Al-Quran on the beach, so they renamed this village from Tanah Merah to Tempurung. The villager believe the new name "Tempurong" will bring good health and good wealth to the village itself.</p>
-					<router-link :to="buttonPath" class="btn btn-main">{{ buttonText }}</router-link>
+					<router-link :to="buttonPath" class="btn btn-main">{{ $t('button.discoverMore') }}</router-link>
 				</div>
 				<div class="col-xs-12 col-sm-4">
 					<img :src="mapSrc"/>
@@ -36,7 +36,7 @@
 				<div class="col-xs-4">
 					<p>
 						Tempurong Golden Beach Resort currently have 15 rooms, restaurant and sunset bar and expansion is continuing to rise. There are eight small beach homes built facing the sea,  and the other seven is a double huts. Through a window have panoramic sea views. Each room has a private bathroom, air-conditioning , hot water shower available. After moving here you can enjoy the sunshine, the golden beach and the sunset.</p>
-					<router-link :to="buttonPathTwo" class="btn btn-main">{{ buttonTextTwo }}</router-link>
+					<router-link :to="buttonPathTwo" class="btn btn-main">{{ $t('button.viewRooms') }}</router-link>
 				</div>
 			</div>
 			<div class="row mt-4">
@@ -57,7 +57,7 @@
 		<section class="padding-of-section mt-5">
 			<div class="row text-center mb-5">
 				<div class="col-xs-12">
-					<h3>Want to explore more about kuala penyu?</h3>
+					<h3>{{ $t('pages.about.sectionTitle') }}</h3>
 				</div>
 			</div>
 			<div class="row text-center">
@@ -97,10 +97,8 @@
         imageSrc: '/static/img/demo-about-01.jpg',
         mapSrc: '/static/img/demo-drawing-map.jpg',
         buttonPath: '#',
-        buttonText: 'Discover More',
         imageSrcTwo: '/static/img/demo-about-02.jpg',
         buttonPathTwo: '#',
-        buttonTextTwo: 'View Rooms',
         navImage: [
           {
             imageSrc: '/static/img/demo-about-02.jpg',

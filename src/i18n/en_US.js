@@ -33,7 +33,8 @@ module.exports = {
       reviews: 'Reviews'
     },
     about: {
-      pageTitle: 'About'
+      pageTitle: 'About',
+      sectionTitle: 'Want to explore more about kuala penyu?'
     },
     rooms: {
       pageTitle: 'Rooms & Amenities'
@@ -65,9 +66,11 @@ module.exports = {
     bookNow: 'Book Now',
     more: 'More',
     moreRooms: 'More Rooms',
+    viewRooms: 'View Rooms',
     moreDetails: 'More Details',
     hideDetails: 'Hide Details',
     moreAreaAndActivities: 'More Area & Activities',
+    discoverMore: 'Discover More',
     submit: 'Submit'
   },
   dateUnit: {

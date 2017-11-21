@@ -109,7 +109,7 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
-  import RoomCard from '@/components/booking/RoomCard.vue'
+  import RoomCard from '@/components/card/RoomCard.vue'
   import BookingSticky from '@/components/booking/BookingSticky.vue'
   import HotelDatePicker from 'vue-hotel-datepicker'
 

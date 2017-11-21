@@ -71,6 +71,7 @@ module.exports = {
     hideDetails: 'Hide Details',
     moreAreaAndActivities: 'More Area & Activities',
     discoverMore: 'Discover More',
+    dropMessage: 'Drop a Message',
     submit: 'Submit'
   },
   dateUnit: {

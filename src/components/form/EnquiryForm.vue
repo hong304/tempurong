@@ -1,6 +1,5 @@
 <template>
 	<div class="enquiry-form">
-		<h3>Interesting in Activities?</h3>
 		<h5>Leave us a message!</h5>
 		<div class="form-body my-5 row">
 			<div class="col-sm-8 col-xs-12 col-sm-offset-2">
@@ -39,16 +38,9 @@
 
 	.enquiry-form {
 		color: $brand-secondary;
-		h3, h5 {
-			margin: 0;
-		}
-		h3 {
-			font-weight: bold;
-			text-transform: uppercase;
-			font-size: 3rem;
-		}
 		h5 {
 			font-size: 2rem;
+			margin: 0;
 		}
 	}
 	.form-body {

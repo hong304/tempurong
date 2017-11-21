@@ -11,21 +11,9 @@
 		<section class="padding-of-section mt-5">
 			<h3>Walking Distance</h3>
 			<ol class="icon-list my-5">
-				<li class="prev">
-					<div class="icon-wrapper"><span class="ti-home"></span></div>
-					<p>Tempourong</p>
-				</li>
-				<li class="prev">
-					<div class="icon-wrapper"><span class="ti-home"></span></div>
-					<p>Spiritual Tree</p>
-				</li>
-				<li class="active">
-					<div class="icon-wrapper"><span class="ti-home"></span></div>
-					<p>Healing Well</p>
-				</li>
-				<li>
-					<div class="icon-wrapper"><span class="ti-home"></span></div>
-					<p>Love Rock</p>
+				<li v-for="(item, index) in distanceData" :class="{ active: currentStep == index, prev: currentStep > index }">
+					<div class="icon-wrapper" @click="listChangeActive(index)"><span class="ti-home"></span></div>
+					<p>{{ item.title }}</p>
 				</li>
 			</ol>
 			<div class="tab-content mt-4">
@@ -33,8 +21,10 @@
 				<div class="content-wrapper text-left">
 					<div class="content-title">
 						<h3>{{ locationTitle }}</h3>
-						<div><span class="ti-time"></span> <p>{{ tourDuration }} mins</p></div>
-						<div><span class="walking-distance"></span> <p>{{ walkingDistance }}m from resort</p></div>
+						<div><span class="ti-time"></span>
+							<p>{{ tourDuration }} mins</p></div>
+						<div><span class="walking-distance"></span>
+							<p>{{ walkingDistance }}m from resort</p></div>
 					</div>
 					<div class="content-content">
 						<p>{{ locationIntro }}</p>
@@ -57,7 +47,10 @@
 			</div>
 		</section>
 		<section class="padding-of-section mt-5">
-			<enquiry-form></enquiry-form>
+			<h3>Interesting in Activities?</h3>
+			<button class="btn btn-main mb-5" @click="formShow=!formShow" v-if="!formShow">{{ $t('button.dropMessage') }}
+			</button>
+			<enquiry-form v-if="formShow"></enquiry-form>
 		</section>
 	</div>
 </template>
@@ -82,7 +75,28 @@
         locationTitle: 'Healing Well',
         tourDuration: 30,
         walkingDistance: 30,
-        locationIntro: 'Over 400 years ago, there was a devastating drought in the area. Villagers were directed to dig a well in a location that was thought to have a water source underground. The villagers tasked with digging the well were skeptical, but with little choice they kept digging anyways. Amazingly, the well they dug was able to provide enough water for the whole village for a long time to come. The water was known to have healing properties, so when elders fell ill, they would bathe in and drink from the well.  This well is now known as the Wellness Healing Well and is a 5-minute walk away from the resort.'
+        locationIntro: 'Over 400 years ago, there was a devastating drought in the area. Villagers were directed to dig a well in a location that was thought to have a water source underground. The villagers tasked with digging the well were skeptical, but with little choice they kept digging anyways. Amazingly, the well they dug was able to provide enough water for the whole village for a long time to come. The water was known to have healing properties, so when elders fell ill, they would bathe in and drink from the well.  This well is now known as the Wellness Healing Well and is a 5-minute walk away from the resort.',
+        formShow: false,
+        distanceData: [
+          {
+            'title': 'Tempourong'
+          },
+          {
+            'title': 'Spiritual Tree'
+          },
+          {
+            'title': 'Healing Well'
+          },
+          {
+            'title': 'Love Rock'
+          }
+        ],
+        currentStep: 0
+      }
+    },
+    methods: {
+      listChangeActive (val) {
+        this.currentStep = val
       }
     }
   }
@@ -124,11 +138,6 @@
 					transition: background 150ms linear;
 				}
 			}
-			&:hover, &:focus, &.active {
-				.icon-wrapper {
-					background-color: $brand-secondary;
-				}
-			}
 			&.prev {
 				&:not(:first-of-type) {
 					&:before {
@@ -145,6 +154,9 @@
 				p {
 					opacity: 1;
 				}
+				.icon-wrapper {
+					background-color: $brand-secondary;
+				}
 			}
 			.icon-wrapper {
 				display: inline-flex;
@@ -154,6 +166,11 @@
 				background-color: $brand-primary;
 				border-radius: 50%;
 				transition: background-color 150ms linear;
+				z-index: 1;
+				&:hover, &:focus {
+					background-color: $brand-secondary;
+					cursor: pointer;
+				}
 				& > span {
 					align-self: center;
 					font-size: 2.5rem;

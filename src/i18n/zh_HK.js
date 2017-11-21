@@ -71,6 +71,7 @@ module.exports = {
     hideDetails: '隱藏詳情',
     moreAreaAndActivities: '更多景點及活動',
     discoverMore: '探索更多',
+    dropMessage: '留言',
     submit: '提交'
   },
   dateUnit: {

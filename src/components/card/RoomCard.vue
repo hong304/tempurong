@@ -37,7 +37,7 @@
 						<div>
 							<multiselect
 											class="extra-select custom-multiselect"
-											v-model="roomTypeCondition.room.breakfast"
+											v-model="roomTypeCondition.breakfast"
 											:options="breakfast_options"
 											:searchable="false"
 											:close-on-select="true"
@@ -55,7 +55,7 @@
 						<div>
 							<multiselect
 											class="extra-select custom-multiselect"
-											v-model="roomTypeCondition.room.mattress"
+											v-model="roomTypeCondition.mattress"
 											:options="mattress_options"
 											:searchable="false"
 											:close-on-select="true"

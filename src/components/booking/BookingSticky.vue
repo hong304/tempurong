@@ -1,7 +1,7 @@
 <template>
-	<div class="booking-sticky" :class="{ shown: show, 'one-error': totalError == 1, 'two-error': totalError == 2 }">
+	<div class="booking-sticky" :class="{ shown: show, 'one-error': hasError  }">
 		<button type="button" @click="show=!show" class="btn btn-close"><span
-				:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
+						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
 		</button>
 		<div class="summary-shorthand">
 			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong>
@@ -14,22 +14,21 @@
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
 			</h4>
 			<p class="check-in-out"><span class="ti-calendar"></span> {{orderDetails.checkIn}} - {{orderDetails.checkOut}}</p>
-			<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span> {{ $t('error.checkInOut') }}</h5>
-			<h5 class="error-message" v-if="errorGuest"><span class="ti-alert"></span> {{ $t('error.noOfGuest') }}</h5>
+			<h5 class="error-message" v-if="hasError"><span class="ti-alert"></span> {{ $t(hasError) }}</h5>
 		</div>
 		<div class="summary-detail" v-show="show">
 			<div class="picker-input">
-
+				
 				<div class="no-of-people" v-show="orderDetails.adults">
 					<p class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}} <span
-							class="people-number">{{ orderDetails.adults }}</span></p>
+									class="people-number">{{ orderDetails.adults }}</span></p>
 				</div>
-
+				
 				<div class="no-of-people" v-show="orderDetails.children">
 					<p class="people-title">{{$t('components.booking.bookingSticky.childrenTitle')}} <span class="people-number">{{ orderDetails.children
 						}}</span></p>
 				</div>
-
+			
 			</div>
 			<div class="sticky-body" v-if="orderDetails.totalRooms">
 				<h4>Total Booked room: {{ orderDetails.totalRooms }}</h4>
@@ -67,15 +66,12 @@
     },
     data () {
       return {
-        errorGuest: false,
-        errorDate: false,
-        show: false
+        show: !this.isMobile,
+        hasError: false,
+        roomsTotalCapacity: this.totalRoomCapacity()
       }
     },
     computed: {
-      totalGuests: function () {
-        return this.orderDetails.adults + this.orderDetails.children
-      },
       totalDays: function () {
         let i = this.$moment(this.orderDetails.checkIn)
         let o = this.$moment(this.orderDetails.checkOut)
@@ -84,27 +80,42 @@
       },
       totalNights: function () {
         return this.totalDays - 1
-      },
-      totalError: function () {
-        if (this.errorDate && this.errorGuest) {
-          return 2
-        } else if (this.errorDate || this.errorGuest) {
-          return 1
-        } else {
-          return 0
-        }
       }
     },
     methods: {
       goToPreview: function () {
         if (this.show) {
-          if (this.orderDetails.totalRooms > 0) {
+          // check if no room selected
+          if (this.orderDetails.totalRooms <= 0) {
+            this.hasError = 'error.noRoomSelected'
+          } else if (typeof this.orderDetails.checkIn === 'undefined' && this.orderDetails.checkIn.length <= 0) {
+            this.hasError = 'error.noCheckInOut'
+          } else if (this.orderDetails.totalGuests > this.roomsTotalCapacity) {
+            this.hasError = 'error.guestAndRoomNoConflict'
+          } else {
+            this.hasError = false
+          }
+
+          if (this.hasError === false) {
             this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
             this.$router.push({name: 'ReservationContact'})
           }
         } else {
           this.show = true
         }
+      },
+      totalRoomCapacity: function () {
+        let maxCapacity = 0
+        this.orderDetails.roomObjects.forEach(function (item) {
+          if (item.noOfRoom > 0) {
+            let roomCapacity = item.capacity
+            if (item.add_bed) {
+              roomCapacity = roomCapacity + 1
+            }
+            maxCapacity = maxCapacity + (roomCapacity * item.noOfRoom)
+          }
+        })
+        return maxCapacity
       }
     }
   }
@@ -113,7 +124,7 @@
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.booking-sticky {
 		border: 1px solid $light-grey;
 		padding: 2rem;
@@ -180,7 +191,7 @@
 			}
 		}
 	}
-
+	
 	.summary-shorthand {
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
@@ -211,7 +222,7 @@
 			}
 		}
 	}
-
+	
 	.picker-input {
 		margin: 0 0 2rem;
 		padding-bottom: 2rem;
@@ -250,12 +261,12 @@
 			}
 		}
 	}
-
+	
 	.summary-detail {
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-
+	
 	.sticky-footer {
 		@media screen and (max-width: 991px) {
 			position: fixed;
@@ -265,18 +276,18 @@
 			bottom: 0;
 		}
 	}
-
+	
 	.multiselect {
 		color: $brand-secondary;
 	}
-
+	
 	.btn-main, .btn-secondary {
 		display: block;
 		width: 100%;
 		font-size: 1.5rem;
 		font-weight: bold;
 	}
-
+	
 	.btn-main {
 		@media screen and (min-width: 768px) and (max-width: 991px) {
 			font-size: 2rem;
@@ -286,7 +297,7 @@
 			border-radius: 0;
 		}
 	}
-
+	
 	.btn-close {
 		position: absolute;
 		right: 0.5rem;
@@ -299,7 +310,7 @@
 		border: none;
 		z-index: 1;
 	}
-
+	
 	.sticky-body {
 		h4 {
 			text-transform: uppercase;
@@ -318,7 +329,7 @@
 			margin-bottom: 10vh;
 		}
 	}
-
+	
 	.error-message {
 		margin-bottom: 0;
 		&:not(:first-of-type) {

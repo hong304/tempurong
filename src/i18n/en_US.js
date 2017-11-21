@@ -108,7 +108,10 @@ module.exports = {
     }
   },
   error: {
-    checkInOut: 'Please select check in and check out date.',
-    noOfGuest: 'Please select at least one guest.'
+    noCheckInOut: 'Please select check in and check out date.',
+    // noOfGuest: 'Please select at least one guest.',
+    noGuestSelected: 'Please select at least one guest.',
+    noRoomSelected: 'Please select at least one room.',
+    guestAndRoomNoConflict: 'Total guest cannot larger than maximum capacity of all rooms.'
   }
 }

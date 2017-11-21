@@ -137,6 +137,7 @@
           children: 0,
           totalPrice: 0,
           totalRooms: 0,
+          totalGuest: 0,
           roomObjects: []
         },
         updated: Date()
@@ -223,12 +224,13 @@
           people ? this.orderDetails.children++ : this.orderDetails.adults++
           this.errorTotalGuest = false
         }
+        this.orderDetails.totalGuests = this.orderDetails.children + this.orderDetails.adults
       }
     },
     mounted: function () {
       let defaultOrderDetails = JSON.stringify(this.orderDetails)
       this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
-      this.$localStorage.set('orderDetails', '')
+//      this.$localStorage.set('orderDetails', '')
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true

@@ -22,7 +22,7 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
-  import RoomTypeCard from '@/components/image/RoomTypeCard.vue'
+  import RoomTypeCard from '@/components/card/RoomTypeCard.vue'
 
   export default {
     name: 'Rooms',

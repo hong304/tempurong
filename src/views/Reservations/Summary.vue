@@ -56,7 +56,7 @@
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
-  import RoomSummaryCard from '@/components/booking/RoomSummaryCard.vue'
+  import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
 
   export default {
     components: {

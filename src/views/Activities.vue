@@ -65,7 +65,7 @@
 <script>
   import ContentTitle from '../components/content/ContentTitle.vue'
   import ContentContent from '../components/content/ContentParagraph.vue'
-  import ActivityCard from '../components/activity/ActivityCard.vue'
+  import ActivityCard from '../components/card/ActivityCard.vue'
   import EnquiryForm from '../components/form/EnquiryForm.vue'
 
   export default {

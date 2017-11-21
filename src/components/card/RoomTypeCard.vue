@@ -12,7 +12,7 @@
 					<h5>{{item.nameOfRooms}}</h5>
 				</span>
 			</div>
-			<button class="btn btn-main">{{buttonText}}</button>
+			<button class="btn btn-main">{{ $t('button.moreDetails') }}</button>
 		</div>
 	</div>
 </template>
@@ -36,12 +36,6 @@
             ],
             buttonPath: '#'
           }
-        }
-      },
-      buttonText: {
-        type: String,
-        default: () => {
-          return 'More informations'
         }
       }
     },

@@ -59,9 +59,9 @@
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
   import Carousel from '@/components/image/Carousel.vue'
   import BookingNav from '@/components/booking/BookingNav.vue'
-  import Card from '@/components/image/Card.vue'
+  import Card from '@/components/card/Card.vue'
   import ImageDivider from '@/components/image/ImageDivider.vue'
-  import CircleThumbCard from '@/components/image/CircleThumbCard.vue'
+  import CircleThumbCard from '@/components/card/CircleThumbCard.vue'
   import Testimonal from '@/components/content/Testimonial.vue'
 
   export default {

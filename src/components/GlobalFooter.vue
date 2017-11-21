@@ -19,12 +19,12 @@
 				<div class="col-md-4 col-xs-12">
 					<h4>{{ $t("menu.quickMenu") }}</h4>
 					<ul>
-						<li><router-link :to="{ path: '/about' }" class="footer-link">{{ $t("menu.about") }}</router-link></li>
-						<li><router-link :to="{ path: '/rooms' }" class="footer-link">{{ $t("menu.rooms") }}</router-link></li>
-						<li><router-link :to="{ path: '/activities' }" class="footer-link">{{ $t("menu.activities") }}</router-link></li>
-						<li><router-link :to="{ path: '/food' }" class="footer-link">{{ $t("menu.food") }}</router-link></li>
-						<li><router-link :to="{ path: '/contact' }" class="footer-link">{{ $t("menu.contact") }}</router-link></li>
-						<li><router-link :to="{ path: '/reservations' }" class="footer-link">{{ $t("menu.reservations") }}</router-link></li>
+						<li><router-link :to="{ name: 'About' }" class="footer-link">{{ $t("menu.about") }}</router-link></li>
+						<li><router-link :to="{ name: 'Rooms' }" class="footer-link">{{ $t("menu.rooms") }}</router-link></li>
+						<li><router-link :to="{ name: 'Activities' }" class="footer-link">{{ $t("menu.activities") }}</router-link></li>
+						<li><router-link :to="{ name: 'Food' }" class="footer-link">{{ $t("menu.food") }}</router-link></li>
+						<li><router-link :to="{ name: 'Contact' }" class="footer-link">{{ $t("menu.contact") }}</router-link></li>
+						<li><router-link :to="{ name: 'Reservations' }" class="footer-link">{{ $t("menu.reservations") }}</router-link></li>
 					</ul>
 				</div>
 			</div>

@@ -8,30 +8,29 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<router-link :to="{ path: '/' }" class="navbar-brand" role="button">Logo</router-link>
+				<router-link :to="{ name: 'Home' }" class="navbar-brand" role="button">Logo</router-link>
 			</div>
 			<collapse class="navbar-collapse" v-model="showNavbar">
 				<div class="navbar-wrapper">
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 						<li>
-							<router-link :to="{ path: '/about' }" class="navbar-link">{{ $t("menu.about") }}
-							</router-link>
+							<router-link :to="{ name: 'About' }" class="navbar-link" :class="{ active: $route.name == 'About' }">{{ $t("menu.about") }}</router-link>
 						</li>
 						<li>
-							<router-link :to="{ path: '/rooms'}" class="navbar-link">{{ $t("menu.rooms") }}</router-link>
+							<router-link :to="{ name: 'Rooms' }" class="navbar-link" :class="{ active: $route.name == 'Rooms' }">{{ $t("menu.rooms") }}</router-link>
 						</li>
 						<li>
-							<router-link :to="{ path: '/activities'}" class="navbar-link">{{ $t("menu.activities") }}</router-link>
+							<router-link :to="{ name: 'Activities' }" class="navbar-link" :class="{ active: $route.name == 'Activities' }">{{ $t("menu.activities") }}</router-link>
 						</li>
 						<li>
-							<router-link :to="{path: '/food'}" class="navbar-link">{{ $t("menu.food") }}</router-link>
+							<router-link :to="{ name: 'Food' }" class="navbar-link" :class="{ active: $route.name == 'Food' }">{{ $t("menu.food") }}</router-link>
 						</li>
 						<li>
-							<router-link :to="{path: '/contact'}" class="navbar-link">{{ $t("menu.contact") }}</router-link>
+							<router-link :to="{ name: 'Contact' }" class="navbar-link" :class="{ active: $route.name == 'Contact' }">{{ $t("menu.contact") }}</router-link>
 						</li>
 						<li>
-							<router-link :to="{path: '/reservations'}" class="navbar-link reservation">{{ $t("menu.reservations") }}</router-link>
+							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" :class="{ active: $route.name == 'Reservations' }">{{ $t("menu.reservations") }}</router-link>
 						</li>
 					</ul>
 					<div class="nav navbar-nav navbar-right">
@@ -105,25 +104,30 @@
 	}
 
 	.navbar-wrapper {
+		height: 50px;
 		margin: 0 auto;
 		.navbar-nav {
 			display: inline-block;
 			float: none;
 			& > li {
+				margin: 10px 0;
 				.navbar-link {
 					color: $brand-secondary;
-					padding: 10px 12px;
-					margin: 5px;
+					padding: 4px 12px;
+					margin: 0 7px;
+					border-radius: 5px;
+					border: 1px solid transparent;
+					transition: all 300ms linear;
 					&.reservation {
+						border-color: $brand-secondary;
+					}
+					&.active {
 						background-color: $brand-secondary;
-						border-radius: 5px;
 						color: white;
-						transition: background-color 150ms linear;
-						&:hover, &:focus {
-							background-color: $brand-primary;
-						}
 					}
 					&:hover, &:focus {
+						background-color: $brand-secondary;
+						color: white;
 						outline: none;
 						box-shadow: none;
 					}

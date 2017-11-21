@@ -4,15 +4,15 @@
 			<img :src="imageSrc"/>
 		</div>
 		<div class="type-info">
-			<h3>{{typeName}}</h3>
-			<p>{{typeIntro}}</p>
+			<h3>{{resData.name_en}}</h3>
+			<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.</p>
 			<div class="type-detail my-5">
 				<span v-for="(item, index) in typeDetail">
-					<h3>{{item.numberOfRooms}}</h3>
-					<h5>{{item.nameOfRooms}}</h5>
+				<h3>{{item.totalRooms}}</h3>
+				<h5>{{item.nameOfRooms}}</h5>
 				</span>
 			</div>
-			<button class="btn btn-main">{{ $t('button.moreDetails') }}</button>
+			<router-link :to="{ name: 'RoomDetail' }" class="btn btn-main">{{ $t('button.moreDetails') }}</router-link>
 		</div>
 	</div>
 </template>
@@ -21,45 +21,26 @@
   export default {
     name: 'room-type-card',
     props: {
-      resData: {
-        type: Object,
-        default: () => {
-          return {
-            imageSrc: '/static/img/demo-image-01.jpg',
-            typeName: 'I\'m a sample title',
-            typeIntro: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
-            typeDetail: [
-              {
-                numberOfRooms: '0',
-                nameOfRooms: 'name'
-              }
-            ],
-            buttonPath: '#'
-          }
-        }
-      }
+      resData: {}
     },
     data () {
       return {
-        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-image-01.jpg',
-        typeName: (this.resData.typeName) ? this.resData.typeName : 'I\'m sample title.',
-        typeIntro: (this.resData.typeIntro) ? this.resData.typeIntro : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
-        buttonPath: (this.resData.buttonPath) ? this.resData.buttonPath : '#'
+        imageSrc: '/static/img/demo-image-01.jpg'
       }
     },
     computed: {
       typeDetail: function () {
-        if (this.resData.typeDetail) {
-          return this.resData.typeDetail
-        } else {
+        if (this.resData) {
           return [
             {
-              numberOfRooms: '0',
-              nameOfRooms: 'name'
+              totalRooms: (this.resData.room).length,
+              nameOfRooms: 'Family Rooms'
             }
           ]
         }
       }
+    },
+    mounted: function () {
     }
   }
 </script>

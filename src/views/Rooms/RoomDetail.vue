@@ -53,15 +53,15 @@
 			<div class="row mt-5">
 				<div class="col-xs-12">
 					<div class="description" style="margin-bottom: 0">
-						<h5>{{ $t('components.booking.roomCard.description') }}</h5>
+						<h5>{{ $t('components.card.roomCard.description') }}</h5>
 						<p>
 							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-						<h5>{{ $t('components.booking.roomCard.amenities') }}</h5>
+						<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
 						<ul class="icon-list">
 							<li>{{roomData.detail.guest}} guests (max.{{roomData.detail.maxGuest}} guests)</li>
 							<li>{{roomData.detail.queenBed}} queen beds</li>
 						</ul>
-						<h5>{{ $t('components.booking.roomCard.resortPolicy') }}</h5>
+						<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
 						<ul class="info-list">
 							<li>No Smoking</li>
 							<li>Not suitable for pets</li>
@@ -69,7 +69,7 @@
 							<li>Check in time is 2PM</li>
 							<li>Check out by 12PM</li>
 						</ul>
-						<h5>{{ $t('components.booking.roomCard.cancellations') }}</h5>
+						<h5>{{ $t('components.card.roomCard.cancellations') }}</h5>
 						<p>
 							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 						<h5>Safety features</h5>
@@ -84,7 +84,7 @@
 			</div>
 			<div class="row mt-5">
 				<div class="col-xs-12 text-right">
-					<button class="btn btn-main">Book now</button>
+					<router-link :to="{ name: 'Reservations'}" class="btn btn-main">Book now</router-link>
 				</div>
 			</div>
 		</section>

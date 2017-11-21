@@ -6,7 +6,7 @@
 					<HotelDatePicker :startDate="new Date()" :i18n="defineDatePicker()"/>
 				</div>
 				<div class="picker-button">
-					<router-link :to="{ path: '/book', data: {} }" class="picker-nav-link">{{ $t('button.bookNow') }}
+					<router-link :to="{ name: 'Reservations', data: {} }" class="picker-nav-link">{{ $t('button.bookNow') }}
 					</router-link>
 				</div>
 			</div>

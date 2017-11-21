@@ -86,7 +86,9 @@ module.exports = {
         adults: '{count} 位成人 | {count} 位成人 | {count} 位成人',
         childrenTitle: '小孩',
         children: '{count} 位小孩 | {count} 位小孩 | {count} 位小孩'
-      },
+      }
+    },
+    card: {
       roomCard: {
         guests: '{count} 人 | {count} 人 | {count} 人',
         addMattressRemarks: '（可加一張床褥，房間最多容納{count}人)',

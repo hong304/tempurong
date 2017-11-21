@@ -7,12 +7,12 @@
 					<content-paragraph></content-paragraph>
 				</div>
 			</div>
-			<div class="row my-5 pt-5 room-select">
+			<div class="row my-5 pt-5 room-select" v-if="roomTypes">
 				<div class="col-sm-6 col-xs-12">
-					<room-type-card></room-type-card>
+					<room-type-card :resData="roomTypes[0]"></room-type-card>
 				</div>
 				<div class="col-sm-6 col-xs-12">
-					<room-type-card></room-type-card>
+					<room-type-card :resData="roomTypes[1]"></room-type-card>
 				</div>
 			</div>
 		</section>
@@ -32,7 +32,16 @@
       ContentParagraph
     },
     data () {
-      return {}
+      return {
+        roomTypes: false
+      }
+    },
+    mounted: function () {
+      this.axios.get('/api/room-type').then((response) => {
+        this.roomTypes = response.data
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 </script>

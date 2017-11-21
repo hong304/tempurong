@@ -19,18 +19,18 @@
 					<h4>${{ result.price }}</h4>
 				</div>
 				<ul class="icon-list">
-					<li>{{ $tc('components.booking.roomCard.guests', result.capacity, {count: result.capacity})}}
-						<span v-if="(result.add_bed)">{{$t('components.booking.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
+					<li>{{ $tc('components.card.roomCard.guests', result.capacity, {count: result.capacity})}}
+						<span v-if="(result.add_bed)">{{$t('components.card.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
 					</li>
-					<li>{{$tc('components.booking.roomCard.queenBed', result.queen_bed, {count: result.queen_bed})}}</li>
+					<li>{{$tc('components.card.roomCard.queenBed', result.queen_bed, {count: result.queen_bed})}}</li>
 					<li v-if="(result.bunk_bed > 0)">
-						{{$tc('components.booking.roomCard.bunkBed', result.bunk_bed, {count: result.bunk_bed})}}
+						{{$tc('components.card.roomCard.bunkBed', result.bunk_bed, {count: result.bunk_bed})}}
 					</li>
 				</ul>
-				
+
 				<div class="rooms-body">
 					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress">
-					<label for="checkbox">{{$t('components.booking.roomCard.addMattressAndBreakfastOption')}}</label>
+					<label for="checkbox">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
@@ -47,8 +47,8 @@
 							></multiselect>
 						</div>
 						<div>
-							{{ $t('components.booking.roomCard.extraBreakfast') }}<br>
-							<span>{{ $t('components.booking.roomCard.breakfastRemarks') }}</span>
+							{{ $t('components.card.roomCard.extraBreakfast') }}<br>
+							<span>{{ $t('components.card.roomCard.breakfastRemarks') }}</span>
 						</div>
 					</div>
 					<div class="extra-mattress">
@@ -65,15 +65,15 @@
 							></multiselect>
 						</div>
 						<div>
-							{{ $t('components.booking.roomCard.extraMattress') }}<br>
-							<span>{{ $t('components.booking.roomCard.mattressRemarks') }}</span>
+							{{ $t('components.card.roomCard.extraMattress') }}<br>
+							<span>{{ $t('components.card.roomCard.mattressRemarks') }}</span>
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="rooms-footer">
 					<span>
-						{{ $tc('components.booking.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
+						{{ $tc('components.card.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
 						<button type="button" @click="show=!show"
 						        class="btn btn-text-only">{{ (!show) ? $t('button.moreDetails') : $t('button.hideDetails')
 							}} > </button>
@@ -82,18 +82,18 @@
 			</div>
 			<collapse v-model="show">
 				<div class="well" style="margin-bottom: 0">
-					<h5>{{ $t('components.booking.roomCard.description') }}</h5>
+					<h5>{{ $t('components.card.roomCard.description') }}</h5>
 					<p>
 						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-					<h5>{{ $t('components.booking.roomCard.amenities') }}</h5>
+					<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
 					<ul class="icon-list">
 						<li></li>
 					</ul>
-					<h5>{{ $t('components.booking.roomCard.resortPolicy') }}</h5>
+					<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
 					<ul class="info-list">
 						<li></li>
 					</ul>
-					<h5>{{ $t('components.booking.roomCard.cancellations') }}</h5>
+					<h5>{{ $t('components.card.roomCard.cancellations') }}</h5>
 					<p>
 						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 				</div>
@@ -205,19 +205,19 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	.room-card {
 		border-bottom: 1px solid $brand-primary;
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
-	
+
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;
 		}
 	}
-	
+
 	.info-wrapper {
 		text-align: left;
 		color: $brand-secondary;
@@ -295,7 +295,7 @@
 			vertical-align: middle;
 		}
 	}
-	
+
 	.well {
 		border: none;
 		border-radius: 0;
@@ -310,12 +310,12 @@
 			}
 		}
 	}
-	
+
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
-	
+
 	.extra-select {
 		display: inline-block;
 		width: 50px;

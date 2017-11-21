@@ -41,6 +41,7 @@ export default new Router({
         {path: '/activities', name: 'Activities', component: Activities},
         {path: '/food', name: 'Food', component: Food},
         {path: '/contact', name: 'Contact', component: Contact},
+        // all the routes for reservation
         {path: '/reservations', name: 'Reservations', component: Reservations},
         {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
         {path: '/reservations/contact', name: 'ReservationContact', component: Payment},

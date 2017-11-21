@@ -86,7 +86,9 @@ module.exports = {
         adults: '{count} adults | {count} adult | {count} adults',
         childrenTitle: 'Children',
         children: '{count} children | {count} child | {count} children'
-      },
+      }
+    },
+    card: {
       roomCard: {
         guests: '{count} guests | {count} guest | {count} guests',
         addMattressRemarks: '(adding 1 extra mattress for max. {count} guests)',

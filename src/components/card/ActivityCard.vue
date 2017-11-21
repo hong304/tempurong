@@ -131,11 +131,10 @@
 
 	.image-thumbnail {
 		.col-xs-6 {
-			&:first-of-type {
-				padding-right: 0.5rem;
-			}
+			padding-right: 0.5rem;
 			&:last-of-type {
 				padding-left: 0.5rem;
+				padding-right: 15px;
 			}
 		}
 	}

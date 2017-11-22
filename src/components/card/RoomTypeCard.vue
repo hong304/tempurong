@@ -12,7 +12,7 @@
 				<h5>{{item.nameOfRooms}}</h5>
 				</span>
 			</div>
-			<router-link :to="{ name: 'RoomDetail' }" class="btn btn-main">{{ $t('button.moreDetails') }}</router-link>
+			<router-link :to="{ name: 'RoomDetail', params: { type: this.resData.id }}" class="btn btn-main">{{ $t('button.moreDetails') }}</router-link>
 		</div>
 	</div>
 </template>

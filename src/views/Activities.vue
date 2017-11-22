@@ -11,23 +11,24 @@
 		<section class="padding-of-section mt-5">
 			<h3>Walking Distance</h3>
 			<ol class="icon-list my-5">
-				<li v-for="(item, index) in distanceData" :class="{ active: currentStep == index, prev: currentStep > index }">
-					<div class="icon-wrapper" @click="listChangeActive(index)"><span class="ti-home"></span></div>
+				<li v-for="(item, index) in distanceData"
+						:class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
+					<div class="icon-wrapper" @click="changeActivity(index)"><span class="ti-home"></span></div>
 					<p>{{ item.title }}</p>
 				</li>
 			</ol>
 			<div class="tab-content mt-4">
-				<img :src="imageSrc" :alt="locationTitle"/>
+				<img :src="imagesData[0].cover_image" :alt="locationTitle"/>
 				<div class="content-wrapper text-left">
 					<div class="content-title">
-						<h3>{{ locationTitle }}</h3>
+						<h3>{{ resData.name_en }}</h3>
 						<div><span class="ti-time"></span>
-							<p>{{ tourDuration }} mins</p></div>
+							<p>{{ resData.duration }} mins</p></div>
 						<div><span class="walking-distance"></span>
-							<p>{{ walkingDistance }}m from resort</p></div>
+							<p>{{ resData.distance }}m from resort</p></div>
 					</div>
 					<div class="content-content">
-						<p>{{ locationIntro }}</p>
+						<p>{{ resData.introduction }}</p>
 					</div>
 				</div>
 			</div>
@@ -76,7 +77,7 @@
         tourDuration: 30,
         walkingDistance: 30,
         locationIntro: 'Over 400 years ago, there was a devastating drought in the area. Villagers were directed to dig a well in a location that was thought to have a water source underground. The villagers tasked with digging the well were skeptical, but with little choice they kept digging anyways. Amazingly, the well they dug was able to provide enough water for the whole village for a long time to come. The water was known to have healing properties, so when elders fell ill, they would bathe in and drink from the well.  This well is now known as the Wellness Healing Well and is a 5-minute walk away from the resort.',
-        formShow: false,
+        currentStep: 1,
         distanceData: [
           {
             'title': 'Tempourong'
@@ -91,13 +92,34 @@
             'title': 'Love Rock'
           }
         ],
-        currentStep: 0
+        resData: {},
+        imagesData: [],
+        formShow: false
       }
     },
     methods: {
-      listChangeActive (val) {
+      changeActivity (val) {
         this.currentStep = val
+        this.getActivityData(val)
+      },
+      getActivityData (val) {
+        this.axios.post('/api/activity', {
+          activityId: val
+        }).then((response) => {
+          this.resData = response.data
+          _.forEach(this.resData.images, (value) => {
+            this.imagesData.push(value)
+          })
+          console.log(this.resData)
+          console.log(this.imagesData)
+          console.log(this.imagesData[0].cover_image)
+        }, (error) => {
+          console.log(error)
+        })
       }
+    },
+    mounted: function () {
+      this.getActivityData(1)
     }
   }
 </script>

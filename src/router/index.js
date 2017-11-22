@@ -37,7 +37,7 @@ export default new Router({
         {path: '/', name: 'Home', component: Home},
         {path: '/about', name: 'About', component: About},
         {path: '/rooms', name: 'Rooms', component: Rooms},
-        {path: '/rooms/detail', name: 'RoomDetail', component: RoomDetail},
+        {path: '/rooms/detail', name: 'RoomDetail', component: RoomDetail, props: true},
         {path: '/activities', name: 'Activities', component: Activities},
         {path: '/food', name: 'Food', component: Food},
         {path: '/contact', name: 'Contact', component: Contact},

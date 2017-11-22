@@ -5,10 +5,14 @@
 				<div class="col-xs-12">
 					<ol>
 						<li>
-							<button class="btn btn-text-only active">Sea view</button>
+							<button class="btn btn-text-only" :class="{ active: selected == 1 }" @click="changeRoomDetails(1)">
+								Sea view
+							</button>
 						</li>
 						<li>
-							<button class="btn btn-text-only">River view</button>
+							<button class="btn btn-text-only" :class="{ active: selected == 2 }" @click="changeRoomDetails(2)">
+								River view
+							</button>
 						</li>
 					</ol>
 				</div>
@@ -16,14 +20,14 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="image-wrapper">
-						<img :src="imageSrc"/>
+						<img :src="resData.imageSrc"/>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12">
 					<slick id="slider-nav" ref="slick" :options="slickOptions">
-						<button v-for="(item, index) in navImageSrc" :item="item" :index="index" :key="item.id">
+						<button v-for="(item, index) in resData.navImageSrc" :index="index" :key="item.id">
 							<img :src="item" alt="">
 						</button>
 					</slick>
@@ -33,18 +37,18 @@
 		<section class="details-wrapper py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<h3>{{roomData.title}}</h3>
-					<h5>MYR{{roomData.pricePerNight}} per night with breakfasts</h5>
+					<h3>{{resData.title}}</h3>
+					<h5>MYR{{resData.pricePerNight}} per night with breakfasts</h5>
 				</div>
 			</div>
 			<div class="row mt-5">
 				<div class="col-xs-12">
 					<ul class="icon-list">
-						<li>{{roomData.detail.guest}} guests (adding 1 extra mattress for max.{{roomData.detail.maxGuest}} guests)
+						<li>{{resData.guest}} guests (adding 1 extra mattress for max.{{resData.maxGuest}} guests)
 						</li>
-						<li>{{roomData.detail.queenBed}} queen beds</li>
+						<li>{{resData.queenBed}} queen beds</li>
 						<li>
-							{{roomData.detail.extraMattress}} extra mattress with breakfast (MYR30 per night)
+							{{resData.extraMattress}} extra mattress with breakfast (MYR30 per night)
 							<p>*max 1 extra mattress per room</p>
 						</li>
 					</ul>
@@ -58,8 +62,8 @@
 							Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 						<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
 						<ul class="icon-list">
-							<li>{{roomData.detail.guest}} guests (max.{{roomData.detail.maxGuest}} guests)</li>
-							<li>{{roomData.detail.queenBed}} queen beds</li>
+							<li>{{resData.guest}} guests (max.{{resData.maxGuest}} guests)</li>
+							<li>{{resData.queenBed}} queen beds</li>
 						</ul>
 						<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
 						<ul class="info-list">
@@ -106,9 +110,12 @@
       ContentParagraph,
       Slick
     },
+    props: {
+      type: {}
+    },
     data () {
       return {
-        imageSrc: 'http://placehold.it/2000x1000',
+        resData: {},
         slickOptions: {
           slidesToShow: 5,
           slidesToScroll: 1,
@@ -136,16 +143,7 @@
           'http://placehold.it/2000x1000',
           'http://placehold.it/2000x1000'
         ],
-        roomData: {
-          title: 'Family Sea View Rooms',
-          pricePerNight: '250',
-          detail: {
-            guest: 4,
-            maxGuest: 5,
-            queenBed: 2,
-            extraMattress: 1
-          }
-        }
+        selected: this.type
       }
     },
     methods: {
@@ -154,7 +152,63 @@
       },
       prev () {
         this.$refs.slick.prev()
+      },
+      reInit () {
+        // Helpful if you have to deal with v-for to update dynamic lists
+        this.$nextTick(() => {
+          this.$refs.slick.reSlick()
+        })
+      },
+      changeRoomDetails (val) {
+        if (val === 1) {
+          this.selected = 1
+          this.reInit()
+          this.resData = {
+            title: 'Family Sea View Rooms',
+            pricePerNight: '250',
+            guest: 4,
+            maxGuest: 5,
+            queenBed: 2,
+            extraMattress: 1,
+            imageSrc: 'http://placehold.it/2000x1000',
+            navImageSrc: [
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/1000x500',
+              'http://placehold.it/1000x500',
+              'http://placehold.it/1000x500',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000'
+            ]
+          }
+        } else {
+          this.selected = 2
+          this.reInit()
+          this.resData = {
+            title: 'River View Rooms',
+            pricePerNight: '250',
+            guest: 4,
+            maxGuest: 5,
+            queenBed: 2,
+            extraMattress: 1,
+            imageSrc: 'http://placehold.it/2000x1000',
+            navImageSrc: [
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/1000x500',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000',
+              'http://placehold.it/2000x1000'
+            ]
+          }
+        }
       }
+    },
+    mounted: function () {
+      this.changeRoomDetails(this.type)
     }
   }
 </script>

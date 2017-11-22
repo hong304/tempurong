@@ -11,14 +11,13 @@
 		<section class="padding-of-section mt-5">
 			<h3>Walking Distance</h3>
 			<ol class="icon-list my-5">
-				<li v-for="(item, index) in distanceData"
-						:class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
+				<li v-for="(item, index) in distanceData" :class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
 					<div class="icon-wrapper" @click="changeActivity(index)"><span class="ti-home"></span></div>
 					<p>{{ item.title }}</p>
 				</li>
 			</ol>
 			<div class="tab-content mt-4">
-				<img :src="imagesData[0].cover_image" :alt="locationTitle"/>
+				<img v-if="resData.images" :src="resData.images[0].cover_image" :alt="locationTitle"/>
 				<div class="content-wrapper text-left">
 					<div class="content-title">
 						<h3>{{ resData.name_en }}</h3>
@@ -57,10 +56,10 @@
 </template>
 
 <script>
-  import ContentTitle from '../components/content/ContentTitle.vue'
-  import ContentContent from '../components/content/ContentParagraph.vue'
-  import ActivityCard from '../components/card/ActivityCard.vue'
-  import EnquiryForm from '../components/form/EnquiryForm.vue'
+  import ContentTitle from '@/components/content/ContentTitle.vue'
+  import ContentContent from '@/components/content/ContentParagraph.vue'
+  import ActivityCard from '@/components/card/ActivityCard.vue'
+  import EnquiryForm from '@/components/form/EnquiryForm.vue'
 
   export default {
     name: 'Activities',
@@ -93,7 +92,6 @@
           }
         ],
         resData: {},
-        imagesData: [],
         formShow: false
       }
     },
@@ -107,12 +105,6 @@
           activityId: val
         }).then((response) => {
           this.resData = response.data
-          _.forEach(this.resData.images, (value) => {
-            this.imagesData.push(value)
-          })
-          console.log(this.resData)
-          console.log(this.imagesData)
-          console.log(this.imagesData[0].cover_image)
         }, (error) => {
           console.log(error)
         })

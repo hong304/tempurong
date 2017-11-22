@@ -72,6 +72,7 @@ module.exports = {
     moreAreaAndActivities: 'More Area & Activities',
     discoverMore: 'Discover More',
     dropMessage: 'Drop a Message',
+    justAsk: 'Just Ask',
     submit: 'Submit'
   },
   dateUnit: {

@@ -72,6 +72,7 @@ module.exports = {
     moreAreaAndActivities: '更多景点及活动',
     discoverMore: '探索更多',
     dropMessage: '留言',
+    justAsk: '留言',
     submit: '提交'
   },
   dateUnit: {

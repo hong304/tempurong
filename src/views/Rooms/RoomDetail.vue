@@ -34,6 +34,7 @@
 				</div>
 			</div>
 		</section>
+
 		<section class="details-wrapper py-5">
 			<div class="row">
 				<div class="col-xs-12">
@@ -88,10 +89,11 @@
 			</div>
 			<div class="row mt-5">
 				<div class="col-xs-12 text-right">
-					<router-link :to="{ name: 'Reservations'}" class="btn btn-main">Book now</router-link>
+					<router-link :to="{ name: 'Reservations' }" class="btn btn-main">Book now</router-link>
 				</div>
 			</div>
 		</section>
+
 	</div>
 </template>
 
@@ -186,7 +188,7 @@
           this.selected = 2
           this.reInit()
           this.resData = {
-            title: 'River View Rooms',
+            title: 'River View Rooms (big)',
             pricePerNight: '250',
             guest: 4,
             maxGuest: 5,

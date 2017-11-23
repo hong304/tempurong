@@ -43,6 +43,7 @@
 					</div>
 				</div>
 			</div>
+			<p>* Please refer to our Terms & Conditions and Cancellation Policy.</p>
 		</div>
 		<div class="sticky-footer">
 			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
@@ -269,6 +270,7 @@
 	.summary-detail {
 		overflow-y: scroll;
 		overflow-x: hidden;
+		-ms-overflow-style: none;
 	}
 	
 	.sticky-footer {

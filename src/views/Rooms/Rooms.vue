@@ -7,14 +7,104 @@
 					<content-paragraph></content-paragraph>
 				</div>
 			</div>
-			<div class="row my-5 pt-5 room-select" v-if="roomTypes">
-				<div class="col-sm-6 col-xs-12">
-					<room-type-card :resData="roomTypes[0]"></room-type-card>
+			<section class="details-header py-5">
+				<div class="row mb-5">
+					<div class="col-xs-12">
+						<ol>
+							<li>
+								<button class="btn btn-text-only" :class="{ active: selected == 1 }" @click="getRoomTypeData(1)">
+									Sea view
+								</button>
+							</li>
+							<li>
+								<button class="btn btn-text-only" :class="{ active: selected == 2 }" @click="getRoomTypeData(2)">
+									River view (big)
+								</button>
+							</li>
+							<li>
+								<button class="btn btn-text-only" :class="{ active: selected == 3 }" @click="getRoomTypeData(3)">
+									River view (small)
+								</button>
+							</li>
+						</ol>
+					</div>
 				</div>
-				<div class="col-sm-6 col-xs-12">
-					<room-type-card :resData="roomTypes[1]"></room-type-card>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="image-wrapper">
+							<img :src="imageSrc"/>
+						</div>
+					</div>
 				</div>
-			</div>
+				<!--<div class="row">-->
+				<!--<div class="col-xs-12">-->
+				<!--<slick id="slider-nav" ref="slick" :options="slickOptions">-->
+				<!--<button v-for="(item, index) in resData.navImageSrc" :index="index" :key="item.id">-->
+				<!--<img :src="item" alt="">-->
+				<!--</button>-->
+				<!--</slick>-->
+				<!--</div>-->
+				<!--</div>-->
+			</section>
+
+			<section class="details-wrapper py-5">
+				<div class="row">
+					<div class="col-xs-12">
+						<h3>{{ resData.name_en }}</h3>
+						<h5>MYR{{resData.pricePerNight}} per night with breakfasts</h5>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-xs-12">
+						<ul class="icon-list">
+							<li>{{resData.capacity}} guests (adding 1 extra mattress for max.{{ resData.capacity + 1 }} guests)
+							</li>
+							<li>{{resData.queen_bed}} queen beds</li>
+							<li>
+								{{resData.add_bed}} extra mattress with breakfast (MYR30 per night)
+								<p>*max 1 extra mattress per room</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-xs-12">
+						<div class="description" style="margin-bottom: 0">
+							<h5>{{ $t('components.card.roomCard.description') }}</h5>
+							<p>
+								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
+							<ul class="icon-list">
+								<li>{{resData.capacity}} guests (max.{{resData.capacity + 1}} guests)</li>
+								<li>{{resData.queen_bed}} queen beds</li>
+							</ul>
+							<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
+							<ul class="info-list">
+								<li>No Smoking</li>
+								<li>Not suitable for pets</li>
+								<li>No parties or events</li>
+								<li>Check in time is 2PM</li>
+								<li>Check out by 12PM</li>
+							</ul>
+							<h5>{{ $t('components.card.roomCard.cancellations') }}</h5>
+							<p>
+								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<h5>Safety features</h5>
+							<ul class="info-list">
+								<li>Smoke detector</li>
+								<li>Safety card</li>
+								<li>Carbon monoxide detector</li>
+								<li>Fire extinguisher</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-xs-12 text-right">
+						<router-link :to="{ name: 'Reservations' }" class="btn btn-main">Book now</router-link>
+					</div>
+				</div>
+			</section>
 		</section>
 	</div>
 </template>
@@ -22,26 +112,67 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
+  import Slick from 'vue-slick'
   import RoomTypeCard from '@/components/card/RoomTypeCard.vue'
 
   export default {
-    name: 'Rooms',
+    name: 'RoomDetail',
     components: {
       RoomTypeCard,
       ContentTitle,
-      ContentParagraph
+      ContentParagraph,
+      Slick
     },
     data () {
       return {
-        roomTypes: false
+        resData: {},
+        slickOptions: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          centerMode: true,
+          prevArrow: '<button type="button" class="slick-prev"><span class="ti-angle-left"></span></button>',
+          nextArrow: '<button type="button" class="slick-next"><span class="ti-angle-right"></span></button>',
+          responsive: [
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                centerMode: true
+              }
+            }
+          ]
+        },
+        imageSrc: 'http://placehold.it/2000x1000',
+        selected: 1
       }
     },
-    mounted: function () {
-      this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
-        this.roomTypes = response.data
-      }, (error) => {
-        console.log(error)
-      })
+    methods: {
+      next () {
+//        this.$refs.slick.next()
+      },
+      prev () {
+//        this.$refs.slick.prev()
+      },
+      reInit () {
+        // Helpful if you have to deal with v-for to update dynamic lists
+//        this.$nextTick(() => {
+//          this.$refs.slick.reSlick()
+//        })
+      },
+      getRoomTypeData (val) {
+        this.axios.post(process.env.API_URL + '/api/room-type', {
+          typeId: val
+        }).then((response) => {
+          this.resData = response.data
+          this.selected = val
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
+    created: function () {
+      this.getRoomTypeData(this.selected)
     }
   }
 </script>
@@ -54,14 +185,12 @@
 		& > div {
 			padding-top: 4rem;
 			padding-bottom: 4rem;
-			@media screen and (min-width: 767px) {
-				&:first-of-type {
-					padding-right: 4rem;
-					border-right: 1px solid $light-grey;
-				}
-				&:last-of-type {
-					padding-left: 4rem;
-				}
+			&:first-of-type {
+				padding-right: 4rem;
+				border-right: 1px solid $light-grey;
+			}
+			&:last-of-type {
+				padding-left: 4rem;
 			}
 		}
 	}
@@ -69,6 +198,7 @@
 	.image-wrapper {
 		& > img {
 			width: 100%;
+			height: auto;
 		}
 	}
 
@@ -97,8 +227,8 @@
 						box-shadow: none;
 					}
 				}
-				&:first-of-type {
-					border-right: 1px solid $light-grey;
+				&:not(:first-of-type) {
+					border-left: 1px solid $light-grey;
 				}
 			}
 			&:after {
@@ -170,6 +300,7 @@
 				}
 				img {
 					width: 100%;
+					height: auto;
 				}
 			}
 		}

@@ -36,7 +36,7 @@
 		h3 {
 			font-weight: bold;
 			text-transform: uppercase;
-			font-size: 4rem;
+			font-size: 3.25rem;
 			margin: 0;
 		}
 		h5 {

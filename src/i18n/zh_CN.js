@@ -62,6 +62,12 @@ module.exports = {
       additionalNotes: '附加资料，如机场接送及感兴趣的活动',
       tnc: '条款及细则',
       tncCheckbox: '我已细阅并同意以上的条款及细则和取消政策。'
+    },
+    reservationsSummary: {
+      pageTitle: '订单详情',
+      clientName: '姓名',
+      clientEmail: '电邮',
+      totalAmount: '合计'
     }
   },
   datePicker: {
@@ -85,22 +91,28 @@ module.exports = {
     dropMessage: '留言',
     justAsk: '留言',
     submit: '提交',
-    editOrder: '修改订单',
-    checkOut: 'Check Out'
+    back: '返回',
+    checkOut: '提交订单',
+    pay: '付款'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',
     nights: '{count} 晚 | {count} 晚 | {count} 晚'
   },
+  commonUnits: {
+    guests: '{count}人 | {count}人 | {count}人',
+    adults: '{count}位成人 | {count}位成人 | {count}位成人',
+    children: '{count}位小孩 | {count}位小孩 | {count}位小孩',
+    room: '{count}间房间 | {count}间房间 | {count}间房间',
+    breakfast: '{count}份早餐 | {count}份早餐 | {count}份早餐',
+    mattress: '{count}张床褥 | {count}张床褥 | {count}张床褥'
+  },
   components: {
     booking: {
       bookingSticky: {
-        total: '总共',
-        guests: '{count} 人 | {count} 人 | {count} 人',
+        total: '合计',
         adultTitle: '成人',
-        adults: '{count} 位成人 | {count} 位成人 | {count} 位成人',
-        childrenTitle: '小孩',
-        children: '{count} 位小孩 | {count} 位小孩 | {count} 位小孩'
+        childrenTitle: '小孩'
       }
     },
     card: {
@@ -119,6 +131,11 @@ module.exports = {
         amenities: '设施',
         resortPolicy: '度假村政策',
         cancellations: '取消政策'
+      },
+      roomSummaryCard: {
+        capacity: '每间房间可容纳{capacity}人',
+        extraMattressRemarks: '（如果添加了额外床褥，则最多可容纳{capacity}人)',
+        mattressAndBreakfast: '（已额外添加{mattress}和{breakfast})'
       }
     }
   },

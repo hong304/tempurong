@@ -14,18 +14,20 @@
 						<div class="summary-header mb-5">
 							<div class="row client-detail mb-3">
 								<div class="col-xs-12">
-									<h3>Name : {{ clientName }}</h3>
-									<h3>Email : {{ orderContact.email }}</h3>
+									<h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
+									<h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ orderContact.email }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
 								<div class="col-sm-6 col-xs-12 py-5">
 									<h3>{{ orderDetails.checkIn }} - {{ orderDetails.checkOut }}</h3>
-									<p>({{ totalDays }} days, {{ totalNights }} nights)</p>
+									<p>({{ $tc('dateUnit.days', totalDays, {'count': totalDays}) }},
+										{{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }})</p>
 								</div>
 								<div class="col-sm-6 col-xs-12 py-5">
-									<h3>{{ orderDetails.totalGuests }} Guests</h3>
-									<p>({{ orderDetails.adults }} adults, {{ orderDetails.children }} children)</p>
+									<h3>{{$tc('commonUnits.guests', orderDetails.totalGuests, {'count': orderDetails.totalGuests})}}</h3>
+									<p>({{ $tc('commonUnits.adults', orderDetails.adults, {'count': orderDetails.adults}) }},
+										{{ $tc('commonUnits.children', orderDetails.children, {'count': orderDetails.children}) }})</p>
 								</div>
 							</div>
 						</div>
@@ -40,12 +42,13 @@
 						</div>
 						<div class="summary-footer">
 							<div>
-								<h3>Total Amount: <span class="total-price">{{ orderDetails.totalPrice }}MYR</span></h3>
+								<h3>{{$t('pages.reservationsSummary.totalAmount')}}:
+									<span class="total-price">{{ orderDetails.totalPrice }}MYR</span></h3>
 								<!-- back button for editing the order details -->
 								<button class="btn btn-main pull-left" @click="goToReservationContact()">
-									<span class="ti-icon ti-pencil-alt"></span><span>Edit contact information</span></button>
+									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
 								
-								<button class="btn btn-main">Proceed to Payment</button>
+								<button class="btn btn-main">{{$t('button.pay')}}</button>
 							</div>
 						</div>
 					</div>

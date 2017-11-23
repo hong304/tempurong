@@ -8,7 +8,7 @@
 				${{ orderDetails.totalPrice }} MYR
 			</h2>
 			<h4 class="total-guests">
-				<strong>{{ $tc('components.booking.bookingSticky.guests', orderDetails.totalGuests, {count: orderDetails.totalGuests})
+				<strong>{{ $tc('commonUnits.guests', orderDetails.totalGuests, {count: orderDetails.totalGuests})
 					}}</strong>
 				({{ $tc('dateUnit.days', totalDays, {count: totalDays}) }},
 				{{ $tc('dateUnit.nights', totalNights, {count: totalNights}) }})
@@ -68,9 +68,7 @@
     data () {
       return {
         show: !this.isMobile,
-        hasError: false,
-        roomsTotalCapacity: 0,
-        order: this.orderDetails
+        hasError: false
       }
     },
     computed: {
@@ -82,6 +80,19 @@
       },
       totalNights: function () {
         return this.totalDays - 1
+      },
+      roomsTotalCapacity: function () {
+        let maxCapacity = 0
+        this.orderDetails.roomObjects.forEach(function (item) {
+          if (item.noOfRoom > 0) {
+            let roomCapacity = item.capacity
+            if (item.add_bed) {
+              roomCapacity = roomCapacity + 1
+            }
+            maxCapacity = maxCapacity + (roomCapacity * item.noOfRoom)
+          }
+        })
+        return maxCapacity
       }
     },
     methods: {
@@ -99,29 +110,13 @@
           }
 
           if (this.hasError === false) {
-            this.$localStorage.set('orderDetails', JSON.stringify(this.order))
+            this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
             this.$router.push({name: 'ReservationContact'})
           }
         } else {
           this.show = true
         }
-      },
-      totalRoomCapacity: function () {
-        let maxCapacity = 0
-        this.orderDetails.roomObjects.forEach(function (item) {
-          if (item.noOfRoom > 0) {
-            let roomCapacity = item.capacity
-            if (item.add_bed) {
-              roomCapacity = roomCapacity + 1
-            }
-            maxCapacity = maxCapacity + (roomCapacity * item.noOfRoom)
-          }
-        })
-        return maxCapacity
       }
-    },
-    mounted () {
-      this.roomsTotalCapacity = this.totalRoomCapacity()
     }
   }
 </script>

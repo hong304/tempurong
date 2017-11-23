@@ -5,14 +5,31 @@
 		</div>
 		<div class="info-wrapper col-sm-9 col-xs-12">
 			<div class="content-group">
-				<h3 class="room-type">{{ roomType }}</h3>
-				<h3 class="num-of-rooms">{{ noOfRoom }}</h3>
+				<h3 class="room-type">{{ resData['name_' + $i18n.locale] }}</h3>
+				<h3 class="num-of-rooms">{{ resData.noOfRoom }}</h3>
 			</div>
-			<div class="content-group">6 guests</div>
 			<div class="content-group">
-				<p class="price-and-nights">{{ price }} MYR <span v-if="totalRooms">x {{ totalRooms }} rooms</span>
-					x {{ totalNights }} nights <span v-if="addExtra" class="extra-note">(including {{ extraMattress
-						}} extra mattress and {{ extraBreakfast }} breakfast)</span></p>
+				{{ $t('components.card.roomSummaryCard.capacity',
+        {'capacity': (resData.mattress && resData.mattress == resData.noOfRoom) ? resData.capacity + 1 : resData.capacity})
+				}}
+				<span v-if="(resData.add_bed && resData.mattress != resData.noOfRoom)">
+					{{ $t('components.card.roomSummaryCard.extraMattressRemarks', {'capacity': resData.capacity + 1}) }}</span>
+			</div>
+			<div class="content-group">
+				<p class="price-and-nights">
+					{{ resData.price }} MYR
+					<span v-if="(resData.noOfRoom > 1)">x {{$tc('commonUnits.room', resData.noOfRoom, {'count': resData.noOfRoom})}}</span>
+					x {{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }}
+					<span v-if="resData.add_bed" class="extra-note">
+						{{
+            $t('components.card.roomSummaryCard.mattressAndBreakfast',
+              {
+                'mattress': $tc('commonUnits.mattress', resData.mattress, {'count': resData.mattress}),
+                'breakfast': $tc('commonUnits.breakfast', resData.breakfast, {'count': resData.breakfast})
+              })
+						}}
+					</span>
+				</p>
 				<p class="total-cost">{{ totalCost }} MYR</p>
 			</div>
 		</div>
@@ -30,15 +47,7 @@
       return {
         counter: 0,
         show: false,
-        imageSrc: this.resData.imageSrc || '/static/img/demo-room.jpg',
-        roomType: this.resData.roomType || 'Large Room',
-        noOfRoom: this.resData.noOfRoom || 0,
-        price: this.resData.price || 250,
-        totalNight: this.resData.totalNight || 0,
-        totalRooms: this.resData.totalRooms || 0,
-        addExtra: this.resData.add_bed || false,
-        extraMattress: this.resData.mattress || 0,
-        extraBreakfast: this.resData.breakfast || 0
+        imageSrc: this.resData.imageSrc || '/static/img/demo-room.jpg'
       }
     },
     computed: {

@@ -60,7 +60,7 @@
 						<div class="payment-footer">
 							<!-- back button for editing the order details -->
 							<button class="btn btn-main pull-left" @click="goBackToReservation()">
-								<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.editOrder')}}</span></button>
+								<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
 							
 							<button class="btn btn-main" @click="goToPreview()">
 								<span>{{$t('button.checkOut')}}</span></button>

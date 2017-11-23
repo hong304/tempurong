@@ -37,7 +37,7 @@
       }
     },
     mounted: function () {
-      this.axios.get('/api/room-type').then((response) => {
+      this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
         this.roomTypes = response.data
       }, (error) => {
         console.log(error)

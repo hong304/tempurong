@@ -11,7 +11,8 @@
 		<section class="padding-of-section mt-5">
 			<h3>Walking Distance</h3>
 			<ol class="icon-list my-5">
-				<li v-for="(item, index) in distanceData" :class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
+				<li v-for="(item, index) in distanceData"
+						:class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
 					<div class="icon-wrapper" @click="changeActivity(index)"><span class="ti-home"></span></div>
 					<p>{{ item.title }}</p>
 				</li>
@@ -110,7 +111,7 @@
         })
       }
     },
-    mounted: function () {
+    created () {
       this.getActivityData(1)
     }
   }
@@ -188,6 +189,7 @@
 				& > span {
 					align-self: center;
 					font-size: 2.5rem;
+					line-height: 5rem;
 					color: white;
 				}
 			}
@@ -206,6 +208,7 @@
 		color: $brand-secondary;
 		& > img {
 			width: 100%;
+			height: auto;
 		}
 		.content-title {
 			display: inline-flex;

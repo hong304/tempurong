@@ -236,6 +236,7 @@
 	.image-wrapper {
 		& > img {
 			width: 100%;
+			height: auto;
 		}
 	}
 
@@ -337,6 +338,7 @@
 				}
 				img {
 					width: 100%;
+					height: auto;
 				}
 			}
 		}

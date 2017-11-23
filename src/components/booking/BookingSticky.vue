@@ -36,7 +36,7 @@
 					<div class="summary-details" v-if="item.noOfRoom">
 						<h4>{{ item.name_en }} x {{ item.noOfRoom }}</h4>
 						<ul class="text-list">
-							<li>${{ item.price * item.noOfRoom }} MYR for {{ totalNights }} nights</li>
+							<li>${{ item.price * item.noOfRoom * totalNights }} MYR for {{ totalNights }} nights</li>
 							<li v-if="item.extra_breakfast">(including {{ item.extra_breakfast }} extra breakfast</li>
 							<li v-if="item.extra_mattress">(including {{ item.extra_mattress }} extra mattress</li>
 						</ul>
@@ -68,7 +68,8 @@
       return {
         show: !this.isMobile,
         hasError: false,
-        roomsTotalCapacity: this.totalRoomCapacity()
+        roomsTotalCapacity: 0,
+        order: this.orderDetails
       }
     },
     computed: {
@@ -97,7 +98,7 @@
           }
 
           if (this.hasError === false) {
-            this.$localStorage.set('orderDetails', JSON.stringify(this.orderDetails))
+            this.$localStorage.set('orderDetails', JSON.stringify(this.order))
             this.$router.push({name: 'ReservationContact'})
           }
         } else {
@@ -117,6 +118,9 @@
         })
         return maxCapacity
       }
+    },
+    mounted () {
+      this.roomsTotalCapacity = this.totalRoomCapacity()
     }
   }
 </script>

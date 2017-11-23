@@ -3,7 +3,7 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="titleOne"></content-title>
+					<content-title :contentTitle="$t('pages.reservationsSummary.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
@@ -15,35 +15,36 @@
 							<div class="row client-detail mb-3">
 								<div class="col-xs-12">
 									<h3>Name : {{ clientName }}</h3>
-									<h3>Email : {{ resData.email }}</h3>
+									<h3>Email : {{ orderContact.email }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
 								<div class="col-sm-6 col-xs-12 py-5">
-									<h3>{{ resData.check_in }} - {{ resData.check_out }}</h3>
+									<h3>{{ orderDetails.checkIn }} - {{ orderDetails.checkOut }}</h3>
 									<p>({{ totalDays }} days, {{ totalNights }} nights)</p>
 								</div>
 								<div class="col-sm-6 col-xs-12 py-5">
-									<h3>{{ totalGuests }} Guests</h3>
-									<p>({{ resData.adults }} adults, {{ resData.children }} children)</p>
+									<h3>{{ orderDetails.totalGuests }} Guests</h3>
+									<p>({{ orderDetails.adults }} adults, {{ orderDetails.children }} children)</p>
 								</div>
 							</div>
 						</div>
 						<div class="summary-body">
-							<div v-for="item in resData.rooms">
+							<div v-for="item in orderDetails.roomObjects">
 								<room-summary-card
-										:resData="item"
-										:totalNights="totalNights"
+												v-if="item.noOfRoom"
+												:resData="item"
+												:totalNights="totalNights"
 								></room-summary-card>
 							</div>
 						</div>
 						<div class="summary-footer">
 							<div>
-								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
+								<h3>Total Amount: <span class="total-price">{{ orderDetails.totalPrice }}MYR</span></h3>
 								<!-- back button for editing the order details -->
-								<button class="btn btn-main pull-left">
+								<button class="btn btn-main pull-left" @click="goToReservationContact()">
 									<span class="ti-icon ti-pencil-alt"></span><span>Edit contact information</span></button>
-
+								
 								<button class="btn btn-main">Proceed to Payment</button>
 							</div>
 						</div>
@@ -71,40 +72,37 @@
         checkOutDate: '21 Nov 2017',
         roomType: 'River View',
         totalRooms: 2,
-        totalPrice: 250
+        totalPrice: 250,
+        resData: {
+          'first_name': 'Hello',
+          'last_name': 'World',
+          'email': 'test@test.com',
+          'check_in': '15 Nov 2017',
+          'check_out': '21 Nov 2017',
+          'adults': 10,
+          'children': 6,
+          'amount': 3144,
+          'transition_id': '5467890',
+          'create_at': null,
+          'status': null,
+          'rooms': [
+            {
+              'roomType': 'River View',
+              'price': 274,
+              'noOfRoom': 2
+            },
+            {
+              'roomType': 'Sea View',
+              'price': 250,
+              'noOfRoom': 1
+            }
+          ]
+        },
+        orderDetails: {},
+        orderContact: {}
       }
     },
     props: {
-      resData: {
-        type: Array,
-        default: function () {
-          return {
-            'first_name': 'Hello',
-            'last_name': 'World',
-            'email': 'test@test.com',
-            'check_in': '15 Nov 2017',
-            'check_out': '21 Nov 2017',
-            'adults': 10,
-            'children': 6,
-            'amount': 3144,
-            'transition_id': '5467890',
-            'create_at': null,
-            'status': null,
-            'rooms': [
-              {
-                'roomType': 'River View',
-                'price': 274,
-                'noOfRoom': 2
-              },
-              {
-                'roomType': 'Sea View',
-                'price': 250,
-                'noOfRoom': 1
-              }
-            ]
-          }
-        }
-      },
       moreThanOne: {
         type: Boolean,
         default: function () {
@@ -118,21 +116,34 @@
         }
       }
     },
+    methods: {
+      goToReservationContact: function () {
+        this.$router.push({name: 'ReservationContact'})
+      }
+    },
     computed: {
       clientName: function () {
-        return this.resData.last_name + this.resData.first_name
-      },
-      totalGuests: function () {
-        return this.resData.adults + this.resData.children
+        if (this.$i18n.locale === 'sc') {
+          return this.orderContact.lastName + ' ' + this.orderContact.firstName
+        }
+        return this.orderContact.firstName + ' ' + this.orderContact.lastName
       },
       totalDays: function () {
-        let i = this.$moment(this.resData.check_in)
-        let o = this.$moment(this.resData.check_out)
+        let i = this.$moment(this.orderDetails.checkIn)
+        let o = this.$moment(this.orderDetails.checkOut)
         let days = o.diff(i, 'days') + 1
         return days
       },
       totalNights: function () {
         return this.totalDays - 1
+      }
+    },
+    created () {
+      if (!this.$localStorage.get('orderDetails') || !this.$localStorage.get('orderContact')) {
+        this.$router.push({name: 'Reservations'})
+      } else {
+        this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
+        this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
     }
   }
@@ -141,7 +152,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.summary-wrapper {
 		margin: 0 5rem;
 		padding: 5rem;

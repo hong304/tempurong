@@ -63,7 +63,6 @@
 								<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.editOrder')}}</span></button>
 							
 							<button class="btn btn-main" @click="goToPreview()">
-								<icon name="cc-paypal" scale="2"></icon>
 								<span>{{$t('button.checkOut')}}</span></button>
 						</div>
 					</div>
@@ -113,6 +112,7 @@
           tnc: this.contact.tnc
         }).then((result) => {
           if (result) {
+            this.$localStorage.set('orderContact', JSON.stringify(this.contact))
             this.$router.push({name: 'ReservationSummary'})
           }
         })
@@ -122,6 +122,15 @@
       }
     },
     created () {
+//      this.$localStorage.remove('orderDetails')
+//      this.$localStorage.remove('orderContact')
+      if (!this.$localStorage.get('orderDetails')) {
+        this.$router.push({name: 'Reservations'})
+      }
+      if (this.$localStorage.get('orderContact')) {
+        this.contact = JSON.parse(this.$localStorage.get('orderContact'))
+      }
+
       this.validator = new Validator({
         firstName: 'required',
         lastName: 'required',

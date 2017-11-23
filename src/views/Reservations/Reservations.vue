@@ -137,7 +137,7 @@
           children: 0,
           totalPrice: 0,
           totalRooms: 0,
-          totalGuest: 0,
+          totalGuests: 0,
           roomObjects: []
         },
         updated: Date()
@@ -167,23 +167,30 @@
       roomDataUpdate: function (val) {
         this.orderDetails.roomObjects[val.index] = val
 
-        // variable for calculating the total price
-        let calPrice = 0
-        let roomPrice = _.map(this.orderDetails.roomObjects, 'price')
+        // calculating the total price
+        let price = 0
+        let night = this.totalNights()
+
+        this.orderDetails.roomObjects.forEach(function (item) {
+          if (item.noOfRoom) {
+            price = price + (item.price * item.noOfRoom * night)
+          }
+        })
+        console.log(price)
+
+        this.orderDetails.totalPrice = price
 
         // variable for calculating the total rooms
         let calculated = 0
         let result = _.map(this.orderDetails.roomObjects, 'noOfRoom')
 
-        // calculating total rooms and price
+        // calculating total rooms
         _.forEach(result, function (value, key) {
           if (typeof value !== 'undefined') {
             calculated += value
-            calPrice += (roomPrice[key] * value)
           }
         })
         this.orderDetails.totalRooms = calculated
-        this.orderDetails.totalPrice = calPrice
       },
       defineDatePicker: function () {
         if (typeof this.orderDetails.checkIn !== 'undefined' && this.orderDetails.checkIn.length > 0) {
@@ -225,6 +232,15 @@
           this.errorTotalGuest = false
         }
         this.orderDetails.totalGuests = this.orderDetails.children + this.orderDetails.adults
+      },
+      totalDays: function () {
+        let i = this.$moment(this.orderDetails.checkIn)
+        let o = this.$moment(this.orderDetails.checkOut)
+        let days = o.diff(i, 'days') + 1
+        return days
+      },
+      totalNights: function () {
+        return this.totalDays() - 1
       }
     },
     mounted: function () {

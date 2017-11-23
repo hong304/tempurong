@@ -62,6 +62,11 @@ module.exports = {
       additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
       tnc: 'Terms & Conditions',
       tncCheckbox: 'I have read and agree to the above Terms and Conditions and cancellation policy.'
+    },
+    reservationsSummary: {
+      pageTitle: 'Booking Summary',
+      clientName: 'Name',
+      clientEmail: 'Email'
     }
   },
   datePicker: {
@@ -91,6 +96,11 @@ module.exports = {
   dateUnit: {
     days: '{count} days | {count} days | {count} days',
     nights: '{count} nights | {count} nights | {count} nights'
+  },
+  commonUnit: {
+    guests: '{count} guests | {count} guest | {count} guests',
+    adults: '{count} adults | {count} adult | {count} adults',
+    children: '{count} children | {count} child | {count} children'
   },
   components: {
     booking: {

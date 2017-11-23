@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="sticky-footer">
-			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToPreview">
+			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
 				{{ $t('button.book') }}
 			</button>
 		</div>
@@ -83,7 +83,7 @@
       }
     },
     methods: {
-      goToPreview: function () {
+      goToContact: function () {
         if (this.show) {
           // check if no room selected
           if (this.orderDetails.totalRooms <= 0) {

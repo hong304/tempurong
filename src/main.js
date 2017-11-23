@@ -16,6 +16,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import moment from 'vue-moment'
 import VueLocalStorage from 'vue-localstorage'
+// import VeeValidate from 'vee-validate'
 
 window._ = require('lodash')
 
@@ -25,6 +26,7 @@ Vue.use(uiv)
 Vue.use(VueAxios, axios)
 Vue.use(moment)
 Vue.use(VueLocalStorage)
+// Vue.use(VeeValidate)
 
 const i18n = new VueI18n({
   locale: 'en',

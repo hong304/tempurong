@@ -3,7 +3,7 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="titleOne"></content-title>
+					<content-title :contentTitle="$t('pages.reservationsContact.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
@@ -12,50 +12,59 @@
 				<div class="col-xs-12">
 					<div class="payment-wrapper">
 						<div class="payment-header">
-							<h3>Contact information</h3>
+							<p>{{$t('pages.reservationsContact.fillInContact')}}</p>
 						</div>
 						<div class="payment-body">
 							<div class="row">
 								<div class="col-sm-6 col-xs-12">
-									<input v-model="firstName" placeholder="First Name">
+									<input v-model="contact.firstName"
+									       v-bind:placeholder="$t('pages.reservationsContact.firstName') + ' *'">
 								</div>
 								<div class="col-sm-6 col-xs-12">
-									<input v-model="lastName" placeholder="Last Name">
+									<input v-model="contact.lastName"
+									       v-bind:placeholder="$t('pages.reservationsContact.lastName') + ' *'">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<input v-model="email" placeholder="Email">
+									<input v-model="contact.email"
+									       v-bind:placeholder="$t('pages.reservationsContact.email') + ' *'">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<textarea v-model="Remark" placeholder="Remark"></textarea>
+									<textarea v-model="contact.remarks"
+									          v-bind:placeholder="$t('pages.reservationsContact.remarks')"></textarea>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<textarea v-model="additionalNote"
-									          placeholder="Additional notes (airport pickup, interested in activities etc."></textarea>
+									<textarea v-model="contact.additionalNote"
+									          v-bind:placeholder="$t('pages.reservationsContact.additionalNotes')"></textarea>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<p>Terms & Conditions</p>
-									<input type="checkbox" id="tcAgree" v-model="checked">
+									<p>{{$t('pages.reservationsContact.tnc')}}</p>
+									<input type="checkbox" id="tcAgree" v-model="contact.tnc">
 									<label
-													for="tcAgree">I have read and agree to the above Terms and Conditions and cancellation policy.</label>
+													for="tcAgree">{{$t('pages.reservationsContact.tncCheckbox')}}</label>
 								</div>
 							</div>
+							<h5 class="error-message" v-if="errors" v-for="item in errors.items">
+								<span class="ti-alert"></span>
+								{{ (item.rule == 'required' && item.field != 'tnc' ) ? $t('error.required', {field: $t('pages.reservationsContact.' + item.field)}) : $t('error.' + item.field)
+								}}
+							</h5>
 						</div>
 						<div class="payment-footer">
 							<!-- back button for editing the order details -->
 							<button class="btn btn-main pull-left" @click="goBackToReservation()">
-								<span class="ti-icon ti-pencil-alt"></span><span>Edit order</span></button>
+								<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.editOrder')}}</span></button>
 							
-							<button class="btn btn-main">
+							<button class="btn btn-main" @click="goToPreview()">
 								<icon name="cc-paypal" scale="2"></icon>
-								<span>Check out</span></button>
+								<span>{{$t('button.checkOut')}}</span></button>
 						</div>
 					</div>
 				</div>
@@ -68,31 +77,58 @@
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import 'vue-awesome/icons/cc-paypal'
   import Icon from 'vue-awesome/components/Icon'
+  import { Validator } from 'vee-validate'
 
   export default {
     components: {
       ContentTitle,
-      Icon
+      Icon,
+      Validator
     },
     name: 'reservations-payment',
-    props: {
-      firstName: {type: String},
-      lastName: {type: String},
-      email: {type: String},
-      Remark: {type: String},
-      additionalNote: {type: String},
-      checked: {type: Boolean}
-    },
+    validator: null,
     data () {
       return {
-        titleOne: 'Payment',
-        totalPrice: 0
+        contact: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          remarks: '',
+          additionalNote: '',
+          tnc: ''
+        },
+        errMsg: false,
+        errors: null
       }
     },
     methods: {
       goBackToReservation: function () {
         this.$router.push({name: 'Reservations'})
+      },
+      goToPreview: function () {
+        this.validator.validateAll({
+          firstName: this.contact.firstName,
+          lastName: this.contact.lastName,
+          email: this.contact.email,
+          tnc: this.contact.tnc
+        }).then((result) => {
+          if (result) {
+            this.$router.push({name: 'ReservationSummary'})
+          }
+        })
+      },
+      clearErrors () {
+        this.errors.clear()
       }
+    },
+    created () {
+      this.validator = new Validator({
+        firstName: 'required',
+        lastName: 'required',
+        email: 'required|email',
+        tnc: 'required'
+      })
+      this.$set(this, 'errors', this.validator.errors)
     }
   }
 </script>

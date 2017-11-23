@@ -144,7 +144,9 @@
       }
     },
     props: {
-      isMobile: this.isMobile
+      isMobile: this.isMobile,
+      checkInFromHome: {},
+      checkOutFromHome: {}
     },
     methods: {
       checkSelected: function () {
@@ -246,9 +248,17 @@
     mounted: function () {
       let defaultOrderDetails = JSON.stringify(this.orderDetails)
       this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
-      let data = JSON.parse(this.$localStorage.get('checkInOut', defaultOrderDetails))
-      console.log(data)
 //      this.$localStorage.set('orderDetails', '')
+
+//      if (typeof this.checkInFromHome !== 'undefined') {
+//        console.log(this.checkInFromHome)
+//        console.log(this.checkOutFromHome)
+//        let datePickerI18n = this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+//        datePickerI18n['check-in'] = this.checkInFromHome
+//        datePickerI18n['check-out'] = this.checkOutFromHome
+//        this.orderDetails.checkIn = this.checkInFromHome
+//        this.orderDetails.checkOut = this.checkOutFromHome
+//      }
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true

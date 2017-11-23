@@ -12,19 +12,33 @@
 					<p class="mb-md-5 mb-4">{{ $t("tel.tel") }}</p>
 					<h4>{{ $t("paymentAccept.title") }}</h4>
 					<ul class="payment-icon mb-md-0 mb-4">
-						<li>{{ $t("paymentAccept.master") }}</li>
-						<li>{{ $t("paymentAccept.visa") }}</li>
+						<li><icon name="cc-paypal" scale="3"></icon></li>
+						<li><icon name="cc-visa" scale="3"></icon></li>
+						<li><icon name="cc-mastercard" scale="3"></icon></li>
 					</ul>
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<h4>{{ $t("menu.quickMenu") }}</h4>
 					<ul>
-						<li><router-link :to="{ name: 'About' }" class="footer-link">{{ $t("menu.about") }}</router-link></li>
-						<li><router-link :to="{ name: 'Rooms' }" class="footer-link">{{ $t("menu.rooms") }}</router-link></li>
-						<li><router-link :to="{ name: 'Activities' }" class="footer-link">{{ $t("menu.activities") }}</router-link></li>
-						<li><router-link :to="{ name: 'Food' }" class="footer-link">{{ $t("menu.food") }}</router-link></li>
-						<li><router-link :to="{ name: 'Contact' }" class="footer-link">{{ $t("menu.contact") }}</router-link></li>
-						<li><router-link :to="{ name: 'Reservations' }" class="footer-link">{{ $t("menu.reservations") }}</router-link></li>
+						<li>
+							<router-link :to="{ name: 'About' }" class="footer-link">{{ $t("menu.about") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{ name: 'Rooms' }" class="footer-link">{{ $t("menu.rooms") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{ name: 'Activities' }" class="footer-link">{{ $t("menu.activities") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{ name: 'Food' }" class="footer-link">{{ $t("menu.food") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{ name: 'Contact' }" class="footer-link">{{ $t("menu.contact") }}</router-link>
+						</li>
+						<li>
+							<router-link :to="{ name: 'Reservations' }" class="footer-link">{{ $t("menu.reservations") }}
+							</router-link>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -36,8 +50,16 @@
 </template>
 
 <script>
+  import 'vue-awesome/icons/cc-paypal'
+  import 'vue-awesome/icons/cc-visa'
+  import 'vue-awesome/icons/cc-mastercard'
+  import Icon from 'vue-awesome/components/Icon'
+
   export default {
-    name: 'global-footer'
+    name: 'global-footer',
+    components: {
+      Icon
+    }
   }
 </script>
 
@@ -80,6 +102,20 @@
 			}
 			.copy-right {
 				text-align: center;
+			}
+			.payment-icon {
+				& > li {
+					display: inline-block;
+					float: left;
+					&:not(:first-of-type) {
+						margin-left: 0.75rem;
+					}
+				}
+				&:after {
+					content: '';
+					display: block;
+					clear: both;
+				}
 			}
 		}
 	}

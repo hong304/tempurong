@@ -62,7 +62,7 @@
 			</div>
 			<div class="row text-center">
 				<div class="col-xs-12 p-0">
-					<div class="image-wrapper">
+					<div class="image-wrapper with-overlay-content">
 						<div class="image-bg">
 							<img :src="cfa.imageSrc"/>
 						</div>
@@ -132,6 +132,7 @@
 		color: $brand-secondary;
 		img {
 			width: 100%;
+			height: auto;
 		}
 		h3 {
 			text-transform: uppercase;
@@ -163,36 +164,40 @@
 		}
 	}
 
-	.overlay-info-wrapper {
-		position: absolute;
-		display: flex;
-		flex-flow: column wrap;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background-color: rgba(0, 0, 0, 0.25);
-		color: white;
-		.overlay-content-wrapper {
-			flex: 0 0 auto;
-			align-self: center;
-			padding: 0 7rem;
-			& > h3 {
-				margin-top: 0;
+	.with-overlay-content {
+		position: relative;
+		.overlay-info-wrapper {
+			position: absolute;
+			display: flex;
+			flex-flow: column wrap;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: 0;
+			background-color: rgba(0, 0, 0, 0.25);
+			color: white;
+			.overlay-content-wrapper {
+				flex: 0 0 auto;
+				width: 100%;
+				align-self: center;
+				padding: 0 7rem;
+				& > h3 {
+					margin-top: 0;
+				}
+				& > p {
+					margin-bottom: 0;
+				}
 			}
-			& > p {
-				margin-bottom: 0;
-			}
-		}
-		.btn-group {
-			flex: 0 0 auto;
-			margin-top: 2rem;
-			.btn-border {
-				display: inline-block;
-				margin: 0 1rem;
-				border-radius: 5px !important;
+			.btn-group {
+				flex: 0 0 auto;
+				margin-top: 2rem;
+				.btn-border {
+					display: inline-block;
+					margin: 0 1rem;
+					border-radius: 5px !important;
+				}
 			}
 		}
 	}

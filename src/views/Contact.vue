@@ -30,7 +30,7 @@
 			<div class="row mt-5 mb-5">
 				<div class="col-xs-12">
 					<h4 class="text-center">Know more about the area?</h4>
-					<router-link :to="buttonPath" class="btn btn-main text-center">{{ $t('button.moreAreaAndActivities') }}
+					<router-link :to="{ name: 'Activities' }" class="btn btn-main text-center">{{ $t('button.moreAreaAndActivities') }}
 					</router-link>
 				</div>
 			</div>
@@ -54,7 +54,7 @@
 						<li class="info-title"><strong>Tel</strong></li>
 						<li>+60 88-230 916</li>
 					</ul>
-					<router-link :to="buttonPathTwo" class="btn btn-main text-center">{{ $t('button.bookNow') }}
+					<router-link :to="{ name: 'Reservations' }" class="btn btn-main text-center">{{ $t('button.bookNow') }}
 					</router-link>
 				</div>
 			</div>
@@ -75,9 +75,7 @@
     data () {
       return {
         mapSrc: '/static/img/about-map.jpg',
-        imageSrc: '/static/img/demo-about-02.jpg',
-        buttonPath: '#',
-        buttonPathTwo: '#'
+        imageSrc: '/static/img/demo-about-02.jpg'
       }
     }
   }

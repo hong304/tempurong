@@ -3,10 +3,16 @@
 		<div class="row">
 			<div class="picker-nav-bar">
 				<div class="picker-input">
-					<HotelDatePicker :startDate="new Date()" :i18n="defineDatePicker()"/>
+					<HotelDatePicker
+							:startDate="new Date()"
+							:i18n="defineDatePicker()"
+							v-on:checkInChanged="checkInOut.checkIn = $event"
+							v-on:checkOutChanged="checkOutSelected($event)"
+					></HotelDatePicker>
 				</div>
 				<div class="picker-button">
-					<router-link :to="{ name: 'Reservations', data: { checkIn: this.checkIn, checkOut: this.checkOut } }" class="picker-nav-link">{{ $t('button.bookNow') }}
+					<router-link :to="{ name: 'Reservations', data: {} }"
+											 class="picker-nav-link">{{ $t('button.bookNow') }}
 					</router-link>
 				</div>
 			</div>
@@ -23,6 +29,10 @@
     },
     data () {
       return {
+        checkInOut: {
+          'checkIn': '',
+          'checkOut': ''
+        }
       }
     },
     mounted: function () {
@@ -30,6 +40,10 @@
     methods: {
       defineDatePicker: function () {
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
+      },
+      checkOutSelected: function (val) {
+        this.checkInOut.checkOut = val
+//        this.$localStorage.set('checkInOut', JSON.stringify(this.checkInOut))
       }
     }
   }
@@ -37,7 +51,7 @@
 
 <style lang="scss">
 	@import '../../assets/style/setting';
-	
+
 	.picker-nav-bar {
 		display: flex;
 		flex-flow: row wrap;
@@ -77,7 +91,7 @@
 				.datepicker__clear-button {
 					color: white;
 					margin: 0 -2px 0 0;
-					
+
 				}
 			}
 		}

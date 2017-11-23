@@ -194,7 +194,7 @@
         return this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
       },
       getAvailableRooms: function () {
-        this.axios.post('/api/checkAvailableRooms', {
+        this.axios.post(process.env.API_URL + '/api/checkAvailableRooms', {
           checkIn: this.orderDetails.checkIn,
           checkOut: this.orderDetails.checkOut,
           withRoomDetails: true

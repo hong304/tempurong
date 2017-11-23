@@ -27,7 +27,7 @@
 						{{$tc('components.card.roomCard.bunkBed', result.bunk_bed, {count: result.bunk_bed})}}
 					</li>
 				</ul>
-
+				
 				<div class="rooms-body">
 					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress">
 					<label for="checkbox">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
@@ -51,7 +51,7 @@
 							<span>{{ $t('components.card.roomCard.breakfastRemarks') }}</span>
 						</div>
 					</div>
-					<div class="extra-mattress">
+					<div class="extra-mattress" v-if="(result.add_bed)">
 						<div>
 							<multiselect
 											class="extra-select custom-multiselect"
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 				</div>
-
+				
 				<div class="rooms-footer">
 					<span>
 						{{ $tc('components.card.roomCard.roomAvailable', availableRooms, {count: availableRooms}) }} |
@@ -173,14 +173,19 @@
         } else if (type === 'add') {
           this.counterRooms++
         }
-        for (var i = 0; i <= this.counterRooms; i++) {
-          this.breakfast_options.push(i)
-          this.mattress_options.push(i)
-        }
+
+        this.mattressOrBreakfastOption()
+
         if (this.counterRooms > 0) {
           this.roomTypeCondition.noOfRoom = this.counterRooms
         } else {
           this.roomTypeCondition.noOfRoom = 0
+        }
+      },
+      mattressOrBreakfastOption: function () {
+        for (var i = 0; i <= this.counterRooms; i++) {
+          this.breakfast_options.push(i)
+          this.mattress_options.push(i)
         }
       }
     },
@@ -197,25 +202,28 @@
         this.counterRooms = 0
         this.roomTypeCondition.noOfRoom = 0
       }
+    },
+    mounted () {
+      this.mattressOrBreakfastOption()
     }
   }
 </script>
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.room-card {
 		border-bottom: 1px solid $brand-primary;
 		padding-bottom: 2.5rem;
 		margin-bottom: 2.5rem;
 	}
-
+	
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;
 		}
 	}
-
+	
 	.info-wrapper {
 		text-align: left;
 		color: $brand-secondary;
@@ -293,7 +301,7 @@
 			vertical-align: middle;
 		}
 	}
-
+	
 	.well {
 		border: none;
 		border-radius: 0;
@@ -308,12 +316,12 @@
 			}
 		}
 	}
-
+	
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
-
+	
 	.extra-select {
 		display: inline-block;
 		width: 50px;

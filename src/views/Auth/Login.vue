@@ -40,6 +40,7 @@
 		}
 		img {
 			width: 80%;
+			height: auto;
 		}
 		input {
 			display: block;

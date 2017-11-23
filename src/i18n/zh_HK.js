@@ -51,6 +51,17 @@ module.exports = {
     },
     reservations: {
       pageTitle: '房間預訂'
+    },
+    reservationsContact: {
+      pageTitle: '聯繫資料',
+      fillInContact: '請填寫以下資料。',
+      firstName: '名字',
+      lastName: '姓氏',
+      email: '電郵',
+      remarks: '備註',
+      additionalNotes: '附加資料，如機場接送及感興趣的活動',
+      tnc: '條款及細則',
+      tncCheckbox: '我已細閱並同意以上的條款及細則和取消政策。'
     }
   },
   datePicker: {
@@ -72,7 +83,10 @@ module.exports = {
     moreAreaAndActivities: '更多景點及活動',
     discoverMore: '探索更多',
     dropMessage: '留言',
-    submit: '提交'
+    justAsk: '留言',
+    submit: '提交',
+    editOrder: '修改訂單',
+    checkOut: 'Check Out'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',
@@ -109,7 +123,12 @@ module.exports = {
     }
   },
   error: {
-    checkInOut: '請選擇入住及退房日期。',
-    noOfGuest: '請選擇最少一位客人。'
+    noCheckInOut: '請選擇入住及退房日期。',
+    noGuestSelected: '請選擇最少一位客人。',
+    noRoomSelected: '請選擇最少一間房間。',
+    guestAndRoomNoConflict: '總客人人數不能多於房間的可容納人數。',
+    email: '請輸入有效的電郵。',
+    tnc: '請同意條款及細則',
+    required: '請填寫{field}。'
   }
 }

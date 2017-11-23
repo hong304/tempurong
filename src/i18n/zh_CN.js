@@ -51,6 +51,17 @@ module.exports = {
     },
     reservations: {
       pageTitle: '房间预订'
+    },
+    reservationsContact: {
+      pageTitle: '联系资料',
+      fillInContact: '请填写以下资料。',
+      firstName: '名字',
+      lastName: '姓氏',
+      email: '电邮',
+      remarks: '备注',
+      additionalNotes: '附加资料，如机场接送及感兴趣的活动',
+      tnc: '条款及细则',
+      tncCheckbox: '我已细阅并同意以上的条款及细则和取消政策。'
     }
   },
   datePicker: {
@@ -72,7 +83,10 @@ module.exports = {
     moreAreaAndActivities: '更多景点及活动',
     discoverMore: '探索更多',
     dropMessage: '留言',
-    submit: '提交'
+    justAsk: '留言',
+    submit: '提交',
+    editOrder: '修改订单',
+    checkOut: 'Check Out'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',
@@ -92,7 +106,7 @@ module.exports = {
     card: {
       roomCard: {
         guests: '{count} 人 | {count} 人 | {count} 人',
-        addMattressRemarks: '（可加一张床褥，房间最多容纳{count}人）',
+        addMattressRemarks: '（可加一张床褥，房间最多容纳{count}人)',
         addMattressAndBreakfastOption: '加床褥或早餐',
         extraBreakfast: '加早餐 (MYR12 每天)',
         breakfastRemarks: '* 每间房间最多只能加一份早餐',
@@ -109,7 +123,12 @@ module.exports = {
     }
   },
   error: {
-    checkInOut: '请选择入住及退房日期。',
-    noOfGuest: '请选择最少一位客人。'
+    noCheckInOut: '请选择入住及退房日期。',
+    noGuestSelected: '请选择最少一位客人。',
+    noRoomSelected: '请选择最少一间房间。',
+    guestAndRoomNoConflict: '总客人人数不能多於房间的可容纳人数。',
+    email: '请输入有效的电邮。',
+    tnc: '请同意条款及细则',
+    required: '请填写{field}。'
   }
 }

@@ -43,8 +43,8 @@ export default new Router({
         {path: '/contact', name: 'Contact', component: Contact},
         // all the routes for reservation
         {path: '/reservations', name: 'Reservations', component: Reservations},
-        {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
         {path: '/reservations/contact', name: 'ReservationContact', component: Payment},
+        {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
         {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
         {path: '/order-detail', name: 'OrderDetail', component: OrderDetail}
       ]

@@ -41,7 +41,7 @@
 			</div>
 			<div class="row mt-4">
 				<div class="col-xs-4 p-4" v-for="item in navImage">
-					<img :src="item.imageSrc" :alt="item.imageAlt" @click="imageSrcTwo = item.imageSrc"/>
+					<img :src="item.imageSrc" :alt="item.imageAlt" @click="imageSrcTwo = item.imageSrc" class="nav-image"/>
 				</div>
 			</div>
 			<div class="row my-5 pt-5">
@@ -195,6 +195,10 @@
 				border-radius: 5px !important;
 			}
 		}
+	}
+
+	.nav-image {
+		cursor: pointer;
 	}
 
 </style>

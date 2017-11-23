@@ -176,7 +176,6 @@
             price = price + (item.price * item.noOfRoom * night)
           }
         })
-        console.log(price)
 
         this.orderDetails.totalPrice = price
 

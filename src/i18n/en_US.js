@@ -66,7 +66,8 @@ module.exports = {
     reservationsSummary: {
       pageTitle: 'Booking Summary',
       clientName: 'Name',
-      clientEmail: 'Email'
+      clientEmail: 'Email',
+      totalAmount: 'Total Amount'
     }
   },
   datePicker: {
@@ -90,27 +91,28 @@ module.exports = {
     dropMessage: 'Drop a Message',
     justAsk: 'Just Ask',
     submit: 'Submit',
-    editOrder: 'Edit Order',
-    checkOut: 'Check Out'
+    back: 'Back',
+    checkOut: 'Check Out',
+    pay: 'Proceed to Payment'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',
     nights: '{count} nights | {count} nights | {count} nights'
   },
-  commonUnit: {
+  commonUnits: {
     guests: '{count} guests | {count} guest | {count} guests',
     adults: '{count} adults | {count} adult | {count} adults',
-    children: '{count} children | {count} child | {count} children'
+    children: '{count} children | {count} child | {count} children',
+    room: '{count} rooms | {count} room | {count} rooms',
+    breakfast: '{count} breakfasts | {count} breakfast | {count} breakfasts',
+    mattress: '{count} mattresses | {count} mattress | {count} mattresses'
   },
   components: {
     booking: {
       bookingSticky: {
         total: 'Total',
-        guests: '{count} guests | {count} guest | {count} guests',
         adultTitle: 'Adults',
-        adults: '{count} adults | {count} adult | {count} adults',
-        childrenTitle: 'Children',
-        children: '{count} children | {count} child | {count} children'
+        childrenTitle: 'Children'
       }
     },
     card: {
@@ -129,6 +131,11 @@ module.exports = {
         amenities: 'Amenities',
         resortPolicy: 'Resort Policy',
         cancellations: 'Cancellations'
+      },
+      roomSummaryCard: {
+        capacity: 'Max. {capacity} guests per room',
+        extraMattressRemarks: '(If extra mattress is added, the capacity of that room is increased to {capacity})',
+        mattressAndBreakfast: '(including extra {mattress} and {breakfast})'
       }
     }
   },

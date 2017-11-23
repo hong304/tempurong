@@ -102,7 +102,7 @@
         this.getActivityData(val)
       },
       getActivityData (val) {
-        this.axios.post('/api/activity', {
+        this.axios.post(process.env.API_URL + '/api/activity', {
           activityId: val
         }).then((response) => {
           this.resData = response.data

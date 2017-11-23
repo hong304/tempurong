@@ -51,6 +51,17 @@ module.exports = {
     },
     reservations: {
       pageTitle: 'Reservations'
+    },
+    reservationsContact: {
+      pageTitle: 'Contact Information',
+      fillInContact: 'Please fill in all the following information.',
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      email: 'Email',
+      remarks: 'Remarks',
+      additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
+      tnc: 'Terms & Conditions',
+      tncCheckbox: 'I have read and agree to the above Terms and Conditions and cancellation policy.'
     }
   },
   datePicker: {
@@ -73,7 +84,9 @@ module.exports = {
     discoverMore: 'Discover More',
     dropMessage: 'Drop a Message',
     justAsk: 'Just Ask',
-    submit: 'Submit'
+    submit: 'Submit',
+    editOrder: 'Edit Order',
+    checkOut: 'Check Out'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',
@@ -110,7 +123,12 @@ module.exports = {
     }
   },
   error: {
-    checkInOut: 'Please select check in and check out date.',
-    noOfGuest: 'Please select at least one guest.'
+    noCheckInOut: 'Please select check in and check out date.',
+    noGuestSelected: 'Please select at least one guest.',
+    noRoomSelected: 'Please select at least one room.',
+    guestAndRoomNoConflict: 'Total guest cannot larger than maximum capacity of all rooms.',
+    email: 'Please insert valid email address.',
+    tnc: 'Please agree the term and condition.',
+    required: 'The {field} field is required.'
   }
 }

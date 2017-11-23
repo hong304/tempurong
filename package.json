@@ -17,6 +17,7 @@
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "uiv": "^0.13.0",
+    "vee-validate": "^2.0.0-rc.23",
     "vue": "^2.5.3",
     "vue-awesome": "^2.3.4",
     "vue-axios": "^2.0.2",

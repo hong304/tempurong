@@ -112,7 +112,10 @@ module.exports = {
       bookingSticky: {
         total: '合計',
         adultTitle: '成人',
-        childrenTitle: '小孩'
+        childrenTitle: '小孩',
+        totalRoom: '房間總數',
+        priceDescription: '{nights}共 $ {price} MYR',
+        policyRemarks: '請參閱我們的度假村政策。'
       }
     },
     card: {

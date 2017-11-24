@@ -16,7 +16,7 @@
 										class="ti-plus"></span></button>
 					</span>
 					<h3 v-html="result['name_'+$i18n.locale]"></h3>
-					<h4>${{ result.price }}</h4>
+					<h4>${{ result.price }} MYR</h4>
 				</div>
 				<ul class="icon-list">
 					<li>{{ $tc('components.card.roomCard.guests', result.capacity, {count: result.capacity})}}
@@ -29,8 +29,10 @@
 				</ul>
 				
 				<div class="rooms-body">
-					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress" :disabled="!counterRooms">
-					<label for="checkbox" :class="{ disabled: !counterRooms }">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
+					<input type="checkbox" id="checkbox" v-model="needExtra" @click="handleBreakfastMattress"
+					       :disabled="!counterRooms">
+					<label for="checkbox"
+					       :class="{ disabled: !counterRooms }">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
@@ -198,6 +200,14 @@
     },
     mounted () {
       this.mattressOrBreakfastOption()
+      if (this.result.breakfast) {
+        this.roomTypeCondition.breakfast = this.result.breakfast
+        this.needExtra = true
+      }
+      if (this.result.mattress) {
+        this.roomTypeCondition.mattress = this.result.mattress
+        this.needExtra = true
+      }
     }
   }
 </script>
@@ -295,7 +305,7 @@
 			vertical-align: middle;
 		}
 	}
-
+	
 	.rooms-body {
 		label {
 			&.disabled {
@@ -303,7 +313,7 @@
 			}
 		}
 	}
-
+	
 	.well {
 		border: none;
 		border-radius: 0;
@@ -318,12 +328,12 @@
 			}
 		}
 	}
-
+	
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
-
+	
 	.extra-select {
 		display: inline-block;
 		width: 50px;

@@ -150,7 +150,6 @@
       handleBreakfastMattress () {
         // if user checked the extra box will show the option
         // to select how many mattress or breakfast they need
-        this.needExtra = !this.needExtra
         if (!this.needExtra) {
           // reset the numbers when the user deselect the checkbox
           this.roomTypeCondition.breakfast = 0
@@ -198,7 +197,7 @@
         this.roomTypeCondition.noOfRoom = 0
       }
     },
-    mounted () {
+    created () {
       this.mattressOrBreakfastOption()
       if (this.result.breakfast || this.result.mattress) {
         this.needExtra = true

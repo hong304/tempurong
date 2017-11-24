@@ -124,6 +124,7 @@
     created () {
 //      this.$localStorage.remove('orderDetails')
 //      this.$localStorage.remove('orderContact')
+      console.log(JSON.parse(this.$localStorage.get('orderDetails')))
       if (!this.$localStorage.get('orderDetails')) {
         this.$router.push({name: 'Reservations'})
       }

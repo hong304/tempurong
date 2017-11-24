@@ -29,8 +29,8 @@
 				</ul>
 				
 				<div class="rooms-body">
-					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress">
-					<label for="checkbox">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
+					<input type="checkbox" id="checkbox" @click="handleBreakfastMattress" :disabled="!counterRooms">
+					<label for="checkbox" :class="{ disabled: !counterRooms }">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
 					<div class="extra-breakfast">
@@ -89,13 +89,6 @@
 					<ul class="icon-list">
 						<li></li>
 					</ul>
-					<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
-					<ul class="info-list">
-						<li></li>
-					</ul>
-					<h5>{{ $t('components.card.roomCard.cancellations') }}</h5>
-					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
 				</div>
 			</collapse>
 		</div>
@@ -124,7 +117,6 @@
           return 0
         }
       },
-      show: false,
       index: {
         type: Number,
         default: function () {
@@ -148,7 +140,8 @@
         roomType: this.result,
         breakfast_options: [],
         mattress_options: [],
-        needExtra: false
+        needExtra: false,
+        show: false
       }
     },
     methods: {
@@ -221,6 +214,7 @@
 	.image-thumb-wrapper {
 		& > img {
 			width: 100%;
+			height: auto;
 		}
 	}
 	
@@ -301,7 +295,15 @@
 			vertical-align: middle;
 		}
 	}
-	
+
+	.rooms-body {
+		label {
+			&.disabled {
+				color: $light-grey;
+			}
+		}
+	}
+
 	.well {
 		border: none;
 		border-radius: 0;
@@ -316,12 +318,12 @@
 			}
 		}
 	}
-	
+
 	ul {
 		list-style-type: none;
 		padding-left: 0;
 	}
-	
+
 	.extra-select {
 		display: inline-block;
 		width: 50px;

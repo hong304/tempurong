@@ -97,7 +97,7 @@ module.exports = {
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',
-    nights: '{count} nights | {count} nights | {count} nights'
+    nights: '{count} nights | {count} night | {count} nights'
   },
   commonUnits: {
     guests: '{count} guests | {count} guest | {count} guests',
@@ -112,7 +112,10 @@ module.exports = {
       bookingSticky: {
         total: 'Total',
         adultTitle: 'Adults',
-        childrenTitle: 'Children'
+        childrenTitle: 'Children',
+        totalRoom: 'Total Rooms',
+        priceDescription: '$ {price} MYR for {nights}',
+        policyRemarks: 'Please refer to our Resort Policy.'
       }
     },
     card: {

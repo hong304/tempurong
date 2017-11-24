@@ -31,19 +31,24 @@
 			
 			</div>
 			<div class="sticky-body" v-if="orderDetails.totalRooms">
-				<h4>Total Booked room: {{ orderDetails.totalRooms }}</h4>
+				<h4>{{$t('components.booking.bookingSticky.totalRoom')}}: {{ orderDetails.totalRooms }}</h4>
 				<div class="room-summary" v-for="item in orderDetails.roomObjects">
 					<div class="summary-details" v-if="item.noOfRoom">
-						<h4>{{ item.name_en }} x {{ item.noOfRoom }}</h4>
+						<h4>{{ item['name_' + $i18n.locale] }} x {{ item.noOfRoom }}</h4>
 						<ul class="text-list">
-							<li>${{ item.price * item.noOfRoom * totalNights }} MYR for {{ totalNights }} nights</li>
+							<li>{{ $t('components.booking.bookingSticky.priceDescription',
+                {
+                  'price': (item.price * item.noOfRoom * totalNights),
+                  'nights': $tc('dateUnit.nights', totalNights, {'count': totalNights})
+                })}}
+							</li>
 							<li v-if="item.extra_breakfast">(including {{ item.extra_breakfast }} extra breakfast</li>
 							<li v-if="item.extra_mattress">(including {{ item.extra_mattress }} extra mattress</li>
 						</ul>
 					</div>
 				</div>
 			</div>
-			<p>* Please refer to our Terms & Conditions and Cancellation Policy.</p>
+			<p>* {{$t('components.booking.bookingSticky.policyRemarks')}}</p>
 		</div>
 		<div class="sticky-footer">
 			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">

@@ -135,9 +135,9 @@
         roomTypeCondition: {
           index: this.index,
           type: this.result.id,
-          noOfRoom: 0,
-          breakfast: 0,
-          mattress: 0
+          noOfRoom: this.result.noOfRoom || 0,
+          breakfast: this.result.breakfast || 0,
+          mattress: this.result.mattress || 0
         },
         roomType: this.result,
         breakfast_options: [],
@@ -200,12 +200,7 @@
     },
     mounted () {
       this.mattressOrBreakfastOption()
-      if (this.result.breakfast) {
-        this.roomTypeCondition.breakfast = this.result.breakfast
-        this.needExtra = true
-      }
-      if (this.result.mattress) {
-        this.roomTypeCondition.mattress = this.result.mattress
+      if (this.result.breakfast || this.result.mattress) {
         this.needExtra = true
       }
     }

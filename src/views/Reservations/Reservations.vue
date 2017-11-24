@@ -131,13 +131,13 @@
         rooms: [],
         errorTotalGuest: false,
         orderDetails: {
-          checkIn: '',
-          checkOut: '',
-          adults: 0,
+          checkIn: this.checkInFromHome || '',
+          checkOut: this.checkOutFromHome || '',
+          adults: 2,
           children: 0,
           totalPrice: 0,
           totalRooms: 0,
-          totalGuests: 0,
+          totalGuests: 2,
           roomObjects: []
         },
         updated: Date()
@@ -248,19 +248,14 @@
       let defaultOrderDetails = JSON.stringify(this.orderDetails)
       this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
       this.$localStorage.remove('orderDetails')
-
-//      if (typeof this.checkInFromHome !== 'undefined') {
-//        console.log(this.checkInFromHome)
-//        console.log(this.checkOutFromHome)
-//        let datePickerI18n = this.$i18n.getLocaleMessage(this.$i18n.locale).datePicker
-//        datePickerI18n['check-in'] = this.checkInFromHome
-//        datePickerI18n['check-out'] = this.checkOutFromHome
-//        this.orderDetails.checkIn = this.checkInFromHome
-//        this.orderDetails.checkOut = this.checkOutFromHome
-//      }
+      this.$localStorage.remove('orderContact')
 
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true
+      }
+
+      if (this.orderDetails.roomObjects.length <= 0) {
+        this.checkSelected()
       }
     }
   }

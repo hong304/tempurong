@@ -19,7 +19,7 @@
 					                 v-on:checkInChanged="orderDetails.checkIn = $event"
 					                 v-on:checkOutChanged="orderDetails.checkOut = $event">
 					</HotelDatePicker>
-					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span>{{ $t('error.checkInOut') }}
+					<h5 class="error-message" v-if="errorDate"><span class="ti-alert"></span> {{ $t('error.noCheckInOut') }}
 					</h5>
 					<div class="no-of-people">
 						<span class="people-title">{{$t('components.booking.bookingSticky.adultTitle')}}</span>
@@ -45,7 +45,7 @@
 						</span>
 					</div>
 					<h5 class="error-message" v-if="errorPeople"><span class="ti-alert"></span>
-						{{ $t('error.noOfGuest') }}</h5>
+						{{ $t('error.noGuestSelected') }}</h5>
 				
 				</div>
 				<button type="button" class="btn btn-main" @click="checkSelected">{{$t('button.submit')}}</button>
@@ -87,7 +87,7 @@
 						</div>
 						
 						<h5 class="error-message" v-if="errorTotalGuest"><span class="ti-alert"></span>
-							{{ $t('error.noOfGuest') }}</h5>
+							{{ $t('error.noGuestSelected') }}</h5>
 					
 					</div>
 					<div v-for="(item, index) in orderDetails.roomObjects">
@@ -133,11 +133,11 @@
         orderDetails: {
           checkIn: this.checkInFromHome || '',
           checkOut: this.checkOutFromHome || '',
-          adults: 2,
+          adults: 1,
           children: 0,
           totalPrice: 0,
           totalRooms: 0,
-          totalGuests: 2,
+          totalGuests: 1,
           roomObjects: []
         },
         updated: Date()
@@ -159,9 +159,11 @@
             this.orderDetails.checkOut = this.$moment(this.orderDetails.checkOut).format('YYYY-MM-DD')
             this.optionSelected = true
             this.getAvailableRooms()
+            this.errorPeople = false
           } else {
             this.errorPeople = true
           }
+          this.errorDate = false
         } else {
           this.errorDate = true
         }
@@ -245,16 +247,21 @@
       }
     },
     mounted: function () {
+      // check if there is order details in local storage
       let defaultOrderDetails = JSON.stringify(this.orderDetails)
       this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails', defaultOrderDetails))
+      // after getting data from local storage, remove the local storage variable
       this.$localStorage.remove('orderDetails')
       this.$localStorage.remove('orderContact')
 
+      // if check in date exists, show room type details
       if (this.orderDetails.checkIn.length > 0) {
         this.optionSelected = true
       }
 
-      if (this.orderDetails.roomObjects.length <= 0) {
+      // if check in date exists but not roomObjects => data comes from home page
+      // so, fetch room type data
+      if (this.orderDetails.checkIn.length > 0 && this.orderDetails.roomObjects.length <= 0) {
         this.checkSelected()
       }
     }

@@ -48,15 +48,23 @@
 						</li>
 					</ul>
 					<div class="nav navbar-nav navbar-right">
-						<multiselect
-										class="lang-select"
-										v-model="language"
-										:options="languageOptions"
-										:searchable="false"
-										:close-on-select="true"
-										:showLabels="false"
-										:placeholder="' '"
-						></multiselect>
+						<div class="language-select">
+							<button v-bind:class="{ active: ($i18n.locale === 'en') }" @click="changeLanguage('en')"
+							        role="button">{{$i18n.getLocaleMessage('en').languageShort}}
+							</button>
+							<button v-bind:class="{ active: ($i18n.locale === 'sc') }" @click="changeLanguage('sc')"
+							        role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
+							</button>
+						</div>
+						<!--<multiselect-->
+						<!--class="lang-select"-->
+						<!--v-model="language"-->
+						<!--:options="languageOptions"-->
+						<!--:searchable="false"-->
+						<!--:close-on-select="true"-->
+						<!--:showLabels="false"-->
+						<!--:placeholder="' '"-->
+						<!--&gt;</multiselect>-->
 					</div>
 				</div>
 			</collapse>
@@ -89,6 +97,11 @@
         } else {
           this.$i18n.locale = 'sc'
         }
+      }
+    },
+    methods: {
+      changeLanguage: function (val) {
+        this.$i18n.locale = val
       }
     }
   }
@@ -128,47 +141,77 @@
 		}
 	}
 	
-	.navbar-wrapper {
-		height: 50px;
-		margin: 0 auto;
-		@media screen and (max-width: 767px) {
-			height: auto;
-		}
-		.navbar-nav {
-			display: inline-block;
-			float: none;
+	.navbar-collapse {
+		padding: 0;
+		.navbar-wrapper {
+			height: 50px;
+			margin: 0 auto;
 			@media screen and (max-width: 767px) {
-				display: block;
-				&.navbar-right {
-					display: inline-block;
+				height: auto;
+			}
+			
+			.navbar-nav {
+				display: inline-block;
+				float: none;
+				@media screen and (max-width: 767px) {
+					display: block;
+					&.navbar-right {
+						display: inline-block;
+					}
+				}
+				& > li {
+					margin: 10px 0;
+					.navbar-link {
+						color: $brand-secondary;
+						padding: 4px 12px;
+						margin: 0 7px;
+						border-radius: 5px;
+						border: 1px solid transparent;
+						transition: all 300ms linear;
+						@media screen and (max-width: 991px) {
+							padding: 4px 7px;
+						}
+						&.reservation {
+							border-color: $brand-secondary;
+						}
+						&.active {
+							background-color: $brand-secondary;
+							color: white;
+						}
+						&:hover, &:focus {
+							background-color: $brand-secondary;
+							color: white;
+							outline: none;
+							box-shadow: none;
+						}
+					}
 				}
 			}
-			& > li {
-				margin: 10px 0;
-				.navbar-link {
-					color: $brand-secondary;
-					padding: 4px 12px;
-					margin: 0 7px;
-					border-radius: 5px;
-					border: 1px solid transparent;
-					transition: all 300ms linear;
-					@media screen and (max-width: 991px) {
-						padding: 4px 7px;
-					}
-					&.reservation {
-						border-color: $brand-secondary;
-					}
-					&.active {
-						background-color: $brand-secondary;
-						color: white;
-					}
-					&:hover, &:focus {
-						background-color: $brand-secondary;
-						color: white;
-						outline: none;
-						box-shadow: none;
-					}
+		}
+	}
+	
+	.language-select {
+		padding: 15px 15px 0;
+		line-height: 20px;
+		display: inline-block;
+		color: $brand-secondary;
+		button, a {
+			color: $brand-secondary;
+			border: none;
+			background: none;
+			display: inline-block;
+			float: left;
+			padding: 0 15px;
+			border-right: 1px solid $brand-secondary;
+			&:last-of-type {
+				padding: 0 0 0 15px;
+				border-right: none;
+				@media screen and (max-width: 767px) {
+					padding: 0 15px;
 				}
+			}
+			&.active {
+				font-weight: bold;
 			}
 		}
 	}

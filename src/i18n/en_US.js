@@ -1,5 +1,6 @@
 module.exports = {
   language: 'English',
+  languageShort: 'EN',
   companyName: 'Tempurong Golden Beach Resort',
   menu: {
     quickMenu: 'Quick Menu',

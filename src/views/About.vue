@@ -27,23 +27,52 @@
 					<img :src="mapSrc"/>
 				</div>
 			</div>
-			<div class="row pt-5">
-				<div class="col-xs-8">
-					<div class="image-wrapper">
-						<img :src="imageSrcTwo"/>
-					</div>
-				</div>
-				<div class="col-xs-4">
-					<p>
-						Tempurong Golden Beach Resort currently have 15 rooms, restaurant and sunset bar and expansion is continuing to rise. There are eight small beach homes built facing the sea,  and the other seven is a double huts. Through a window have panoramic sea views. Each room has a private bathroom, air-conditioning , hot water shower available. After moving here you can enjoy the sunshine, the golden beach and the sunset.</p>
-					<router-link :to="buttonPathTwo" class="btn btn-main">{{ $t('button.viewRooms') }}</router-link>
-				</div>
-			</div>
+			<!--<div class="row pt-5">-->
+				<!--<div class="col-xs-8">-->
+					<!--<div class="image-wrapper">-->
+						<!--<img :src="imageSrcTwo"/>-->
+					<!--</div>-->
+				<!--</div>-->
+				<!--<div class="col-xs-4">-->
+					<!--<p>-->
+						<!--Tempurong Golden Beach Resort currently have 15 rooms, restaurant and sunset bar and expansion is continuing to rise. There are eight small beach homes built facing the sea,  and the other seven is a double huts. Through a window have panoramic sea views. Each room has a private bathroom, air-conditioning , hot water shower available. After moving here you can enjoy the sunshine, the golden beach and the sunset.</p>-->
+					<!--<router-link :to="buttonPathTwo" class="btn btn-main">{{ $t('button.viewRooms') }}</router-link>-->
+				<!--</div>-->
+			<!--</div>-->
 			<div class="row mt-4">
 				<div class="col-xs-4 p-4" v-for="item in navImage">
-					<img :src="item.imageSrc" :alt="item.imageAlt" @click="imageSrcTwo = item.imageSrc" class="nav-image"/>
+					<img :src="item.imageSrc" :alt="item.imageAlt" class=""/>
 				</div>
 			</div>
+            <div class="row my-5 py-5">
+                <div class="col-xs-12">
+                    <h3>Weather</h3>
+                    <p>
+                        In general, Kota Kinabalu and Sabah in general is lush and tropical, so a fair amount of rain can be expected all year round, but it’s not usually an all-day affair. The “best time” to visit is from January to March because the climate is relatively cooler and drier.
+                    </p>
+                    <p>
+                        October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days (as in 2017). May and April are extremely humid and hot, so be prepared and plan a visit to swim around the islands or up to the cooler mountains!
+                    </p>
+                </div>
+                <div class="col-xs-12">
+                    <img src="/static/img/about/icon-month.jpg"/>
+                </div>
+            </div>
+
+            <div class="row my-5 py-5">
+                <div class="col-xs-12 col-sm-6">
+                    <h3>Dry Season</h3>
+                    <p>
+                        November to March and May to September are generally considered the “dry season”, with June being the driest. May and April are extremely humid and hot, so be prepared with sunscreen, sunglasses and a hat to protect yourself, and plan a visit to swim around the islands or up to the cooler mountains!
+                    </p>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <h3>Wet Season</h3>
+                    <p>
+                        April, May, and November tend to be rainier but usually in the early morning and late afternoon, meaning that you can enjoy a pleasant and cooler period for part of the day. October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days (as in 2017).
+                    </p>
+                </div>
+            </div>
 			<!--<div class="row my-5 pt-5">-->
 			<!--<div class="col-xs-12">-->
 			<!--<h3>Fairy Tales</h3>-->
@@ -106,7 +135,7 @@
             imageAlt: 'Tempurong About Alt Text'
           },
           {
-            imageSrc: 'http://placehold.it/1440x808',
+            imageSrc: '/static/img/demo-about-02.jpg',
             imageAlt: 'Tempurong About Alt Text'
           },
           {

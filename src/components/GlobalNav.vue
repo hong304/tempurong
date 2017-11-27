@@ -204,6 +204,7 @@
 			float: left;
 			padding: 0 15px;
 			border-right: 1px solid $brand-secondary;
+            border-radius: 0;
 			&:last-of-type {
 				padding: 0 0 0 15px;
 				border-right: none;

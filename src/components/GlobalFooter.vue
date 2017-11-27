@@ -12,9 +12,15 @@
 					<p class="mb-md-5 mb-4">{{ $t("tel.tel") }}</p>
 					<h4>{{ $t("paymentAccept.title") }}</h4>
 					<ul class="payment-icon mb-md-0 mb-4">
-						<li><icon name="cc-paypal" scale="3"></icon></li>
-						<li><icon name="cc-visa" scale="3"></icon></li>
-						<li><icon name="cc-mastercard" scale="3"></icon></li>
+						<li>
+							<icon name="cc-paypal" scale="3"></icon>
+						</li>
+						<li>
+							<icon name="cc-visa" scale="3"></icon>
+						</li>
+						<li>
+							<icon name="cc-mastercard" scale="3"></icon>
+						</li>
 					</ul>
 				</div>
 				<div class="col-md-4 col-xs-12">
@@ -38,6 +44,12 @@
 						<li>
 							<router-link :to="{ name: 'Reservations' }" class="footer-link">{{ $t("menu.reservations") }}
 							</router-link>
+						</li>
+						<li>
+							<a href="#" class="footer-link">{{ $t("menu.resortPolicy") }}</a>
+						</li>
+						<li>
+							<a href="#" class="footer-link">{{ $t("menu.FAQ") }}</a>
 						</li>
 					</ul>
 				</div>
@@ -65,7 +77,7 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	footer {
 		.container {
 			background-color: $brand-primary;

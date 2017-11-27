@@ -108,10 +108,11 @@
 		.picker-input {
 			display: flex;
 			flex: 1 0 auto;
-			margin: 0 0 2rem;
+			margin: 1rem 0.5rem 1rem 1rem;
 			padding-bottom: 0;
 			@media screen and (max-width: 767px) {
 				display: inline-block;
+				margin: 0;
 			}
 			& > div {
 				flex: 1 1 auto;

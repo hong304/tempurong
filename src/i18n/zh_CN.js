@@ -120,7 +120,7 @@ module.exports = {
         childrenTitle: '小孩',
         totalRoom: '房间总数',
         priceDescription: '{nights}共 $ {price} MYR',
-        policyRemarks: '请参阅我们的度假村政策。'
+        policyRemarks: '请参阅我们的度假村及取消政策。'
       }
     },
     card: {

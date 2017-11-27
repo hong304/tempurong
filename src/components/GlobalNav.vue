@@ -8,40 +8,54 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<router-link :to="{ name: 'Home' }" class="navbar-brand" role="button">Logo</router-link>
+				<router-link :to="{ name: 'Home' }" class="navbar-brand" role="button"><img src="/static/img/logo.png"
+				                                                                            :alt="$t('companyName')">
+				</router-link>
 			</div>
 			<collapse class="navbar-collapse" v-model="showNavbar">
 				<div class="navbar-wrapper">
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 						<li>
-							<router-link :to="{ name: 'About' }" class="navbar-link" :class="{ active: $route.name == 'About' }">{{ $t("menu.about") }}</router-link>
+							<router-link :to="{ name: 'About' }" class="navbar-link" :class="{ active: $route.name == 'About' }">
+								{{ $t("menu.about") }}
+							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Rooms' }" class="navbar-link" :class="{ active: $route.name == 'Rooms' }">{{ $t("menu.rooms") }}</router-link>
+							<router-link :to="{ name: 'Rooms' }" class="navbar-link" :class="{ active: $route.name == 'Rooms' }">
+								{{ $t("menu.rooms") }}
+							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Activities' }" class="navbar-link" :class="{ active: $route.name == 'Activities' }">{{ $t("menu.activities") }}</router-link>
+							<router-link :to="{ name: 'Activities' }" class="navbar-link"
+							             :class="{ active: $route.name == 'Activities' }">{{ $t("menu.activities") }}
+							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Food' }" class="navbar-link" :class="{ active: $route.name == 'Food' }">{{ $t("menu.food") }}</router-link>
+							<router-link :to="{ name: 'Food' }" class="navbar-link" :class="{ active: $route.name == 'Food' }">
+								{{ $t("menu.food") }}
+							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Contact' }" class="navbar-link" :class="{ active: $route.name == 'Contact' }">{{ $t("menu.contact") }}</router-link>
+							<router-link :to="{ name: 'Contact' }" class="navbar-link" :class="{ active: $route.name == 'Contact' }">
+								{{ $t("menu.contact") }}
+							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" :class="{ active: $route.name == 'Reservations' }">{{ $t("menu.reservations") }}</router-link>
+							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation"
+							             :class="{ active: $route.name == 'Reservations' }">{{ $t("menu.reservations") }}
+							</router-link>
 						</li>
 					</ul>
 					<div class="nav navbar-nav navbar-right">
 						<multiselect
-								class="lang-select"
-								v-model="language"
-								:options="languageOptions"
-								:searchable="false"
-								:close-on-select="true"
-								:showLabels="false"
-								:placeholder="' '"
+										class="lang-select"
+										v-model="language"
+										:options="languageOptions"
+										:searchable="false"
+										:close-on-select="true"
+										:showLabels="false"
+										:placeholder="' '"
 						></multiselect>
 					</div>
 				</div>
@@ -82,11 +96,11 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	.navbar {
 		margin-bottom: 0;
 	}
-
+	
 	.navbar-default {
 		background: none;
 		border: none;
@@ -101,8 +115,19 @@
 				}
 			}
 		}
+		.navbar-brand {
+			padding: 10px;
+			outline: none;
+			&:hover {
+				outline: none;
+			}
+			img {
+				height: 100%;
+				width: auto;
+			}
+		}
 	}
-
+	
 	.navbar-wrapper {
 		height: 50px;
 		margin: 0 auto;
@@ -147,7 +172,7 @@
 			}
 		}
 	}
-
+	
 	.multiselect {
 		padding: 15px;
 		line-height: 20px;
@@ -156,7 +181,7 @@
 
 <style lang="scss">
 	@import '../assets/style/setting';
-
+	
 	.lang-select {
 		position: relative !important;
 		box-sizing: border-box !important;

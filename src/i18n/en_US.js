@@ -120,7 +120,7 @@ module.exports = {
         childrenTitle: 'Children',
         totalRoom: 'Total Rooms',
         priceDescription: '$ {price} MYR for {nights}',
-        policyRemarks: 'Please refer to our Resort Policy.'
+        policyRemarks: 'Please refer to our Resort and Cancellation Policy.'
       }
     },
     card: {

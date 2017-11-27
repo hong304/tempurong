@@ -2,7 +2,7 @@
 	<div class="activity-card">
 		<div class="card-header">
 			<h2>{{ resData.activityTitle }}</h2>
-			<h4>({{ resData.activitySubTitle }})</h4>
+			<h4 v-if="resData.activitySubTitle">({{ resData.activitySubTitle }})</h4>
 		</div>
 		<div class="card-body mt-5">
 			<div class="row">
@@ -28,8 +28,7 @@
 							</li>
 						</ul>
 					</div>
-					<p>
-						Pulau Tiga is an island off the coast of Borneo that is most well known as “Survivor Island”, as it was the location where the debut season of Survivor was filmed. On this day trip you will travel to the beautiful waters off the coast of the island for swimming and snorkeling. Marvelous sights of giant clams, families of tropical fish, and other beautiful ocean life are common amongst the coral reefs. You will also have the option of dipping into the volcano mud baths of Pulau Tiga, which are located just a 20-minute hike inland from the island’s shore, and offer a fun experience said to be good for the skin. Be sure to bring footwear that you won’t mind getting muddy if you opt for the hike.</p>
+					<p>{{ resData.description }}</p>
 				</div>
 			</div>
 		</div>
@@ -70,7 +69,8 @@
             ],
             'tourDuration': 30,
             'walkingDistance': 30,
-            'difficulties': 3.5
+            'difficulties': 3.5,
+            'description': 'Pulau Tiga is an island off the coast of Borneo that is most well known as “Survivor Island”, as it was the location where the debut season of Survivor was filmed. On this day trip you will travel to the beautiful waters off the coast of the island for swimming and snorkeling. Marvelous sights of giant clams, families of tropical fish, and other beautiful ocean life are common amongst the coral reefs. You will also have the option of dipping into the volcano mud baths of Pulau Tiga, which are located just a 20-minute hike inland from the island’s shore, and offer a fun experience said to be good for the skin. Be sure to bring footwear that you won’t mind getting muddy if you opt for the hike.'
           }
         }
       }
@@ -102,7 +102,7 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.activity-card {
 		color: $brand-secondary;
 		text-align: left;
@@ -128,7 +128,7 @@
 			}
 		}
 	}
-
+	
 	.image-thumbnail {
 		.col-xs-6 {
 			padding-right: 0.5rem;
@@ -138,14 +138,14 @@
 			}
 		}
 	}
-
+	
 	.card-body {
 		img {
 			width: 100%;
 			height: auto;
 		}
 	}
-
+	
 	.icon-group {
 		display: inline-block;
 		& > span {
@@ -154,7 +154,7 @@
 			}
 		}
 	}
-
+	
 	.walking-distance {
 		position: relative;
 		margin-right: 2.5rem;

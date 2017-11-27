@@ -14,4 +14,8 @@
 
 <style lang="scss">
 	@import './assets/style/main';
+	
+	#master {
+		padding-top: 50px;
+	}
 </style>

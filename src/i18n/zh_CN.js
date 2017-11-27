@@ -1,5 +1,6 @@
 module.exports = {
   language: '中文',
+  languageShort: '简',
   companyName: '金沙龙沙度假村',
   menu: {
     quickMenu: '快捷主单',

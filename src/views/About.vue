@@ -44,15 +44,15 @@
 					<img :src="item.imageSrc" :alt="item.imageAlt" @click="imageSrcTwo = item.imageSrc" class="nav-image"/>
 				</div>
 			</div>
-			<div class="row my-5 pt-5">
-				<div class="col-xs-12">
-					<h3>Fairy Tales</h3>
-					<p>
-						Once upon a time, a beautiful hardworking girl with kind hearted named Aisha. This charming Aisha is admired by many young admirers. However, she fell in love with a handsome guy John of another village. Both lovers are not blessed by their own village. They were chased and escaped until they reached the spiritual tree to seek for help from the fairies. One of the fairies direct them to the space rock at Batu Luang Beach.</p>
-					<p>
-						When they arrived, they met Puteri Raja Alam who is the Princess of King of Nature. Their love touched the fairy who gave her compassionate to help them under one condition. They will never see their family again. Watching the people from both villages reaching the space rock by far, they amicably make the promise. Puteri Raja Alam created a cave for them to walk into the rock. When the villager arrived, they were both uncovered by the magical cave and never came out. This rock is known as the LOVE rock. The name in Malay is Batu Sayang Mengayangi.</p>
-				</div>
-			</div>
+			<!--<div class="row my-5 pt-5">-->
+				<!--<div class="col-xs-12">-->
+					<!--<h3>Fairy Tales</h3>-->
+					<!--<p>-->
+						<!--Once upon a time, a beautiful hardworking girl with kind hearted named Aisha. This charming Aisha is admired by many young admirers. However, she fell in love with a handsome guy John of another village. Both lovers are not blessed by their own village. They were chased and escaped until they reached the spiritual tree to seek for help from the fairies. One of the fairies direct them to the space rock at Batu Luang Beach.</p>-->
+					<!--<p>-->
+						<!--When they arrived, they met Puteri Raja Alam who is the Princess of King of Nature. Their love touched the fairy who gave her compassionate to help them under one condition. They will never see their family again. Watching the people from both villages reaching the space rock by far, they amicably make the promise. Puteri Raja Alam created a cave for them to walk into the rock. When the villager arrived, they were both uncovered by the magical cave and never came out. This rock is known as the LOVE rock. The name in Malay is Batu Sayang Mengayangi.</p>-->
+				<!--</div>-->
+			<!--</div>-->
 		</section>
 		<section class="padding-of-section mt-5">
 			<div class="row text-center mb-5">

@@ -293,6 +293,7 @@
                         span {
                             display: table-cell;
                             vertical-align: middle;
+                            padding-right: 2px;
                             &.icon {
                                 padding-right: 2.5rem;
                             }

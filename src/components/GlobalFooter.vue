@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
-					<h3 v-html="$t('companyName')"></h3>
+					<h3 v-html="$t('menu.companyName')"></h3>
 				</div>
 				<div class="col-md-4 col-xs-12">
 					<h4>{{ $t("address.title") }}</h4>

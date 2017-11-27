@@ -8,7 +8,8 @@ module.exports = {
     activities: 'Area & Activities',
     food: 'Food',
     contact: 'Contact',
-    reservations: 'Reservations'
+    reservations: 'Reservations',
+    companyName: 'Tempurong <br> Golden Beach <br> Resort'
   },
   address: {
     title: 'Address',

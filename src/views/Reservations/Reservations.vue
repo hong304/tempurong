@@ -133,8 +133,8 @@
         orderDetails: {
           checkIn: this.checkInFromHome || '',
           checkOut: this.checkOutFromHome || '',
-          adults: 1,
-          children: 0,
+          adults: this.adultsFromHome || 0,
+          children: this.childrenFromHome || 0,
           totalPrice: 0,
           totalRooms: 0,
           totalGuests: 1,
@@ -146,7 +146,9 @@
     props: {
       isMobile: this.isMobile,
       checkInFromHome: {},
-      checkOutFromHome: {}
+      checkOutFromHome: {},
+      adultsFromHome: {},
+      childrenFromHome: {}
     },
     methods: {
       checkSelected: function () {

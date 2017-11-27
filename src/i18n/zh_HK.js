@@ -3,6 +3,7 @@ module.exports = {
   languageShort: '簡',
   companyName: '金沙龍沙度假村',
   menu: {
+    companyName: '金沙龍沙<br>度假村',
     quickMenu: '快捷主單',
     about: '關於我們',
     rooms: '房間及設施',
@@ -10,7 +11,8 @@ module.exports = {
     food: '精彩美食',
     contact: '聯繫我們',
     reservations: '房間預訂',
-    companyName: '金沙龍沙<br>度假村'
+    resortPolicy: '度假村政策',
+    FAQ: '常見問題'
   },
   address: {
     title: '地址',

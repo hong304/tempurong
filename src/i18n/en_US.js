@@ -3,6 +3,7 @@ module.exports = {
   languageShort: 'EN',
   companyName: 'Tempurong Golden Beach Resort',
   menu: {
+    companyName: 'Tempurong <br> Golden Beach <br> Resort',
     quickMenu: 'Quick Menu',
     about: 'About',
     rooms: 'Rooms & Amenities',
@@ -10,7 +11,8 @@ module.exports = {
     food: 'Food',
     contact: 'Contact',
     reservations: 'Reservations',
-    companyName: 'Tempurong <br> Golden Beach <br> Resort'
+    resortPolicy: 'Resort Policy',
+    FAQ: 'FAQ'
   },
   address: {
     title: 'Address',

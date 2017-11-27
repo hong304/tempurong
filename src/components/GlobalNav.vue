@@ -1,5 +1,5 @@
 <template>
-	<nav id="global-nav" class="navbar navbar-default">
+	<nav id="global-nav" class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" @click="showNavbar=!showNavbar">
@@ -112,10 +112,11 @@
 	
 	.navbar {
 		margin-bottom: 0;
+		background-color: white;
 	}
 	
 	.navbar-default {
-		background: none;
+		background-color: white;
 		border: none;
 		.navbar-toggle {
 			border: none;

@@ -11,19 +11,12 @@
 				<div class="row mb-5">
 					<div class="col-xs-12">
 						<ol>
-							<li>
-								<button class="btn btn-text-only" :class="{ active: selected == 1 }" @click="getRoomTypeData(1)">
-									Sea view
-								</button>
-							</li>
-							<li>
-								<button class="btn btn-text-only" :class="{ active: selected == 2 }" @click="getRoomTypeData(2)">
-									River view (big)
-								</button>
-							</li>
-							<li>
-								<button class="btn btn-text-only" :class="{ active: selected == 3 }" @click="getRoomTypeData(3)">
-									River view (small)
+							<li v-for="(item, index) in roomTypes">
+								<button class="btn btn-text-only" :class="{ active: selected == index+1 }"
+								        @click="getRoomTypeData(index+1)">
+									{{ item['name_' + $i18n.locale] }}
+									<span v-if="item['room_title_' + $i18n.locale]"><br>{{ item.room.length + ' ' + item['room_title_' + $i18n.locale]
+										}}</span>
 								</button>
 							</li>
 						</ol>
@@ -46,56 +39,74 @@
 				<!--</div>-->
 				<!--</div>-->
 			</section>
-
-			<section class="details-wrapper py-5">
+			
+			<section v-for="(item, index) in roomTypes" v-if="(roomTypes && selected == index+1)"
+			         class="details-wrapper py-5">
 				<div class="row">
 					<div class="col-xs-12">
-						<h3>{{ resData.name_en }}</h3>
-						<h5>MYR{{resData.pricePerNight}} per night with breakfasts</h5>
+						<h3>{{ item['name_' + $i18n.locale] }}<br>{{item['room_title_' + $i18n.locale]}}</h3>
+						<h5>${{item.price}} MYR per night with breakfasts</h5>
+						<span>{{ item.size }}</span>
 					</div>
 				</div>
 				<div class="row mt-5">
 					<div class="col-xs-12">
-						<ul class="icon-list">
-							<li>{{resData.capacity}} guests (adding 1 extra mattress for max.{{ resData.capacity + 1 }} guests)
-							</li>
-							<li>{{resData.queen_bed}} queen beds</li>
-							<li>
-								{{resData.add_bed}} extra mattress with breakfast (MYR30 per night)
-								<p>*max 1 extra mattress per room</p>
-							</li>
-						</ul>
+						<div class="icon-list">
+							<div class="icon-row">
+								<span class="icon icon-guest"></span>
+								<span v-if="!item.add_bed">{{item.capacity}} guests </span>
+								<span v-if="item.add_bed">{{item.capacity}} guests (adding 1 extra mattress for max.{{ item.capacity + 1
+									}} guests)</span>
+							</div>
+						</div>
+						<div class="icon-list">
+							<div class="icon-row">
+								<span class="icon icon-queen-bed"></span>
+								<span class="big-cell">{{item.queen_bed}} queen beds</span>
+								
+								<span class="icon icon-bunk-bed" v-if="item.bunk_bed"></span>
+								<span v-if="item.bunk_bed">{{item.bunk_bed}} bunk beds</span>
+								
+								<span class="icon icon-mattress" v-if="item.add_bed"></span>
+								<span v-if="item.add_bed">{{item.mattress}} extra mattress (MYR18 per night)</span>
+							</div>
+						</div>
+						<div class="icon-list">
+							<div class="icon-row">
+								<span class="icon icon-breakfast"></span>
+								<span>1 extra breakfast (MYR 12 per night)</span>
+							
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="row mt-5">
 					<div class="col-xs-12">
 						<div class="description" style="margin-bottom: 0">
 							<h5>{{ $t('components.card.roomCard.description') }}</h5>
-							<p>
-								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+							<p>{{item.description}}</p>
+							
 							<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
-							<ul class="icon-list">
-								<li>{{resData.capacity}} guests (max.{{resData.capacity + 1}} guests)</li>
-								<li>{{resData.queen_bed}} queen beds</li>
-							</ul>
-							<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
-							<ul class="info-list">
-								<li>No Smoking</li>
-								<li>Not suitable for pets</li>
-								<li>No parties or events</li>
-								<li>Check in time is 2PM</li>
-								<li>Check out by 12PM</li>
-							</ul>
-							<h5>{{ $t('components.card.roomCard.cancellations') }}</h5>
-							<p>
-								Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-							<h5>Safety features</h5>
-							<ul class="info-list">
-								<li>Smoke detector</li>
-								<li>Safety card</li>
-								<li>Carbon monoxide detector</li>
-								<li>Fire extinguisher</li>
-							</ul>
+							<div class="amenities-list">
+								<div class="amenities-cell">
+									<img src="/static/img/icons/shower.png"/>
+									<span>Hot Shower</span>
+								</div>
+								<div class="amenities-cell">
+									<img src="/static/img/icons/towel.png"/>
+									<span>Shower Towel</span>
+								</div>
+								<div class="amenities-cell">
+									<img src="/static/img/icons/air-con.png"/>
+									<span>Air Conditioning</span>
+								</div>
+								<div class="amenities-cell">
+									<img src="/static/img/icons/fan.png"/>
+									<span>Fan</span>
+								</div>
+							</div>
+							<h5>Resort and Cancellation Policy</h5>
+							<p>* Please refer to our Resort and Cancellation Policy.</p>
 						</div>
 					</div>
 				</div>
@@ -144,7 +155,8 @@
           ]
         },
         imageSrc: 'http://placehold.it/2000x1000',
-        selected: 1
+        selected: 1,
+        roomTypes: {}
       }
     },
     methods: {
@@ -161,17 +173,26 @@
 //        })
       },
       getRoomTypeData (val) {
-        this.axios.post(process.env.API_URL + '/api/room-type', {
-          typeId: val
-        }).then((response) => {
-          this.resData = response.data
-          this.selected = val
-        }, (error) => {
-          console.log(error)
-        })
+        if (val) {
+          this.axios.post(process.env.API_URL + '/api/room-type', {
+            typeId: val
+          }).then((response) => {
+            this.resData = response.data
+            this.selected = val
+          }, (error) => {
+            console.log(error)
+          })
+        } else {
+          this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
+            this.roomTypes = response.data
+          }, (error) => {
+            console.log(error)
+          })
+        }
       }
     },
     created: function () {
+      this.getRoomTypeData()
       this.getRoomTypeData(this.selected)
     }
   }
@@ -180,7 +201,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.room-select {
 		& > div {
 			padding-top: 4rem;
@@ -194,14 +215,14 @@
 			}
 		}
 	}
-
+	
 	.image-wrapper {
 		& > img {
 			width: 100%;
 			height: auto;
 		}
 	}
-
+	
 	.details-header {
 		color: $brand-secondary;
 		ol {
@@ -213,16 +234,19 @@
 				float: left;
 				button {
 					font-size: 2rem;
-					font-weight: bold;
 					text-transform: uppercase;
 					opacity: 0.6;
 					transition: opacity 150ms linear;
+					span {
+						font-size: 1.5rem;
+					}
 					&:hover, &:focus, &:active {
 						color: $brand-secondary;
 						opacity: 1;
 					}
 					&.active {
 						opacity: 1;
+						font-weight: bold;
 						outline: none;
 						box-shadow: none;
 					}
@@ -236,9 +260,24 @@
 				display: block;
 				clear: both;
 			}
+			@media screen and (max-width: 768px) {
+				display: flex;
+				& > li {
+					button {
+						font-size: 1.5rem;
+						width: 100%;
+						padding: 6px;
+						span {
+							font-size: 1rem;
+							width: 100%;
+							white-space: pre-wrap;
+						}
+					}
+				}
+			}
 		}
 	}
-
+	
 	.details-wrapper {
 		text-align: left;
 		color: $brand-secondary;
@@ -250,6 +289,58 @@
 		}
 		h5 {
 			font-size: 2em;
+		}
+		.icon-list {
+			display: table;
+			margin-bottom: 0.5rem;
+			.icon-row {
+				display: table-row;
+				span {
+					display: table-cell;
+					vertical-align: middle;
+				}
+				.icon {
+					width: 2.5rem;
+				}
+				.fit-content {
+					width: 1%;
+					padding: 0 2px; /* just some padding, if needed*/
+					white-space: pre;
+				}
+				.big-cell {
+					padding-right: 3rem;
+				}
+			}
+			@media screen and (max-width: 767px) {
+				margin-bottom: 1rem;
+				.icon-row {
+					.icon {
+						display: inline-block;
+						width: 3rem;
+						margin-right: 1rem;
+					}
+				}
+			}
+		}
+		
+		.amenities-list {
+			display: inline-block;
+			.amenities-cell {
+				display: inline-block;
+				float: left;
+				text-align: center;
+				padding: 2rem;
+				img {
+					display: inline-block;
+					padding-bottom: 2rem;
+				}
+				span {
+					display: block;
+				}
+				@media screen and (max-width: 767px) {
+					width: 50%;
+				}
+			}
 		}
 		ul {
 			list-style-type: none;
@@ -278,7 +369,7 @@
 			}
 		}
 	}
-
+	
 	.btn-main {
 		font-size: 2rem;
 		text-transform: uppercase;
@@ -288,7 +379,7 @@
 <style lang="scss">
 	@import '../../../node_modules/slick-carousel/slick/slick';
 	@import '../../assets/style/setting';
-
+	
 	.slick-slider {
 		.slick-slide {
 			button {
@@ -327,6 +418,30 @@
 				background-color: $brand-primary;
 				color: white;
 			}
+		}
+	}
+	
+	.icon {
+		display: inline-block;
+		width: 2rem;
+		height: 2rem;
+		background-size: contain;
+		background-repeat: no-repeat;
+		
+		&.icon-guest {
+			background-image: url("/static/img/icons/guest.svg");
+		}
+		&.icon-breakfast {
+			background-image: url("/static/img/icons/breakfast.svg");
+		}
+		&.icon-bunk-bed {
+			background-image: url("/static/img/icons/bunk_bed.svg");
+		}
+		&.icon-queen-bed {
+			background-image: url("/static/img/icons/queen_bed.svg");
+		}
+		&.icon-mattress {
+			background-image: url("/static/img/icons/mattress.svg");
 		}
 	}
 </style>

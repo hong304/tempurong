@@ -32,12 +32,7 @@
       return {
         interval: 3500,
         indicators: true,
-        controls: true,
-        slides: [
-          {title: 'Slide 1'},
-          {title: 'Slide 2'},
-          {title: 'Slide 3'}
-        ]
+        controls: true
       }
     }
   }

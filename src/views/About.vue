@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.about.pageTitle')"></content-title>
-					<content-paragraph></content-paragraph>
+					<content-paragraph :contentParagraph="contentParagraph"></content-paragraph>
 				</div>
 			</div>
 		</section>
@@ -45,13 +45,13 @@
 				</div>
 			</div>
 			<!--<div class="row my-5 pt-5">-->
-				<!--<div class="col-xs-12">-->
-					<!--<h3>Fairy Tales</h3>-->
-					<!--<p>-->
-						<!--Once upon a time, a beautiful hardworking girl with kind hearted named Aisha. This charming Aisha is admired by many young admirers. However, she fell in love with a handsome guy John of another village. Both lovers are not blessed by their own village. They were chased and escaped until they reached the spiritual tree to seek for help from the fairies. One of the fairies direct them to the space rock at Batu Luang Beach.</p>-->
-					<!--<p>-->
-						<!--When they arrived, they met Puteri Raja Alam who is the Princess of King of Nature. Their love touched the fairy who gave her compassionate to help them under one condition. They will never see their family again. Watching the people from both villages reaching the space rock by far, they amicably make the promise. Puteri Raja Alam created a cave for them to walk into the rock. When the villager arrived, they were both uncovered by the magical cave and never came out. This rock is known as the LOVE rock. The name in Malay is Batu Sayang Mengayangi.</p>-->
-				<!--</div>-->
+			<!--<div class="col-xs-12">-->
+			<!--<h3>Fairy Tales</h3>-->
+			<!--<p>-->
+			<!--Once upon a time, a beautiful hardworking girl with kind hearted named Aisha. This charming Aisha is admired by many young admirers. However, she fell in love with a handsome guy John of another village. Both lovers are not blessed by their own village. They were chased and escaped until they reached the spiritual tree to seek for help from the fairies. One of the fairies direct them to the space rock at Batu Luang Beach.</p>-->
+			<!--<p>-->
+			<!--When they arrived, they met Puteri Raja Alam who is the Princess of King of Nature. Their love touched the fairy who gave her compassionate to help them under one condition. They will never see their family again. Watching the people from both villages reaching the space rock by far, they amicably make the promise. Puteri Raja Alam created a cave for them to walk into the rock. When the villager arrived, they were both uncovered by the magical cave and never came out. This rock is known as the LOVE rock. The name in Malay is Batu Sayang Mengayangi.</p>-->
+			<!--</div>-->
 			<!--</div>-->
 		</section>
 		<section class="padding-of-section mt-5">
@@ -72,7 +72,8 @@
 							</div>
 							<div class="btn-group">
 								<router-link :to="cfa.buttonPath" class="btn btn-border">{{ $t('button.bookNow') }}</router-link>
-								<router-link :to="cfa.buttonPathTwo" class="btn btn-border">{{ $t('button.moreAreaAndActivities') }}</router-link>
+								<router-link :to="cfa.buttonPathTwo" class="btn btn-border">{{ $t('button.moreAreaAndActivities') }}
+								</router-link>
 							</div>
 						</div>
 					</div>
@@ -118,7 +119,8 @@
           infoParagraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
           buttonPath: '#',
           buttonPathTwo: '#'
-        }
+        },
+        contentParagraph: 'Tempurong Golden Beach Resort is a family-owned, beautiful, oceanside retreat offering stunning views and a variety of coastal activities, located directly on the Tempurong Beach in Kuala Penyu, Sabah. Whether you’re looking for a relaxing getaway or something more adventurous, we will help you plan a memorable experience that fits your needs. With many delicious meal options you can rest easy knowing that you will get an authentic taste of the local flavor no matter what your dietary preferences happen to be. We offer private rooms capable of accommodating whole families as well as mixed dormitory rooms, making the resort an ideal destination for solo travelers, couples, groups, and families alike.'
       }
     }
   }
@@ -127,7 +129,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	#about {
 		color: $brand-secondary;
 		img {
@@ -144,11 +146,11 @@
 			text-transform: uppercase;
 		}
 	}
-
+	
 	.content-wrapper {
 		text-align: left;
 	}
-
+	
 	.image-bg {
 		overflow-x: hidden;
 		& > img {
@@ -163,7 +165,7 @@
 			}
 		}
 	}
-
+	
 	.with-overlay-content {
 		position: relative;
 		.overlay-info-wrapper {
@@ -201,7 +203,7 @@
 			}
 		}
 	}
-
+	
 	.nav-image {
 		cursor: pointer;
 	}

@@ -12,7 +12,7 @@
 			<h3>Walking Distance</h3>
 			<ol class="icon-list my-5">
 				<li v-for="(item, index) in distanceData"
-						:class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
+				    :class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
 					<div class="icon-wrapper" @click="changeActivity(index)"><span class="ti-home"></span></div>
 					<p>{{ item.title }}</p>
 				</li>
@@ -36,14 +36,14 @@
 		<section class="padding-of-section mt-5">
 			<div class="row pb-5">
 				<div class="col-xs-12">
-					<content-title :contentTitle="$t('pages.activities.activities')"></content-title>
+					<content-title :contentTitle="$t('pages.activities.adventures')"></content-title>
 				</div>
 			</div>
 			<div class="row mt-5">
 				<div class="col-xs-12">
-					<activity-card></activity-card>
-					<activity-card></activity-card>
-					<activity-card></activity-card>
+					<activity-card v-for="(item, index) in adventures" :resData="item"></activity-card>
+					<!--<activity-card></activity-card>-->
+					<!--<activity-card></activity-card>-->
 				</div>
 			</div>
 		</section>
@@ -92,14 +92,84 @@
             'title': 'Love Rock'
           }
         ],
+        adventures: [
+          {
+            activityTitle: 'Pulau Tiga Day Trip',
+            activitySubTitle: 'Snorkeling and Volcano Mud Bath',
+            images: [
+              {
+                'imageSrc': '/static/img/demo-about-01.jpg',
+                'imageAlt': 'image-01'
+              },
+              {
+                'imageSrc': '/static/img/demo-about-02.jpg',
+                'imageAlt': 'image-02'
+              },
+              {
+                'imageSrc': '/static/img/demo-about-01.jpg',
+                'imageAlt': 'image-03'
+              }
+            ],
+            tourDuration: 30,
+            walkingDistance: 30,
+            difficulties: 3.5,
+            description: 'Pulau Tiga is an island off the coast of Borneo that is most well known as “Survivor Island”, as it was the location where the debut season of Survivor was filmed. On this day trip you will travel to the beautiful waters off the coast of the island for swimming and snorkeling. Marvelous sights of giant clams, families of tropical fish, and other beautiful ocean life are common amongst the coral reefs. You will also have the option of dipping into the volcano mud baths of Pulau Tiga, which are located just a 20-minute hike inland from the island’s shore, and offer a fun experience said to be good for the skin. Be sure to bring footwear that you won’t mind getting muddy if you opt for the hike.'
+          },
+          {
+            activityTitle: 'Mangrove River Cruise',
+            activitySubTitle: 'Proboscis Monkeys and Fireflies',
+            images: [
+              {
+                'imageSrc': '/static/img/demo-about-01.jpg',
+                'imageAlt': 'image-01'
+              },
+              {
+                'imageSrc': '/static/img/demo-about-02.jpg',
+                'imageAlt': 'image-02'
+              },
+              {
+                'imageSrc': '/static/img/demo-about-01.jpg',
+                'imageAlt': 'image-03'
+              }
+            ],
+            tourDuration: 30,
+            walkingDistance: 30,
+            difficulties: 3.5,
+            description: 'The River Cruise offers opportunities to see the wildlife of Borneo’s wetland jungles. Among the mangrove trees, it’s common to see Proboscis Monkeys during the day, an endangered species of Monkey that are native to Sabah and are most known for their signature long noses and protruding bellies. After sunset the cruise becomes a mystical ride through the mangroves where fireflies light up the sky like dancing lights, flying throughout the branches above. Please note that sightings are common, but not guaranteed.'
+          },
+          {
+            activityTitle: 'Escorted Jungle Trekking',
+            activitySubTitle: '',
+            images: [
+              {
+                'imageSrc': '/static/img/demo-about-01.jpg',
+                'imageAlt': 'image-01'
+              },
+              {
+                'imageSrc': '/static/img/demo-about-02.jpg',
+                'imageAlt': 'image-02'
+              },
+              {
+                'imageSrc': '/static/img/demo-about-01.jpg',
+                'imageAlt': 'image-03'
+              }
+            ],
+            tourDuration: 30,
+            walkingDistance: 30,
+            difficulties: 3.5,
+            description: 'Enjoy some of the world’s dwindling rain forests by doing a leisurely jungle trek that is about an hour long. Trek through the low land forest where you may see different kinds of reptiles, birds, plants, bamboo, rattan, and more. Visitors are advised to wear sandals or a good pair of walking shoes, insect repellent, sun screen, a small bottle of water will be provided.'
+          }
+        ],
         resData: {},
         formShow: false
       }
     },
     methods: {
       changeActivity (val) {
-        this.currentStep = val
-        this.getActivityData(val)
+        if (val !== 0) {
+          this.currentStep = val
+          this.getActivityData(val)
+        }
       },
       getActivityData (val) {
         this.axios.post(process.env.API_URL + '/api/activity', {
@@ -120,7 +190,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	h3 {
 		text-transform: uppercase;
 		font-weight: bold;
@@ -128,7 +198,7 @@
 		font-size: 3rem;
 		color: $brand-secondary;
 	}
-
+	
 	.icon-list {
 		display: inline-block;
 		padding-left: 0;
@@ -203,7 +273,7 @@
 			}
 		}
 	}
-
+	
 	.tab-content {
 		color: $brand-secondary;
 		& > img {

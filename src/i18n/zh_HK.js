@@ -45,7 +45,8 @@ module.exports = {
     },
     activities: {
       pageTitle: '推薦景點及活動',
-      activities: '活動'
+      activities: '活動',
+      adventures: '歷奇探險'
     },
     food: {
       pageTitle: '精彩美食'

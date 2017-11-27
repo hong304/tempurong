@@ -45,7 +45,8 @@ module.exports = {
     },
     activities: {
       pageTitle: '推荐景点及活动',
-      activities: '活动'
+      activities: '活动',
+      adventures: '历奇探险'
     },
     food: {
       pageTitle: '精彩美食'

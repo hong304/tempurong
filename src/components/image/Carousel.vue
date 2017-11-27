@@ -2,10 +2,12 @@
 	<section>
 		<div class="row">
 			<carousel :indicators="indicators" :controls="!controls" :interval="interval" ref="carousel">
-				<slide v-for="(slide, index) in slides" :key="index">
-					<div style="width: 100%;height: 400px;" :style="{background:index % 2 === 0? '#866809' : '#866809'}"></div>
-					<div class="carousel-caption">
-						<h3>This is {{slide.title}}</h3>
+				<slide v-for="(item, index) in slides" :key="index">
+					<div class="banner-wrapper">
+						<img class="banner-img" :src="item.imgSrc">
+					</div>
+					<div class="carousel-caption" v-if="item.title">
+						<h3>This is {{item.title}}</h3>
 					</div>
 				</slide>
 				<!-- custom indicators -->
@@ -23,6 +25,9 @@
 </template>
 <script>
   export default {
+    props: {
+      slides: this.slides
+    },
     data () {
       return {
         interval: 3500,
@@ -40,6 +45,13 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
+	.banner-wrapper{
+		display: inline-block;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
 	.custom-carousel-indicators {
 		& > li {
 			border: none;

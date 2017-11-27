@@ -1,6 +1,6 @@
 <template>
 	<div class="container" id="home">
-		<carousel></carousel>
+		<carousel :slides="banners"></carousel>
 		<booking-nav></booking-nav>
 		<section class="padding-of-section mt-5">
 			<content-title :contentTitle="$t('pages.home.welcome')"></content-title>
@@ -9,7 +9,8 @@
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.services')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-sm-6" v-for="(item, index) in servicesData" :item="item" :index="index" :key="item.id">
+				<div class="col-xs-12 col-sm-6" v-for="(item, index) in servicesData" :item="item" :index="index"
+				     :key="item.id">
 					<card :resData="item" :buttonText="$t('button.more')"></card>
 				</div>
 			</div>
@@ -17,15 +18,16 @@
 		<section class="pt-5 pb-5">
 			<div class="row">
 				<image-divider
-						:resData="imageDividerData"
-						:buttonText="$t('button.moreRooms')"
+								:resData="imageDividerData"
+								:buttonText="$t('button.moreRooms')"
 				></image-divider>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index" :key="item.id">
+				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index"
+				     :key="item.id">
 					<card :buttonText="$t('button.more')" :class="{ last: index == 2 || index == 3 }"></card>
 				</div>
 			</div>
@@ -108,7 +110,12 @@
         ],
         titleThree: 'Activities',
         titleFour: 'Features',
-        titleFive: 'Reviews'
+        titleFive: 'Reviews',
+        banners: [
+          {imgSrc: '/static/img/home_banner/banner-03.jpg'},
+          {imgSrc: '/static/img/home_banner/banner-04.jpg'},
+          {imgSrc: '/static/img/home_banner/banner-05.jpg'}
+        ]
       }
     }
   }
@@ -117,7 +124,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	#home {
 		color: $brand-secondary;
 	}

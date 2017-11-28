@@ -98,11 +98,11 @@
 						<div class="overlay-info-wrapper px-4 px-md-0">
 							<div class="overlay-content-wrapper">
 								<p>{{ cfa.infoParagraph }}</p>
-							</div>
-							<div class="btn-group">
-								<router-link :to="cfa.buttonPath" class="btn btn-border">{{ $t('button.bookNow') }}</router-link>
-								<router-link :to="cfa.buttonPathTwo" class="btn btn-border">{{ $t('button.moreAreaAndActivities') }}
-								</router-link>
+								<div class="btn-group">
+									<router-link :to="cfa.buttonPath" class="btn btn-border">{{ $t('button.bookNow') }}</router-link>
+									<router-link :to="cfa.buttonPathTwo" class="btn btn-border">{{ $t('button.moreAreaAndActivities') }}
+									</router-link>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -188,7 +188,7 @@
 			@media screen and (max-width: 767px) {
 				position: relative;
 				width: auto;
-				height: 35vh;
+				min-height: 35vh;
 				left: 50%;
 				transform: translateX(-50%);
 			}
@@ -209,11 +209,15 @@
 			left: 0;
 			background-color: rgba(0, 0, 0, 0.25);
 			color: white;
+			overflow-x: hidden;
 			.overlay-content-wrapper {
 				flex: 0 0 auto;
 				width: 100%;
 				align-self: center;
 				padding: 0 7rem;
+				@media screen and (max-width: 767px) {
+					padding: 0;
+				}
 				& > h3 {
 					margin-top: 0;
 				}

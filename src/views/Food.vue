@@ -23,7 +23,7 @@
 				</div>
 			</div>
 			<div class="row my-5">
-				<div class="">
+				<div class="col-xs-12">
 					<h3>Have questions?</h3>
 					<button class="btn btn-main mb-5" @click="formShow=!formShow" v-if="!formShow">{{ $t('button.justAsk') }}
 					</button>

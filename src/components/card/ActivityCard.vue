@@ -114,10 +114,16 @@
 			font-weight: bold;
 			font-size: 5rem;
 			margin: 0;
+			@media screen and (max-width: 767px) {
+				font-size: 3.5rem;
+			}
 		}
 		h4 {
 			font-size: 3rem;
 			margin: 0;
+			@media screen and (max-width: 767px) {
+				font-size: 2rem;
+			}
 		}
 		ul {
 			list-style-type: none;

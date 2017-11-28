@@ -203,12 +203,14 @@
     .icon-list {
         display: inline-block;
         padding-left: 0;
+        @media screen and (max-width: 767px) {
+            width: 100%;
+        }
         & > li {
             position: relative;
             display: inline-block;
             float: left;
             text-align: center;
-            width: 150px;
             &:not(:first-of-type) {
                 margin-left: 20px;
                 &:before {
@@ -267,15 +269,19 @@
             p {
                 margin-top: 1rem;
                 margin-bottom: 0;
+                width: 150px;
                 color: $brand-secondary;
                 font-weight: bold;
                 opacity: 0;
                 transition: opacity 250ms linear;
+                @media screen and (max-width: 767px) {
+                    width: auto;
+                }
             }
         }
         @media screen and (max-width: 767px) {
             & > li {
-                width: 20%;
+                width: calc(25% - 15px);
                 &:not(:first-of-type) {
                     &:before {
                         left: -30px;
@@ -311,10 +317,16 @@
         }
         .content-title {
             display: inline-flex;
+            flex-flow: row wrap;
             margin-top: 2rem;
             margin-bottom: 2rem;
             & > div {
+                flex: 0 0 auto;
                 margin-left: 2rem;
+                @media screen and (max-width: 767px) {
+                    flex: 0 0 100%;
+                    margin-left: 0;
+                }
             }
             h3, p {
                 display: inline-block;

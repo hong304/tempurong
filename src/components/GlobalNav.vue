@@ -3,13 +3,10 @@
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" @click="showNavbar=!showNavbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
+					<span class="ti-menu"></span>
 				</button>
-				<router-link :to="{ name: 'Home' }" class="navbar-brand" role="button"><img src="/static/img/logo.png"
-				                                                                            :alt="$t('companyName')">
+				<router-link :to="{ name: 'Home' }" class="navbar-brand" role="button">
+					<img src="/static/img/logo.png" :alt="$t('companyName')">
 				</router-link>
 			</div>
 			<collapse class="navbar-collapse" v-model="showNavbar">
@@ -17,43 +14,43 @@
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 						<li>
-							<router-link :to="{ name: 'About' }" class="navbar-link" :class="{ active: $route.name == 'About' }">
+							<router-link :to="{ name: 'About' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
 								{{ $t("menu.about") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Rooms' }" class="navbar-link" :class="{ active: $route.name == 'Rooms' }">
+							<router-link :to="{ name: 'Rooms' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
 								{{ $t("menu.rooms") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Activities' }" class="navbar-link"
-							             :class="{ active: $route.name == 'Activities' }">{{ $t("menu.activities") }}
+							<router-link :to="{ name: 'Activities' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
+								{{ $t("menu.activities") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Food' }" class="navbar-link" :class="{ active: $route.name == 'Food' }">
+							<router-link :to="{ name: 'Food' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
 								{{ $t("menu.food") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Contact' }" class="navbar-link" :class="{ active: $route.name == 'Contact' }">
+							<router-link :to="{ name: 'Contact' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
 								{{ $t("menu.contact") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation"
-							             :class="{ active: $route.name == 'Reservations' }">{{ $t("menu.reservations") }}
+							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" exact-active-class @click.native="showNavbar=!showNavbar">
+								{{ $t("menu.reservations") }}
 							</router-link>
 						</li>
 					</ul>
 					<div class="nav navbar-nav navbar-right">
 						<div class="language-select">
 							<button v-bind:class="{ active: ($i18n.locale === 'en') }" @click="changeLanguage('en')"
-							        role="button">{{$i18n.getLocaleMessage('en').languageShort}}
+											role="button">{{$i18n.getLocaleMessage('en').languageShort}}
 							</button>
 							<button v-bind:class="{ active: ($i18n.locale === 'sc') }" @click="changeLanguage('sc')"
-							        role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
+											role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
 							</button>
 						</div>
 						<!--<multiselect-->
@@ -102,6 +99,7 @@
     methods: {
       changeLanguage: function (val) {
         this.$i18n.locale = val
+        this.showNavbar = false
       }
     }
   }
@@ -109,24 +107,23 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
+
 	.navbar {
 		margin-bottom: 0;
 		background-color: white;
 	}
-	
+
 	.navbar-default {
 		background-color: white;
-		border: none;
+		border-bottom: 1px solid $light-grey;
 		.navbar-toggle {
 			border: none;
 			padding: 0;
 			margin-top: 17px;
+			color: $brand-primary;
 			&:hover, &:focus {
 				background: none;
-				.icon-bar {
-					background-color: $brand-primary;
-				}
+				color: $brand-secondary;
 			}
 		}
 		.navbar-brand {
@@ -141,7 +138,7 @@
 			}
 		}
 	}
-	
+
 	.navbar-collapse {
 		padding: 0;
 		.navbar-wrapper {
@@ -150,11 +147,12 @@
 			@media screen and (max-width: 767px) {
 				height: auto;
 			}
-			
+
 			.navbar-nav {
 				display: inline-block;
 				float: none;
 				@media screen and (max-width: 767px) {
+					margin: 0;
 					display: block;
 					&.navbar-right {
 						display: inline-block;
@@ -162,6 +160,9 @@
 				}
 				& > li {
 					margin: 10px 0;
+					@media screen and (max-width: 767px) {
+						margin: 3px 0;
+					}
 					.navbar-link {
 						color: $brand-secondary;
 						padding: 4px 12px;
@@ -175,7 +176,7 @@
 						&.reservation {
 							border-color: $brand-secondary;
 						}
-						&.active {
+						&.router-link-active {
 							background-color: $brand-secondary;
 							color: white;
 						}
@@ -190,7 +191,7 @@
 			}
 		}
 	}
-	
+
 	.language-select {
 		padding: 15px 15px 0;
 		line-height: 20px;
@@ -204,7 +205,7 @@
 			float: left;
 			padding: 0 15px;
 			border-right: 1px solid $brand-secondary;
-            border-radius: 0;
+			border-radius: 0;
 			&:last-of-type {
 				padding: 0 0 0 15px;
 				border-right: none;
@@ -217,7 +218,7 @@
 			}
 		}
 	}
-	
+
 	.multiselect {
 		padding: 15px;
 		line-height: 20px;
@@ -226,7 +227,7 @@
 
 <style lang="scss">
 	@import '../assets/style/setting';
-	
+
 	.lang-select {
 		position: relative !important;
 		box-sizing: border-box !important;

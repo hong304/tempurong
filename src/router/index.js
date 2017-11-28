@@ -64,5 +64,14 @@ export default new Router({
         {path: 'order-history', name: 'OrderHistory', component: OrderHistory}
       ]
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    if (savedPosition) {
+      // if user use the back arrow to go back to the previous page, it will goto the previous position
+      return savedPosition
+    } else {
+      // else back to the top of the page
+      return { x: 0, y: 0 }
+    }
+  }
 })

@@ -55,7 +55,9 @@
 				</div>
 			</div>
 			<div class="row">
-				<p class="copy-right">{{ $t("copyright") }}</p>
+				<div class="col-xs-12">
+					<p class="copy-right">{{ $t("copyright") }}</p>
+				</div>
 			</div>
 		</div>
 	</footer>

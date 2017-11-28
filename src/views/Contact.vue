@@ -8,7 +8,7 @@
                 </div>
             </div>
         </section>
-        <section class="padding-of-section my-5">
+        <section class="padding-of-section my-sm-5 my-0">
             <div class="row">
                 <div class="col-xs-12">
                     <img :src="mapSrc"/>

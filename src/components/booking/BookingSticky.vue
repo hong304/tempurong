@@ -148,7 +148,7 @@
 			z-index: 1;
 			transition: top .3s ease;
 			&.shown {
-				top: 0;
+				top: 50px;
 			}
 			.btn-close {
 				display: block;

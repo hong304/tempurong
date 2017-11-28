@@ -7,7 +7,7 @@
                     <content-paragraph></content-paragraph>
                 </div>
             </div>
-            <section class="details-header py-5">
+            <section class="details-header py-sm-5 py-0">
                 <div class="row mb-5">
                     <div class="col-xs-12">
                         <ol>
@@ -41,7 +41,7 @@
             </section>
 
             <section v-for="(item, index) in roomTypes" v-if="(roomTypes && selected == index+1)"
-                     class="details-wrapper py-5">
+                     class="details-wrapper pb-5">
                 <div class="row">
                     <div class="col-xs-12">
                         <h3>{{ item['name_' + $i18n.locale] }}<br>{{item['room_title_' + $i18n.locale]}}</h3>
@@ -51,33 +51,30 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-xs-12">
-                        <div class="icon-list">
-                            <div class="icon-row">
+                        <ul class="icon-list">
+                            <li class="icon-row">
                                 <span class="icon icon-guest"></span>
                                 <span v-if="!item.add_bed">{{item.capacity}} guests </span>
                                 <span v-if="item.add_bed">{{item.capacity}} guests (adding 1 extra mattress for max.{{ item.capacity + 1
                                     }} guests)</span>
-                            </div>
-                        </div>
-                        <div class="icon-list">
-                            <div class="icon-row">
+                            </li>
+                            <li class="icon-row" v-if="item.queen_bed">
                                 <span class="icon icon-queen-bed"></span>
-                                <span class="big-cell">{{item.queen_bed}} queen beds</span>
-
-                                <span class="icon icon-bunk-bed" v-if="item.bunk_bed"></span>
-                                <span v-if="item.bunk_bed">{{item.bunk_bed}} bunk beds</span>
-
-                                <span class="icon icon-mattress" v-if="item.add_bed"></span>
-                                <span v-if="item.add_bed">{{item.mattress}} extra mattress (MYR18 per night)</span>
-                            </div>
-                        </div>
-                        <div class="icon-list">
-                            <div class="icon-row">
+                                <span>{{item.queen_bed}} queen beds</span>
+                            </li>
+                            <li class="icon-row" v-if="item.bunk_bed">
+                                <span class="icon icon-bunk-bed"></span>
+                                <span>{{item.bunk_bed}} bunk beds</span>
+                            </li>
+                            <li class="icon-row" v-if="item.add_bed">
+                                <span class="icon icon-mattress"></span>
+                                <span>{{item.mattress}} extra mattress (MYR18 per night)</span>
+                            </li>
+                            <li class="icon-row">
                                 <span class="icon icon-breakfast"></span>
                                 <span>1 extra breakfast (MYR 12 per night)</span>
-
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="row mt-5">
@@ -231,12 +228,11 @@
     .details-header {
         color: $brand-secondary;
         ol {
-            display: inline-block;
+            display: inline-block !important;
             list-style-type: none;
             padding-left: 0;
             & > li {
                 display: inline-block;
-                float: left;
                 button {
                     font-size: 2rem;
                     text-transform: uppercase;
@@ -291,9 +287,15 @@
             font-size: 3.5em;
             font-weight: bold;
             text-transform: uppercase;
+            @media screen and (max-width: 767px) {
+                font-size: 2em;
+            }
         }
         h5 {
             font-size: 2em;
+            @media screen and (max-width: 767px) {
+                font-size: 1.35em;
+            }
         }
         .icon-list {
             display: table;
@@ -357,7 +359,21 @@
                 }
             }
             &.icon-list {
+                list-style-type: none;
+                padding-left: 0;
                 & > li {
+                    @media screen and (min-width: 768px) {
+                        display: inline-block;
+                        float: left;
+                        &:not(:last-of-type) {
+                            margin-right: 2rem;
+                        }
+                        &:after {
+                            content: '';
+                            display: block;
+                            clear: both;
+                        }
+                    }
                     margin-bottom: 1.2rem;
                 }
             }

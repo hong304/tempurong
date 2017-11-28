@@ -43,5 +43,8 @@
 			font-size: 2rem;
 			margin: 0;
 		}
+		img {
+			max-width: 100%;
+		}
 	}
 </style>

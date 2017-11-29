@@ -46,10 +46,10 @@
 							</router-link>
 						</li>
 						<li>
-							<a href="#" class="footer-link">{{ $t("menu.resortPolicy") }}</a>
+							<router-link :to="{ name: 'Policy' }" class="footer-link">{{ $t("menu.resortPolicy") }}</router-link>
 						</li>
 						<li>
-							<a href="#" class="footer-link">{{ $t("menu.FAQ") }}</a>
+							<router-link :to="{ name: 'FAQ' }" class="footer-link">{{ $t("menu.FAQ") }}</router-link>
 						</li>
 					</ul>
 				</div>

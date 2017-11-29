@@ -8,6 +8,7 @@
 				<h3 class="room-type">{{ resData['name_' + $i18n.locale] }}</h3>
 				<h3 class="num-of-rooms">{{ resData.noOfRoom }}</h3>
 			</div>
+			<p>{{ resData['room_title_' + $i18n.locale] }}</p>
 			<div class="content-group">
 				{{ $t('components.card.roomSummaryCard.capacity',
         {'capacity': (resData.mattress && resData.mattress == resData.noOfRoom) ? resData.capacity + 1 : resData.capacity})
@@ -20,7 +21,7 @@
 					{{ resData.price }} MYR
 					<span v-if="(resData.noOfRoom > 1)">x {{$tc('commonUnits.room', resData.noOfRoom, {'count': resData.noOfRoom})}}</span>
 					x {{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }}
-					<span v-if="resData.add_bed" class="extra-note">
+					<span v-if="(resData.breakfast || resData.mattress)" class="extra-note">
 						{{
             $t('components.card.roomSummaryCard.mattressAndBreakfast',
               {
@@ -52,7 +53,9 @@
     },
     computed: {
       totalCost: function () {
-        return this.resData.price * this.resData.noOfRoom * this.totalNights
+        let breakfast = (this.resData.breakfast) ? this.resData.breakfast * 12 * this.totalNights : 0
+        let mattress = (this.resData.mattress) ? this.resData.mattress * 12 * this.totalNights : 0
+        return this.resData.price * this.resData.noOfRoom * this.totalNights + breakfast + mattress
       }
     }
   }

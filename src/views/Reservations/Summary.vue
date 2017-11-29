@@ -70,37 +70,6 @@
     name: 'reservations-summary',
     data () {
       return {
-        titleOne: 'Booking Summary',
-        checkInDate: '15 Nov 2017',
-        checkOutDate: '21 Nov 2017',
-        roomType: 'River View',
-        totalRooms: 2,
-        totalPrice: 250,
-        resData: {
-          'first_name': 'Hello',
-          'last_name': 'World',
-          'email': 'test@test.com',
-          'check_in': '15 Nov 2017',
-          'check_out': '21 Nov 2017',
-          'adults': 10,
-          'children': 6,
-          'amount': 3144,
-          'transition_id': '5467890',
-          'create_at': null,
-          'status': null,
-          'rooms': [
-            {
-              'roomType': 'River View',
-              'price': 274,
-              'noOfRoom': 2
-            },
-            {
-              'roomType': 'Sea View',
-              'price': 250,
-              'noOfRoom': 1
-            }
-          ]
-        },
         orderDetails: {},
         orderContact: {}
       }

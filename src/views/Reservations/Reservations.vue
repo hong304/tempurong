@@ -179,7 +179,9 @@
 
         this.orderDetails.roomObjects.forEach(function (item) {
           if (item.noOfRoom) {
-            price = price + (item.price * item.noOfRoom * night)
+            let breakfast = (item.breakfast) ? item.breakfast * 12 * night : 0
+            let mattress = (item.mattress) ? item.mattress * 12 * night : 0
+            price = price + (item.price * item.noOfRoom * night) + breakfast + mattress
           }
         })
 

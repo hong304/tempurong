@@ -16,72 +16,48 @@
 			</div>
 			<div class="row my-5 py-5">
 				<div class="col-xs-12 col-sm-8">
-					<h3>Tempurong Golden Beach Resort,<br>Kuala Penyu</h3>
-					<p>
-						Tempurong Golden Beach Resort is located at Tempurong Beach (or Pantai Tempurung) about 15 Kilometres away from Kuala Penyu town.</p>
-					<p>
-						Tempurung means Coconut Shell in Malay. About 200 years ago, the villagers found a coconut shell engraved with holy verses of the Al-Quran on the beach, so they renamed this village from Tanah Merah to Tempurung. The villager believe the new name "Tempurong" will bring good health and good wealth to the village itself.</p>
+					<h3>The Area: Kuala Penyu,<br>Sabah</h3>
+					<p>Tempurong Golden Beach Resort is located at Tempurung Beach, about 15 Kilometres away from the town of Kuala Penyu, Sabah (about 2 hours from Kota Kinabalu Airport). The village was named about 200 years ago when local villagers found a coconut shell on the beach engraved with holy verses of the Quran, inspiring the name “Tempurung,” translating to “coconut shell” in Malay. The villagers believed that by naming the village after that coconut, God would grant good health and prosperity to the people.</p>
 					<router-link :to="buttonPath" class="btn btn-main">{{ $t('button.discoverMore') }}</router-link>
 				</div>
 				<div class="col-xs-12 col-sm-4">
 					<img :src="mapSrc"/>
 				</div>
 			</div>
-			<!--<div class="row pt-5">-->
-				<!--<div class="col-xs-8">-->
-					<!--<div class="image-wrapper">-->
-						<!--<img :src="imageSrcTwo"/>-->
-					<!--</div>-->
-				<!--</div>-->
-				<!--<div class="col-xs-4">-->
-					<!--<p>-->
-						<!--Tempurong Golden Beach Resort currently have 15 rooms, restaurant and sunset bar and expansion is continuing to rise. There are eight small beach homes built facing the sea,  and the other seven is a double huts. Through a window have panoramic sea views. Each room has a private bathroom, air-conditioning , hot water shower available. After moving here you can enjoy the sunshine, the golden beach and the sunset.</p>-->
-					<!--<router-link :to="buttonPathTwo" class="btn btn-main">{{ $t('button.viewRooms') }}</router-link>-->
-				<!--</div>-->
-			<!--</div>-->
 			<div class="row mt-4">
 				<div class="col-xs-4 p-4" v-for="item in navImage">
 					<img :src="item.imageSrc" :alt="item.imageAlt" class=""/>
 				</div>
 			</div>
-            <div class="row my-5 py-5">
-                <div class="col-xs-12">
-                    <h3>Weather</h3>
-                    <p>
-                        In general, Kota Kinabalu and Sabah in general is lush and tropical, so a fair amount of rain can be expected all year round, but it’s not usually an all-day affair. The “best time” to visit is from January to March because the climate is relatively cooler and drier.
-                    </p>
-                    <p>
-                        October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days (as in 2017). May and April are extremely humid and hot, so be prepared and plan a visit to swim around the islands or up to the cooler mountains!
-                    </p>
-                </div>
-                <div class="col-xs-12">
-                    <img src="/static/img/about/icon-month.jpg"/>
-                </div>
-            </div>
+			<div class="row my-5 py-5">
+				<div class="col-xs-12">
+					<h3>Weather</h3>
+					<p>
+						In general, Kota Kinabalu and Sabah in general is lush and tropical, so a fair amount of rain can be expected all year round, but it’s not usually an all-day affair. The “best time” to visit is from January to March because the climate is relatively cooler and drier.
+					</p>
+					<p>
+						October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days (as in 2017). May and April are extremely humid and hot, so be prepared and plan a visit to swim around the islands or up to the cooler mountains!
+					</p>
+				</div>
+				<div class="col-xs-12">
+					<img src="/static/img/about/icon-month.jpg"/>
+				</div>
+			</div>
 
-            <div class="row my-5 py-5">
-                <div class="col-xs-12 col-sm-6">
-                    <h3>Dry Season</h3>
-                    <p>
-                        November to March and May to September are generally considered the “dry season”, with June being the driest. May and April are extremely humid and hot, so be prepared with sunscreen, sunglasses and a hat to protect yourself, and plan a visit to swim around the islands or up to the cooler mountains!
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <h3>Wet Season</h3>
-                    <p>
-                        April, May, and November tend to be rainier but usually in the early morning and late afternoon, meaning that you can enjoy a pleasant and cooler period for part of the day. October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days (as in 2017).
-                    </p>
-                </div>
-            </div>
-			<!--<div class="row my-5 pt-5">-->
-			<!--<div class="col-xs-12">-->
-			<!--<h3>Fairy Tales</h3>-->
-			<!--<p>-->
-			<!--Once upon a time, a beautiful hardworking girl with kind hearted named Aisha. This charming Aisha is admired by many young admirers. However, she fell in love with a handsome guy John of another village. Both lovers are not blessed by their own village. They were chased and escaped until they reached the spiritual tree to seek for help from the fairies. One of the fairies direct them to the space rock at Batu Luang Beach.</p>-->
-			<!--<p>-->
-			<!--When they arrived, they met Puteri Raja Alam who is the Princess of King of Nature. Their love touched the fairy who gave her compassionate to help them under one condition. They will never see their family again. Watching the people from both villages reaching the space rock by far, they amicably make the promise. Puteri Raja Alam created a cave for them to walk into the rock. When the villager arrived, they were both uncovered by the magical cave and never came out. This rock is known as the LOVE rock. The name in Malay is Batu Sayang Mengayangi.</p>-->
-			<!--</div>-->
-			<!--</div>-->
+			<div class="row my-5 py-5">
+				<div class="col-xs-12 col-sm-6">
+					<h3>Dry Season</h3>
+					<p>
+						November to March and May to September are generally considered the “dry season”, with June being the driest. May and April are extremely humid and hot, so be prepared with sunscreen, sunglasses and a hat to protect yourself, and plan a visit to swim around the islands or up to the cooler mountains!
+					</p>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<h3>Wet Season</h3>
+					<p>
+						April, May, and November tend to be rainier but usually in the early morning and late afternoon, meaning that you can enjoy a pleasant and cooler period for part of the day. October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days (as in 2017).
+					</p>
+				</div>
+			</div>
 		</section>
 		<section class="padding-of-section mt-5">
 			<div class="row text-center mb-5">
@@ -158,7 +134,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
+
 	#about {
 		color: $brand-secondary;
 		img {
@@ -175,11 +151,11 @@
 			text-transform: uppercase;
 		}
 	}
-	
+
 	.content-wrapper {
 		text-align: left;
 	}
-	
+
 	.image-bg {
 		overflow-x: hidden;
 		& > img {
@@ -194,7 +170,7 @@
 			}
 		}
 	}
-	
+
 	.with-overlay-content {
 		position: relative;
 		.overlay-info-wrapper {
@@ -236,7 +212,7 @@
 			}
 		}
 	}
-	
+
 	.nav-image {
 		cursor: pointer;
 	}

@@ -15,6 +15,8 @@ import Summary from '@/views/Reservations/Summary'
 import Payment from '@/views/Reservations/Payment'
 import SuccessfulBooked from '@/views/Reservations/SuccessfulBooked'
 import OrderDetail from '@/views/Reservations/OrderDetail'
+import FAQ from '@/views/Policy/FAQ'
+import Policy from '@/views/Policy/Policy'
 
 // blank layout
 import BlankLayout from '@/layouts/BlankLayout'
@@ -46,7 +48,10 @@ export default new Router({
         {path: '/reservations/contact', name: 'ReservationContact', component: Payment},
         {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
         {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
-        {path: '/order-detail', name: 'OrderDetail', component: OrderDetail}
+        {path: '/order-detail', name: 'OrderDetail', component: OrderDetail},
+        // policy routes
+        {path: '/faq', name: 'FAQ', component: FAQ},
+        {path: '/policy', name: 'Policy', component: Policy}
       ]
     },
     {

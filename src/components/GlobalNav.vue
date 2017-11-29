@@ -14,32 +14,32 @@
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 						<li>
-							<router-link :to="{ name: 'About' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
+							<router-link :to="{ name: 'About' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.about") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Rooms' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
+							<router-link :to="{ name: 'Rooms' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.rooms") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Activities' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
+							<router-link :to="{ name: 'Activities' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.activities") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Food' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
+							<router-link :to="{ name: 'Food' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.food") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Contact' }" class="navbar-link" exact-active-class @click.native="showNavbar=!showNavbar">
+							<router-link :to="{ name: 'Contact' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.contact") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" exact-active-class @click.native="showNavbar=!showNavbar">
+							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.reservations") }}
 							</router-link>
 						</li>

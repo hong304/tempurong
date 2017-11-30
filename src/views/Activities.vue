@@ -150,7 +150,7 @@
             tourDuration: 30,
             walkingDistance: 30,
             difficulties: 3.5,
-            description: 'Pulau Tiga is an island off the coast of Borneo that is most well known as “Survivor Island”, as it was the location where the debut season of Survivor was filmed. On this day trip you will travel to the beautiful waters off the coast of the island for swimming and snorkeling. Marvelous sights of giant clams, families of tropical fish, and other beautiful ocean life are common amongst the coral reefs. You will also have the option of dipping into the volcano mud baths of Pulau Tiga, which are located just a 20-minute hike inland from the island’s shore, and offer a fun experience said to be good for the skin. Be sure to bring footwear that you won’t mind getting muddy if you opt for the hike.'
+            description: 'Pulau Tiga is an island off the coast of Borneo that is most well known as “Survivor Island”, as it was the location where the debut season of Survivor was filmed. On this day trip you will depart from the resort by 8:30AM and travel to the beautiful waters off the coast of the island for swimming and snorkeling at various locations. Marvelous sights of giant clams, families of tropical fish, and other beautiful ocean life are common amongst the coral reefs.<br><br> You will also have the option of dipping into the volcano mud baths of Pulau Tiga, which are located just a 20-minute hike inland from the island’s shore, and offer a fun experience said to be good for the skin. Be sure to bring footwear that you won’t mind getting muddy if you opt for the hike.'
           },
           {
             activityTitle: 'Mangrove River Cruise',
@@ -172,7 +172,7 @@
             tourDuration: 30,
             walkingDistance: 30,
             difficulties: 3.5,
-            description: 'The River Cruise offers opportunities to see the wildlife of Borneo’s wetland jungles. Among the mangrove trees, it’s common to see Proboscis Monkeys during the day, an endangered species of Monkey that are native to Sabah and are most known for their signature long noses and protruding bellies. After sunset the cruise becomes a mystical ride through the mangroves where fireflies light up the sky like dancing lights, flying throughout the branches above. Please note that sightings are common, but not guaranteed.'
+            description: 'The River Cruise offers opportunities to see the wildlife of Borneo’s wetland jungles. The trip would begin by traveling to the Klias River, about a half hour away from the resort. Upon arrival, there would be a tea break before embarking on a boat ride in search of the Proboscis monkeys, an endangered species that are native to Sabah and are most known for their signature long noses and protruding bellies.<br><br>After sunset the cruise becomes a mystical ride through the mangroves where fireflies light up the sky like dancing lights, flying throughout the branches above. Please note that sightings are common, but not guaranteed.'
           },
           {
             activityTitle: 'Escorted Jungle Trekking',
@@ -194,7 +194,7 @@
             tourDuration: 30,
             walkingDistance: 30,
             difficulties: 3.5,
-            description: 'Enjoy some of the world’s dwindling rain forests by doing a leisurely jungle trek that is about an hour long. Trek through the low land forest where you may see different kinds of reptiles, birds, plants, bamboo, rattan, and more. Visitors are advised to wear sandals or a good pair of walking shoes, insect repellent, sun screen, a small bottle of water will be provided.'
+            description: 'Enjoy some of the world’s dwindling rain forests by doing a leisurely jungle trek that is about an hour long. Trek through the low land forest where you may see different kinds of reptiles, birds, plants, bamboo, rattan, and more. Visitors are advised to wear sandals or a good pair of walking shoes, insect repellent, sun screen, a small bottle of water will be provided.<br><br>The Healing Well, Love Rock and Space Rock are also nearby so these additional areas could be tied into after your trek. The sunset is especially gorgeous from the beach by Space Rock as there are rarely any people around. Enjoy the rich colors as the sky changes from golds and oranges to deep reds.'
           }
         ],
         resData: {},

@@ -2,14 +2,14 @@
 	<div class="container" id="faq">
 		<section class="padding-of-section mt-5">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
 					<content-title :contentTitle="$t('pages.faq.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
 		<section class="mb-5 content-wrapper">
 			<div class="row" v-for="qa in $t('pages.faq.qas')">
-				<div class="col-xs-10 col-xs-offset-1">
+				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
 					<h3 v-html="qa.question"></h3>
 					<p v-html="qa.answer"></p>
 				</div>

@@ -45,6 +45,7 @@ module.exports = {
     },
     activities: {
       pageTitle: '推荐景点及活动',
+      pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
       activities: '活动',
       adventures: '历奇探险'
     },

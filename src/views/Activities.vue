@@ -1,60 +1,70 @@
 <template>
-    <div class="container" id="activities">
-        <section class="padding-of-section mt-5">
-            <div class="row">
-                <div class="col-xs-12">
-                    <content-title :contentTitle="$t('pages.activities.pageTitle')"></content-title>
-                    <content-content></content-content>
-                </div>
-            </div>
-        </section>
-        <section class="padding-of-section mt-5">
-            <h3>Walking Distance</h3>
-            <ol class="icon-list my-5">
-                <li v-for="(item, index) in distanceData"
-                    :class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
-                    <div class="icon-wrapper" @click="changeActivity(index)"><span class="ti-home"></span></div>
-                    <p>{{ item.title }}</p>
-                </li>
-            </ol>
-            <div class="tab-content mt-4">
-                <img v-if="resData.images" :src="resData.images[0].cover_image" :alt="locationTitle"/>
-                <div class="content-wrapper text-left">
-                    <div class="content-title">
-                        <h3>{{ resData.name_en }}</h3>
-                        <div><span class="ti-time"></span>
-                            <p>{{ resData.duration }} mins</p></div>
-                        <div><span class="walking-distance"></span>
-                            <p>{{ resData.distance }}m from resort</p></div>
-                    </div>
-                    <div class="content-content">
-                        <p>{{ resData.introduction }}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="padding-of-section mt-5">
-            <div class="row pb-5">
-                <div class="col-xs-12">
-                    <content-title :contentTitle="$t('pages.activities.adventures')"></content-title>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col-xs-12">
-                    <activity-card v-for="(item, index) in adventures" :resData="item"></activity-card>
-                    <!--<activity-card></activity-card>-->
-                    <!--<activity-card></activity-card>-->
-                </div>
-            </div>
-        </section>
-        <section class="padding-of-section mt-5">
-            <h3>Interesting in Activities?</h3>
-            <button class="btn btn-main mb-5" @click="formShow=!formShow" v-if="!formShow">{{ $t('button.dropMessage')
-                }}
-            </button>
-            <enquiry-form v-if="formShow"></enquiry-form>
-        </section>
-    </div>
+	<div class="container" id="activities">
+		<section class="padding-of-section mt-5">
+			<div class="row">
+				<div class="col-xs-12">
+					<content-title :contentTitle="$t('pages.activities.pageTitle')"></content-title>
+					<content-content :contentParagraph="$t('pages.activities.pageIntro')"></content-content>
+				</div>
+			</div>
+			<div class="row">
+				<ol class="icon-list my-5">
+					<li class="col-sm-2 col-xs-4 icon-item" v-for="item in activities">
+						<div class="icon-wrapper">
+							<img :src="item.icon"/>
+						</div>
+						<p>{{ item.name }}</p>
+					</li>
+				</ol>
+			</div>
+		</section>
+		<section class="padding-of-section mt-5">
+			<h3>Walking Distance</h3>
+			<ol class="icon-list my-5">
+				<li class="icon-item-with-dot" v-for="(item, index) in distanceData"
+						:class="{ active: currentStep == index || index == 0, prev: currentStep > index }">
+					<div class="icon-wrapper" @click="changeActivity(index)"><span class="ti-home"></span></div>
+					<p>{{ item.title }}</p>
+				</li>
+			</ol>
+			<div class="tab-content mt-4">
+				<img v-if="resData.images" :src="resData.images[0].cover_image" :alt="locationTitle"/>
+				<div class="content-wrapper text-left">
+					<div class="content-title">
+						<h3>{{ resData.name_en }}</h3>
+						<div><span class="ti-time"></span>
+							<p>{{ resData.duration }} mins</p></div>
+						<div><span class="walking-distance"></span>
+							<p>{{ resData.distance }}m from resort</p></div>
+					</div>
+					<div class="content-content">
+						<p>{{ resData.introduction }}</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="padding-of-section mt-5">
+			<div class="row pb-5">
+				<div class="col-xs-12">
+					<content-title :contentTitle="$t('pages.activities.adventures')"></content-title>
+				</div>
+			</div>
+			<div class="row mt-5">
+				<div class="col-xs-12">
+					<activity-card v-for="item in adventures" :key="item.id" :resData="item"></activity-card>
+					<!--<activity-card></activity-card>-->
+					<!--<activity-card></activity-card>-->
+				</div>
+			</div>
+		</section>
+		<section class="padding-of-section mt-5">
+			<h3>Interesting in Activities?</h3>
+			<button class="btn btn-main mb-5" @click="formShow=!formShow" v-if="!formShow">{{ $t('button.dropMessage')
+				}}
+			</button>
+			<enquiry-form v-if="formShow"></enquiry-form>
+		</section>
+	</div>
 </template>
 
 <script>
@@ -73,6 +83,32 @@
     },
     data () {
       return {
+        activities: [
+          {
+            icon: '/static/img/icons/activities/row-boats.png',
+            name: 'Row Boats'
+          },
+          {
+            icon: '/static/img/icons/activities/fishing.png',
+            name: 'Fishing'
+          },
+          {
+            icon: '/static/img/icons/activities/crabbing.png',
+            name: 'Crabbing'
+          },
+          {
+            icon: '/static/img/icons/activities/sea-kayaking.png',
+            name: 'Sea Kayaking'
+          },
+          {
+            icon: '/static/img/icons/activities/beach-volleyball.png',
+            name: 'Beach Volleyball'
+          },
+          {
+            icon: '/static/img/icons/activities/hammock.png',
+            name: 'Hammock'
+          }
+        ],
         imageSrc: '/static/img/demo-about-01.jpg',
         locationTitle: 'Healing Well',
         tourDuration: 30,
@@ -190,169 +226,181 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-    @import '../assets/style/setting';
+	@import '../assets/style/setting';
 
-    h3 {
-        text-transform: uppercase;
-        font-weight: bold;
-        margin-top: 0;
-        font-size: 3rem;
-        color: $brand-secondary;
-    }
+	#activities {
+		color: $brand-secondary;
+	}
 
-    .icon-list {
-        display: inline-block;
-        padding-left: 0;
-        @media screen and (max-width: 767px) {
-            width: 100%;
-        }
-        & > li {
-            position: relative;
-            display: inline-block;
-            float: left;
-            text-align: center;
-            &:not(:first-of-type) {
-                margin-left: 20px;
-                &:before {
-                    content: '';
-                    position: absolute;
-                    top: calc((5rem - 6px) / 2);
-                    left: -60px;
-                    width: 100px;
-                    height: 9px;
-                    background-image: url(../assets/img/dotted.png);
-                    background-size: auto 100%;
-                    background-repeat: repeat-x;
-                    transition: background 150ms linear;
-                }
-            }
-            &.prev {
-                &:not(:first-of-type) {
-                    &:before {
-                        background-image: url(../assets/img/dotted-active.png);
-                    }
-                }
-            }
-            &.active {
-                &:not(:first-of-type) {
-                    &:before {
-                        background-image: url(../assets/img/dotted-active.png);
-                    }
-                }
-                p {
-                    opacity: 1;
-                }
-                .icon-wrapper {
-                    background-color: $brand-secondary;
-                }
-            }
-            .icon-wrapper {
-                display: inline-flex;
-                justify-content: center;
-                width: 5rem;
-                height: 5rem;
-                background-color: $brand-primary;
-                border-radius: 50%;
-                transition: background-color 150ms linear;
-                z-index: 1;
-                &:hover, &:focus {
-                    background-color: $brand-secondary;
-                    cursor: pointer;
-                }
-                & > span {
-                    align-self: center;
-                    font-size: 2.5rem;
-                    line-height: 5rem;
-                    color: white;
-                }
-            }
-            p {
-                margin-top: 1rem;
-                margin-bottom: 0;
-                width: 150px;
-                color: $brand-secondary;
-                font-weight: bold;
-                opacity: 0;
-                transition: opacity 250ms linear;
-                @media screen and (max-width: 767px) {
-                    width: auto;
-                }
-            }
-        }
-        @media screen and (max-width: 767px) {
-            & > li {
-                width: calc(25% - 15px);
-                &:not(:first-of-type) {
-                    &:before {
-                        left: -30px;
-                        width: 40px;
-                        height: 6px;
-                    }
-                }
-            }
+	h3 {
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-top: 0;
+		font-size: 3rem;
+	}
 
-        }
-        @media screen and (max-width: 360px) {
-            & > li {
-                &:not(:first-of-type) {
-                    margin-left: 18px;
-                    &:before {
-                        left: -23px;
-                        width: 25px;
-                        height: 4px;
-                    }
-                }
-            }
-            p {
-                font-size: 1rem;
-            }
-        }
-    }
+	.icon-list {
+		display: inline-block;
+		padding-left: 0;
+		list-style-type: none;
+		@media screen and (max-width: 767px) {
+			width: 100%;
+		}
+		& > .icon-item {
+			.icon-wrapper {
+				& > img {
+					width: 75%;
+					height: auto;
+				}
+			}
+		}
+		& > .icon-item-with-dot {
+			position: relative;
+			display: inline-block;
+			float: left;
+			text-align: center;
+			&:not(:first-of-type) {
+				margin-left: 20px;
+				&:before {
+					content: '';
+					position: absolute;
+					top: calc((5rem - 6px) / 2);
+					left: -60px;
+					width: 100px;
+					height: 9px;
+					background-image: url(../assets/img/dotted.png);
+					background-size: auto 100%;
+					background-repeat: repeat-x;
+					transition: background 150ms linear;
+				}
+			}
+			&.prev {
+				&:not(:first-of-type) {
+					&:before {
+						background-image: url(../assets/img/dotted-active.png);
+					}
+				}
+			}
+			&.active {
+				&:not(:first-of-type) {
+					&:before {
+						background-image: url(../assets/img/dotted-active.png);
+					}
+				}
+				p {
+					opacity: 1;
+				}
+				.icon-wrapper {
+					background-color: $brand-secondary;
+				}
+			}
+			.icon-wrapper {
+				display: inline-flex;
+				justify-content: center;
+				width: 5rem;
+				height: 5rem;
+				background-color: $brand-primary;
+				border-radius: 50%;
+				transition: background-color 150ms linear;
+				z-index: 1;
+				&:hover, &:focus {
+					background-color: $brand-secondary;
+					cursor: pointer;
+				}
+				& > span {
+					align-self: center;
+					font-size: 2.5rem;
+					line-height: 5rem;
+					color: white;
+				}
+			}
+			p {
+				margin-top: 1rem;
+				margin-bottom: 0;
+				width: 150px;
+				color: $brand-secondary;
+				font-weight: bold;
+				opacity: 0;
+				transition: opacity 250ms linear;
+				@media screen and (max-width: 767px) {
+					width: auto;
+				}
+			}
+		}
+		@media screen and (max-width: 767px) {
+			& > .icon-item-with-dot {
+				width: calc(25% - 15px);
+				&:not(:first-of-type) {
+					&:before {
+						left: -30px;
+						width: 40px;
+						height: 6px;
+					}
+				}
+			}
 
-    .tab-content {
-        color: $brand-secondary;
-        & > img {
-            width: 100%;
-            height: auto;
-        }
-        .content-title {
-            display: inline-flex;
-            flex-flow: row wrap;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            & > div {
-                flex: 0 0 auto;
-                margin-left: 2rem;
-                @media screen and (max-width: 767px) {
-                    flex: 0 0 100%;
-                    margin-left: 0;
-                }
-            }
-            h3, p {
-                display: inline-block;
-                margin: 0;
-            }
-            p {
-                align-self: center;
-                font-size: 2rem;
-            }
-            .walking-distance {
-                position: relative;
-                margin-right: 0.5rem;
-                &:before {
-                    content: '';
-                    position: absolute;
-                    display: inline-block;
-                    top: -0.25rem;
-                    width: 1.75rem;
-                    height: 1.75rem;
-                    background-image: url(../assets/img/icon/walk.png);
-                    background-size: cover;
-                }
-                & ~ p {
-                    margin-left: 1.75rem;
-                }
-            }
-        }
-    }
+		}
+		@media screen and (max-width: 360px) {
+			& > .icon-item-with-dot {
+				&:not(:first-of-type) {
+					margin-left: 18px;
+					&:before {
+						left: -23px;
+						width: 25px;
+						height: 4px;
+					}
+				}
+			}
+			p {
+				font-size: 1rem;
+			}
+		}
+	}
+
+	.tab-content {
+		color: $brand-secondary;
+		& > img {
+			width: 100%;
+			height: auto;
+		}
+		.content-title {
+			display: inline-flex;
+			flex-flow: row wrap;
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+			& > div {
+				flex: 0 0 auto;
+				margin-left: 2rem;
+				@media screen and (max-width: 767px) {
+					flex: 0 0 100%;
+					margin-left: 0;
+				}
+			}
+			h3, p {
+				display: inline-block;
+				margin: 0;
+			}
+			p {
+				align-self: center;
+				font-size: 2rem;
+			}
+			.walking-distance {
+				position: relative;
+				margin-right: 0.5rem;
+				&:before {
+					content: '';
+					position: absolute;
+					display: inline-block;
+					top: -0.25rem;
+					width: 1.75rem;
+					height: 1.75rem;
+					background-image: url(../assets/img/icon/walk.png);
+					background-size: cover;
+				}
+				& ~ p {
+					margin-left: 1.75rem;
+				}
+			}
+		}
+	}
 </style>

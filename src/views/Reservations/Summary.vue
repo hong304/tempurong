@@ -48,7 +48,7 @@
 								<button class="btn btn-main pull-left" @click="goToReservationContact()">
 									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
 								
-								<button class="btn btn-main">{{$t('button.pay')}}</button>
+								<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>
 							</div>
 						</div>
 					</div>
@@ -91,6 +91,19 @@
     methods: {
       goToReservationContact: function () {
         this.$router.push({name: 'ReservationContact'})
+      },
+      reservation: function () {
+        let order = JSON.parse(this.$localStorage.get('orderDetails'))
+        let clientInfo = JSON.parse(this.$localStorage.get('orderContact'))
+
+        this.axios.post(process.env.API_URL + '/api/reservation', {
+          order: order,
+          clientInfo: clientInfo
+        }).then((response) => {
+          console.log(response.data)
+        }, (error) => {
+          console.log(error)
+        })
       }
     },
     computed: {

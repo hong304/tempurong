@@ -28,7 +28,7 @@
 							</li>
 						</ul>
 					</div>
-					<p>{{ resData.description }}</p>
+					<p v-html="resData.description"></p>
 				</div>
 			</div>
 		</div>

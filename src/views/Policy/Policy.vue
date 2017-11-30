@@ -1,22 +1,18 @@
 <template>
 	<div class="container" id="policy">
 		<section class="padding-of-section mt-5">
-			<div class="row">
-				<div class="col-xs-12">
+			<div class="row mb-5">
+				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
 					<content-title :contentTitle="$t('pages.policy.pageTitle')"></content-title>
+					<content-content :contentParagraph="$t('pages.policy.pageIntro')"></content-content>
 				</div>
 			</div>
 		</section>
 		<section class="mb-5 content-wrapper">
 			<div class="row" v-for="term in $t('pages.policy.terms')">
-				<div class="col-xs-10 col-xs-offset-1">
+				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
 					<h3 v-html="term.title"></h3>
 					<p v-html="term.content"></p>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-10 col-xs-offset-1">
-					<p class="policy-remark" v-html="$t('pages.policy.remark')"></p>
 				</div>
 			</div>
 		</section>
@@ -25,15 +21,16 @@
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
+  import ContentContent from '@/components/content/ContentParagraph.vue'
 
   export default {
     components: {
-      ContentTitle
+      ContentTitle,
+      ContentContent
     },
     name: 'About',
     data () {
-      return {
-      }
+      return {}
     }
   }
 </script>

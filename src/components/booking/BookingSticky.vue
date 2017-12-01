@@ -42,8 +42,22 @@
                   'nights': $tc('dateUnit.nights', totalNights, {'count': totalNights})
                 })}}
 							</li>
-							<li v-if="item.extra_breakfast">(including {{ item.extra_breakfast }} extra breakfast</li>
-							<li v-if="item.extra_mattress">(including {{ item.extra_mattress }} extra mattress</li>
+							<li v-if="item.breakfast">$ {{item.breakfast * totalNights * 12 }} MYR
+								{{$t('components.booking.bookingSticky.extraItemDescription',
+                  {
+                    'item': $tc('commonUnits.breakfast', item.breakfast, {'count': item.breakfast}),
+                    'nights': $tc('dateUnit.nights', totalNights, {'count': totalNights})
+                  }
+                )}}
+							</li>
+							<li v-if="item.mattress">$ {{item.mattress * totalNights * 18 }} MYR
+								{{$t('components.booking.bookingSticky.extraItemDescription',
+                  {
+                    'item': $tc('commonUnits.mattress', item.mattress, {'count': item.mattress}),
+                    'nights': $tc('dateUnit.nights', totalNights, {'count': totalNights})
+                  }
+                )}}
+							</li>
 						</ul>
 					</div>
 				</div>

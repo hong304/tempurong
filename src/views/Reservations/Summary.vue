@@ -98,7 +98,8 @@
 
         this.axios.post(process.env.API_URL + '/api/reservation', {
           order: order,
-          clientInfo: clientInfo
+          clientInfo: clientInfo,
+          lang: this.$i18n.locale
         }).then((response) => {
           console.log(response.data)
         }, (error) => {

@@ -43,9 +43,9 @@
 				</ul>
 
 				<div class="rooms-body">
-					<input type="checkbox" id="checkbox" v-model="needExtra" @click="handleBreakfastMattress"
+					<input type="checkbox" :id="'checkbox'+ index" v-model="needExtra" @click="handleBreakfastMattress"
 								 :disabled="!counterRooms">
-					<label for="checkbox"
+					<label :for="'checkbox'+ index"
 								 :class="{ disabled: !counterRooms }">{{$t('components.card.roomCard.addMattressAndBreakfastOption')}}</label>
 				</div>
 				<div class="rooms-extra" v-if="needExtra">
@@ -209,6 +209,8 @@
       updated: function () {
         this.counterRooms = 0
         this.roomTypeCondition.noOfRoom = 0
+        this.roomTypeCondition.breakfast = 0
+        this.roomTypeCondition.mattress = 0
       }
     },
     created () {

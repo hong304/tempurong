@@ -180,8 +180,12 @@
         this.orderDetails.roomObjects.forEach(function (item) {
           if (item.noOfRoom) {
             let breakfast = (item.breakfast) ? item.breakfast * 12 * night : 0
-            let mattress = (item.mattress) ? item.mattress * 12 * night : 0
+            let mattress = (item.mattress) ? item.mattress * 18 * night : 0
             price = price + (item.price * item.noOfRoom * night) + breakfast + mattress
+          } else {
+            item.breakfast = 0
+            item.mattress = 0
+            item.noOfRoom = 0
           }
         })
 

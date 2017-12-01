@@ -40,6 +40,7 @@
 								></room-summary-card>
 							</div>
 						</div>
+						<p class="error-message" v-if="error"><span class="ti-alert"></span> {{ $t(hasError) }}</p>
 						<div class="summary-footer">
 							<div>
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}}:
@@ -71,7 +72,8 @@
     data () {
       return {
         orderDetails: {},
-        orderContact: {}
+        orderContact: {},
+        error: false
       }
     },
     props: {
@@ -101,9 +103,15 @@
           clientInfo: clientInfo,
           lang: this.$i18n.locale
         }).then((response) => {
+          if (response.data.status) {
+            this.$localStorage.set('orderSessionId', response.data.message)
+          } else {
+            this.error = true
+          }
           console.log(response.data)
         }, (error) => {
           console.log(error)
+          this.error = true
         })
       }
     },

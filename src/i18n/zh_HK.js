@@ -243,6 +243,7 @@ module.exports = {
     guestAndRoomNoConflict: '總客人人數不能多於房間的可容納人數。',
     email: '請輸入有效的電郵。',
     tnc: '請同意條款及細則',
-    required: '請填寫{field}。'
+    required: '請填寫{field}。',
+    reservationCheckout: '你的訂單出現異常情況，請重新預訂。'
   }
 }

@@ -243,6 +243,7 @@ module.exports = {
     guestAndRoomNoConflict: 'Total guest cannot larger than maximum capacity of all rooms.',
     email: 'Please insert valid email address.',
     tnc: 'Please agree the term and condition.',
-    required: 'The {field} field is required.'
+    required: 'The {field} field is required.',
+    reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.'
   }
 }

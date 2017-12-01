@@ -56,6 +56,24 @@
 				</div>
 			</div>
 		</section>
+		
+		<!--<div>-->
+			<!--<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">-->
+				<!--&lt;!&ndash; Paypal business test account email id so that you can collect the payments. &ndash;&gt;-->
+				<!--<input type="hidden" name="business" value="sabahtvlkk30-facilitator@hotmail.com">-->
+				<!--&lt;!&ndash; Buy Now button. &ndash;&gt;-->
+				<!--<input type="hidden" name="cmd" value="_xclick">-->
+				<!--&lt;!&ndash; Details about the item that buyers will purchase. &ndash;&gt;-->
+				<!--<input type="hidden" name="item_name" value="reservation">-->
+				<!--<input type="hidden" name="item_number" value="">-->
+				<!--<input type="hidden" name="amount" v-model="orderDetails.totalPrice">-->
+				<!--<input type="hidden" name="currency_code" value="MYR">-->
+				<!--<input type="hidden" name="paymentaction" value="authorization">-->
+				<!--&lt;!&ndash; URLs &ndash;&gt;-->
+				<!--<input type='hidden' name='cancel_return' value='http://staging.tempurong.buildonauts.com/reservations/summary'>-->
+				<!--&lt;!&ndash;<input type='hidden' name='return' value='http://staging.tempurong.buildonauts.com/reservations/summary?o=$reservation->id}}&check_in={{$reservation->start_date}}&check_out={{$reservation->end_date}}'>&ndash;&gt;-->
+			<!--</form>-->
+		<!--</div>-->
 	</div>
 </template>
 

@@ -40,7 +40,7 @@
 								></room-summary-card>
 							</div>
 						</div>
-						<p class="error-message" v-if="error"><span class="ti-alert"></span> {{ $t(hasError) }}</p>
+						<p class="error-message" v-if="error"><span class="ti-alert"></span> {{ $t(error) }}</p>
 						<div class="summary-footer">
 							<div>
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}}:
@@ -134,12 +134,12 @@
             this.orderSessionId = response.data.message
             document.getElementById('paypalForm').submit()
           } else {
-            this.error = true
+            this.error = 'error.reservationCheckout'
           }
           console.log(response.data)
         }, (error) => {
           console.log(error)
-          this.error = true
+          this.error = 'error.reservationCheckout'
         })
       }
     },

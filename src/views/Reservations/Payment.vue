@@ -122,7 +122,6 @@
       }
     },
     created () {
-      console.log(JSON.parse(this.$localStorage.get('orderDetails')))
       if (!this.$localStorage.get('orderDetails')) {
         this.$router.push({name: 'Reservations'})
       }

@@ -57,7 +57,7 @@
 			</div>
 		</section>
 		
-		<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+		<form id="paypalForm" action="https://sandbox.paypal.com/cgi-bin/webscr" method="post">
 			<!-- Paypal business test account email id so that you can collect the payments. -->
 			<input type="hidden" name="business" v-model="paypal.business">
 			<!-- Buy Now button. -->
@@ -97,7 +97,7 @@
           currency_code: 'MYR',
           paymentaction: 'authorization',
           returnUrl: 'http://staging.tempurong.buildonauts.com/reservations/summary',
-          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/summary?o=' + this.orderSessionId
+          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/booked?o=' + this.orderSessionId
         },
         error: false
       }

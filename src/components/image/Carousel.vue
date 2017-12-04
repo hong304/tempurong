@@ -52,6 +52,31 @@
 			}
 		}
 	}
+	.carousel {
+		height: 50vh;
+	}
+	.item {
+		height: 100%;
+		.banner-wrapper{
+			display: inline-block;
+			@media screen and (max-width: 767px) {
+				width: 100%;
+				height: 100%;
+				overflow-x: hidden;
+			}
+			img {
+				width: 100%;
+				height: auto;
+				@media screen and (max-width: 767px) {
+					position: relative;
+					width: auto;
+					height: 100%;
+					left: 50%;
+					transform: translateX(-50%);
+				}
+			}
+		}
+	}
 	.custom-carousel-indicators {
 		& > li {
 			border: none;
@@ -63,5 +88,11 @@
 				background-color: $brand-primary;
 			}
 		}
+	}
+</style>
+
+<style lang="scss">
+	.carousel-inner {
+		height: 100%;
 	}
 </style>

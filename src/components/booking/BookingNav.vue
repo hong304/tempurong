@@ -101,6 +101,88 @@
 	
 	.picker-nav-bar {
 		@media screen and (max-width: 767px) {
+			display: inline-block;
+			padding: 1rem;
+		}
+		
+		.picker-input {
+			display: flex;
+			flex: 1 0 auto;
+			margin: 1rem 0.5rem 1rem 1rem;
+			padding-bottom: 0;
+			@media screen and (max-width: 767px) {
+				display: inline-block;
+				margin: 0;
+			}
+			& > div {
+				flex: 1 1 auto;
+				height: 40px;
+				margin-bottom: 1rem;
+				&.datepicker__wrapper {
+					width: auto !important;
+					@media screen and (max-width: 767px) {
+						margin-bottom: 0.5rem;
+					}
+				}
+				&:not(:first-of-type) {
+					margin-left: 1rem;
+					@media screen and (max-width: 767px) {
+						display: inline-block;
+						margin-left: 0;
+					}
+				}
+				&:last-of-type {
+					margin-bottom: 0;
+				}
+				&.no-of-people {
+					display: inline-block;
+					min-height: 27px;
+					padding: 0.5rem 1.5rem;
+					border: 1px solid white;
+					border-radius: 5px;
+					color: white;
+					@media screen and (max-width: 767px) {
+						/*width: 100%;*/
+						/*margin-top: -0.5rem;*/
+						width: calc(50% - 0.3rem);
+						padding: 0.5rem 0.5rem;
+					}
+					.people-title {
+						line-height: 27px;
+						margin-right: 0.5rem;
+					}
+					.controls {
+						.btn-minus, .btn-plus {
+							background-color: transparent;
+							color: white;
+							width: 25px;
+							height: 25px;
+							border: 1px solid white;
+							border-radius: 50%;
+							padding: 0;
+							line-height: 25px;
+							font-size: 15px;
+							vertical-align: middle;
+							outline: none;
+						}
+					}
+				}
+			}
+		}
+		.picker-button {
+			@media screen and (max-width: 767px) {
+				margin: 2rem 0 0;
+			}
+		}
+	}
+
+</style>
+
+<style lang="scss" scoped>
+	@import '../../assets/style/setting';
+	
+	.picker-nav-bar {
+		@media screen and (max-width: 767px) {
 			display: block;
 			padding: 1rem;
 		}

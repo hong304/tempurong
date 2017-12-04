@@ -13,3 +13,4 @@ g*
 *.ntvs*
 *.njsproj
 *.sln
+/dist/index.html

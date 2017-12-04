@@ -75,6 +75,10 @@ module.exports = {
       clientEmail: '电邮',
       totalAmount: '合计'
     },
+    reservationsBooked: {
+      pageTitle: '成功预订',
+      pageMsg: '你已成功预订我们的房间，我们将会把订单明细电邮给你。'
+    },
     faq: {
       pageTitle: 'FAQ',
       qas: [

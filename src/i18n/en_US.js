@@ -75,6 +75,10 @@ module.exports = {
       clientEmail: 'Email',
       totalAmount: 'Total Amount'
     },
+    reservationsBooked: {
+      pageTitle: 'Reservation Success',
+      pageMsg: 'Your reservation is done successfully. We will sent you an email about reservation details.'
+    },
     faq: {
       pageTitle: 'FAQ',
       qas: [

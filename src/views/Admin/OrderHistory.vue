@@ -1,9 +1,18 @@
 <template>
-	<div class="container" id="order-history">
-		<section class="padding-of-section mt-5 py-3 py-sm-5">
-			<div class="row">
+	<div class="container-fluid" id="order-history">
+		<section>
+			<div class="row m-0 text-left">
 				<div class="col-xs-12">
-					<h1>Order History</h1>
+					<h3>Order History</h3>
+				</div>
+			</div>
+			<div class="row m-0 my-5">
+				<div class="col-xs-6 col-md-3">
+					<button @click="logData">log me</button>
+				</div>
+			</div>
+			<div class="row m-0">
+				<div class="col-xs-12">
 					<vuetable ref="vuetable"
 										api-url="/api/orderHistory"
 										:fields="tableFields"
@@ -59,7 +68,8 @@
             next: 'ti-angle-right',
             last: 'ti-angle-double-right'
           }
-        }
+        },
+        orderData: {}
       }
     },
     methods: {
@@ -81,6 +91,10 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
+
+	h3 {
+		font-weight: bold;
+	}
 
 	.button {
 		background: none;

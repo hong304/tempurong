@@ -132,11 +132,12 @@
           if (response.data.status) {
             this.$localStorage.set('orderSessionId', response.data.message)
             this.orderSessionId = response.data.message
+            console.log(response.data)
+            console.log(this.paypal)
             document.getElementById('paypalForm').submit()
           } else {
             this.error = 'error.reservationCheckout'
           }
-          console.log(response.data)
         }, (error) => {
           console.log(error)
           this.error = 'error.reservationCheckout'

@@ -101,7 +101,7 @@
 	
 	.picker-nav-bar {
 		@media screen and (max-width: 767px) {
-			display: inline-block;
+			display: block;
 			padding: 1rem;
 		}
 		
@@ -110,8 +110,12 @@
 			flex: 1 0 auto;
 			margin: 1rem 0.5rem 1rem 1rem;
 			padding-bottom: 0;
+			@media screen and (min-width: 768px) and (max-width: 991px) {
+				margin: 1rem;
+			}
 			@media screen and (max-width: 767px) {
 				display: inline-block;
+				width: 100%;
 				margin: 0;
 			}
 			& > div {
@@ -121,6 +125,7 @@
 				&.datepicker__wrapper {
 					width: auto !important;
 					@media screen and (max-width: 767px) {
+						width: 100% !important;
 						margin-bottom: 0.5rem;
 					}
 				}
@@ -142,8 +147,6 @@
 					border-radius: 5px;
 					color: white;
 					@media screen and (max-width: 767px) {
-						/*width: 100%;*/
-						/*margin-top: -0.5rem;*/
 						width: calc(50% - 0.3rem);
 						padding: 0.5rem 0.5rem;
 					}
@@ -170,6 +173,10 @@
 			}
 		}
 		.picker-button {
+			@media screen and (min-width: 768px) and (max-width: 991px) {
+				width: calc(100% - 1.5rem);
+				margin: 0 1rem 1rem;
+			}
 			@media screen and (max-width: 767px) {
 				margin: 2rem 0 0;
 			}

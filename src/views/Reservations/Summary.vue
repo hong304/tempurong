@@ -59,7 +59,6 @@
 		
 		<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
 			<!-- Paypal business test account email id so that you can collect the payments. -->
-			
 			<input type="hidden" name="business" v-model="paypal.business">
 			<!-- Buy Now button. -->
 			<input type="hidden" name="cmd" v-model="paypal.cmd">

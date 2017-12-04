@@ -57,23 +57,21 @@
 			</div>
 		</section>
 		
-		<!--<div>-->
-			<!--<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">-->
-				<!--&lt;!&ndash; Paypal business test account email id so that you can collect the payments. &ndash;&gt;-->
-				<!--<input type="hidden" name="business" value="sabahtvlkk30-facilitator@hotmail.com">-->
-				<!--&lt;!&ndash; Buy Now button. &ndash;&gt;-->
-				<!--<input type="hidden" name="cmd" value="_xclick">-->
-				<!--&lt;!&ndash; Details about the item that buyers will purchase. &ndash;&gt;-->
-				<!--<input type="hidden" name="item_name" value="reservation">-->
-				<!--<input type="hidden" name="item_number" value="">-->
-				<!--<input type="hidden" name="amount" v-model="orderDetails.totalPrice">-->
-				<!--<input type="hidden" name="currency_code" value="MYR">-->
-				<!--<input type="hidden" name="paymentaction" value="authorization">-->
-				<!--&lt;!&ndash; URLs &ndash;&gt;-->
-				<!--<input type='hidden' name='cancel_return' value='http://staging.tempurong.buildonauts.com/reservations/summary'>-->
-				<!--&lt;!&ndash;<input type='hidden' name='return' value='http://staging.tempurong.buildonauts.com/reservations/summary?o=$reservation->id}}&check_in={{$reservation->start_date}}&check_out={{$reservation->end_date}}'>&ndash;&gt;-->
-			<!--</form>-->
-		<!--</div>-->
+		<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+			<!-- Paypal business test account email id so that you can collect the payments. -->
+			<input type="hidden" name="business" v-model="paypal.business">
+			<!-- Buy Now button. -->
+			<input type="hidden" name="cmd" v-model="paypal.cmd">
+			<!-- Details about the item that buyers will purchase. -->
+			<input type="hidden" name="item_name" v-model="paypal.item_name">
+			<input type="hidden" name="item_number" v-model="orderDetails.totalRooms">
+			<input type="hidden" name="amount" v-model="orderDetails.totalPrice">
+			<input type="hidden" name="currency_code" v-model="paypal.currency_code">
+			<input type="hidden" name="paymentaction" v-model="paypal.paymentaction">
+			<!-- URLs -->
+			<input type='hidden' name='cancel_return' v-model='paypal.returnUrl'>
+			<input type='hidden' name='return' v-model='paypal.returnUrlSuccess'>
+		</form>
 	</div>
 </template>
 
@@ -91,6 +89,16 @@
       return {
         orderDetails: {},
         orderContact: {},
+        orderSessionId: '',
+        paypal: {
+          business: 'sabahtvlkk30-facilitator@hotmail.com',
+          cmd: '_xclick',
+          item_name: 'reservation',
+          currency_code: 'MYR',
+          paymentaction: 'authorization',
+          returnUrl: 'http://staging.tempurong.buildonauts.com/reservations/summary',
+          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/summary?o=' + this.orderSessionId
+        },
         error: false
       }
     },
@@ -123,6 +131,8 @@
         }).then((response) => {
           if (response.data.status) {
             this.$localStorage.set('orderSessionId', response.data.message)
+            this.orderSessionId = response.data.message
+            document.getElementById('paypalForm').submit()
           } else {
             this.error = true
           }

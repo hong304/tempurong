@@ -7,8 +7,17 @@
 				</div>
 			</div>
 			<div class="row m-0 my-5">
-				<div class="col-xs-6 col-md-3">
-					<button @click="logData">log me</button>
+				<div class="col-xs-12">
+					<ul>
+						<li>
+							<h3>{{ orderData.today_booked }}</h3>
+							<p>Reservation today</p>
+						</li>
+						<li>
+							<h3>{{ orderData.today_booked }}</h3>
+							<p>Reservation today</p>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<div class="row m-0">
@@ -84,7 +93,17 @@
       },
       deleteRow (rowData) {
         alert('You clicked delete on' + JSON.stringify(rowData))
+      },
+      logData () {
+        console.log(this.orderData)
       }
+    },
+    created () {
+      this.axios.get(process.env.API_URL + '/api/orderHistory').then((response) => {
+        this.orderData = response.data
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 </script>

@@ -56,10 +56,10 @@
 		top: 0;
 		height: 100vh;
 		width: 80px;
-		padding: 10px;
+		padding: 15px;
 		background: #2B2E33;
 		.nav-brand {
-			width: 60px;
+			width: 50px;
 			height: auto;
 			img {
 				width: 100%;

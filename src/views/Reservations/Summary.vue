@@ -70,7 +70,8 @@
 			<input type="hidden" name="paymentaction" v-model="paypal.paymentaction">
 			<!-- URLs -->
 			<input type='hidden' name='cancel_return' v-model='paypal.returnUrl'>
-			<input type='hidden' name='return' v-model='paypal.returnUrlSuccess'>
+			<input type='hidden' name='return' :value='paypal.returnUrlSuccess'
+			       @change='paypal.returnUrlSuccess=$event.target.value'>
 		</form>
 	</div>
 </template>
@@ -130,12 +131,12 @@
           lang: this.$i18n.locale
         }).then((response) => {
           if (response.data.status) {
-//            this.$localStorage.set('orderSessionId', response.data.message)
-//            this.orderSessionId = response.data.message
-//            console.log(response.data)
-//            console.log(this.paypal)
-//            document.getElementById('paypalForm').submit()
-            this.submitPaypal(response)
+            this.$localStorage.set('orderSessionId', response.data.message)
+            this.orderSessionId = response.data.message
+            this.paypal.returnUrlSuccess = this.paypal.returnUrlSuccess + this.orderSessionId
+            console.log(response.data)
+            console.log(this.paypal)
+            document.getElementById('paypalForm').submit()
           } else {
             this.error = 'error.reservationCheckout'
           }
@@ -143,14 +144,6 @@
           console.log(error)
           this.error = 'error.reservationCheckout'
         })
-      },
-      submitPaypal: async function (response) {
-        this.$localStorage.set('orderSessionId', response.data.message)
-        this.orderSessionId = response.data.message
-        this.paypal.returnUrlSuccess = this.paypal.returnUrlSuccess + this.orderSessionId
-        console.log(response.data.message)
-        console.log(this.paypal)
-        document.getElementById('paypalForm').submit()
       }
     },
     computed: {

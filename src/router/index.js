@@ -48,7 +48,7 @@ export default new Router({
         {path: '/reservations/contact', name: 'ReservationContact', component: Payment},
         {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
         {path: '/successful-booked', name: 'SuccessfulBooked', component: SuccessfulBooked},
-        {path: '/order-detail', name: 'OrderDetail', component: OrderDetail},
+        {path: '/order-detail', name: 'OrderDetail', component: OrderDetail, props: true},
         // policy routes
         {path: '/faq', name: 'FAQ', component: FAQ},
         {path: '/policy', name: 'Policy', component: Policy}

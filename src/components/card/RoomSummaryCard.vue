@@ -2,11 +2,11 @@
 	<div class="room-summary row">
 		<div class="image-thumb-wrapper col-sm-3 col-xs-12">
 			<img :src="imageSrc"/>
+			<!--<img :src="resData.room_type.cover_image"/>-->
 		</div>
 		<div class="info-wrapper col-sm-9 col-xs-12">
 			<div class="content-group">
-				<h3 class="room-type">{{ resData['name_' + $i18n.locale] }}</h3>
-				<h3 class="num-of-rooms">{{ resData.noOfRoom }}</h3>
+				<h3 class="room-type">{{ resData.room_type['name_' + $i18n.locale] }}</h3>
 			</div>
 			<div class="content-group">
 				{{ $t('components.card.roomSummaryCard.capacity',
@@ -18,9 +18,8 @@
 			<div class="content-group">
 				<p class="price-and-nights">
 					{{ resData.price }} MYR
-					<span v-if="(resData.noOfRoom > 1)">x {{$tc('commonUnits.room', resData.noOfRoom, {'count': resData.noOfRoom})}}</span>
 					x {{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }}
-					<span v-if="resData.add_bed" class="extra-note">
+					<span v-if="resData.mattress" class="extra-note">
 						{{
             $t('components.card.roomSummaryCard.mattressAndBreakfast',
               {
@@ -40,7 +39,7 @@
   export default {
     name: 'room-summary-card',
     props: {
-      resData: this.item,
+      resData: {},
       totalNights: {type: Number}
     },
     data () {
@@ -52,7 +51,7 @@
     },
     computed: {
       totalCost: function () {
-        return this.resData.price * this.resData.noOfRoom * this.totalNights
+        return this.resData.price * this.totalNights
       }
     }
   }

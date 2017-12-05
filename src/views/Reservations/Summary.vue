@@ -130,11 +130,12 @@
           lang: this.$i18n.locale
         }).then((response) => {
           if (response.data.status) {
-            this.$localStorage.set('orderSessionId', response.data.message)
-            this.orderSessionId = response.data.message
-            console.log(response.data)
-            console.log(this.paypal)
-            document.getElementById('paypalForm').submit()
+//            this.$localStorage.set('orderSessionId', response.data.message)
+//            this.orderSessionId = response.data.message
+//            console.log(response.data)
+//            console.log(this.paypal)
+//            document.getElementById('paypalForm').submit()
+            this.submitPaypal(response)
           } else {
             this.error = 'error.reservationCheckout'
           }
@@ -142,6 +143,13 @@
           console.log(error)
           this.error = 'error.reservationCheckout'
         })
+      },
+      submitPaypal: async function (response) {
+        this.$localStorage.set('orderSessionId', response.data.message)
+        this.orderSessionId = response.data.message
+        console.log(response.data)
+        console.log(this.paypal)
+        document.getElementById('paypalForm').submit()
       }
     },
     computed: {

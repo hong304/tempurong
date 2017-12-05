@@ -41,7 +41,7 @@
             </div>
             <div class="row mt-5">
                 <div class="col-xs-12">
-                    <activity-card v-for="(item, index) in adventures" :resData="item"></activity-card>
+                    <activity-card v-for="(item, index) in adventures" :resData="item" :key="index"></activity-card>
                     <!--<activity-card></activity-card>-->
                     <!--<activity-card></activity-card>-->
                 </div>

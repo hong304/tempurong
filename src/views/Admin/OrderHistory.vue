@@ -27,10 +27,10 @@
                     :fields="tableFields"
                     pagination-path=""
                     @vuetable:pagination-data="onPaginationData">
-            <template slot="guests" scope="props">
+            <template slot="guests" slot-scope="props">
               <p class="m-0">{{ props.rowData.adults + props.rowData.children }}</p>
             </template>
-            <template slot="detail" scope="props">
+            <template slot="detail" slot-scope="props">
               <router-link :to="{ name: 'OrderDetail', params: {orderId: props.rowData.id}}"><span class="ti-zoom-in"></span></router-link>
             </template>
           </vuetable>

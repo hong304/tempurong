@@ -97,7 +97,7 @@
           currency_code: 'MYR',
           paymentaction: 'authorization',
           returnUrl: 'http://staging.tempurong.buildonauts.com/reservations/summary',
-          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/booked?o=' + this.orderSessionId
+          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/booked?o='
         },
         error: false
       }
@@ -147,7 +147,8 @@
       submitPaypal: async function (response) {
         this.$localStorage.set('orderSessionId', response.data.message)
         this.orderSessionId = response.data.message
-        console.log(response.data)
+        this.paypal.returnUrlSuccess = this.paypal.returnUrlSuccess + this.orderSessionId
+        console.log(response.data.message)
         console.log(this.paypal)
         document.getElementById('paypalForm').submit()
       }

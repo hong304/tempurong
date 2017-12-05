@@ -54,8 +54,8 @@
     computed: {
       totalCost: function () {
         let breakfast = (this.resData.breakfast) ? this.resData.breakfast * 12 * this.totalNights : 0
-        let mattress = (this.resData.mattress) ? this.resData.mattress * 12 * this.totalNights : 0
-        return this.resData.price * this.resData.noOfRoom * this.totalNights + breakfast + mattress
+        let mattress = (this.resData.mattress) ? this.resData.mattress * 18 * this.totalNights : 0
+        return (this.resData.price * this.resData.noOfRoom * this.totalNights) + breakfast + mattress
       }
     }
   }

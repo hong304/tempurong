@@ -49,7 +49,15 @@
 								<button class="btn btn-main pull-left" @click="goToReservationContact()">
 									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
 								
-								<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>
+								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
+								<PayPal
+												:dev="dev"
+												:buttonStyle="paypalBtn"
+												:amount="orderDetails.totalPrice.toString()"
+												currency="MYR"
+												:client="credentials"
+												:invoiceNumber="orderSessionId">
+								</PayPal>
 							</div>
 						</div>
 					</div>
@@ -57,32 +65,35 @@
 			</div>
 		</section>
 		
-		<form id="paypalForm" action="https://sandbox.paypal.com/cgi-bin/webscr" method="post">
-			<!-- Paypal business test account email id so that you can collect the payments. -->
-			<input type="hidden" name="business" v-model="paypal.business">
-			<!-- Buy Now button. -->
-			<input type="hidden" name="cmd" v-model="paypal.cmd">
-			<!-- Details about the item that buyers will purchase. -->
-			<input type="hidden" name="item_name" v-model="paypal.item_name">
-			<input type="hidden" name="item_number" v-model="orderDetails.totalRooms">
-			<input type="hidden" name="amount" v-model="orderDetails.totalPrice">
-			<input type="hidden" name="currency_code" v-model="paypal.currency_code">
-			<input type="hidden" name="paymentaction" v-model="paypal.paymentaction">
-			<!-- URLs -->
-			<input type='hidden' name='cancel_return' v-model='paypal.returnUrl'>
-			<input type='hidden' name='return' v-model='paypal.returnUrlSuccess'>
-		</form>
+		
+		<!--<form id="paypalForm" action="https://sandbox.paypal.com/cgi-bin/webscr" method="post">-->
+		<!--&lt;!&ndash; Paypal business test account email id so that you can collect the payments. &ndash;&gt;-->
+		<!--<input type="hidden" name="business" v-model="paypal.business">-->
+		<!--&lt;!&ndash; Buy Now button. &ndash;&gt;-->
+		<!--<input type="hidden" name="cmd" v-model="paypal.cmd">-->
+		<!--&lt;!&ndash; Details about the item that buyers will purchase. &ndash;&gt;-->
+		<!--<input type="hidden" name="item_name" v-model="paypal.item_name">-->
+		<!--<input type="hidden" name="item_number" v-model="orderDetails.totalRooms">-->
+		<!--<input type="hidden" name="amount" v-model="orderDetails.totalPrice">-->
+		<!--<input type="hidden" name="currency_code" v-model="paypal.currency_code">-->
+		<!--<input type="hidden" name="paymentaction" v-model="paypal.paymentaction">-->
+		<!--&lt;!&ndash; URLs &ndash;&gt;-->
+		<!--<input type='hidden' name='cancel_return' v-model='paypal.returnUrl'>-->
+		<!--<input type='hidden' name='return' v-model='paypal.returnUrlSuccess'>-->
+		<!--</form>-->
 	</div>
 </template>
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
+  import PayPal from 'vue-paypal-checkout'
 
   export default {
     components: {
       RoomSummaryCard,
-      ContentTitle
+      ContentTitle,
+      PayPal
     },
     name: 'reservations-summary',
     data () {
@@ -90,6 +101,10 @@
         orderDetails: {},
         orderContact: {},
         orderSessionId: '',
+        credentials: {
+          sandbox: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN',
+          production: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R'
+        },
         paypal: {
           business: 'sabahtvlkk30-facilitator@hotmail.com',
           cmd: '_xclick',
@@ -99,7 +114,19 @@
           returnUrl: 'http://staging.tempurong.buildonauts.com/reservations/summary',
           returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/booked?o='
         },
-        error: false
+        paypalBtn: {
+          label: 'paypal',
+          size:
+            'small',    // small | medium | large | responsive
+          shape:
+            'rect',         // pill | rect
+          color:
+            'gold',         // gold | blue | silver | black
+          tagline: false
+        },
+        dev: true,
+        error:
+          false
       }
     },
     props: {
@@ -130,12 +157,12 @@
           lang: this.$i18n.locale
         }).then((response) => {
           if (response.data.status) {
-//            this.$localStorage.set('orderSessionId', response.data.message)
-//            this.orderSessionId = response.data.message
+            this.$localStorage.set('orderSessionId', response.data.message)
+            this.orderSessionId = response.data.message
 //            console.log(response.data)
 //            console.log(this.paypal)
 //            document.getElementById('paypalForm').submit()
-            this.submitPaypal(response)
+//            this.submitPaypal(response)
           } else {
             this.error = 'error.reservationCheckout'
           }

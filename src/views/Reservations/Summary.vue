@@ -1,6 +1,6 @@
 <template>
 	<div class="container" id="order-detail">
-		<div id="loading-overlay">
+		<div id="loading-overlay" v-if="showLoading">
 			<div class="overlay-wrapper">
 				<div class="spinner">
 					<div class="bounce1"></div>
@@ -62,7 +62,7 @@
 								
 								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
 								<PayPal
-												@click="reservation()"
+												v-on:paypal-paymentCompleted="saveReservation"
 												:dev="dev"
 												:buttonStyle="paypalBtn"
 												:amount="orderDetails.totalPrice.toString()"
@@ -76,23 +76,6 @@
 				</div>
 			</div>
 		</section>
-		
-		
-		<!--<form id="paypalForm" action="https://sandbox.paypal.com/cgi-bin/webscr" method="post">-->
-		<!--&lt;!&ndash; Paypal business test account email id so that you can collect the payments. &ndash;&gt;-->
-		<!--<input type="hidden" name="business" v-model="paypal.business">-->
-		<!--&lt;!&ndash; Buy Now button. &ndash;&gt;-->
-		<!--<input type="hidden" name="cmd" v-model="paypal.cmd">-->
-		<!--&lt;!&ndash; Details about the item that buyers will purchase. &ndash;&gt;-->
-		<!--<input type="hidden" name="item_name" v-model="paypal.item_name">-->
-		<!--<input type="hidden" name="item_number" v-model="orderDetails.totalRooms">-->
-		<!--<input type="hidden" name="amount" v-model="orderDetails.totalPrice">-->
-		<!--<input type="hidden" name="currency_code" v-model="paypal.currency_code">-->
-		<!--<input type="hidden" name="paymentaction" v-model="paypal.paymentaction">-->
-		<!--&lt;!&ndash; URLs &ndash;&gt;-->
-		<!--<input type='hidden' name='cancel_return' v-model='paypal.returnUrl'>-->
-		<!--<input type='hidden' name='return' v-model='paypal.returnUrlSuccess'>-->
-		<!--</form>-->
 	</div>
 </template>
 
@@ -115,16 +98,7 @@
         orderSessionId: '',
         credentials: {
           sandbox: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN',
-          production: 'AZDxjDScFpQtjWTOUtWKbyN_bDt4OgqaF4eYXlewfBP4-8aqX3PiV8e1GWU6liB2CUXlkA59kJXE7M6R'
-        },
-        paypal: {
-          business: 'sabahtvlkk30-facilitator@hotmail.com',
-          cmd: '_xclick',
-          item_name: 'reservation',
-          currency_code: 'MYR',
-          paymentaction: 'authorization',
-          returnUrl: 'http://staging.tempurong.buildonauts.com/reservations/summary',
-          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/booked?o='
+          production: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN'
         },
         paypalBtn: {
           label: 'paypal',
@@ -138,7 +112,8 @@
         },
         dev: true,
         error:
-          false
+          false,
+        showLoading: false
       }
     },
     props: {
@@ -169,7 +144,6 @@
           lang: this.$i18n.locale
         }).then((response) => {
           if (response.data.status) {
-            this.$localStorage.set('orderSessionId', response.data.message)
             this.orderSessionId = response.data.message
           } else {
             this.error = 'error.reservationCheckout'
@@ -179,13 +153,22 @@
           this.error = 'error.reservationCheckout'
         })
       },
-      submitPaypal: async function (response) {
-        this.$localStorage.set('orderSessionId', response.data.message)
-        this.orderSessionId = response.data.message
-        this.paypal.returnUrlSuccess = this.paypal.returnUrlSuccess + this.orderSessionId
-        console.log(response.data.message)
-        console.log(this.paypal)
-        document.getElementById('paypalForm').submit()
+      saveReservation: function (data) {
+        if (data.state === 'approved') {
+          this.showLoading = true
+          this.axios.post(process.env.API_URL + '/api/reservation/update', {
+            sessionId: data.transactions[0].invoice_number,
+            transactionId: data.id
+          }).then((response) => {
+            console.log(response)
+            this.$localStorage.set('transactionId', response.data.message)
+            this.showLoading = false
+            this.$router.push({name: 'ReservationConfirmed'})
+          }, (error) => {
+            console.log(error)
+            this.error = 'error.reservationCheckout'
+          })
+        }
       }
     },
     computed: {
@@ -212,145 +195,152 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
+    },
+    mounted () {
+      this.reservation()
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  @import '../../assets/style/setting';
-
-  .summary-wrapper {
-    margin: 0 5rem;
-    padding: 5rem;
-    border: 1px solid $light-grey;
-    text-align: left;
-    h3, p {
-      color: $brand-secondary;
-    }
-    h3 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin: 0;
-    }
-    .summary-header {
-      border-bottom: 1px solid $brand-primary;
-      & > .row {
-        & > div {
-          padding-left: 3.5rem;
-        }
-        &.highlight-detail {
-          & > div {
-            &:first-of-type {
-              border-right: 1px solid $brand-primary;
-            }
-          }
-        }
-        &.client-detail {
-          h3 {
-            margin-bottom: 0.75rem;
-          }
-        }
-      }
-    }
-    .summary-body {
-      border-bottom: 5px solid $brand-primary;
-      margin-bottom: 3.5rem;
-      h3 {
-        margin-bottom: 2rem;
-      }
-    }
-    .summary-header, .summary-header p {
-      margin-bottom: 0;
-    }
-    .summary-body, .summary-footer {
-      h3 {
-        text-transform: uppercase;
-      }
-    }
-    .summary-footer {
-      text-align: right;
-      h3 {
-        margin-bottom: 1.5rem;
-      }
-      .total-price {
-        &:before {
-          content: '$';
-          margin-right: 0.5rem;
-        }
-      }
-    }
-    .btn-main {
-      text-transform: uppercase;
-      .ti-icon {
-        margin-right: 0.5rem;
-      }
-    }
-  }
-
-
-  #loading-overlay {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    background-color: white;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    z-index: 99999;
-    overflow: hidden;
-    .overlay-wrapper {
-      flex: 0 1 auto;
-      align-self: center;
-      h3 {
-        text-transform: uppercase;
-      }
-      p {
-        margin-bottom: 0;
-      }
-    }
-  }
-
-  .spinner {
-    margin: 0 auto;
-    width: 70px;
-    text-align: center;
-  }
-
-  .spinner > div {
-    width: 18px;
-    height: 18px;
-    background-color: $brand-secondary;
-
-    border-radius: 100%;
-    display: inline-block;
-    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  }
-
-  .spinner .bounce1 {
-    -webkit-animation-delay: -0.32s;
-    animation-delay: -0.32s;
-  }
-
-  .spinner .bounce2 {
-    -webkit-animation-delay: -0.16s;
-    animation-delay: -0.16s;
-  }
-
-  @-webkit-keyframes sk-bouncedelay {
-    0%, 80%, 100% { -webkit-transform: scale(0) }
-    40% { -webkit-transform: scale(1.0) }
-  }
-
-  @keyframes sk-bouncedelay {
-    0%, 80%, 100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    } 40% {
-        -webkit-transform: scale(1.0);
-        transform: scale(1.0);
-      }
-  }
+	@import '../../assets/style/setting';
+	
+	.summary-wrapper {
+		margin: 0 5rem;
+		padding: 5rem;
+		border: 1px solid $light-grey;
+		text-align: left;
+		h3, p {
+			color: $brand-secondary;
+		}
+		h3 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			margin: 0;
+		}
+		.summary-header {
+			border-bottom: 1px solid $brand-primary;
+			& > .row {
+				& > div {
+					padding-left: 3.5rem;
+				}
+				&.highlight-detail {
+					& > div {
+						&:first-of-type {
+							border-right: 1px solid $brand-primary;
+						}
+					}
+				}
+				&.client-detail {
+					h3 {
+						margin-bottom: 0.75rem;
+					}
+				}
+			}
+		}
+		.summary-body {
+			border-bottom: 5px solid $brand-primary;
+			margin-bottom: 3.5rem;
+			h3 {
+				margin-bottom: 2rem;
+			}
+		}
+		.summary-header, .summary-header p {
+			margin-bottom: 0;
+		}
+		.summary-body, .summary-footer {
+			h3 {
+				text-transform: uppercase;
+			}
+		}
+		.summary-footer {
+			text-align: right;
+			h3 {
+				margin-bottom: 1.5rem;
+			}
+			.total-price {
+				&:before {
+					content: '$';
+					margin-right: 0.5rem;
+				}
+			}
+		}
+		.btn-main {
+			text-transform: uppercase;
+			.ti-icon {
+				margin-right: 0.5rem;
+			}
+		}
+	}
+	
+	#loading-overlay {
+		position: fixed;
+		display: flex;
+		justify-content: center;
+		background-color: white;
+		width: 100vw;
+		height: 100vh;
+		left: 0;
+		top: 0;
+		z-index: 99999;
+		overflow: hidden;
+		.overlay-wrapper {
+			flex: 0 1 auto;
+			align-self: center;
+			h3 {
+				text-transform: uppercase;
+			}
+			p {
+				margin-bottom: 0;
+			}
+		}
+	}
+	
+	.spinner {
+		margin: 0 auto;
+		width: 70px;
+		text-align: center;
+	}
+	
+	.spinner > div {
+		width: 18px;
+		height: 18px;
+		background-color: $brand-secondary;
+		
+		border-radius: 100%;
+		display: inline-block;
+		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+	}
+	
+	.spinner .bounce1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
+	}
+	
+	.spinner .bounce2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
+	}
+	
+	@-webkit-keyframes sk-bouncedelay {
+		0%, 80%, 100% {
+			-webkit-transform: scale(0)
+		}
+		40% {
+			-webkit-transform: scale(1.0)
+		}
+	}
+	
+	@keyframes sk-bouncedelay {
+		0%, 80%, 100% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		40% {
+			-webkit-transform: scale(1.0);
+			transform: scale(1.0);
+		}
+	}
 </style>

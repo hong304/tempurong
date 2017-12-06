@@ -56,7 +56,6 @@
     },
     data () {
       return {
-        titleOne: 'Reservation Success',
         activitiesData: [
           {
             infoTitle: 'Activities card 1'
@@ -71,6 +70,16 @@
             infoTitle: 'Activities card 4'
           }
         ]
+      }
+    },
+    created () {
+      let transactionId = this.$localStorage.get('transactionId', false)
+      if (transactionId) {
+        this.$localStorage.remove('orderDetails')
+        this.$localStorage.remove('orderContact')
+        this.$localStorage.remove('transactionId')
+      } else {
+        this.$router.push({name: 'Reservations'})
       }
     }
   }

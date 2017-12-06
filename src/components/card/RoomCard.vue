@@ -337,8 +337,12 @@
 
 	.rooms-body {
 		label {
+			&:hover, &:focus {
+				cursor: pointer;
+			}
 			&.disabled {
 				color: $light-grey;
+				cursor: not-allowed;
 			}
 		}
 	}

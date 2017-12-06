@@ -51,6 +51,7 @@
 								
 								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
 								<PayPal
+												@click="reservation()"
 												:dev="dev"
 												:buttonStyle="paypalBtn"
 												:amount="orderDetails.totalPrice.toString()"
@@ -159,10 +160,6 @@
           if (response.data.status) {
             this.$localStorage.set('orderSessionId', response.data.message)
             this.orderSessionId = response.data.message
-//            console.log(response.data)
-//            console.log(this.paypal)
-//            document.getElementById('paypalForm').submit()
-//            this.submitPaypal(response)
           } else {
             this.error = 'error.reservationCheckout'
           }

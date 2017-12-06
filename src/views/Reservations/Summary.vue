@@ -1,5 +1,16 @@
 <template>
 	<div class="container" id="order-detail">
+		<div id="loading-overlay">
+			<div class="overlay-wrapper">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				<h3>Processing</h3>
+				<p>Please don't refresh or close the page until the process is finished.</p>
+			</div>
+		</div>
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
@@ -207,73 +218,139 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-	@import '../../assets/style/setting';
-	
-	.summary-wrapper {
-		margin: 0 5rem;
-		padding: 5rem;
-		border: 1px solid $light-grey;
-		text-align: left;
-		h3, p {
-			color: $brand-secondary;
-		}
-		h3 {
-			font-size: 2.5rem;
-			font-weight: bold;
-			margin: 0;
-		}
-		.summary-header {
-			border-bottom: 1px solid $brand-primary;
-			& > .row {
-				& > div {
-					padding-left: 3.5rem;
-				}
-				&.highlight-detail {
-					& > div {
-						&:first-of-type {
-							border-right: 1px solid $brand-primary;
-						}
-					}
-				}
-				&.client-detail {
-					h3 {
-						margin-bottom: 0.75rem;
-					}
-				}
-			}
-		}
-		.summary-body {
-			border-bottom: 5px solid $brand-primary;
-			margin-bottom: 3.5rem;
-			h3 {
-				margin-bottom: 2rem;
-			}
-		}
-		.summary-header, .summary-header p {
-			margin-bottom: 0;
-		}
-		.summary-body, .summary-footer {
-			h3 {
-				text-transform: uppercase;
-			}
-		}
-		.summary-footer {
-			text-align: right;
-			h3 {
-				margin-bottom: 1.5rem;
-			}
-			.total-price {
-				&:before {
-					content: '$';
-					margin-right: 0.5rem;
-				}
-			}
-		}
-		.btn-main {
-			text-transform: uppercase;
-			.ti-icon {
-				margin-right: 0.5rem;
-			}
-		}
-	}
+  @import '../../assets/style/setting';
+
+  .summary-wrapper {
+    margin: 0 5rem;
+    padding: 5rem;
+    border: 1px solid $light-grey;
+    text-align: left;
+    h3, p {
+      color: $brand-secondary;
+    }
+    h3 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin: 0;
+    }
+    .summary-header {
+      border-bottom: 1px solid $brand-primary;
+      & > .row {
+        & > div {
+          padding-left: 3.5rem;
+        }
+        &.highlight-detail {
+          & > div {
+            &:first-of-type {
+              border-right: 1px solid $brand-primary;
+            }
+          }
+        }
+        &.client-detail {
+          h3 {
+            margin-bottom: 0.75rem;
+          }
+        }
+      }
+    }
+    .summary-body {
+      border-bottom: 5px solid $brand-primary;
+      margin-bottom: 3.5rem;
+      h3 {
+        margin-bottom: 2rem;
+      }
+    }
+    .summary-header, .summary-header p {
+      margin-bottom: 0;
+    }
+    .summary-body, .summary-footer {
+      h3 {
+        text-transform: uppercase;
+      }
+    }
+    .summary-footer {
+      text-align: right;
+      h3 {
+        margin-bottom: 1.5rem;
+      }
+      .total-price {
+        &:before {
+          content: '$';
+          margin-right: 0.5rem;
+        }
+      }
+    }
+    .btn-main {
+      text-transform: uppercase;
+      .ti-icon {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+
+  #loading-overlay {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    overflow: hidden;
+    .overlay-wrapper {
+      flex: 0 1 auto;
+      align-self: center;
+      h3 {
+        text-transform: uppercase;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .spinner {
+    margin: 0 auto;
+    width: 70px;
+    text-align: center;
+  }
+
+  .spinner > div {
+    width: 18px;
+    height: 18px;
+    background-color: $brand-secondary;
+
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  }
+
+  .spinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+  }
+
+  .spinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+  }
+
+  @-webkit-keyframes sk-bouncedelay {
+    0%, 80%, 100% { -webkit-transform: scale(0) }
+    40% { -webkit-transform: scale(1.0) }
+  }
+
+  @keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+      -webkit-transform: scale(0);
+      transform: scale(0);
+    } 40% {
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+      }
+  }
 </style>

@@ -6,7 +6,7 @@
 					<span class="ti-menu"></span>
 				</button>
 				<router-link :to="{ name: 'Home' }" class="navbar-brand" role="button">
-					<img src="/static/img/logo.png" :alt="$t('companyName')">
+					<img src="/static/img/logo.svg" :alt="$t('companyName')" height="30" width="132">
 				</router-link>
 			</div>
 			<collapse class="navbar-collapse" v-model="showNavbar">

@@ -96,8 +96,6 @@
                     <ul class="detail-list">
                         <li class="info-title"><strong>Address</strong></li>
                         <li>Jalan Kg Tempurong, Kuala Penyu,<br>89740 Kuala Penyu,<br>Sabah, Malaysia</li>
-                        <li class="info-title"><strong>Email</strong></li>
-                        <li>sabahtvlkk30@hotmail.com</li>
                         <li class="info-title"><strong>Tel</strong></li>
                         <li>+60 88-230 916</li>
                     </ul>

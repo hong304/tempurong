@@ -17,7 +17,7 @@
 					</span>
 					<h3 v-html="result['name_'+$i18n.locale]"></h3>
 					<p>{{result['room_title_' + $i18n.locale]}}</p>
-					<h4>${{ result.price }} MYR <span>(per night with breakfast)</span></h4>
+					<h4>${{ result.price }} MYR <span>{{$t('components.card.roomCard.withBreakfast')}}</span></h4>
 				</div>
 				<ul class="icon-list">
 					<li>

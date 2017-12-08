@@ -77,6 +77,7 @@ module.exports = {
     },
     reservationsBooked: {
       pageTitle: 'Reservation Success',
+      thankYou: 'Thank you!',
       pageMsg: 'Your reservation is done successfully. We will sent you an email about reservation details.'
     },
     faq: {
@@ -219,6 +220,7 @@ module.exports = {
     card: {
       roomCard: {
         guests: '{count} guests | {count} guest | {count} guests',
+        withBreakfast: '(per night with breakfast)',
         addMattressRemarks: '(adding 1 extra mattress for max. {count} guests)',
         addMattressAndBreakfastOption: 'Extra mattress or breakfast',
         extraBreakfast: 'extra breakfast (MYR12 per night)',

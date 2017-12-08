@@ -10,7 +10,7 @@
 		<section class="py-3">
 			<div class="row message-wrapper">
 				<div class="col-xs-8 col-xs-offset-2">
-					<h3>Thanks You!</h3>
+					<h3>{{$t('pages.reservationsBooked.thankYou')}}</h3>
 					<content-content :contentParagraph="$t('pages.reservationsBooked.pageMsg')"></content-content>
 				</div>
 			</div>

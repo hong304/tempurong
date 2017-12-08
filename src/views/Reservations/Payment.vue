@@ -18,29 +18,29 @@
 							<div class="row">
 								<div class="col-sm-6 col-xs-12">
 									<input v-model="contact.firstName"
-									       v-bind:placeholder="$t('pages.reservationsContact.firstName') + ' *'">
+												 v-bind:placeholder="$t('pages.reservationsContact.firstName') + ' *'">
 								</div>
 								<div class="col-sm-6 col-xs-12">
 									<input v-model="contact.lastName"
-									       v-bind:placeholder="$t('pages.reservationsContact.lastName') + ' *'">
+												 v-bind:placeholder="$t('pages.reservationsContact.lastName') + ' *'">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
 									<input v-model="contact.email"
-									       v-bind:placeholder="$t('pages.reservationsContact.email') + ' *'">
+												 v-bind:placeholder="$t('pages.reservationsContact.email') + ' *'">
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
 									<textarea v-model="contact.remarks"
-									          v-bind:placeholder="$t('pages.reservationsContact.remarks')"></textarea>
+														v-bind:placeholder="$t('pages.reservationsContact.remarks')"></textarea>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
 									<textarea v-model="contact.additionalNote"
-									          v-bind:placeholder="$t('pages.reservationsContact.additionalNotes')"></textarea>
+														v-bind:placeholder="$t('pages.reservationsContact.additionalNotes')"></textarea>
 								</div>
 							</div>
 							<div class="row">
@@ -48,7 +48,7 @@
 									<p>{{$t('pages.reservationsContact.tnc')}}</p>
 									<input type="checkbox" id="tcAgree" v-model="contact.tnc">
 									<label
-													for="tcAgree">{{$t('pages.reservationsContact.tncCheckbox')}}</label>
+										for="tcAgree" id="tnc">{{$t('pages.reservationsContact.tncCheckbox')}}</label>
 								</div>
 							</div>
 							<h5 class="error-message" v-if="errors" v-for="item in errors.items">
@@ -61,7 +61,7 @@
 							<!-- back button for editing the order details -->
 							<button class="btn btn-main pull-left" @click="goBackToReservation()">
 								<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
-							
+
 							<button class="btn btn-main" @click="goToPreview()">
 								<span>{{$t('button.checkOut')}}</span></button>
 						</div>
@@ -121,6 +121,11 @@
         this.errors.clear()
       }
     },
+    watch: {
+      'contact.tnc': function (val) {
+        if (!val) { this.contact.tnc = null }
+      }
+    },
     created () {
       if (!this.$localStorage.get('orderDetails')) {
         this.$router.push({name: 'Reservations'})
@@ -143,7 +148,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	.payment-wrapper {
 		margin: 0 5rem;
 		padding: 5rem;
@@ -165,12 +170,12 @@
 			padding: 2rem;
 		}
 	}
-	
+
 	.payment-header {
 		text-transform: uppercase;
 		margin-bottom: 3rem;
 	}
-	
+
 	.payment-body {
 		margin-bottom: 4rem;
 		input, textarea {
@@ -203,9 +208,12 @@
 		}
 		label {
 			font-weight: 400;
+			&#tnc {
+				cursor: pointer;
+			}
 		}
 	}
-	
+
 	.payment-footer {
 		text-align: right;
 		h3 {
@@ -230,7 +238,7 @@
 			}
 		}
 	}
-	
+
 	.btn-main {
 		text-transform: uppercase;
 		.fa-icon, span {

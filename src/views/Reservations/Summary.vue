@@ -1,5 +1,16 @@
 <template>
 	<div class="container" id="order-detail">
+		<div id="loading-overlay" v-if="showLoading">
+			<div class="overlay-wrapper">
+				<div class="spinner">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
+				<h3>Processing</h3>
+				<p>Please don't refresh or close the page until the process is finished.</p>
+			</div>
+		</div>
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
@@ -49,41 +60,35 @@
 								<button class="btn btn-main pull-left" @click="goToReservationContact()">
 									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
 								
-								<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>
+								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
+								<PayPal
+												v-on:paypal-paymentCompleted="saveReservation"
+												:dev="dev"
+												:buttonStyle="paypalBtn"
+												:amount="orderDetails.totalPrice.toString()"
+												currency="MYR"
+												:client="credentials"
+												:invoiceNumber="orderSessionId">
+								</PayPal>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		
-		<form id="paypalForm" action="https://sandbox.paypal.com/cgi-bin/webscr" method="post">
-			<!-- Paypal business test account email id so that you can collect the payments. -->
-			<input type="hidden" name="business" v-model="paypal.business">
-			<!-- Buy Now button. -->
-			<input type="hidden" name="cmd" v-model="paypal.cmd">
-			<!-- Details about the item that buyers will purchase. -->
-			<input type="hidden" name="item_name" v-model="paypal.item_name">
-			<input type="hidden" name="item_number" v-model="orderDetails.totalRooms">
-			<input type="hidden" name="amount" v-model="orderDetails.totalPrice">
-			<input type="hidden" name="currency_code" v-model="paypal.currency_code">
-			<input type="hidden" name="paymentaction" v-model="paypal.paymentaction">
-			<!-- URLs -->
-			<input type='hidden' name='cancel_return' v-model='paypal.returnUrl'>
-			<input type='hidden' name='return' :value='paypal.returnUrlSuccess'
-			       @change='paypal.returnUrlSuccess=$event.target.value'>
-		</form>
 	</div>
 </template>
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
+  import PayPal from 'vue-paypal-checkout'
 
   export default {
     components: {
       RoomSummaryCard,
-      ContentTitle
+      ContentTitle,
+      PayPal
     },
     name: 'reservations-summary',
     data () {
@@ -91,16 +96,24 @@
         orderDetails: {},
         orderContact: {},
         orderSessionId: '',
-        paypal: {
-          business: 'sabahtvlkk30-facilitator@hotmail.com',
-          cmd: '_xclick',
-          item_name: 'reservation',
-          currency_code: 'MYR',
-          paymentaction: 'authorization',
-          returnUrl: 'http://staging.tempurong.buildonauts.com/reservations/summary',
-          returnUrlSuccess: 'http://staging.tempurong.buildonauts.com/reservations/booked?o='
+        credentials: {
+          sandbox: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN',
+          production: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN'
         },
-        error: false
+        paypalBtn: {
+          label: 'paypal',
+          size:
+            'small',    // small | medium | large | responsive
+          shape:
+            'rect',         // pill | rect
+          color:
+            'gold',         // gold | blue | silver | black
+          tagline: false
+        },
+        dev: true,
+        error:
+          false,
+        showLoading: false
       }
     },
     props: {
@@ -131,12 +144,7 @@
           lang: this.$i18n.locale
         }).then((response) => {
           if (response.data.status) {
-            this.$localStorage.set('orderSessionId', response.data.message)
             this.orderSessionId = response.data.message
-            this.paypal.returnUrlSuccess = this.paypal.returnUrlSuccess + this.orderSessionId
-            console.log(response.data)
-            console.log(this.paypal)
-            document.getElementById('paypalForm').submit()
           } else {
             this.error = 'error.reservationCheckout'
           }
@@ -144,6 +152,23 @@
           console.log(error)
           this.error = 'error.reservationCheckout'
         })
+      },
+      saveReservation: function (data) {
+        if (data.state === 'approved') {
+          this.showLoading = true
+          this.axios.post(process.env.API_URL + '/api/reservation/update', {
+            sessionId: data.transactions[0].invoice_number,
+            transactionId: data.id
+          }).then((response) => {
+            console.log(response)
+            this.$localStorage.set('transactionId', response.data.message)
+            this.showLoading = false
+            this.$router.push({name: 'ReservationConfirmed'})
+          }, (error) => {
+            console.log(error)
+            this.error = 'error.reservationCheckout'
+          })
+        }
       }
     },
     computed: {
@@ -170,6 +195,9 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
+    },
+    mounted () {
+      this.reservation()
     }
   }
 </script>
@@ -243,6 +271,76 @@
 			.ti-icon {
 				margin-right: 0.5rem;
 			}
+		}
+	}
+	
+	#loading-overlay {
+		position: fixed;
+		display: flex;
+		justify-content: center;
+		background-color: white;
+		width: 100vw;
+		height: 100vh;
+		left: 0;
+		top: 0;
+		z-index: 99999;
+		overflow: hidden;
+		.overlay-wrapper {
+			flex: 0 1 auto;
+			align-self: center;
+			h3 {
+				text-transform: uppercase;
+			}
+			p {
+				margin-bottom: 0;
+			}
+		}
+	}
+	
+	.spinner {
+		margin: 0 auto;
+		width: 70px;
+		text-align: center;
+	}
+	
+	.spinner > div {
+		width: 18px;
+		height: 18px;
+		background-color: $brand-secondary;
+		
+		border-radius: 100%;
+		display: inline-block;
+		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+	}
+	
+	.spinner .bounce1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
+	}
+	
+	.spinner .bounce2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
+	}
+	
+	@-webkit-keyframes sk-bouncedelay {
+		0%, 80%, 100% {
+			-webkit-transform: scale(0)
+		}
+		40% {
+			-webkit-transform: scale(1.0)
+		}
+	}
+	
+	@keyframes sk-bouncedelay {
+		0%, 80%, 100% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		40% {
+			-webkit-transform: scale(1.0);
+			transform: scale(1.0);
 		}
 	}
 </style>

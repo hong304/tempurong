@@ -77,7 +77,8 @@ module.exports = {
     },
     reservationsBooked: {
       pageTitle: '成功預訂',
-      pageMsg: '你已成功預訂我們的房間，我們將會把訂單明細電郵給你。'
+      thankYou: '謝謝您！',
+      pageMsg: '您已成功預訂我們的房間，我們將會把訂單明細電郵給您。'
     },
     faq: {
       pageTitle: 'FAQ',
@@ -219,6 +220,7 @@ module.exports = {
     card: {
       roomCard: {
         guests: '{count} 人 | {count} 人 | {count} 人',
+        withBreakfast: '(1晚連早餐)',
         addMattressRemarks: '（可加一張床褥，房間最多容納{count}人)',
         addMattressAndBreakfastOption: '加床褥或早餐',
         extraBreakfast: '加早餐 (MYR12 每天)',

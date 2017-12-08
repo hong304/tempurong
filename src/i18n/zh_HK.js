@@ -20,7 +20,7 @@ module.exports = {
   },
   tel: {
     title: '電話',
-    tel: '+60 88-230 916'
+    tel: '+60 088-253 335'
   },
   paymentAccept: {
     title: '付款方法',

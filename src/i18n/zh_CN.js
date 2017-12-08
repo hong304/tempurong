@@ -38,7 +38,7 @@ module.exports = {
     },
     about: {
       pageTitle: '关於我们',
-      sectionTitle: '想了解更多有关 kuala penyu?'
+      sectionTitle: '想了解更多有关瓜拉彭尤?'
     },
     rooms: {
       pageTitle: '房间及设施'

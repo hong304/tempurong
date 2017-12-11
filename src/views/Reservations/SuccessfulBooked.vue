@@ -3,22 +3,23 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="titleOne"></content-title>
+					<content-title :contentTitle="$t('pages.reservationsBooked.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
 		<section class="py-3">
 			<div class="row message-wrapper">
 				<div class="col-xs-8 col-xs-offset-2">
-					<h3>Thanks You!</h3>
-					<content-content></content-content>
+					<h3>{{$t('pages.reservationsBooked.thankYou')}}</h3>
+					<content-content :contentParagraph="$t('pages.reservationsBooked.pageMsg')"></content-content>
 				</div>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index" :key="item.id">
+				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index"
+				     :key="item.id">
 					<card :buttonText="$t('button.more')" :class="{ last: index == 2 || index == 3 }"></card>
 				</div>
 			</div>
@@ -55,7 +56,6 @@
     },
     data () {
       return {
-        titleOne: 'Successfully booked',
         activitiesData: [
           {
             infoTitle: 'Activities card 1'
@@ -71,6 +71,16 @@
           }
         ]
       }
+    },
+    created () {
+      let transactionId = this.$localStorage.get('transactionId', false)
+      if (transactionId) {
+        this.$localStorage.remove('orderDetails')
+        this.$localStorage.remove('orderContact')
+        this.$localStorage.remove('transactionId')
+      } else {
+        this.$router.push({name: 'Reservations'})
+      }
     }
   }
 </script>
@@ -78,7 +88,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.message-wrapper {
 		h3 {
 			color: $brand-secondary;
@@ -86,6 +96,7 @@
 			text-transform: uppercase;
 		}
 	}
+	
 	.btn-main {
 		text-transform: uppercase;
 	}

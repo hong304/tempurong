@@ -1,79 +1,84 @@
 module.exports = {
   language: '中文',
-  languageShort: '簡',
-  companyName: '金沙龍沙度假村',
+  languageShort: '简',
+  companyName: '金沙龙沙度假村',
   menu: {
-    companyName: '金沙龍沙<br>度假村',
-    quickMenu: '快捷主單',
-    about: '關於我們',
-    rooms: '房間及設施',
-    activities: '推薦景點及活動',
+    companyName: '金沙龙沙<br>度假村',
+    quickMenu: '快捷主单',
+    about: '关於我们',
+    rooms: '房间及设施',
+    activities: '推荐景点及活动',
     food: '精彩美食',
-    contact: '聯繫我們',
-    reservations: '房間預訂',
+    contact: '联系我们',
+    reservations: '房间预订',
     resortPolicy: '度假村政策',
-    FAQ: '常見問題'
+    FAQ: '常见问题'
   },
   address: {
     title: '地址',
     address: 'Jalan Kampung Tempurung Kuala Penyu 89740'
   },
   tel: {
-    title: '電話',
-    tel: '+60 88-230 916'
+    title: '电话',
+    tel: '+60 088-253 335'
   },
   paymentAccept: {
     title: '付款方法',
-    master: '萬事達卡',
-    visa: '維薩卡'
+    master: '万事达卡',
+    visa: '维萨卡'
   },
-  copyright: '© 2017 金沙龍沙度假村 版權所有。',
+  copyright: '© 2017 金沙龙沙度假村 版权所有。',
   pages: {
     home: {
-      welcome: '歡迎來到瓜拉彭尤',
-      services: '我們的服務',
-      activities: '推薦活動',
-      features: '當地特色',
-      reviews: '顧客評價'
+      welcome: '欢迎来到瓜拉彭尤',
+      services: '我们的服务',
+      activities: '推荐活动',
+      features: '当地特色',
+      reviews: '顾客评价'
     },
     about: {
-      pageTitle: '關於我們',
-      sectionTitle: '想了解更多有關 kuala penyu?'
+      pageTitle: '关於我们',
+      sectionTitle: '想了解更多有关瓜拉彭尤?'
     },
     rooms: {
-      pageTitle: '房間及設施'
+      pageTitle: '房间及设施'
     },
     activities: {
-      pageTitle: '推薦景點及活動',
+      pageTitle: '推荐景点及活动',
       pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
-      activities: '活動',
-      adventures: '歷奇探險'
+      activities: '活动',
+      adventures: '历奇探险'
     },
     food: {
       pageTitle: '精彩美食'
     },
     contact: {
-      pageTitle: '聯繫我們'
+      pageTitle: '联系我们'
     },
     reservations: {
-      pageTitle: '房間預訂'
+      pageTitle: '房间预订'
     },
     reservationsContact: {
-      pageTitle: '聯繫資料',
-      fillInContact: '請填寫以下資料。',
+      pageTitle: '联系资料',
+      fillInContact: '请填写以下资料。',
       firstName: '名字',
       lastName: '姓氏',
-      email: '電郵',
-      remarks: '備註',
-      additionalNotes: '附加資料，如機場接送及感興趣的活動',
-      tnc: '條款及細則',
-      tncCheckbox: '我已細閱並同意以上的條款及細則和取消政策。'
+      email: '电邮',
+      remarks: '备注',
+      additionalNotes: '附加资料，如机场接送及感兴趣的活动',
+      tnc: '条款及细则',
+      tncCheckbox: '我已细阅并同意以上的条款及细则和取消政策。'
     },
     reservationsSummary: {
-      pageTitle: '訂單詳情',
+      pageTitle: '订单详情',
       clientName: '姓名',
-      clientEmail: '電郵',
-      totalAmount: '合計'
+      clientEmail: '电邮',
+      totalAmount: '合计'
+    },
+    reservationsBooked: {
+      pageTitle: '成功预订',
+      thankYou: '谢谢您！',
+      pageMsg: '您已成功预订我们的房间，我们将会把订单明细电邮给您。'
     },
     faq: {
       pageTitle: 'FAQ',
@@ -172,20 +177,20 @@ module.exports = {
     'month-names': ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
   },
   button: {
-    book: '預訂',
-    bookNow: '立即預訂',
+    book: '预订',
+    bookNow: '立即预订',
     more: '更多',
-    moreRooms: '更多房間',
-    viewRooms: '瀏覽房間',
-    moreDetails: '更多詳情',
-    hideDetails: '隱藏詳情',
-    moreAreaAndActivities: '更多景點及活動',
+    moreRooms: '更多房间',
+    viewRooms: '浏览房间',
+    moreDetails: '更多详情',
+    hideDetails: '隐藏详情',
+    moreAreaAndActivities: '更多景点及活动',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',
     submit: '提交',
     back: '返回',
-    checkOut: '提交訂單',
+    checkOut: '提交订单',
     pay: '付款'
   },
   dateUnit: {
@@ -196,54 +201,55 @@ module.exports = {
     guests: '{count}人 | {count}人 | {count}人',
     adults: '{count}位成人 | {count}位成人 | {count}位成人',
     children: '{count}位小孩 | {count}位小孩 | {count}位小孩',
-    room: '{count}間房間 | {count}間房間 | {count}間房間',
+    room: '{count}间房间 | {count}间房间 | {count}间房间',
     breakfast: '{count}份早餐 | {count}份早餐 | {count}份早餐',
-    mattress: '{count}張床褥 | {count}張床褥 | {count}張床褥'
+    mattress: '{count}张床褥 | {count}张床褥 | {count}张床褥'
   },
   components: {
     booking: {
       bookingSticky: {
-        total: '合計',
+        total: '合计',
         adultTitle: '成人',
         childrenTitle: '小孩',
-        totalRoom: '房間總數',
+        totalRoom: '房间总数',
         priceDescription: '{nights}共 $ {price} MYR',
-        policyRemarks: '請參閱我們的度假村及取消政策。',
-        extraItemDescription: '（額外{item}，共{nights}）'
+        policyRemarks: '请参阅我们的度假村及取消政策。',
+        extraItemDescription: '（额外{item}，共{nights}）'
       }
     },
     card: {
       roomCard: {
         guests: '{count} 人 | {count} 人 | {count} 人',
-        addMattressRemarks: '（可加一張床褥，房間最多容納{count}人)',
+        withBreakfast: '(1晚连早餐)',
+        addMattressRemarks: '（可加一张床褥，房间最多容纳{count}人)',
         addMattressAndBreakfastOption: '加床褥或早餐',
         extraBreakfast: '加早餐 (MYR12 每天)',
-        breakfastRemarks: '* 每間房間最多只能加一份早餐',
+        breakfastRemarks: '* 每间房间最多只能加一份早餐',
         extraMattress: '加床褥 (MYR18 每晚)',
-        mattressRemarks: '* 每間房間最多只能加一張床褥',
-        queenBed: '0 雙人大床 | 1 雙人大床 | {count} 雙人大床',
-        bunkBed: '0 單人雙層床 | 1 單人雙層床 | {count} 單人雙層床',
-        roomAvailable: '尚餘{count}間房間 | 尚餘{count}間房間 | 尚餘{count}間房間',
+        mattressRemarks: '* 每间房间最多只能加一张床褥',
+        queenBed: '0 双人大床 | 1 双人大床 | {count} 双人大床',
+        bunkBed: '0 单人双层床 | 1 单人双层床 | {count} 单人双层床',
+        roomAvailable: '尚馀{count}间房间 | 尚馀{count}间房间 | 尚馀{count}间房间',
         description: '描述',
-        amenities: '設施',
+        amenities: '设施',
         resortPolicy: '度假村政策',
         cancellations: '取消政策'
       },
       roomSummaryCard: {
-        capacity: '每間房間可容納{capacity}人',
-        extraMattressRemarks: '（如果添加了額外床褥，則最多可容納{capacity}人)',
-        mattressAndBreakfast: '（已額外添加{mattress}和{breakfast})'
+        capacity: '每间房间可容纳{capacity}人',
+        extraMattressRemarks: '（如果添加了额外床褥，则最多可容纳{capacity}人)',
+        mattressAndBreakfast: '（已额外添加{mattress}和{breakfast})'
       }
     }
   },
   error: {
-    noCheckInOut: '請選擇入住及退房日期。',
-    noGuestSelected: '請選擇最少一位客人。',
-    noRoomSelected: '請選擇最少一間房間。',
-    guestAndRoomNoConflict: '總客人人數不能多於房間的可容納人數。',
-    email: '請輸入有效的電郵。',
-    tnc: '請同意條款及細則',
-    required: '請填寫{field}。',
-    reservationCheckout: '你的訂單出現異常情況，請重新預訂。'
+    noCheckInOut: '请选择入住及退房日期。',
+    noGuestSelected: '请选择最少一位客人。',
+    noRoomSelected: '请选择最少一间房间。',
+    guestAndRoomNoConflict: '总客人人数不能多於房间的可容纳人数。',
+    email: '请输入有效的电邮。',
+    tnc: '请同意条款及细则',
+    required: '请填写{field}。',
+    reservationCheckout: '你的订单出现异常情况，请重新预订。'
   }
 }

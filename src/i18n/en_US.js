@@ -20,7 +20,7 @@ module.exports = {
   },
   tel: {
     title: 'Tel',
-    tel: '+60 88-230 916'
+    tel: '+60 088-253 335'
   },
   paymentAccept: {
     title: 'Payment Accepted by',
@@ -74,6 +74,11 @@ module.exports = {
       clientName: 'Name',
       clientEmail: 'Email',
       totalAmount: 'Total Amount'
+    },
+    reservationsBooked: {
+      pageTitle: 'Reservation Success',
+      thankYou: 'Thank you!',
+      pageMsg: 'Your reservation is done successfully. We will sent you an email about reservation details.'
     },
     faq: {
       pageTitle: 'FAQ',
@@ -215,6 +220,7 @@ module.exports = {
     card: {
       roomCard: {
         guests: '{count} guests | {count} guest | {count} guests',
+        withBreakfast: '(per night with breakfast)',
         addMattressRemarks: '(adding 1 extra mattress for max. {count} guests)',
         addMattressAndBreakfastOption: 'Extra mattress or breakfast',
         extraBreakfast: 'extra breakfast (MYR12 per night)',

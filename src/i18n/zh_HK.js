@@ -20,7 +20,7 @@ module.exports = {
   },
   tel: {
     title: '電話',
-    tel: '+60 88-230 916'
+    tel: '+60 088-253 335'
   },
   paymentAccept: {
     title: '付款方法',
@@ -74,6 +74,11 @@ module.exports = {
       clientName: '姓名',
       clientEmail: '電郵',
       totalAmount: '合計'
+    },
+    reservationsBooked: {
+      pageTitle: '成功預訂',
+      thankYou: '謝謝您！',
+      pageMsg: '您已成功預訂我們的房間，我們將會把訂單明細電郵給您。'
     },
     faq: {
       pageTitle: 'FAQ',
@@ -215,6 +220,7 @@ module.exports = {
     card: {
       roomCard: {
         guests: '{count} 人 | {count} 人 | {count} 人',
+        withBreakfast: '(1晚連早餐)',
         addMattressRemarks: '（可加一張床褥，房間最多容納{count}人)',
         addMattressAndBreakfastOption: '加床褥或早餐',
         extraBreakfast: '加早餐 (MYR12 每天)',

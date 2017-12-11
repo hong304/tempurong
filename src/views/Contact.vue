@@ -98,39 +98,11 @@
 		<section class="padding-of-section my-5">
 			<div class="row text-center">
 				<div class="col-xs-12">
-					<button class="btn btn-main enquiry-btn" @click="showForm=!showForm">Drop a message</button>
+					<button class="btn btn-main enquiry-btn mb-5" @click="formShow=!formShow" v-if="!formShow">{{ $t('button.dropMessage')}}</button>
 				</div>
 			</div>
 			<div class="row text-center">
-				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-					<collapse v-model="showForm">
-						<form class="mt-5 pt-5" id="enquiry-form">
-							<div class="row">
-								<div class="col-sm-6 col-xs-12">
-									<input v-model="enquiry.firstName"
-												 v-bind:placeholder="$t('pages.contact.enquiry.firstName')">
-								</div>
-								<div class="col-sm-6 col-xs-12">
-									<input v-model="enquiry.lastName"
-												 v-bind:placeholder="$t('pages.contact.enquiry.lastName')">
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-xs-12">
-									<input v-model="enquiry.email"
-												 v-bind:placeholder="$t('pages.contact.enquiry.email')">
-								</div>
-							</div>
-							<div class="row mb-5">
-								<div class="col-xs-12">
-									<input v-model="enquiry.message"
-												 v-bind:placeholder="$t('pages.contact.enquiry.message')">
-								</div>
-							</div>
-							<button class="btn btn-main">{{ $t('button.submit') }}</button>
-						</form>
-					</collapse>
-				</div>
+				<enquiry-form v-if="formShow"></enquiry-form>
 			</div>
 		</section>
 	</div>
@@ -139,9 +111,11 @@
 <script>
   import ContentTitle from '../components/content/ContentTitle.vue'
   import ContentParagraph from '../components/content/ContentParagraph.vue'
+  import EnquiryForm from '@/components/form/EnquiryForm.vue'
 
   export default {
     components: {
+      EnquiryForm,
       ContentTitle,
       ContentParagraph
     },
@@ -151,7 +125,7 @@
         mapSrc: '/static/img/about-map.jpg',
         imageSrc: '/static/img/demo-about-02.jpg',
         secondTitle: 'Getting There',
-        showForm: false,
+        formShow: false,
         enquiry: {
           firstName: '',
           lastName: '',

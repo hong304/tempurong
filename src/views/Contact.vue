@@ -125,13 +125,7 @@
         mapSrc: '/static/img/about-map.jpg',
         imageSrc: '/static/img/demo-about-02.jpg',
         secondTitle: 'Getting There',
-        formShow: false,
-        enquiry: {
-          firstName: '',
-          lastName: '',
-          email: '',
-          message: ''
-        }
+        formShow: false
       }
     }
   }

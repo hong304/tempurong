@@ -7,7 +7,10 @@
 						<img class="banner-img" :src="item.imgSrc">
 					</div>
 					<div class="carousel-caption" v-if="item.title">
-						<h3>This is {{item.title}}</h3>
+						<h3>{{item.title}}</h3>
+						<router-link :to="{ name: 'Rooms' }" class="btn btn-main">
+							{{ $t("button.viewRooms") }}
+						</router-link>
 					</div>
 				</slide>
 				<!-- custom indicators -->
@@ -61,6 +64,35 @@
 				width: 10px;
 				height: 10px;
 				background-color: $brand-primary;
+			}
+		}
+		@media screen and (max-width: 767px) {
+			bottom: 5px;
+			margin-bottom: 0;
+		}
+	}
+
+	.carousel-caption {
+		top: 50%;
+		bottom: auto;
+		left: auto;
+		right: auto;
+		width: 100%;
+		transform: translateY(-50%);
+		h3 {
+			margin-bottom: 2em;
+		}
+		@media screen and (max-width: 767px) {
+			h3 {
+				font-size: 1.75rem;
+				margin-bottom: 1.25rem;
+			}
+		}
+		@media screen and (min-width: 768px) {
+			.btn-main {
+				text-transform: uppercase;
+				font-weight: bold;
+				font-size: 1.5rem;
 			}
 		}
 	}

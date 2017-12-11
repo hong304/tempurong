@@ -24,21 +24,12 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-12" v-for="(item, index) in imageArr" v-if="(selected == index+1)">
+					<div class="col-xs-12" v-for="(item, index) in roomTypes" v-if="(roomTypes && selected == index+1)">
 						<div class="image-wrapper">
-							<img :src="item.imgSrc"/>
+							<img :src="item.cover_image"/>
 						</div>
 					</div>
 				</div>
-				<!--<div class="row">-->
-				<!--<div class="col-xs-12">-->
-				<!--<slick id="slider-nav" ref="slick" :options="slickOptions">-->
-				<!--<button v-for="(item, index) in resData.navImageSrc" :index="index" :key="item.id">-->
-				<!--<img :src="item" alt="">-->
-				<!--</button>-->
-				<!--</slick>-->
-				<!--</div>-->
-				<!--</div>-->
 			</section>
 
 			<section v-for="(item, index) in roomTypes" v-if="(roomTypes && selected == index+1)"
@@ -85,24 +76,8 @@
 							<p>{{item.description}}</p>
 
 							<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
-							<div class="amenities-list">
-								<div class="amenities-cell">
-									<img src="/static/img/icons/shower.png"/>
-									<span>Hot Shower</span>
-								</div>
-								<div class="amenities-cell">
-									<img src="/static/img/icons/towel.png"/>
-									<span>Shower Towel</span>
-								</div>
-								<div class="amenities-cell">
-									<img src="/static/img/icons/air-con.png"/>
-									<span>Air Conditioning</span>
-								</div>
-								<div class="amenities-cell">
-									<img src="/static/img/icons/fan.png"/>
-									<span>Fan</span>
-								</div>
-							</div>
+							<icon-list :icons="amenities"></icon-list>
+
 							<h5>Resort and Cancellation Policy</h5>
 							<p>* Please refer to our Resort and Cancellation Policy.</p>
 						</div>
@@ -110,7 +85,7 @@
 				</div>
 				<div class="row mt-5">
 					<div class="col-xs-12 text-right">
-						<router-link :to="{ name: 'Reservations' }" class="btn btn-main">Book now</router-link>
+						<router-link :to="{ name: 'Reservations' }" class="btn btn-main">{{ $t("button.bookNow") }}</router-link>
 					</div>
 				</div>
 			</section>
@@ -121,61 +96,33 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
-  import Slick from 'vue-slick'
   import RoomTypeCard from '@/components/card/RoomTypeCard.vue'
+  import IconList from '@/components/list/IconList.vue'
 
   export default {
     name: 'RoomDetail',
     components: {
+      IconList,
       RoomTypeCard,
       ContentTitle,
-      ContentParagraph,
-      Slick
+      ContentParagraph
     },
     data () {
       return {
         resData: {},
         contentParagraph: 'We have a total of 13 rooms, 8 Sea View rooms and 5 Riverside rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.',
-        slickOptions: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          centerMode: true,
-          prevArrow: '<button type="button" class="slick-prev"><span class="ti-angle-left"></span></button>',
-          nextArrow: '<button type="button" class="slick-next"><span class="ti-angle-right"></span></button>',
-          responsive: [
-            {
-              breakpoint: 768,
-              settings: {
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                centerMode: true
-              }
-            }
-          ]
-        },
         imageSrc: 'http://placehold.it/2000x1000',
         selected: 1,
         roomTypes: {},
-        imageArr: [
-          {imgSrc: '/static/img/room_type/room-01.jpg'},
-          {imgSrc: '/static/img/room_type/room-02.jpg'},
-          {imgSrc: '/static/img/room_type/room-03.jpg'}
+        amenities: [
+          {iconSrc: '/static/img/icons/shower.png', title: 'Hot Shower'},
+          {iconSrc: '/static/img/icons/towel.png', title: 'Shower Towel'},
+          {iconSrc: '/static/img/icons/air-con.png', title: 'Air Conditioning'},
+          {iconSrc: '/static/img/icons/fan.png', title: 'Fan'}
         ]
       }
     },
     methods: {
-      next () {
-//        this.$refs.slick.next()
-      },
-      prev () {
-//        this.$refs.slick.prev()
-      },
-      reInit () {
-        // Helpful if you have to deal with v-for to update dynamic lists
-//        this.$nextTick(() => {
-//          this.$refs.slick.reSlick()
-//        })
-      },
       getRoomTypeData (val) {
         if (val) {
           this.axios.post(process.env.API_URL + '/api/room-type', {
@@ -332,25 +279,7 @@
 			}
 		}
 
-		.amenities-list {
-			display: inline-block;
-			.amenities-cell {
-				display: inline-block;
-				float: left;
-				text-align: center;
-				padding: 2rem;
-				img {
-					display: inline-block;
-					padding-bottom: 2rem;
-				}
-				span {
-					display: block;
-				}
-				@media screen and (max-width: 767px) {
-					width: 50%;
-				}
-			}
-		}
+
 		ul {
 			list-style-type: none;
 			& > li {

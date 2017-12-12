@@ -26,7 +26,7 @@
 			</div>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-sm-6" v-for="(item, index) in adventures" :item="item" :index="index"
-						 :key="item.id">
+						 :key="item.id" v-if="index">
 					<card :resData="item"></card>
 				</div>
 			</div>

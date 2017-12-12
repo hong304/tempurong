@@ -18,9 +18,8 @@
 		<section class="padding-of-section my-5 border-bottom">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="secondTitle"></content-title>
-					<p>
-						Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI) by car. We are happy to provide transportation to and from the airport. </p>
+					<content-title :contentTitle="$t('pages.contact.getThere')"></content-title>
+					<content-paragraph :contentParagraph="$t('pages.contact.getThereContent')"></content-paragraph>
 				</div>
 			</div>
 			<div class="row text-left mt-5 mb-5">
@@ -29,9 +28,6 @@
 					<p>
 						For 1-4 pax, the total cost is MYR250 each way (MYR500 round trip)<br>
 						For 5-10 pax, the total cost is MYR350 each way (MYR700 round trip)
-					</p>
-					<p>
-						BY US: To make it less complicated for you, we are happy to pick you up from any place in Kota Kinabalu, drive you to Tempurong golden beach resort and at the end of your stay, drive you back to KK, 1-4 person by car MYR200 per way, 5-10 by van MYR300per way.
 					</p>
 				</div>
 			</div>

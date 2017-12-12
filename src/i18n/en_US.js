@@ -39,6 +39,7 @@ module.exports = {
     },
     about: {
       pageTitle: 'About',
+      pageIntro: 'Tempurong Golden Beach Resort is a family-owned, beautiful, oceanside retreat offering stunning views and a variety of coastal activities, located directly on the Tempurong Beach in Kuala Penyu （known as Sea Turtles Bay in Malay), Sabah.<br><br>Whether you’re looking for a relaxing getaway or something more adventurous, we will help you plan a memorable experience that fits your needs. With many delicious meal options, you can rest easy knowing that you will get an authentic taste of the local flavor no matter what your dietary preferences happen to be.<br><br> We offer private rooms capable of accommodating whole families as well as mixed dormitory rooms, making the resort an ideal destination for solo travelers, couples, groups, and families alike.',
       sectionTitle: 'Want to explore more about kuala penyu?'
     },
     rooms: {
@@ -56,6 +57,9 @@ module.exports = {
     },
     contact: {
       pageTitle: 'Contact',
+      pageIntro: '',
+      getThere: 'Getting there',
+      getThereContent: 'Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI - the nearest airport) by car. We are happy to pick-up and drop-off up from the airport or Kota Kinabalu City for an additional fee:',
       enquiry: {
         firstName: 'First Name',
         lastName: 'Last Name',

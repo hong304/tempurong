@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.about.pageTitle')"></content-title>
-					<content-paragraph :contentParagraph="contentParagraph"></content-paragraph>
+					<content-paragraph :contentParagraph="$t('pages.about.pageIntro')"></content-paragraph>
 				</div>
 			</div>
 		</section>
@@ -124,8 +124,7 @@
           infoParagraph: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
           buttonPath: '#',
           buttonPathTwo: '#'
-        },
-        contentParagraph: 'Tempurong Golden Beach Resort is a family-owned, beautiful, oceanside retreat offering stunning views and a variety of coastal activities, located directly on the Tempurong Beach in Kuala Penyu, Sabah. Whether you’re looking for a relaxing getaway or something more adventurous, we will help you plan a memorable experience that fits your needs. With many delicious meal options you can rest easy knowing that you will get an authentic taste of the local flavor no matter what your dietary preferences happen to be. We offer private rooms capable of accommodating whole families as well as mixed dormitory rooms, making the resort an ideal destination for solo travelers, couples, groups, and families alike.'
+        }
       }
     }
   }

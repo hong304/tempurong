@@ -1,9 +1,9 @@
 <template>
 	<div class="food-card">
-		<h3>{{ resData.title }}</h3>
-		<h5>{{ resData.subtitle }}</h5>
-		<img :src="resData.imageSrc"/>
-		<p>{{ resData.content }}</p>
+		<h3>{{ resData['name_' + $i18n.locale] }}</h3>
+		<h5>{{ resData['subtitle_' + $i18n.locale] }}</h5>
+		<img :src="resData.image_path"/>
+		<p>{{ resData['description_' + $i18n.locale] }}</p>
 	</div>
 </template>
 

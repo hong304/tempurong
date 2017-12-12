@@ -1,12 +1,17 @@
 <template>
 	<div class="card">
 		<div class="image-wrapper">
-			<img :src="imageSrc"/>
+			<img :src="resData.images[0].cover_image"/>
 		</div>
 		<div class="info-wrapper">
-			<h3>{{ infoTitle }}</h3>
-			<router-link :to="buttonPath" class="btn btn-main">{{ buttonText }}</router-link>
-			<p>{{ infoParagraph }}</p>
+			<h3>{{ resData['name_' + $i18n.locale] }}</h3>
+			<p v-if="resData.subtitle_en">({{ resData['subtitle_' + $i18n.locale] }})</p>
+			<div class="activity-detail">
+				<ul>
+					<li><span class="ti-time"></span> {{ resData.duration }} mins</li>
+					<li><span class="walking-distance"></span> {{ resData.distance }}m from resort</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </template>
@@ -15,31 +20,7 @@
   export default {
     name: 'card',
     props: {
-      resData: {
-        type: Object,
-        default: () => {
-          return {
-            imageSrc: '/static/img/demo-image-01.jpg',
-            infoTitle: 'I\'m a sample title',
-            infoParagraph: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
-            buttonPath: '#'
-          }
-        }
-      },
-      buttonText: {
-        type: String,
-        default: () => {
-          return 'More'
-        }
-      }
-    },
-    data () {
-      return {
-        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-image-01.jpg',
-        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : 'I\'m sample title.',
-        infoParagraph: (this.resData.infoParagraph) ? this.resData.infoParagraph : 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
-        buttonPath: (this.resData.buttonPath) ? this.resData.buttonPath : '#'
-      }
+      resData: {type: Object}
     }
   }
 </script>
@@ -61,23 +42,49 @@
 		}
 		.info-wrapper {
 			& > h3 {
-				display: inline-block;
-				float: left;
 				color: $brand-secondary;
 				text-transform: uppercase;
+				margin-bottom: 0;
 			}
 			& > p {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	ul {
+		list-style-type: none;
+		padding-left: 0;
+		margin-bottom: 0.25rem;
+		font-size: 2rem;
+		& > li {
+			display: inline-block;
+			float: left;
+			&:not(:last-of-type) {
+				margin-right: 2rem;
+			}
+			.ti-time {
+				font-size: 1.75rem;
+			}
+			.walking-distance {
+				position: relative;
+				margin-right: 2.5rem;
 				&:before {
 					content: '';
-					display: block;
-					clear: both;
+					position: absolute;
+					display: inline-block;
+					top: 0.4rem;
+					width: 1.75rem;
+					height: 1.75rem;
+					background-image: url(../../assets/img/icon/walk.png);
+					background-size: cover;
 				}
 			}
-			.btn-main {
-				float: right;
-				margin-top: calc(20px - 0.2rem);
-				line-height: calc(24px - 0.5rem);
-			}
+		}
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
 		}
 	}
 </style>

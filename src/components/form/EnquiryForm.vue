@@ -5,20 +5,20 @@
 			<div class="col-sm-8 col-xs-12 col-sm-offset-2">
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">
-						<input v-model="firstName" placeholder="First Name">
+						<input v-model="enquiry.firstName" v-bind:placeholder="$t('pages.contact.enquiry.firstName')">
 					</div>
 					<div class="col-sm-6 col-xs-12">
-						<input v-model="lastName" placeholder="Last Name">
+						<input v-model="enquiry.lastName" v-bind:placeholder="$t('pages.contact.enquiry.lastName')">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<input v-model="email" placeholder="Email">
+						<input v-model="enquiry.email" v-bind:placeholder="$t('pages.contact.enquiry.email')">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<textarea v-model="message" placeholder="Message"></textarea>
+						<textarea v-model="enquiry.message" v-bind:placeholder="$t('pages.contact.enquiry.message')"></textarea>
 					</div>
 				</div>
 				<button class="btn btn-main mt-5"><span>Send</span></button>
@@ -28,9 +28,19 @@
 </template>
 
 <script>
-	export default {
-	  name: 'enquiry-form'
-	}
+  export default {
+    name: 'enquiry-form',
+    data () {
+      return {
+        enquiry: {
+          firstName: '',
+          lastName: '',
+          email: '',
+          message: ''
+        }
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -43,6 +53,7 @@
 			margin: 0;
 		}
 	}
+
 	.form-body {
 		input, textarea {
 			width: 100%;

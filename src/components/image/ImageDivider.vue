@@ -1,14 +1,14 @@
 <template>
 	<div class="image-divider">
 		<div class="image-bg">
-			<img :src="imageSrc"/>
+			<img :src="resData.imageSrc"/>
 		</div>
 		<div class="overlay-info-wrapper px-4 px-md-0">
 			<div class="content-wrapper">
-				<h3 v-if="infoTitle">{{ infoTitle }}</h3>
-				<p v-if="infoParagraph">{{ infoParagraph }}</p>
+				<h3 v-if="resData.infoTitle">{{ resData.infoTitle }}</h3>
+				<p v-if="resData.infoParagraph">{{ resData.infoParagraph }}</p>
 			</div>
-			<router-link v-if="buttonPath" :to="buttonPath" class="btn btn-border">{{ buttonText }}</router-link>
+			<router-link v-if="resData.buttonPath" :to="resData.buttonPath" class="btn btn-border">{{ resData.buttonText }}</router-link>
 		</div>
 	</div>
 </template>
@@ -17,31 +17,7 @@
   export default {
     name: 'image-divider',
     props: {
-      resData: {
-        type: Object,
-        default: () => {
-          return {
-            imageSrc: '/static/img/demo-image-divider.jpg',
-            infoTitle: false,
-            infoParagraph: false,
-            buttonPath: false
-          }
-        }
-      },
-      buttonText: {
-        type: String,
-        default: () => {
-          return 'More'
-        }
-      }
-    },
-    data () {
-      return {
-        imageSrc: (this.resData.imageSrc) ? this.resData.imageSrc : '/static/img/demo-image-divider.jpg',
-        infoTitle: (this.resData.infoTitle) ? this.resData.infoTitle : false,
-        infoParagraph: (this.resData.infoParagraph) ? this.resData.infoParagraph : false,
-        buttonPath: (this.resData.buttonPath) ? this.resData.buttonPath : false
-      }
+      resData: {type: Object}
     }
   }
 </script>
@@ -85,6 +61,8 @@
 			align-self: center;
 			& > h3 {
 				margin-top: 0;
+				text-transform: uppercase;
+				font-weight: bold;
 			}
 			& > p {
 				margin-bottom: 0;
@@ -93,6 +71,7 @@
 		.btn-border {
 			flex: 0 0 auto;
 			margin-top: 2rem;
+			text-transform: uppercase;
 		}
 	}
 </style>

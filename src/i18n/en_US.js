@@ -32,7 +32,8 @@ module.exports = {
     home: {
       welcome: 'Welcome to Tempurong',
       services: 'Services',
-      activities: 'Activities',
+      roomsSubtitle: 'Simple and comfortable, we hope you feel at home!',
+      activitiesSubtitle: 'Relaxation, adventure, beauty and peace.',
       features: 'Features',
       reviews: 'Reviews'
     },
@@ -41,19 +42,26 @@ module.exports = {
       sectionTitle: 'Want to explore more about kuala penyu?'
     },
     rooms: {
-      pageTitle: 'Rooms & Amenities'
+      pageTitle: 'Rooms & Amenities',
+      pageIntro: 'Simple and comfortable, we hope you feel at home!'
     },
     activities: {
       pageTitle: 'Area & Activities',
       pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
-      activities: 'Activities',
+      walkingDistance: 'Walking Distance',
       adventures: 'Adventures'
     },
     food: {
       pageTitle: 'Food'
     },
     contact: {
-      pageTitle: 'Contact'
+      pageTitle: 'Contact',
+      enquiry: {
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email',
+        message: 'Message'
+      }
     },
     reservations: {
       pageTitle: 'Reservations'

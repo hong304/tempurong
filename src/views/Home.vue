@@ -7,36 +7,51 @@
 			<content-paragraph></content-paragraph>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5">
-			<content-title :contentTitle="$t('pages.home.services')"></content-title>
+			<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
+			<content-paragraph :contentParagraph="$t('pages.home.roomsSubtitle')"></content-paragraph>
+			<div class="row">
+				<icon-list :icons="amenitiesIcon"></icon-list>
+			</div>
+			<div class="row m-0">
+				<div class="col-sm-4 col-xs-12 p-0 mb-2 mb-sm-0" v-for="item in roomType">
+					<room-square-card :roomType="item"></room-square-card>
+				</div>
+			</div>
+		</section>
+		<section class="padding-of-section mx-md-5 px-md-5 my-5 pb-5">
+			<content-title :contentTitle="$t('pages.activities.pageTitle')"></content-title>
+			<content-paragraph :contentParagraph="$t('pages.home.activitiesSubtitle')"></content-paragraph>
+			<div class="row">
+				<icon-list :icons="activitiesIcon"></icon-list>
+			</div>
 			<div class="row mt-5">
-				<div class="col-xs-12 col-sm-6" v-for="(item, index) in servicesData" :item="item" :index="index"
-				     :key="item.id">
-					<card :resData="item" :buttonText="$t('button.more')"></card>
+				<div class="col-xs-12 col-sm-6" v-for="(item, index) in adventures" :item="item" :index="index"
+						 :key="item.id" v-if="index">
+					<card :resData="item"></card>
+				</div>
+			</div>
+			<router-link :to="{ name: 'Activities' }" class="btn btn-main" exact-active-class
+									 @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+				{{ $t("button.moreAreaAndActivities") }}
+			</router-link>
+		</section>
+		<section class="padding-of-section mx-md-5 px-md-5 py-5">
+			<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
+			<div class="row m-0">
+				<div class="col-sm-4 col-xs-6 food-list" v-for="item in foods">
+					<div class="icon-wrapper">
+						<img :src="item.image_path"/>
+					</div>
+					<h3>{{ item['name_' + $i18n.locale] }}</h3>
 				</div>
 			</div>
 		</section>
 		<section class="pt-5 pb-5">
 			<div class="row">
 				<image-divider
-								:resData="imageDividerData"
-								:buttonText="$t('button.moreRooms')"
+					:resData="imageDividerData"
+					:buttonText="$t('button.moreRooms')"
 				></image-divider>
-			</div>
-		</section>
-		<section class="padding-of-section mx-md-5 px-md-5">
-			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
-			<div class="row mt-5">
-				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index"
-				     :key="item.id">
-					<card :buttonText="$t('button.more')" :class="{ last: index == 2 || index == 3 }"></card>
-				</div>
-			</div>
-		</section>
-		<section class="padding-of-section mx-md-5 px-md-5 py-5">
-			<content-title :contentTitle="$t('pages.home.features')"></content-title>
-			<div class="row m-0">
-				<circle-thumb-card :imgRight=true :isFirst=true :buttonText="$t('button.more')"></circle-thumb-card>
-				<circle-thumb-card :isLast=true :buttonText="$t('button.more')"></circle-thumb-card>
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
@@ -53,6 +68,18 @@
 				</div>
 			</div>
 		</section>
+		<section class="padding-of-section mx-md-5 px-md-5 py-5">
+			<div class="row">
+				<div class="col-xs-12">
+					<router-link :to="{ name: 'Rooms' }" class="btn btn-border mr-4">
+						{{ $t("button.viewRooms") }}
+					</router-link>
+					<router-link :to="{ name: 'Reservations' }" class="btn btn-main">
+						{{ $t("button.bookNow") }}
+					</router-link>
+				</div>
+			</div>
+		</section>
 	</div>
 </template>
 
@@ -63,24 +90,40 @@
   import BookingNav from '@/components/booking/BookingNav.vue'
   import Card from '@/components/card/Card.vue'
   import ImageDivider from '@/components/image/ImageDivider.vue'
-  import CircleThumbCard from '@/components/card/CircleThumbCard.vue'
   import Testimonal from '@/components/content/Testimonial.vue'
+  import IconList from '@/components/list/IconList.vue'
+  import RoomSquareCard from '@/components/card/RoomSquareCard.vue'
 
   export default {
     name: 'Home',
     components: {
+      RoomSquareCard,
+      IconList,
       ContentParagraph,
       ContentTitle,
       Carousel,
       BookingNav,
       Card,
       ImageDivider,
-      CircleThumbCard,
       Testimonal
     },
     data () {
       return {
         titleOne: 'Welcome to Tempurong',
+        amenitiesIcon: [
+          {iconSrc: '/static/img/icons/shower.png', title: 'Hot Shower'},
+          {iconSrc: '/static/img/icons/towel.png', title: 'Shower Towel'},
+          {iconSrc: '/static/img/icons/air-con.png', title: 'Air Conditioning'},
+          {iconSrc: '/static/img/icons/fan.png', title: 'Fan'}
+        ],
+        activitiesIcon: [
+          {iconSrc: '/static/img/icons/activities/row-boats.png', title: 'Row Boats'},
+          {iconSrc: '/static/img/icons/activities/fishing.png', title: 'Fishing'},
+          {iconSrc: '/static/img/icons/activities/crabbing.png', title: 'Crabbing'},
+          {iconSrc: '/static/img/icons/activities/sea-kayaking.png', title: 'Sea Kayaking'},
+          {iconSrc: '/static/img/icons/activities/beach-volleyball.png', title: 'Beach Volleyball'},
+          {iconSrc: '/static/img/icons/activities/hammock.png', title: 'Hammock'}
+        ],
         titleTwo: 'Services',
         servicesData: [
           {
@@ -91,32 +134,40 @@
           }
         ],
         imageDividerData: {
-          infoParagraph: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy.',
-          buttonPath: '#'
+          imageSrc: '/static/img/demo-image-divider-2.jpg',
+          infoTitle: 'Special dietary items available!',
+          buttonText: this.$i18n.getLocaleMessage(this.$i18n.locale).button.bookNow,
+          buttonPath: {name: 'Reservations'}
         },
-        activitiesData: [
-          {
-            infoTitle: 'Activities card 1'
-          },
-          {
-            infoTitle: 'Activities card 2'
-          },
-          {
-            infoTitle: 'Activities card 3'
-          },
-          {
-            infoTitle: 'Activities card 4'
-          }
-        ],
+        adventures: [],
         titleThree: 'Activities',
         titleFour: 'Features',
         titleFive: 'Reviews',
         banners: [
-          {imgSrc: '/static/img/home_banner/banner-03.jpg'},
-          {imgSrc: '/static/img/home_banner/banner-04.jpg'},
-          {imgSrc: '/static/img/home_banner/banner-05.jpg'}
-        ]
+          {imgSrc: '/static/img/home_banner/banner-03.jpg', title: 'Rooms starting from $250 MYR/night'},
+          {imgSrc: '/static/img/home_banner/banner-04.jpg', title: 'Rooms starting from $250 MYR/night'},
+          {imgSrc: '/static/img/home_banner/banner-05.jpg', title: 'Rooms starting from $250 MYR/night'}
+        ],
+        roomType: [],
+        foods: []
       }
+    },
+    mounted () {
+      this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
+        this.roomType = response.data
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/adventure').then((response) => {
+        this.adventures = response.data
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/food').then((response) => {
+        this.foods = response.data
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 </script>
@@ -124,8 +175,60 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
+
 	#home {
 		color: $brand-secondary;
+		.btn-main, .btn-border {
+			text-transform: uppercase;
+			font-weight: bold;
+			font-size: 1.5rem;
+			padding: 0.45rem 1.25rem;
+		}
+		.btn-border {
+			border-color: $brand-primary;
+			color: $brand-primary;
+			&:hover, &:focus {
+				background-color: $brand-primary;
+				color: white;
+			}
+		}
+	}
+
+	.food-list {
+		display: flex;
+		flex-flow: row nowrap;
+		text-align: left;
+		.icon-wrapper {
+			flex: 0 1 auto;
+			margin-right: 1rem;
+			img {
+				width: auto;
+				max-height: 80px;
+				max-width: 80px;
+				@media screen and (max-width: 767px) {
+					max-height: 50px;
+				}
+				@media screen and (max-width: 320px) {
+					max-height: 40px;
+				}
+			}
+		}
+		h3 {
+			flex: 1 1 auto;
+			font-size: 2rem;
+			margin: 0;
+			align-self: center;
+			@media screen and (max-width: 767px) {
+				font-size: 1.5rem;
+			}
+			@media screen and (max-width: 320px) {
+				font-size: 1.3rem;
+			}
+		}
+		&:after {
+			content: '';
+			display: block;
+			clear: both;
+		}
 	}
 </style>

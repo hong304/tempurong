@@ -1,7 +1,7 @@
 <template>
 	<div class="enquiry-form">
 		<h5>Leave us a message!</h5>
-		<div class="form-body my-5 row">
+		<div class="row form-body my-5 m-0">
 			<div class="col-sm-8 col-xs-12 col-sm-offset-2">
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">

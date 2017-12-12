@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="row mt-4">
-				<div class="col-xs-4 p-4" v-for="item in navImage">
+				<div class="col-xs-4 p-md-4 p-1" v-for="item in navImage">
 					<img :src="item.imageSrc" :alt="item.imageAlt" class=""/>
 				</div>
 			</div>

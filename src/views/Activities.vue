@@ -145,8 +145,8 @@
 		& > li {
 			display: inline-block;
 			float: left;
-			&:not(:first-of-type) {
-				margin-left: 2rem;
+			&:not(:last-of-type) {
+				margin-right: 2rem;
 			}
 			.ti-time {
 				font-size: 1.75rem;

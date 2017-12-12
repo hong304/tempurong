@@ -312,6 +312,9 @@
 		.description {
 			padding: 3rem;
 			background-color: #f5f5f5;
+			@media screen and (max-width: 767px) {
+				padding: 1.5rem;
+			}
 			h5 {
 				margin-top: 3rem;
 				font-weight: bold;

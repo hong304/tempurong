@@ -48,6 +48,21 @@
   }
 }
 
+.datepicker {
+  border-bottom: 1px solid $light-grey !important;
+}
+.datepicker--open {
+  top: 50px !important;
+  .datepicker__dummy-wrapper {
+    .datepicker__dummy-input {
+      color: $brand-secondary !important;
+    }
+  }
+}
+.datepicker__close-button {
+  top: 70px !important;
+  color: $brand-primary !important;
+}
 .datepicker__input {
   @media screen and (max-width: 320px) {
     padding-left: 20px !important;

@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
-					<content-paragraph :contentParagraph="contentParagraph"></content-paragraph>
+					<content-paragraph :contentParagraph="$t('pages.rooms.pageIntro')"></content-paragraph>
 				</div>
 			</div>
 			<section class="details-header py-sm-5 py-0">
@@ -110,7 +110,6 @@
     data () {
       return {
         resData: {},
-        contentParagraph: 'We have a total of 13 rooms, 8 Sea View rooms and 5 Riverside rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.',
         imageSrc: 'http://placehold.it/2000x1000',
         selected: 1,
         roomTypes: {},

@@ -18,49 +18,18 @@
 		<section class="padding-of-section my-5 border-bottom">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="secondTitle"></content-title>
-					<p>
-						Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI) by car. We are happy to provide transportation to and from the airport. </p>
+					<content-title :contentTitle="$t('pages.contact.getThere')"></content-title>
+					<content-paragraph :contentParagraph="$t('pages.contact.getThereContent')" class="text-left"></content-paragraph>
 				</div>
 			</div>
-			<div class="row text-left mt-5 mb-5">
+			<div class="row text-left mt-5 mb-5" v-for="item in $t('pages.contact.transportation')">
 				<div class="col-xs-12">
-					<h3>Airport or KK City Pickup</h3>
-					<p>
-						For 1-4 pax, the total cost is MYR250 each way (MYR500 round trip)<br>
-						For 5-10 pax, the total cost is MYR350 each way (MYR700 round trip)
-					</p>
-					<p>
-						BY US: To make it less complicated for you, we are happy to pick you up from any place in Kota Kinabalu, drive you to Tempurong golden beach resort and at the end of your stay, drive you back to KK, 1-4 person by car MYR200 per way, 5-10 by van MYR300per way.
-					</p>
-				</div>
-			</div>
-			<div class="row text-left mt-5 mb-5">
-				<div class="col-xs-12">
-					<h3>Bus</h3>
-					<p>
-						Take a bus from Kota Kinabalu (Bus terminal opposite our KK High Court) to Menumbok Ferry Terminal and ask a driver to drop you off in Kayul roundabout (3 turtles roundabout) between Kuala Penyu and Menumbok (ferry terminal to Labuan). From there, we could come to pick you up and drive you to our paradise for a MYR10 fee.
-					</p>
-					<h4>Bus Service K.K-Menumbok (near Kuala Penyu)-K.K</h4>
-					<p>
-						From Kota Kinabalu to Menumbok:<br>
-						6:45 am / 10:00 am / 12:30 pm
-					</p>
-					<p>
-						From Menumbok to Kota Kinabalu:<br>
-						10:00 am / 3:30 pm / 4:30 pm
-					</p>
-					<p>
-						Bus ticket is MYR 15 one way.
-					</p>
-				</div>
-			</div>
-			<div class="row text-left mt-5 mb-5">
-				<div class="col-xs-12">
-					<h3>Self driving by car</h3>
-					<p>
-						Please use Waze or Google map as GPS and type location as Tempurong Golden Beach Resort, it should be accurately plotted on the map.
-					</p>
+					<h3 v-html="item.title"></h3>
+					<p v-html="item.content"></p>
+					<div v-if="item.subTitle">
+						<h4 v-html="item.subTitle"></h4>
+						<p v-for="content in item.subContent" v-html="content"></p>
+					</div>
 				</div>
 			</div>
 			<div class="row mt-5 mb-5">
@@ -75,7 +44,7 @@
 		<section class="padding-of-section my-5 border-bottom">
 			<div class="row text-left mb-4">
 				<div class="col-xs-12">
-					<h3>Find us</h3>
+					<h3>{{ $t('pages.contact.findUs.title') }}</h3>
 				</div>
 			</div>
 			<div class="row text-left">
@@ -84,14 +53,12 @@
 				</div>
 				<div class="col-xs-12 col-sm-6 col-sm-pull-6">
 					<ul class="detail-list">
-						<li class="info-title"><strong>Address</strong></li>
-						<li>Jalan Kg Tempurong, Kuala Penyu,<br>89740 Kuala Penyu,<br>Sabah, Malaysia</li>
-						<li class="info-title"><strong>Tel</strong></li>
-						<li>+60 88-230 916</li>
+						<li v-for="item in $t('pages.contact.findUs.information')">
+							<p class="info-title"><strong>{{item.title}}</strong></p>
+							<p v-html="item.content"></p>
+						</li>
 					</ul>
-					<router-link :to="{ name: 'Reservations' }" class="btn btn-main text-center">{{ $t('button.bookNow')
-						}}
-					</router-link>
+					<router-link :to="{ name: 'Reservations' }" class="btn btn-main text-center">{{ $t('button.bookNow')}}</router-link>
 				</div>
 			</div>
 		</section>
@@ -156,9 +123,12 @@
 			padding-left: 0;
 			& > li {
 				margin-bottom: 1.5rem;
-				&.info-title {
+				.info-title {
 					text-transform: uppercase;
-					margin-bottom: 0.5rem;
+					margin-bottom: 0.25rem;
+				}
+				p {
+					line-height: 1.35em;
 				}
 			}
 		}

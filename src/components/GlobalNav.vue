@@ -128,6 +128,9 @@
 		}
 		.navbar-brand {
 			padding: 10px;
+			@media screen and (min-width: 768px) and (max-width: 991px) {
+				padding: 12px 5px;
+			}
 			outline: none;
 			&:hover {
 				outline: none;
@@ -170,6 +173,9 @@
 						border-radius: 5px;
 						border: 1px solid transparent;
 						transition: all 300ms linear;
+						@media screen and (min-width: 768px) and (max-width: 991px) {
+							margin: 0 1px;
+						}
 						@media screen and (max-width: 991px) {
 							padding: 4px 7px;
 						}

@@ -11,14 +11,14 @@
 				<p>Please don't refresh or close the page until the process is finished.</p>
 			</div>
 		</div>
-		<section class="mt-5 py-5">
+		<section class="mt-5 py-sm-5 py-3">
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.reservationsSummary.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
-		<section class="py-5">
+		<section class="py-sm-5 py-3">
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="summary-wrapper">
@@ -30,12 +30,12 @@
 								</div>
 							</div>
 							<div class="row highlight-detail">
-								<div class="col-sm-6 col-xs-12 py-5">
+								<div class="col-sm-6 col-xs-12 py-md-5 pt-1">
 									<h3>{{ orderDetails.checkIn }} - {{ orderDetails.checkOut }}</h3>
 									<p>({{ $tc('dateUnit.days', totalDays, {'count': totalDays}) }},
 										{{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }})</p>
 								</div>
-								<div class="col-sm-6 col-xs-12 py-5">
+								<div class="col-sm-6 col-xs-12 py-md-5 pb-3">
 									<h3>{{$tc('commonUnits.guests', orderDetails.totalGuests, {'count': orderDetails.totalGuests})}}</h3>
 									<p>({{ $tc('commonUnits.adults', orderDetails.adults, {'count': orderDetails.adults}) }},
 										{{ $tc('commonUnits.children', orderDetails.children, {'count': orderDetails.children}) }})</p>
@@ -207,10 +207,15 @@
 	@import '../../assets/style/setting';
 	
 	.summary-wrapper {
-		margin: 0 5rem;
+		max-width: 90%;
+		margin: 0 auto;
 		padding: 5rem;
 		border: 1px solid $light-grey;
 		text-align: left;
+		@media screen and (max-width: 767px) {
+			max-width: inherit;
+			padding: 1.5rem;
+		}
 		h3, p {
 			color: $brand-secondary;
 		}
@@ -218,17 +223,24 @@
 			font-size: 2.5rem;
 			font-weight: bold;
 			margin: 0;
+			@media screen and (max-width: 767px) {
+				font-size: 1.75rem;
+			}
 		}
 		.summary-header {
 			border-bottom: 1px solid $brand-primary;
 			& > .row {
 				& > div {
-					padding-left: 3.5rem;
+					@media screen and (min-width: 768px) {
+						padding-left: 3.5rem;
+					}
 				}
 				&.highlight-detail {
 					& > div {
-						&:first-of-type {
-							border-right: 1px solid $brand-primary;
+						@media screen and (min-width: 768px) {
+							&:first-of-type {
+								border-right: 1px solid $brand-primary;
+							}
 						}
 					}
 				}

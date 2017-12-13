@@ -22,7 +22,7 @@
 							<li><span class="walking-distance"></span> {{ item.distance }}m from resort</li>
 						</ul>
 					</div>
-					<p>{{ item['description_' + $i18n.locale] }}</p>
+					<p v-html="item['description_' + $i18n.locale]"></p>
 				</div>
 			</div>
 		</section>
@@ -145,8 +145,8 @@
 		& > li {
 			display: inline-block;
 			float: left;
-			&:not(:first-of-type) {
-				margin-left: 2rem;
+			&:not(:last-of-type) {
+				margin-right: 2rem;
 			}
 			.ti-time {
 				font-size: 1.75rem;

@@ -56,6 +56,7 @@
 		}
 	}
 	.custom-carousel-indicators {
+		z-index: 1;
 		& > li {
 			border: none;
 			background-color: white;

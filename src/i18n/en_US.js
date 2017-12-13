@@ -39,11 +39,17 @@ module.exports = {
     },
     about: {
       pageTitle: 'About',
+      pageIntro: 'Tempurong Golden Beach Resort is a family-owned, beautiful, oceanside retreat offering stunning views and a variety of coastal activities, located directly on the Tempurong Beach in Kuala Penyu （known as Sea Turtles Bay in Malay), Sabah.<br><br>Whether you’re looking for a relaxing getaway or something more adventurous, we will help you plan a memorable experience that fits your needs. With many delicious meal options, you can rest easy knowing that you will get an authentic taste of the local flavor no matter what your dietary preferences happen to be.<br><br> We offer private rooms capable of accommodating whole families as well as mixed dormitory rooms, making the resort an ideal destination for solo travelers, couples, groups, and families alike.',
+      area: 'The Area: Kuala Penyu,<br>Sabah',
+      areaIntro: 'Tempurong Golden Beach Resort is located at Tempurung Beach, about 15 Kilometres away from the town of Kuala Penyu, Sabah (about 2 hours from Kota Kinabalu Airport). The village was named about 200 years ago when local villagers found a coconut shell on the beach engraved with holy verses of the Quran, inspiring the name “Tempurung,” translating to “coconut shell” in Malay. The villagers believed that by naming the village after that coconut, God would grant good health and prosperity to the people.',
+      weather: 'Weather',
+      weatherIntro: 'In general, Kota Kinabalu and Sabah in general is lush and tropical, so a fair amount of rain can be expected all year round, but it’s not usually an all-day affair. The “best time” to visit is from January to March because the climate is relatively cooler and drier.<br><br>October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days. May and April are very humid and hot, so be prepared and plan a visit to swim around the islands or up to the cooler mountains!',
       sectionTitle: 'Want to explore more about kuala penyu?'
+
     },
     rooms: {
       pageTitle: 'Rooms & Amenities',
-      pageIntro: 'Simple and comfortable, we hope you feel at home!'
+      pageIntro: 'We have a total of 13 rooms, 8 Sea View rooms and 5 Riverside rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.'
     },
     activities: {
       pageTitle: 'Area & Activities',
@@ -52,10 +58,51 @@ module.exports = {
       adventures: 'Adventures'
     },
     food: {
-      pageTitle: 'Food'
+      pageTitle: 'Food',
+      pageSubtitle: 'Include in the freshest of ingredients',
+      pageIntro: 'We strive to cultivate much of our own produce on-site and aim to raise our own fish. Malaysia has such an abundance of vegetation that we gather from the wild and purchase from local village markets. Being right by the sea, we often have fresh clams, fish, prawns and even wild-caught chickens. Plan your vacations around meals and you’ll never be disappointed!',
+      addOn: 'Special Dietary items available',
+      addOnContent: 'We have so many options for food, and can accomodate vegetarians, pescatarians, and more, so please check out our food options or reach out to us directly for ideas so that you don’t have to worry about a thing.<br><br>We are happy to accommodate to your preferences, we just need some notice ahead of time to prepare fresh!',
+      haveQuestion: 'Have questions?'
     },
     contact: {
       pageTitle: 'Contact',
+      pageIntro: '',
+      getThere: 'Getting there',
+      getThereContent: 'Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI - the nearest airport) by car. We are happy to pick-up and drop-off up from the airport or Kota Kinabalu City for an additional fee:',
+      transportation: [
+        {
+          title: 'Airport or KK city pickup',
+          content: 'For 1-4 pax, the total cost is MYR250 each way (MYR500 round trip) <br> For 5-10 pax, the total cost is MYR350 each way (MYR700 round trip)'
+        },
+        {
+          title: 'Bus',
+          content: 'Take a bus from Kota Kinabalu (Bus terminal opposite our KK High Court) to Menumbok Ferry Terminal and ask a driver to drop you off in Kayul roundabout (3 turtles roundabout) between Kuala Penyu and Menumbok (ferry terminal to Labuan). From there, we could come to pick you up and drive you to our paradise for a MYR10 fee.',
+          subTitle: 'Bus Service K.K-Menumbok (near Kuala Penyu)-K.K',
+          subContent: [
+            'From Kota Kinabalu to Menumbok: <br> 6:45 am / 10:00 am / 12:30 pm',
+            'From Menumbok to Kota Kinabalu: <br> 10:00 am / 3:30 pm / 4:30 pm',
+            'Bus ticket is MYR 15 one way.'
+          ]
+        },
+        {
+          title: 'Self driving by car',
+          content: 'Please use Waze or Google map as GPS and type location as Tempurong Golden Beach Resort, it should be accurately plotted on the map.'
+        }
+      ],
+      findUs: {
+        title: 'Find us',
+        information: [
+          {
+            title: 'Address',
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+          },
+          {
+            title: 'Tel',
+            content: '+60 88-230 916'
+          }
+        ]
+      },
       enquiry: {
         firstName: 'First Name',
         lastName: 'Last Name',
@@ -151,11 +198,34 @@ module.exports = {
         },
         {
           title: 'Deposit and Final Payment for Tours',
-          content: 'Any additional tours or services require a non-refundable, non-transferable deposit of 25%. Note that bookings are not confirmed nor secure until TGBR receives this deposit and you receive a confirmation invoice. TGBR reserves the right to release or cancel any bookings being held where this required deposit has not been received by the deposit due date. Payment of the deposit indicates you have read and accepted these Terms and Conditions.<br><br>Please review and verify your booking invoice thoroughly and contact us immediately if your invoice appears to be incorrect or incomplete, as it may not be possible to make changes later. TGBR cannot accept responsibility if we are not notified of inaccuracies within 5 days of sending out the invoice. In the case of billing errors, TGBR reserves the right to re-invoice you with correct pricing.<br><br>Final payment for your booking is due 30 days prior to commencement of services. If final payment is not received by the due date, your reservation will be cancelled and TGBR will retain your full deposit. TGBR is not responsible for cancelled land and/or air reservations in the event payment is not received by the final payment date. If a booking is made within 30 days prior to arrival, full payment will be required at the time of booking.<br><br>All payments shall be made either by credit card or telegraphic transfer to the appropriate account:<br><br><strong>Account Name:</strong><br><strong>Account Number:</strong><br><strong>SWIFT code:</strong><br><strong>Bank Name:</strong>'
+          content: 'Any additional tours or services require a non-refundable, non-transferable deposit of 25%. Note that bookings are not confirmed nor secure until TGBR receives this deposit and you receive a confirmation invoice. TGBR reserves the right to release or cancel any bookings being held where this required deposit has not been received by the deposit due date. Payment of the deposit indicates you have read and accepted these Terms and Conditions.<br><br>Please review and verify your booking invoice thoroughly and contact us immediately if your invoice appears to be incorrect or incomplete, as it may not be possible to make changes later. TGBR cannot accept responsibility if we are not notified of inaccuracies within 5 days of sending out the invoice. In the case of billing errors, TGBR reserves the right to re-invoice you with correct pricing.<br><br>Final payment for your booking is due 30 days prior to commencement of services. If final payment is not received by the due date, your reservation will be cancelled and TGBR will retain your full deposit. TGBR is not responsible for cancelled land and/or air reservations in the event payment is not received by the final payment date. If a booking is made within 30 days prior to arrival, full payment will be required at the time of booking.<br><br>All payments shall be made either by credit card or telegraphic transfer to the appropriate account:',
+          paymentInfo: [
+            {
+              title: 'Account Name:',
+              content: 'THE GOLDEN BEACH RESORT'
+            },
+            {
+              title: 'Account Number:',
+              content: '3192745920'
+            },
+            {
+              title: 'SWIFT code:',
+              content: 'PBBEMYKL'
+            },
+            {
+              title: 'Bank Name:',
+              content: 'PUBLIC BANK BERHAD'
+            }
+          ]
         },
         {
           title: 'Cancellation By You',
-          content: 'If Tempurong Golden Beach Resort receives a booking cancellation prior to the final payment date of your vacation, your non-refundable deposit will be retained. Standard cancellation fees as stated apply to all booking cancellations.'
+          content: 'If Tempurong Golden Beach Resort receives a booking cancellation prior to the final payment date of your vacation, your non-refundable deposit will be retained. Standard cancellation fees as stated apply to all booking cancellations.',
+          subContent: [
+            '60 - 31 days prior to arrival a 75% refund will apply',
+            '30 - 15 days prior to arrival a 50% refund will apply',
+            '14 - 0 days prior to arrival a 0% refund will apply'
+          ]
         },
         {
           title: 'Refund of Unused Services',

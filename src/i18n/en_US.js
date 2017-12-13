@@ -102,12 +102,6 @@ module.exports = {
             content: '+60 88-230 916'
           }
         ]
-      },
-      enquiry: {
-        firstName: 'First Name',
-        lastName: 'Last Name',
-        email: 'Email',
-        message: 'Message'
       }
     },
     reservations: {
@@ -318,6 +312,12 @@ module.exports = {
         extraMattressRemarks: '(If extra mattress is added, the capacity of that room is increased to {capacity})',
         mattressAndBreakfast: '(including extra {mattress} and {breakfast})'
       }
+    },
+    enquiry: {
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      email: 'Email',
+      message: 'Message'
     }
   },
   error: {

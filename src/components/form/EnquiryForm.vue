@@ -5,23 +5,23 @@
 			<div class="col-sm-8 col-xs-12 col-sm-offset-2">
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">
-						<input v-model="enquiry.firstName" v-bind:placeholder="$t('pages.contact.enquiry.firstName')">
+						<input v-model="enquiry.firstName" v-bind:placeholder="$t('components.enquiry.firstName')">
 					</div>
 					<div class="col-sm-6 col-xs-12">
-						<input v-model="enquiry.lastName" v-bind:placeholder="$t('pages.contact.enquiry.lastName')">
+						<input v-model="enquiry.lastName" v-bind:placeholder="$t('components.enquiry.lastName')">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<input v-model="enquiry.email" v-bind:placeholder="$t('pages.contact.enquiry.email')">
+						<input v-model="enquiry.email" v-bind:placeholder="$t('components.enquiry.email')">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<textarea v-model="enquiry.message" v-bind:placeholder="$t('pages.contact.enquiry.message')"></textarea>
+						<textarea v-model="enquiry.message" v-bind:placeholder="$t('components.enquiry.message')"></textarea>
 					</div>
 				</div>
-				<button class="btn btn-main mt-5"><span>Send</span></button>
+				<button class="btn btn-main mt-5" @click="submitForm()"><span>Send</span></button>
 			</div>
 		</div>
 	</div>
@@ -38,6 +38,17 @@
           email: '',
           message: ''
         }
+      }
+    },
+    methods: {
+      submitForm () {
+        this.axios.post(process.env.API_URL + '/api/enquiry', this.enquiry).then((response) => {
+          if (response.data.status) {
+            console.log(response.data.status)
+          }
+        }, (error) => {
+          console.log(error)
+        })
       }
     }
   }
@@ -61,6 +72,8 @@
 			line-height: 3rem;
 			border: none;
 			border-bottom: 1px solid $brand-primary;
+			// for ie 10 & 11
+			min-height: 3rem;
 			&:hover, &:focus, &:active {
 				outline: none !important;
 				box-shadow: none !important;

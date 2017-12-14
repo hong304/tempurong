@@ -102,6 +102,8 @@
               this.submitted = false
             }
           }, (error) => {
+            this.status.status = false
+            this.status.message = 'Seems like our server are not response for now, please try again later.'
             console.log(error)
           })
         }
@@ -179,7 +181,7 @@
 		height: 100%;
 		left: 0;
 		top: 0;
-		z-index: 99999;
+		z-index: 999;
 		overflow: hidden;
 		.overlay-wrapper {
 			flex: 0 1 auto;

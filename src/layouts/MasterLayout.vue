@@ -18,7 +18,7 @@
     },
     data () {
       return {
-        isMobile: /iPhone|iPod|Android/i.test(navigator.userAgent)
+        isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       }
     },
     beforeDestroy: function () {
@@ -26,7 +26,7 @@
     },
     methods: {
       handleResize () {
-        this.isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent)
+        this.isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       }
     },
     mounted () {

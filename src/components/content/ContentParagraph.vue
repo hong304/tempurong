@@ -1,5 +1,5 @@
 <template>
-	<p>{{contentParagraph}}</p>
+	<p v-html="contentParagraph"></p>
 </template>
 
 <script>

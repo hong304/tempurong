@@ -24,8 +24,7 @@
 						<p>
 							<span class="icon icon-guest"></span>
 							<span> {{ $tc('components.card.roomCard.guests', result.capacity, {count: result.capacity})}} </span>
-							<span
-									v-if="(result.add_bed)">{{$t('components.card.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
+							<span class="guest-remark" v-if="(result.add_bed)">{{$t('components.card.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
 						</p>
 					</li>
 					<li>
@@ -297,13 +296,18 @@
 				li {
 					display: table;
 					p {
-						display: table-row;
+						margin-bottom: 0;
 						span {
-							display: table-cell;
+							display: inline-block;
 							vertical-align: middle;
 							padding-right: 2px;
 							&.icon {
 								padding-right: 2.5rem;
+							}
+							&.guest-remark {
+								display: block;
+								margin-left: 2.75rem;
+								font-size: 0.925em;
 							}
 						}
 					}

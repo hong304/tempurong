@@ -12,7 +12,17 @@
 			<div class="row" v-for="term in $t('pages.policy.terms')">
 				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
 					<h3 v-html="term.title"></h3>
-					<p v-html="term.content"></p>
+					<p v-html="term.content" :class="{ 'mb-4': term.paymentInfo || term.subContent }"></p>
+					<ul v-if="term.paymentInfo">
+						<li v-for="item in term.paymentInfo">
+							{{ item.title }} {{ item.content }}
+						</li>
+					</ul>
+					<ul v-else-if="term.subContent">
+						<li v-for="item in term.subContent">
+							{{ item }}
+						</li>
+					</ul>
 				</div>
 			</div>
 		</section>
@@ -51,11 +61,16 @@
 
 	.content-wrapper {
 		text-align: left;
-		p {
+		p, ul {
 			margin-bottom: 5rem;
 		}
 		.policy-remark {
 			font-style: italic;
+		}
+		ul {
+			list-style-type: none;
+			padding-left: 0;
+			font-weight: bold;
 		}
 	}
 

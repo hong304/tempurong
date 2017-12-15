@@ -6,6 +6,8 @@
 			<content-title :contentTitle="$t('pages.home.welcome')"></content-title>
 			<content-paragraph></content-paragraph>
 		</section>
+
+		<!-- rooms section -->
 		<section class="padding-of-section mx-md-5 px-md-5">
 			<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
 			<content-paragraph :contentParagraph="$t('pages.home.roomsSubtitle')"></content-paragraph>
@@ -18,7 +20,9 @@
 				</div>
 			</div>
 		</section>
-		<section class="padding-of-section mx-md-5 px-md-5 my-5 pb-5">
+
+		<!-- ACTIVITIES section -->
+		<section class="padding-of-section mx-md-5 px-md-5 mb-5 pb-5">
 			<content-title :contentTitle="$t('pages.activities.pageTitle')"></content-title>
 			<content-paragraph :contentParagraph="$t('pages.home.activitiesSubtitle')"></content-paragraph>
 			<div class="row">
@@ -26,15 +30,17 @@
 			</div>
 			<div class="row mt-5">
 				<div class="col-xs-12 col-sm-6" v-for="(item, index) in adventures" :item="item" :index="index"
-						 :key="item.id" v-if="index">
+						 :key="item.id">
 					<card :resData="item"></card>
 				</div>
 			</div>
 			<router-link :to="{ name: 'Activities' }" class="btn btn-main" exact-active-class
 									 @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
-				{{ $t("button.moreAreaAndActivities") }}
+				{{ $t("button.moreActivities") }}
 			</router-link>
 		</section>
+
+
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
 			<div class="row m-0">
@@ -124,25 +130,34 @@
           {iconSrc: '/static/img/icons/activities/beach-volleyball.png', title: 'Beach Volleyball'},
           {iconSrc: '/static/img/icons/activities/hammock.png', title: 'Hammock'}
         ],
-        titleTwo: 'Services',
-        servicesData: [
-          {
-            infoTitle: 'Service card 1'
-          },
-          {
-            infoTitle: 'Service card 2'
-          }
-        ],
         imageDividerData: {
           imageSrc: '/static/img/demo-image-divider-2.jpg',
           infoTitle: 'Special dietary items available!',
           buttonText: this.$i18n.getLocaleMessage(this.$i18n.locale).button.bookNow,
           buttonPath: {name: 'Reservations'}
         },
-        adventures: [],
-        titleThree: 'Activities',
-        titleFour: 'Features',
-        titleFive: 'Reviews',
+        adventures: [
+          {
+            title: 'Coral Reef Snorkeling',
+            intro: 'The corals in Sabah are breathtaking, but don’t worry, you’ll have your snorkel on! If you’re lucky, you might spot a sea turtle.',
+            imageSrc: '/static/img/demo-about-01.jpg'
+          },
+          {
+            title: 'Volcano Mud Bath',
+            intro: 'Famed for its skin nutrient benefits, this mud bath is fun and popular! Did you know, the mud makes you float?',
+            imageSrc: '/static/img/demo-about-01.jpg'
+          },
+          {
+            title: 'The Rare Proboscis Monkey',
+            intro: 'Seen only in Borneo, the Proboscis monkey is one of the largest monkey species native to Asia. Enjoy a day out viewing these wonderful creatures in their natural habitat.',
+            imageSrc: '/static/img/demo-about-01.jpg'
+          },
+          {
+            title: 'Magical Fireflies in Nature',
+            intro: 'Fireflies only thrive in areas away from urban cities and with clean, flowing water. Enjoy a beautiful evening cruising through the mangroves as they light up the night.',
+            imageSrc: '/static/img/demo-about-01.jpg'
+          }
+        ],
         banners: [
           {imgSrc: '/static/img/home_banner/banner-03.jpg', title: 'Rooms starting from $250 MYR/night'},
           {imgSrc: '/static/img/home_banner/banner-04.jpg', title: 'Rooms starting from $250 MYR/night'},
@@ -155,11 +170,6 @@
     mounted () {
       this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
         this.roomType = response.data
-      }, (error) => {
-        console.log(error)
-      })
-      this.axios.get(process.env.API_URL + '/api/adventure').then((response) => {
-        this.adventures = response.data
       }, (error) => {
         console.log(error)
       })

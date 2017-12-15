@@ -6,8 +6,8 @@ module.exports = {
     companyName: '金沙龍沙<br>度假村',
     quickMenu: '快捷主單',
     about: '關於我們',
-    rooms: '房間及設施',
-    activities: '推薦景點及活動',
+    rooms: '房間',
+    activities: '推薦活動',
     food: '精彩美食',
     contact: '聯繫我們',
     reservations: '房間預訂',
@@ -41,10 +41,10 @@ module.exports = {
       sectionTitle: '想了解更多有關 kuala penyu?'
     },
     rooms: {
-      pageTitle: '房間及設施'
+      pageTitle: '房間'
     },
     activities: {
-      pageTitle: '推薦景點及活動',
+      pageTitle: '推薦活動',
       pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
       activities: '活動',
       adventures: '歷奇探險'
@@ -184,7 +184,7 @@ module.exports = {
     viewRooms: '瀏覽房間',
     moreDetails: '更多詳情',
     hideDetails: '隱藏詳情',
-    moreAreaAndActivities: '更多景點及活動',
+    moreActivities: '更多活動',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',

@@ -36,7 +36,7 @@
 				<div class="col-xs-12">
 					<h4 class="text-center">Know more about the area?</h4>
 					<router-link :to="{ name: 'Activities' }" class="btn btn-main text-center">
-						{{ $t('button.moreAreaAndActivities') }}
+						{{ $t('button.moreActivities') }}
 					</router-link>
 				</div>
 			</div>

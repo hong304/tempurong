@@ -6,8 +6,8 @@ module.exports = {
     companyName: '金沙龙沙<br>度假村',
     quickMenu: '快捷主单',
     about: '关於我们',
-    rooms: '房间及设施',
-    activities: '推荐景点及活动',
+    rooms: '房间',
+    activities: '推荐活动',
     food: '精彩美食',
     contact: '联系我们',
     reservations: '房间预订',
@@ -41,10 +41,10 @@ module.exports = {
       sectionTitle: '想了解更多有关瓜拉彭尤?'
     },
     rooms: {
-      pageTitle: '房间及设施'
+      pageTitle: '房间'
     },
     activities: {
-      pageTitle: '推荐景点及活动',
+      pageTitle: '推荐活动',
       pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
       activities: '活动',
       adventures: '历奇探险'
@@ -184,7 +184,7 @@ module.exports = {
     viewRooms: '浏览房间',
     moreDetails: '更多详情',
     hideDetails: '隐藏详情',
-    moreAreaAndActivities: '更多景点及活动',
+    moreActivities: '更多活动',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',

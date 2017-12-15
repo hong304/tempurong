@@ -13,8 +13,11 @@
 		</section>
 		<section class="padding-of-section mt-5">
 			<content-title :contentTitle="$t('pages.activities.walkingDistance')"></content-title>
-			<div class="row text-left mt-5" v-for="item in activities">
-				<div class="col-xs-12">
+			<div class="row text-left mt-5 pb-4" v-for="(item, index) in activities">
+				<div class="text-center mb-5 mb-md-0" :class="{'col-sm-4 col-xs-12': index === 0 || index === 2, 'col-sm-4 col-xs-12 col-sm-push-8': index === 1 }">
+					<img class="img-fluid" :src="item.images[0].cover_image"/>
+				</div>
+				<div :class="{'col-sm-8 col-xs-12': index === 0 || index === 2, 'col-sm-8 col-xs-12 col-sm-pull-4': index === 1 }">
 					<h2>{{ item['name_' + $i18n.locale] }}</h2>
 					<div class="activity-detail">
 						<ul>
@@ -120,6 +123,13 @@
 
 	#activities {
 		color: $brand-secondary;
+	}
+
+	.img-fluid {
+		width: 70%;
+		@media screen and (min-width: 768px) and (max-width: 1199px) {
+			width: 100%;
+		}
 	}
 
 	h2, h3 {

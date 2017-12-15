@@ -34,6 +34,11 @@
 							</router-link>
 						</li>
 						<li>
+							<router-link :to="{ name: 'FAQ' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+								{{ $t("menu.FAQ") }}
+							</router-link>
+						</li>
+						<li>
 							<router-link :to="{ name: 'Contact' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.contact") }}
 							</router-link>

@@ -6,8 +6,8 @@ module.exports = {
     companyName: 'Tempurong <br> Golden Beach <br> Resort',
     quickMenu: 'Quick Menu',
     about: 'About',
-    rooms: 'Rooms & Amenities',
-    activities: 'Area & Activities',
+    rooms: 'Rooms',
+    activities: 'Activities',
     food: 'Food',
     contact: 'Contact',
     reservations: 'Reservations',
@@ -42,17 +42,18 @@ module.exports = {
       pageIntro: 'Tempurong Golden Beach Resort is a family-owned, beautiful, oceanside retreat offering stunning views and a variety of coastal activities, located directly on the Tempurong Beach in Kuala Penyu （known as Sea Turtles Bay in Malay), Sabah.<br><br>Whether you’re looking for a relaxing getaway or something more adventurous, we will help you plan a memorable experience that fits your needs. With many delicious meal options, you can rest easy knowing that you will get an authentic taste of the local flavor no matter what your dietary preferences happen to be.<br><br> We offer private rooms capable of accommodating whole families as well as mixed dormitory rooms, making the resort an ideal destination for solo travelers, couples, groups, and families alike.',
       area: 'The Area: Kuala Penyu,<br>Sabah',
       areaIntro: 'Tempurong Golden Beach Resort is located at Tempurung Beach, about 15 Kilometres away from the town of Kuala Penyu, Sabah (about 2 hours from Kota Kinabalu Airport). The village was named about 200 years ago when local villagers found a coconut shell on the beach engraved with holy verses of the Quran, inspiring the name “Tempurung,” translating to “coconut shell” in Malay. The villagers believed that by naming the village after that coconut, God would grant good health and prosperity to the people.',
+      turtle: 'Baby Sea Turtle Hatchlings',
+      turtleIntro: 'From the end of November through March (and sometimes even through May, depending on the sea tides), you might be lucky to see baby sea turtles hatch (Mother Nature makes no guarantees!). Turtles will dig their nest and lay up to one hundred eggs, after which the mother turtle returns to the ocean. After incubating for about 45-50 days, the eggs hatch, resulting in a miraculous sight of baby sea turtles instinctively returning to the ocean.<br><br>This area is very special to be blessed with turtles coming back to lay their precious eggs on our beaches. We have had research teams stay with us for prolonged periods to study these wonderful creatures so if you are interested in this area of research, please don’t hesitate to reach out. We will be more than happy to collaborate as we care very much for our environment and the wildlife associated.',
       weather: 'Weather',
       weatherIntro: 'In general, Kota Kinabalu and Sabah in general is lush and tropical, so a fair amount of rain can be expected all year round, but it’s not usually an all-day affair. The “best time” to visit is from January to March because the climate is relatively cooler and drier.<br><br>October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days. May and April are very humid and hot, so be prepared and plan a visit to swim around the islands or up to the cooler mountains!',
       sectionTitle: 'Want to explore more about kuala penyu?'
-
     },
     rooms: {
-      pageTitle: 'Rooms & Amenities',
+      pageTitle: 'Rooms',
       pageIntro: 'We have a total of 13 rooms, 8 Sea View rooms and 5 Riverside rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.'
     },
     activities: {
-      pageTitle: 'Area & Activities',
+      pageTitle: 'Activities',
       pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
       walkingDistance: 'Walking Distance',
       adventures: 'Adventures'
@@ -256,7 +257,7 @@ module.exports = {
     viewRooms: 'View Rooms',
     moreDetails: 'More Details',
     hideDetails: 'Hide Details',
-    moreAreaAndActivities: 'More Area & Activities',
+    moreActivities: 'More Activities',
     discoverMore: 'Discover More',
     dropMessage: 'Drop a Message',
     justAsk: 'Just Ask',

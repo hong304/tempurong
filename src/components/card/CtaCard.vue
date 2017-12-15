@@ -1,14 +1,13 @@
 <template>
-	<div class="room-square">
+	<div class="cta-wrapper">
 		<div class="image-wrapper">
-			<img :src="roomType.cover_image"/>
+			<img :src="resData.imageSrc"/>
 		</div>
 		<div class="overlay-wrapper">
 			<div class="content-wrapper">
-				<h3>{{ roomType['name_' + $i18n.locale] }}</h3>
-				<h5>{{ roomType['room_title_' + $i18n.locale]}}</h5>
+				<h3>{{ resData.title }}</h3>
 			</div>
-			<router-link :to="{ name: 'Rooms' }" class="btn btn-text-only">
+			<router-link :to="resData.route" class="btn btn-text-only">
 				{{ $t("button.moreDetails") }} >
 			</router-link>
 		</div>
@@ -17,9 +16,9 @@
 
 <script>
   export default {
-    name: 'room-square-card',
+    name: 'cta-card',
     props: {
-      roomType: {
+      resData: {
         type: Object
       }
     }
@@ -29,7 +28,7 @@
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
 
-	.room-square {
+	.cta-wrapper {
 		position: relative;
 		.image-wrapper {
 			overflow: hidden;
@@ -60,6 +59,7 @@
 					margin: 0;
 				}
 				h3 {
+					font-weight: bold;
 					text-transform: uppercase;
 				}
 			}

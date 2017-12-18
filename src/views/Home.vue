@@ -4,7 +4,7 @@
 		<booking-nav></booking-nav>
 		<section class="padding-of-section mt-5">
 			<content-title :contentTitle="$t('pages.home.welcome')"></content-title>
-			<content-paragraph></content-paragraph>
+			<content-paragraph :contentParagraph="$t('pages.home.welcomeIntro')"></content-paragraph>
 		</section>
 
 		<!-- rooms section -->
@@ -43,6 +43,7 @@
 
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
+			<content-paragraph :contentParagraph="$t('pages.home.foodSubtitle')"></content-paragraph>
 			<div class="row m-0">
 				<div class="col-sm-4 col-xs-6 food-list" v-for="item in foods">
 					<div class="icon-wrapper">
@@ -62,6 +63,7 @@
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="$t('pages.home.reviews')"></content-title>
+			<content-paragraph :contentParagraph="$t('pages.home.reviewsSubtitle')"></content-paragraph>
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
 					<testimonal></testimonal>

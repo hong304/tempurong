@@ -31,11 +31,16 @@ module.exports = {
   pages: {
     home: {
       welcome: 'Welcome to Tempurong',
-      services: 'Services',
+      welcomeIntro: 'We are a family-owned, private resort located on a long stretch of pristine coastline in Kuala Penyu, Sabah, about 2.5 hours South of Kota Kinabalu, Malaysia.<br><br>It was our family’s dream to preserve a slice of paradise and we are excited to share with you the natural beauty of Sabah - from the islands to the jungle to the mountains and more. We look forward to showing and feeding you the best we have to offer!',
+      rooms: 'Amenities & Rooms',
       roomsSubtitle: 'Simple and comfortable, we hope you feel at home!',
+      activities: 'Area & Activities',
       activitiesSubtitle: 'Relaxation, adventure, beauty and peace.',
+      food: 'Food',
+      foodSubtitle: 'Taste the flavors of Sabah!',
       features: 'Features',
-      reviews: 'Reviews'
+      reviews: 'Reviews',
+      reviewsSubtitle: 'Please come again!'
     },
     about: {
       pageTitle: 'About',
@@ -54,7 +59,7 @@ module.exports = {
     },
     activities: {
       pageTitle: 'Activities',
-      pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
+      pageIntro: 'There is so much to do and enjoy in Sabah, we look forward to showing you some of the most untouched beaches, lush forestry, remote islands, rare wildlife and more. No need to call various travel agents, we are happy to curate the perfect itinerary and make all the arrangements while you relax and enjoy your time escaping it all. Just let us know when you’re booking or drop us a message to let us know your interests and we’ll get back to you ASAP!<br><br>If you want to enjoy a slower pace, we also have activities on site such as row boating, fishing, crabbing, sea kayaking, and beach volleyball. With the white sandy beach at our doorstep, we have several hammocks where you can nap, read a book, and soak up the sounds of nature. As with some of the best things in life, the stunning sunset is free!',
       walkingDistance: 'Walking Distance',
       adventures: 'Adventures'
     },
@@ -151,7 +156,7 @@ module.exports = {
         },
         {
           question: 'How do I get to your resort?',
-          answer: 'You can get here by bus or car, though it is much easier by car! We are happy to pick up and drop off from Kota Kinabalu Airport (BKI) or from Kota Kinabalu City for an additional service charge. You can find specific instructions HERE (link).'
+          answer: 'You can get here by bus or car, though it is much easier by car! We are happy to pick up and drop off from Kota Kinabalu Airport (BKI) or from Kota Kinabalu City for an additional service charge. You can find specific instructions <a href="/contact" class="content-link">HERE</a>.'
         },
         {
           question: 'What is there to do there?',
@@ -163,7 +168,7 @@ module.exports = {
         },
         {
           question: 'Do you accept credit cards?',
-          answer: 'At this time we can only accept credit cards through our online booking system. Since we are quite remote, we can only accept cash on site.<br><br>60 - 31 days prior to arrival a 25% refund will apply<br>30 - 15 days prior to arrival a 50% refund will apply<br>14 - 0 days prior to arrival a 0% refund will apply<br><br>Please be sure to also read our entire Resort Policy (It’s not that long, promise.).'
+          answer: 'At this time we can only accept credit cards through our online booking system. Since we are quite remote, we can only accept cash on site.<br><br>60 - 31 days prior to arrival a 75% refund will apply<br>30 - 15 days prior to arrival a 50% refund will apply<br>14 - 0 days prior to arrival a 0% refund will apply<br><br>Please be sure to also read our entire <a href="/policy" class="content-link">RESORT POLICY</a> (It’s not that long, promise.).'
         },
         {
           question: 'What if I need to cancel my booking?',
@@ -286,7 +291,8 @@ module.exports = {
         childrenTitle: 'Children',
         totalRoom: 'Total Rooms',
         priceDescription: '$ {price} MYR for {nights}',
-        policyRemarks: 'Please refer to our Resort and Cancellation Policy.',
+        resortPolicyContent: '* Please refer to our',
+        resortPolicyRoute: 'Resort and Cancellation Policy.',
         extraItemDescription: '(extra {item} for {nights})'
       }
     },
@@ -305,8 +311,9 @@ module.exports = {
         roomAvailable: '{count} rooms available | {count} room available | {count} rooms available',
         description: 'Description',
         amenities: 'Amenities',
-        resortPolicy: 'Resort Policy',
-        cancellations: 'Cancellations'
+        resortPolicy: 'Resort and Cancellation Policy',
+        resortPolicyContent: '* Please refer to our',
+        resortPolicyRoute: 'Resort and Cancellation Policy.'
       },
       roomSummaryCard: {
         capacity: 'Max. {capacity} guests per room',

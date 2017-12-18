@@ -62,7 +62,10 @@
 					</div>
 				</div>
 			</div>
-			<p>* {{$t('components.booking.bookingSticky.policyRemarks')}}</p>
+			<p><span>{{ $t('components.card.roomCard.resortPolicyContent') }}</span>
+				<router-link :to="{ name: 'Policy' }">{{ $t('components.card.roomCard.resortPolicyRoute') }}
+				</router-link>
+			</p>
 		</div>
 		<div class="sticky-footer">
 			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
@@ -285,6 +288,15 @@
 		overflow-y: scroll;
 		overflow-x: hidden;
 		-ms-overflow-style: none;
+		p {
+			a {
+				color: $brand-secondary;
+				text-decoration: underline;
+				&:hover, &:focus {
+					color: $brand-primary;
+				}
+			}
+		}
 	}
 	
 	.sticky-footer {

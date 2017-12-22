@@ -8,6 +8,10 @@
 						<h4>Admin Login</h4>
 						<input v-model="username" placeholder="Username">
 						<input v-model="password" placeholder="Password" type="password">
+						<h5 class="error-message" v-if="error">
+							<span class="ti-alert"></span>
+							{{ $t(error) }}
+						</h5>
 						<button class="btn btn-main" @click="login()"><span class="ti-unlock"></span> Log in</button>
 					</div>
 				</div>

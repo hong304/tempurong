@@ -257,6 +257,7 @@ module.exports = {
     email: '請輸入有效的電郵。',
     tnc: '請同意條款及細則',
     required: '請填寫{field}。',
-    reservationCheckout: '你的訂單出現異常情況，請重新預訂。'
+    reservationCheckout: '你的訂單出現異常情況，請重新預訂。',
+    loginError: '登入賬號或密碼錯誤。'
   }
 }

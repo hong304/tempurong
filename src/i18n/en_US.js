@@ -336,6 +336,7 @@ module.exports = {
     email: 'Please insert valid email address.',
     tnc: 'Please agree the term and condition.',
     required: 'The {field} field is required.',
-    reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.'
+    reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.',
+    loginError: 'Incorrect username or password'
   }
 }

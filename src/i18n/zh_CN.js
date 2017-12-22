@@ -258,6 +258,7 @@ module.exports = {
     email: '请输入有效的电邮。',
     tnc: '请同意条款及细则',
     required: '请填写{field}。',
-    reservationCheckout: '你的订单出现异常情况，请重新预订。'
+    reservationCheckout: '你的订单出现异常情况，请重新预订。',
+    loginError: '登入账号或密码错误。'
   }
 }

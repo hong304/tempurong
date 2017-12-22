@@ -4,7 +4,7 @@
 		<booking-nav></booking-nav>
 		<section class="padding-of-section mt-5">
 			<content-title :contentTitle="$t('pages.home.welcome')"></content-title>
-			<content-paragraph></content-paragraph>
+			<content-paragraph :contentParagraph="$t('pages.home.welcomeIntro')"></content-paragraph>
 		</section>
 
 		<!-- rooms section -->
@@ -43,6 +43,7 @@
 
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
+			<content-paragraph :contentParagraph="$t('pages.home.foodSubtitle')"></content-paragraph>
 			<div class="row m-0">
 				<div class="col-sm-4 col-xs-6 food-list" v-for="item in foods">
 					<div class="icon-wrapper">
@@ -62,6 +63,7 @@
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
 			<content-title :contentTitle="$t('pages.home.reviews')"></content-title>
+			<content-paragraph :contentParagraph="$t('pages.home.reviewsSubtitle')"></content-paragraph>
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
 					<testimonal></testimonal>
@@ -140,22 +142,22 @@
           {
             title: 'Coral Reef Snorkeling',
             intro: 'The corals in Sabah are breathtaking, but don’t worry, you’ll have your snorkel on! If you’re lucky, you might spot a sea turtle.',
-            imageSrc: '/static/img/demo-about-01.jpg'
+            imageSrc: '/static/img/landing/CoralReefSnorkeling.jpg'
           },
           {
             title: 'Volcano Mud Bath',
             intro: 'Famed for its skin nutrient benefits, this mud bath is fun and popular! Did you know, the mud makes you float?',
-            imageSrc: '/static/img/demo-about-01.jpg'
+            imageSrc: '/static/img/landing/VolcanoMudBath.jpg'
           },
           {
             title: 'The Rare Proboscis Monkey',
             intro: 'Seen only in Borneo, the Proboscis monkey is one of the largest monkey species native to Asia. Enjoy a day out viewing these wonderful creatures in their natural habitat.',
-            imageSrc: '/static/img/demo-about-01.jpg'
+            imageSrc: '/static/img/landing/TheRareProboscisMonkey.jpg'
           },
           {
             title: 'Magical Fireflies in Nature',
             intro: 'Fireflies only thrive in areas away from urban cities and with clean, flowing water. Enjoy a beautiful evening cruising through the mangroves as they light up the night.',
-            imageSrc: '/static/img/demo-about-01.jpg'
+            imageSrc: '/static/img/landing/MagicalFirefliesInNature.jpg'
           }
         ],
         banners: [

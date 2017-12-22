@@ -12,7 +12,12 @@
 
 <script>
   export default {
-    name: 'AdminDashboard'
+    name: 'AdminDashboard',
+    data () {
+      return {
+        error: ''
+      }
+    }
   }
 </script>
 

@@ -84,7 +84,7 @@
         imageSrcThree: '/static/img/about/weather.jpg',
         ctaData: [
           {
-            imageSrc: '/static/img/room_type/room-01.jpg',
+            imageSrc: '/static/img/demo-room.jpg',
             title: 'Rooms',
             route: {name: 'Rooms'}
           },

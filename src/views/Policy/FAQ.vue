@@ -55,3 +55,14 @@
 	}
 
 </style>
+<style lang="scss">
+	@import '../../assets/style/setting';
+
+	a.content-link {
+		color: $brand-secondary;
+		text-decoration: underline;
+		&:hover, &:focus {
+			color: $brand-primary;
+		}
+	}
+</style>

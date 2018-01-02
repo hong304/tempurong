@@ -55,17 +55,18 @@ export default new Router({
       ]
     },
     {
-      path: '/login',
+      path: '/admin/login',
       component: BlankLayout,
       children: [
-        {path: '', name: 'Login', component: Login}
+        {path: '', name: 'AdminLogin', component: Login}
       ]
     },
     {
       path: '/admin',
       component: AdminLayout,
       children: [
-        {path: '', name: 'AdminDashboard', component: AdminDashboard},
+        {path: '', name: 'AdminHome', component: AdminDashboard},
+        {path: 'dashboard', name: 'AdminDashboard', component: AdminDashboard},
         {path: 'order-history', name: 'OrderHistory', component: OrderHistory}
       ]
     }
@@ -76,7 +77,7 @@ export default new Router({
       return savedPosition
     } else {
       // else back to the top of the page
-      return { x: 0, y: 0 }
+      return {x: 0, y: 0}
     }
   }
 })

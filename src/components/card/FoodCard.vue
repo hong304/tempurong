@@ -2,7 +2,9 @@
 	<div class="food-card">
 		<h3>{{ resData['name_' + $i18n.locale] }}</h3>
 		<h5>{{ resData['subtitle_' + $i18n.locale] }}</h5>
-		<img :src="resData.image_path"/>
+		<div class="text-center">
+			<img :src="resData.image_path"/>
+		</div>
 		<p>{{ resData['description_' + $i18n.locale] }}</p>
 	</div>
 </template>
@@ -44,7 +46,7 @@
 			margin: 0;
 		}
 		img {
-			max-width: 100%;
+			width: 70%;
 		}
 	}
 </style>

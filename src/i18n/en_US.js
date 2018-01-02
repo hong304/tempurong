@@ -6,8 +6,8 @@ module.exports = {
     companyName: 'Tempurong <br> Golden Beach <br> Resort',
     quickMenu: 'Quick Menu',
     about: 'About',
-    rooms: 'Rooms & Amenities',
-    activities: 'Area & Activities',
+    rooms: 'Rooms',
+    activities: 'Activities',
     food: 'Food',
     contact: 'Contact',
     reservations: 'Reservations',
@@ -31,29 +31,35 @@ module.exports = {
   pages: {
     home: {
       welcome: 'Welcome to Tempurong',
-      services: 'Services',
+      welcomeIntro: 'We are a family-owned, private resort located on a long stretch of pristine coastline in Kuala Penyu, Sabah, about 2.5 hours South of Kota Kinabalu, Malaysia.<br><br>It was our family’s dream to preserve a slice of paradise and we are excited to share with you the natural beauty of Sabah - from the islands to the jungle to the mountains and more. We look forward to showing and feeding you the best we have to offer!',
+      rooms: 'Amenities & Rooms',
       roomsSubtitle: 'Simple and comfortable, we hope you feel at home!',
+      activities: 'Area & Activities',
       activitiesSubtitle: 'Relaxation, adventure, beauty and peace.',
+      food: 'Food',
+      foodSubtitle: 'Taste the flavors of Sabah!',
       features: 'Features',
-      reviews: 'Reviews'
+      reviews: 'Reviews',
+      reviewsSubtitle: 'Please come again!'
     },
     about: {
       pageTitle: 'About',
       pageIntro: 'Tempurong Golden Beach Resort is a family-owned, beautiful, oceanside retreat offering stunning views and a variety of coastal activities, located directly on the Tempurong Beach in Kuala Penyu （known as Sea Turtles Bay in Malay), Sabah.<br><br>Whether you’re looking for a relaxing getaway or something more adventurous, we will help you plan a memorable experience that fits your needs. With many delicious meal options, you can rest easy knowing that you will get an authentic taste of the local flavor no matter what your dietary preferences happen to be.<br><br> We offer private rooms capable of accommodating whole families as well as mixed dormitory rooms, making the resort an ideal destination for solo travelers, couples, groups, and families alike.',
       area: 'The Area: Kuala Penyu,<br>Sabah',
       areaIntro: 'Tempurong Golden Beach Resort is located at Tempurung Beach, about 15 Kilometres away from the town of Kuala Penyu, Sabah (about 2 hours from Kota Kinabalu Airport). The village was named about 200 years ago when local villagers found a coconut shell on the beach engraved with holy verses of the Quran, inspiring the name “Tempurung,” translating to “coconut shell” in Malay. The villagers believed that by naming the village after that coconut, God would grant good health and prosperity to the people.',
+      turtle: 'Baby Sea Turtle Hatchlings',
+      turtleIntro: 'From the end of November through March (and sometimes even through May, depending on the sea tides), you might be lucky to see baby sea turtles hatch (Mother Nature makes no guarantees!). Turtles will dig their nest and lay up to one hundred eggs, after which the mother turtle returns to the ocean. After incubating for about 45-50 days, the eggs hatch, resulting in a miraculous sight of baby sea turtles instinctively returning to the ocean.<br><br>This area is very special to be blessed with turtles coming back to lay their precious eggs on our beaches. We have had research teams stay with us for prolonged periods to study these wonderful creatures so if you are interested in this area of research, please don’t hesitate to reach out. We will be more than happy to collaborate as we care very much for our environment and the wildlife associated.',
       weather: 'Weather',
       weatherIntro: 'In general, Kota Kinabalu and Sabah in general is lush and tropical, so a fair amount of rain can be expected all year round, but it’s not usually an all-day affair. The “best time” to visit is from January to March because the climate is relatively cooler and drier.<br><br>October is usually wetter, however weather patterns have been changing in recent years so you can often still have very clear days. May and April are very humid and hot, so be prepared and plan a visit to swim around the islands or up to the cooler mountains!',
       sectionTitle: 'Want to explore more about kuala penyu?'
-
     },
     rooms: {
-      pageTitle: 'Rooms & Amenities',
+      pageTitle: 'Rooms',
       pageIntro: 'We have a total of 13 rooms, 8 Sea View rooms and 5 Riverside rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.'
     },
     activities: {
-      pageTitle: 'Area & Activities',
-      pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
+      pageTitle: 'Activities',
+      pageIntro: 'There is so much to do and enjoy in Sabah, we look forward to showing you some of the most untouched beaches, lush forestry, remote islands, rare wildlife and more. No need to call various travel agents, we are happy to curate the perfect itinerary and make all the arrangements while you relax and enjoy your time escaping it all. Just let us know when you’re booking or drop us a message to let us know your interests and we’ll get back to you ASAP!<br><br>If you want to enjoy a slower pace, we also have activities on site such as row boating, fishing, crabbing, sea kayaking, and beach volleyball. With the white sandy beach at our doorstep, we have several hammocks where you can nap, read a book, and soak up the sounds of nature. As with some of the best things in life, the stunning sunset is free!',
       walkingDistance: 'Walking Distance',
       adventures: 'Adventures'
     },
@@ -102,12 +108,6 @@ module.exports = {
             content: '+60 88-230 916'
           }
         ]
-      },
-      enquiry: {
-        firstName: 'First Name',
-        lastName: 'Last Name',
-        email: 'Email',
-        message: 'Message'
       }
     },
     reservations: {
@@ -156,7 +156,7 @@ module.exports = {
         },
         {
           question: 'How do I get to your resort?',
-          answer: 'You can get here by bus or car, though it is much easier by car! We are happy to pick up and drop off from Kota Kinabalu Airport (BKI) or from Kota Kinabalu City for an additional service charge. You can find specific instructions HERE (link).'
+          answer: 'You can get here by bus or car, though it is much easier by car! We are happy to pick up and drop off from Kota Kinabalu Airport (BKI) or from Kota Kinabalu City for an additional service charge. You can find specific instructions <a href="/contact" class="content-link">HERE</a>.'
         },
         {
           question: 'What is there to do there?',
@@ -168,7 +168,7 @@ module.exports = {
         },
         {
           question: 'Do you accept credit cards?',
-          answer: 'At this time we can only accept credit cards through our online booking system. Since we are quite remote, we can only accept cash on site.<br><br>60 - 31 days prior to arrival a 25% refund will apply<br>30 - 15 days prior to arrival a 50% refund will apply<br>14 - 0 days prior to arrival a 0% refund will apply<br><br>Please be sure to also read our entire Resort Policy (It’s not that long, promise.).'
+          answer: 'At this time we can only accept credit cards through our online booking system. Since we are quite remote, we can only accept cash on site.<br><br>60 - 31 days prior to arrival a 75% refund will apply<br>30 - 15 days prior to arrival a 50% refund will apply<br>14 - 0 days prior to arrival a 0% refund will apply<br><br>Please be sure to also read our entire <a href="/policy" class="content-link">RESORT POLICY</a> (It’s not that long, promise.).'
         },
         {
           question: 'What if I need to cancel my booking?',
@@ -262,7 +262,7 @@ module.exports = {
     viewRooms: 'View Rooms',
     moreDetails: 'More Details',
     hideDetails: 'Hide Details',
-    moreAreaAndActivities: 'More Area & Activities',
+    moreActivities: 'More Activities',
     discoverMore: 'Discover More',
     dropMessage: 'Drop a Message',
     justAsk: 'Just Ask',
@@ -291,7 +291,8 @@ module.exports = {
         childrenTitle: 'Children',
         totalRoom: 'Total Rooms',
         priceDescription: '$ {price} MYR for {nights}',
-        policyRemarks: 'Please refer to our Resort and Cancellation Policy.',
+        resortPolicyContent: '* Please refer to our',
+        resortPolicyRoute: 'Resort and Cancellation Policy.',
         extraItemDescription: '(extra {item} for {nights})'
       }
     },
@@ -310,14 +311,21 @@ module.exports = {
         roomAvailable: '{count} rooms available | {count} room available | {count} rooms available',
         description: 'Description',
         amenities: 'Amenities',
-        resortPolicy: 'Resort Policy',
-        cancellations: 'Cancellations'
+        resortPolicy: 'Resort and Cancellation Policy',
+        resortPolicyContent: '* Please refer to our',
+        resortPolicyRoute: 'Resort and Cancellation Policy.'
       },
       roomSummaryCard: {
         capacity: 'Max. {capacity} guests per room',
         extraMattressRemarks: '(If extra mattress is added, the capacity of that room is increased to {capacity})',
         mattressAndBreakfast: '(including extra {mattress} and {breakfast})'
       }
+    },
+    enquiry: {
+      firstName: 'First Name',
+      lastName: 'Last Name',
+      email: 'Email',
+      message: 'Message'
     }
   },
   error: {
@@ -328,6 +336,7 @@ module.exports = {
     email: 'Please insert valid email address.',
     tnc: 'Please agree the term and condition.',
     required: 'The {field} field is required.',
-    reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.'
+    reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.',
+    loginError: 'Incorrect username or password'
   }
 }

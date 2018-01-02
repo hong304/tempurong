@@ -48,11 +48,9 @@
   }
 }
 
-.datepicker {
-  border-bottom: 1px solid $light-grey !important;
-}
 .datepicker--open {
   top: 50px !important;
+  border-bottom: 1px solid $light-grey !important;
   .datepicker__dummy-wrapper {
     .datepicker__dummy-input {
       color: $brand-secondary !important;

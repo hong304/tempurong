@@ -1,23 +1,28 @@
 <template>
 	<div id="admin">
 		<div class="side-nav">
-			<router-link :to="{ name: 'Home' }" class="nav-brand" role="button">
+			<router-link :to="{ name: 'AdminHome' }" class="nav-brand" role="button">
 				<img src="/static/img/logo.png" :alt="$t('companyName')">
 			</router-link>
 			<ul>
-				<li><router-link :to="{ name: 'OrderHistory' }" class="nav-link">
-					<span class="ti-list"></span>
-					<p>Order History</p>
-				</router-link></li>
 				<li>
-					<router-link :to="{ name: 'Home' }" class="nav-link">
-						<span class="ti-settings"></span>
-						<p>Profile</p>
-					</router-link></li>
-				<li><router-link :to="{ name: 'Home' }" class="nav-link">
-					<span class="ti-power-off"></span>
-					<p>Logout</p>
-				</router-link></li>
+					<router-link :to="{ name: 'OrderHistory' }" class="nav-link">
+						<span class="ti-list"></span>
+						<p>Order History</p>
+					</router-link>
+				</li>
+				<!--<li>-->
+					<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
+						<!--<span class="ti-settings"></span>-->
+						<!--<p>Profile</p>-->
+					<!--</router-link>-->
+				<!--</li>-->
+				<li>
+					<a class="nav-link" @click="logout()">
+						<span class="ti-power-off"></span>
+						<p>Logout</p>
+					</a>
+				</li>
 			</ul>
 		</div>
 		<div class="content-wrapper">
@@ -40,16 +45,40 @@
     methods: {
       handleResize () {
         this.isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent)
+      },
+      logout () {
+        this.axios.get(process.env.API_URL + '/api/logout').then((response) => {
+          if (response.data.status) {
+            this.$router.push({name: 'AdminLogin'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.authError'
+        })
+      },
+      checkLogin: function () {
+        this.axios.get(process.env.API_URL + '/api/check-login').then((response) => {
+          if (!response.data.status) {
+            this.$router.push({name: 'AdminLogin'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.authError'
+        })
       }
     },
     mounted () {
       window.addEventListener('resize', this.handleResize)
+    },
+    created () {
+      this.checkLogin()
     }
   }
 </script>
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
+	
 	.side-nav {
 		position: fixed;
 		left: 0;
@@ -77,6 +106,7 @@
 		}
 		.nav-link {
 			color: $medium-grey;
+			cursor: pointer;
 			span {
 				font-size: 2.5rem;
 			}
@@ -89,7 +119,7 @@
 			}
 		}
 	}
-
+	
 	.content-wrapper {
 		position: relative;
 		width: calc(100vw - 80px);

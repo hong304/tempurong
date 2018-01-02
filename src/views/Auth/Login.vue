@@ -4,11 +4,15 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="login-wrapper">
-						<img :src="logoSrc" alt="Tempourong Logo" />
+						<img src="/static/img/logo.svg" alt="Tempourong Logo"/>
 						<h4>Admin Login</h4>
 						<input v-model="username" placeholder="Username">
 						<input v-model="password" placeholder="Password" type="password">
-						<button class="btn btn-main"><span class="ti-unlock"></span> Log in</button>
+						<h5 class="error-message" v-if="error">
+							<span class="ti-alert"></span>
+							{{ $t(error) }}
+						</h5>
+						<button class="btn btn-main" @click="login()"><span class="ti-unlock"></span> Log in</button>
 					</div>
 				</div>
 			</div>
@@ -18,17 +22,59 @@
 
 <script>
   export default {
-    name: 'Login'
+    name: 'Login',
+    data () {
+      return {
+        username: '',
+        password: '',
+        error: ''
+      }
+    },
+    methods: {
+      login: function () {
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/login',
+          data: {
+            username: this.username,
+            password: this.password
+          },
+          withCredentials: true
+        }).then((response) => {
+          console.log(response.data)
+          if (response.data.status) {
+            this.$router.push({name: 'AdminDashboard'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.loginError'
+        })
+      },
+      checkLogin: function () {
+        this.axios.get(process.env.API_URL + '/api/check-login').then((response) => {
+          if (response.data.status) {
+            this.$router.push({name: 'AdminDashboard'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.authError'
+        })
+      }
+    },
+    created () {
+      this.checkLogin()
+    }
   }
 </script>
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	#login {
 		background-color: #f5f5f5;
-		height:100vh;
+		height: 100vh;
 	}
+	
 	.login-wrapper {
 		display: inline-block;
 		padding: 3.5rem;

@@ -6,8 +6,8 @@ module.exports = {
     companyName: '金沙龍沙<br>度假村',
     quickMenu: '快捷主單',
     about: '關於我們',
-    rooms: '房間及設施',
-    activities: '推薦景點及活動',
+    rooms: '房間',
+    activities: '推薦活動',
     food: '精彩美食',
     contact: '聯繫我們',
     reservations: '房間預訂',
@@ -38,13 +38,20 @@ module.exports = {
     },
     about: {
       pageTitle: '關於我們',
-      sectionTitle: '想了解更多有關 kuala penyu?'
+      pageIntro: '等不容金沙龍蝦灣度假酒店是一間家庭式擁有的美麗的海濱度假酒店，坐落在沙巴瓜拉奔優（馬來名稱KUALA PENYU意思是“海龜灣”）的（馬來語Tempurong的意思是椰子殼）等不容海灘，享有壯麗的景致，提供各種海濱活動。無論您是尋找休閑度假還是更具冒險精神，我們都會幫助您計劃一個符合您需求的難忘體驗。無論你的飲食喜好是什麼，有了許多的餐飲選擇，你可以輕松品嘗地道的美味佳瑤。我們提供的私人房間能夠容納整個家庭以及混合宿舍房間，使度假村成為獨自旅行者，夫妻，團體和家庭的理想目的地。',
+      area: '地區：沙巴瓜拉奔優',
+      areaIntro: '等不容金沙龍蝦灣度假酒店位於Tempurung等不容海灘，距沙巴Kuala Penyu瓜拉奔優鎮約15公裡（距哥打京那巴魯機場約2小時車程）。大約200年前，當地村民在海灘上發現了一塊刻有“古蘭經”聖經的椰子殼，名為“Tempurung”，馬來語為“椰子殼”。村民們相信，通過將椰子命名為村莊，上帝會給人們以健康和繁榮。',
+      turtle: '小海龜孵化基地',
+      turtleIntro: '從十一月底到三月（有時甚至五月份以海上潮汐而定），你可能很幸運地看到嬰兒海龜孵化（大自然生態沒有百分百保證！）。海龜會挖他們的巢穴，然後會下大約一百個蛋，然後母龜就會回到海裡。在孵化了大約四十五到五十天之後，卵子孵化出來，嬰兒海龜的自然本能既是努力地往海的方向奔爬。目的是投奔大海，返回海洋。<br><br>這個地區是非常特殊的，有烏龜回來在我們的海灘上下寶貝蛋。我們有研究團隊長期陪伴我們研究這些奇妙的生物，所以如果你對這個領域的研究感興趣，請不要猶豫，伸出手。我們將非常樂意合作，因為我們非常關心我們的環境和野生動植物。',
+      weather: '天氣',
+      weatherIntro: '一般來說，哥打京那巴魯和沙巴總體來說是郁郁蔥蔥，熱帶氣候，所以一年四季都會有相當數量的降雨，但通常不是全天候的事情。一月到三月的“最佳時間”是因為氣候比較涼爽和干燥。<br><br>10月份通常比較潮濕，但是近年來氣候模式一直在變化，所以你通常可以有很清楚的日子。五月和四月是非常潮濕和炎熱的，所以要做好准備，並計劃游覽周圍的島嶼或到涼爽的山脈上！',
+      sectionTitle: 'Want to explore more about kuala penyu?'
     },
     rooms: {
-      pageTitle: '房間及設施'
+      pageTitle: '房間'
     },
     activities: {
-      pageTitle: '推薦景點及活動',
+      pageTitle: '推薦活動',
       pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
       activities: '活動',
       adventures: '歷奇探險'
@@ -184,7 +191,7 @@ module.exports = {
     viewRooms: '瀏覽房間',
     moreDetails: '更多詳情',
     hideDetails: '隱藏詳情',
-    moreAreaAndActivities: '更多景點及活動',
+    moreActivities: '更多活動',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',
@@ -250,6 +257,7 @@ module.exports = {
     email: '請輸入有效的電郵。',
     tnc: '請同意條款及細則',
     required: '請填寫{field}。',
-    reservationCheckout: '你的訂單出現異常情況，請重新預訂。'
+    reservationCheckout: '你的訂單出現異常情況，請重新預訂。',
+    loginError: '登入賬號或密碼錯誤。'
   }
 }

@@ -6,8 +6,8 @@ module.exports = {
     companyName: '金沙龙沙<br>度假村',
     quickMenu: '快捷主单',
     about: '关於我们',
-    rooms: '房间及设施',
-    activities: '推荐景点及活动',
+    rooms: '房间',
+    activities: '推荐活动',
     food: '精彩美食',
     contact: '联系我们',
     reservations: '房间预订',
@@ -37,15 +37,23 @@ module.exports = {
       reviews: '顾客评价'
     },
     about: {
-      pageTitle: '关於我们',
-      sectionTitle: '想了解更多有关瓜拉彭尤?'
+      pageTitle: '关于我们',
+      pageIntro: '等不容金沙龙虾湾度假酒店是一间家庭式拥有的美丽的海滨度假酒店，坐落在沙巴瓜拉奔优（马来名称KUALA PENYU意思是“海龟湾”）的（马来语Tempurong的意思是椰子壳）等不容海滩，享有壮丽的景致，提供各种海滨活动。无论您是寻找休闲度假还是更具冒险精神，我们都会帮助您计划一个符合您需求的难忘体验。无论你的饮食喜好是什么，有了许多的餐饮选择，你可以轻松品尝地道的美味佳瑶。我们提供的私人房间能够容纳整个家庭以及混合宿舍房间，使度假村成为独自旅行者，夫妻，团体和家庭的理想目的地。',
+      area: '地区：沙巴瓜拉奔优',
+      areaIntro: '等不容金沙龙虾湾度假酒店位于Tempurung等不容海滩，距沙巴Kuala Penyu瓜拉奔优镇约15公里（距哥打京那巴鲁机场约2小时车程）。大约200年前，当地村民在海滩上发现了一块刻有“古兰经”圣经的椰子壳，名为“Tempurung”，马来语为“椰子壳”。村民们相信，通过将椰子命名为村庄，上帝会给人们以健康和繁荣。',
+      turtle: '小海龟孵化基地',
+      turtleIntro: '从十一月底到三月（有时甚至五月份以海上潮汐而定），你可能很幸运地看到婴儿海龟孵化（大自然生态没有百分百保证！）。海龟会挖他们的巢穴，然后会下大约一百个蛋，然后母龟就会回到海里。在孵化了大约四十五到五十天之后，卵子孵化出来，婴儿海龟的自然本能既是努力地往海的方向奔爬。目的是投奔大海，返回海洋。<br><br>这个地区是非常特殊的，有乌龟回来在我们的海滩上下宝贝蛋。我们有研究团队长期陪伴我们研究这些奇妙的生物，所以如果你对这个领域的研究感兴趣，请不要犹豫，伸出手。我们将非常乐意合作，因为我们非常关心我们的环境和野生动植物。',
+      weather: '天气',
+      weatherIntro: '一般来说，哥打京那巴鲁和沙巴总体来说是郁郁葱葱，热带气候，所以一年四季都会有相当数量的降雨，但通常不是全天候的事情。一月到三月的“最佳时间”是因为气候比较凉爽和干燥。<br><br>10月份通常比较潮湿，但是近年来气候模式一直在变化，所以你通常可以有很清楚的日子。五月和四月是非常潮湿和炎热的，所以要做好准备，并计划游览周围的岛屿或到凉爽的山脉上！',
+      sectionTitle: 'Want to explore more about kuala penyu?'
     },
     rooms: {
-      pageTitle: '房间及设施'
+      pageTitle: '房间',
+      pageIntro: '我们共有13间客房，8间海景房和5间河景房。每个房间可以容纳4-6人的家庭，这取决于房间的类型，并配有基本但舒适的住宿。每间客房均配有空调和热水器。请检查每个房间类型的细节，看哪个是最合适的。如果您有任何疑问，请不防与我们联系。'
     },
     activities: {
-      pageTitle: '推荐景点及活动',
-      pageIntro: 'We have some activities on site such as row boats, fishing, crabbing, sea kayaking, and beach volleyball. We are lucky to enjoy the long white sandy beach at our doorstep and have several relaxing hammocks to enjoy the peace and quiet. As with the best things, the stunning sunset is free!',
+      pageTitle: '推荐活动',
+      pageIntro: '在沙巴有很多活动和享受，我们期待着向您展示一些最原始的海滩，茂密的森林，偏远的岛屿，稀有的野生动物等等。无需打电话给各个旅行社，我们很乐意为您准备完美的行程，并在您放松的同时做好一切安排，享受您的时间。只要告诉我们您预订的时间，或给我们留言，让我们知道您的兴趣，我们会尽快回复您！<br><br>如果你想体验更缓慢的步伐，我们也有现场活动，如划船，钓鱼，螃蟹，海上皮划艇，去湿沙浴和沙滩排球。在我们家门口的白色沙滩上，我们有几个吊床，可以打个盹，读一本书，倾听大自然的声音。如同生活中最美好的事物一样，观赏美丽的日落是让视觉得到无限的享受！',
       activities: '活动',
       adventures: '历奇探险'
     },
@@ -184,7 +192,7 @@ module.exports = {
     viewRooms: '浏览房间',
     moreDetails: '更多详情',
     hideDetails: '隐藏详情',
-    moreAreaAndActivities: '更多景点及活动',
+    moreActivities: '更多活动',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',
@@ -250,6 +258,7 @@ module.exports = {
     email: '请输入有效的电邮。',
     tnc: '请同意条款及细则',
     required: '请填写{field}。',
-    reservationCheckout: '你的订单出现异常情况，请重新预订。'
+    reservationCheckout: '你的订单出现异常情况，请重新预订。',
+    loginError: '登入账号或密码错误。'
   }
 }

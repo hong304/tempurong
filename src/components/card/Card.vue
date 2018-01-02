@@ -1,17 +1,11 @@
 <template>
 	<div class="card">
 		<div class="image-wrapper">
-			<img :src="resData.images[0].cover_image"/>
+			<img :src="resData.imageSrc"/>
 		</div>
 		<div class="info-wrapper">
-			<h3>{{ resData['name_' + $i18n.locale] }}</h3>
-			<p v-if="resData.subtitle_en">({{ resData['subtitle_' + $i18n.locale] }})</p>
-			<div class="activity-detail">
-				<ul>
-					<li><span class="ti-time"></span> {{ resData.duration }} mins</li>
-					<li><span class="walking-distance"></span> {{ resData.distance }}m from resort</li>
-				</ul>
-			</div>
+			<h3>{{ resData.title }}</h3>
+			<p>{{ resData.intro }}</p>
 		</div>
 	</div>
 </template>
@@ -44,7 +38,9 @@
 			& > h3 {
 				color: $brand-secondary;
 				text-transform: uppercase;
-				margin-bottom: 0;
+				margin-top: 0.75rem;
+				font-weight: bold;
+				margin-bottom: 0.25rem;
 			}
 			& > p {
 				margin-bottom: 0;

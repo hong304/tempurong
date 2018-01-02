@@ -1,48 +1,24 @@
 <template>
 	<div class="container" id="rooms">
 		<section class="mt-5 py-5">
-			<div class="row">
+			<div class="row mb-5">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
 					<content-paragraph :contentParagraph="$t('pages.rooms.pageIntro')"></content-paragraph>
 				</div>
 			</div>
-			<section class="details-header py-sm-5 py-0">
-				<div class="row mb-5">
-					<div class="col-xs-12">
-						<ol>
-							<li v-for="(item, index) in roomTypes">
-								<button class="btn btn-text-only" :class="{ active: selected == index+1 }"
-												@click="getRoomTypeData(index+1)">
-									{{ item['name_' + $i18n.locale] }}
-									<span
-											v-if="item['room_title_' + $i18n.locale]"><br>{{ item.room.length + ' ' + item['room_title_' + $i18n.locale]
-										}}</span>
-								</button>
-							</li>
-						</ol>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12" v-for="(item, index) in roomTypes" v-if="(roomTypes && selected == index+1)">
+
+			<section class="details-wrapper pb-5">
+				<div class="row border-bottom" v-for="(item, index) in roomTypes">
+					<div class="col-sm-6 col-xs-12">
 						<div class="image-wrapper">
 							<img :src="item.cover_image"/>
 						</div>
 					</div>
-				</div>
-			</section>
-
-			<section v-for="(item, index) in roomTypes" v-if="(roomTypes && selected == index+1)"
-							 class="details-wrapper pb-5">
-				<div class="row">
-					<div class="col-xs-12">
-						<h3>{{ item['name_' + $i18n.locale] }}<br>{{item['room_title_' + $i18n.locale]}}</h3>
+					<div class="col-sm-6 col-xs-12">
+						<h3>{{ item['name_' + $i18n.locale] }} <span>{{item['room_title_' + $i18n.locale]}}</span></h3>
 						<h5>${{item.price}} MYR per night with breakfasts</h5>
-						<span>{{ item.size }}</span>
-					</div>
-				</div>
-				<div class="row mt-5">
-					<div class="col-xs-12">
+						<p>{{ item.size }}</p>
 						<ul class="icon-list">
 							<li class="icon-row">
 								<span class="icon icon-guest"></span>
@@ -67,24 +43,26 @@
 								<span>1 extra breakfast (MYR 12 per night)</span>
 							</li>
 						</ul>
+						<button class="btn btn-main" @click="showDetails(index)">{{$t('button.moreDetails')}}</button>
+						<collapse class="mt-4" v-model="show[index]">
+							<div class="description" style="margin-bottom: 0">
+								<h5>{{ $t('components.card.roomCard.description') }}</h5>
+								<p>{{item.description}}</p>
+
+								<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
+								<icon-list :icons="amenities"></icon-list>
+
+								<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
+								<p><span>{{ $t('components.card.roomCard.resortPolicyContent') }}</span>
+									<router-link :to="{ name: 'Policy' }">{{ $t('components.card.roomCard.resortPolicyRoute') }}
+									</router-link>
+								</p>
+							</div>
+						</collapse>
 					</div>
 				</div>
 				<div class="row mt-5">
-					<div class="col-xs-12">
-						<div class="description" style="margin-bottom: 0">
-							<h5>{{ $t('components.card.roomCard.description') }}</h5>
-							<p>{{item.description}}</p>
-
-							<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
-							<icon-list :icons="amenities"></icon-list>
-
-							<h5>Resort and Cancellation Policy</h5>
-							<p>* Please refer to our Resort and Cancellation Policy.</p>
-						</div>
-					</div>
-				</div>
-				<div class="row mt-5">
-					<div class="col-xs-12 text-right">
+					<div class="co-xs-12 text-right">
 						<router-link :to="{ name: 'Reservations' }" class="btn btn-main">{{ $t("button.bookNow") }}</router-link>
 					</div>
 				</div>
@@ -109,10 +87,10 @@
     },
     data () {
       return {
-        resData: {},
         imageSrc: 'http://placehold.it/2000x1000',
         selected: 1,
         roomTypes: {},
+        show: [],
         amenities: [
           {iconSrc: '/static/img/icons/shower.png', title: 'Hot Shower'},
           {iconSrc: '/static/img/icons/towel.png', title: 'Shower Towel'},
@@ -121,29 +99,24 @@
         ]
       }
     },
+    created: function () {
+      this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
+        this.roomTypes = response.data
+        _.forEach(this.roomTypes, () => {
+          this.show.push(false)
+        })
+      }, (error) => {
+        console.log(error)
+      })
+    },
     methods: {
-      getRoomTypeData (val) {
-        if (val) {
-          this.axios.post(process.env.API_URL + '/api/room-type', {
-            typeId: val
-          }).then((response) => {
-            this.resData = response.data
-            this.selected = val
-          }, (error) => {
-            console.log(error)
-          })
+      showDetails (index) {
+        if (this.show[index]) {
+          this.$set(this.show, index, false)
         } else {
-          this.axios.get(process.env.API_URL + '/api/room-type').then((response) => {
-            this.roomTypes = response.data
-          }, (error) => {
-            console.log(error)
-          })
+          this.show = this.show.map((v, i) => i === index)
         }
       }
-    },
-    created: function () {
-      this.getRoomTypeData()
-      this.getRoomTypeData(this.selected)
     }
   }
 </script>
@@ -231,23 +204,37 @@
 		text-align: left;
 		color: $brand-secondary;
 		h3 {
-			margin-top: 0;
-			font-size: 3.5em;
+			margin: 0;
+			font-size: 2.5em;
 			font-weight: bold;
 			text-transform: uppercase;
 			@media screen and (max-width: 767px) {
 				font-size: 2em;
 			}
+			span {
+				font-weight: 400;
+			}
 		}
 		h5 {
-			font-size: 2em;
+			margin: 0;
+			font-size: 1.75em;
 			@media screen and (max-width: 767px) {
 				font-size: 1.35em;
 			}
 		}
+		p {
+			margin-bottom: 0.75em;
+			a {
+				color: $brand-secondary;
+				text-decoration: underline;
+				&:hover, &:focus {
+					color: $brand-primary;
+				}
+			}
+		}
 		.icon-list {
 			display: table;
-			margin-bottom: 0.5rem;
+			margin-bottom: 1.5rem;
 			.icon-row {
 				display: table-row;
 				span {
@@ -278,7 +265,6 @@
 			}
 		}
 
-
 		ul {
 			list-style-type: none;
 			& > li {
@@ -294,7 +280,6 @@
 				& > li {
 					@media screen and (min-width: 768px) {
 						display: inline-block;
-						float: left;
 						&:not(:last-of-type) {
 							margin-right: 2rem;
 						}
@@ -304,12 +289,12 @@
 							clear: both;
 						}
 					}
-					margin-bottom: 1.2rem;
+					margin-bottom: 0.5rem;
 				}
 			}
 		}
 		.description {
-			padding: 3rem;
+			padding: 2rem;
 			background-color: #f5f5f5;
 			@media screen and (max-width: 767px) {
 				padding: 1.5rem;
@@ -322,10 +307,15 @@
 				}
 			}
 		}
+		.border-bottom {
+			margin-bottom: 2.5em;
+			padding-bottom: 2.5em;
+			border-bottom: 1px solid $brand-primary;
+		}
 	}
 
 	.btn-main {
-		font-size: 2rem;
+		font-size: 1.15em;
 		text-transform: uppercase;
 	}
 </style>

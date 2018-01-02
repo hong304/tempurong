@@ -8,27 +8,27 @@
 				</div>
 			</div>
 		</section>
-		<section class="padding-of-section my-sm-5 my-0">
-			<div class="row">
-				<div class="col-xs-12">
-					<img :src="mapSrc"/>
-				</div>
-			</div>
-		</section>
 		<section class="padding-of-section my-5 border-bottom">
-			<div class="row">
+			<div class="row mb-5">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.contact.getThere')"></content-title>
 					<content-paragraph :contentParagraph="$t('pages.contact.getThereContent')" class="text-left"></content-paragraph>
 				</div>
 			</div>
-			<div class="row text-left mt-5 mb-5" v-for="item in $t('pages.contact.transportation')">
-				<div class="col-xs-12">
-					<h3 v-html="item.title"></h3>
-					<p v-html="item.content"></p>
-					<div v-if="item.subTitle">
-						<h4 v-html="item.subTitle"></h4>
-						<p v-for="content in item.subContent" v-html="content"></p>
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<img :src="mapSrc"/>
+				</div>
+				<div class="col-sm-6 col-xs-12">
+					<div class="row text-left mb-3" v-for="item in $t('pages.contact.transportation')">
+						<div class="col-xs-12">
+							<h3 v-html="item.title"></h3>
+							<p v-html="item.content"></p>
+							<div v-if="item.subTitle">
+								<h4 v-html="item.subTitle"></h4>
+								<p v-for="content in item.subContent" v-html="content"></p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 				<div class="col-xs-12">
 					<h4 class="text-center">Know more about the area?</h4>
 					<router-link :to="{ name: 'Activities' }" class="btn btn-main text-center">
-						{{ $t('button.moreAreaAndActivities') }}
+						{{ $t('button.moreActivities') }}
 					</router-link>
 				</div>
 			</div>

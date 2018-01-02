@@ -32,6 +32,7 @@
     },
     methods: {
       login: function () {
+        console.log(this.username)
         this.axios({
           method: 'post',
           url: process.env.API_URL + '/api/login',

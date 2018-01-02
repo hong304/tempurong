@@ -34,7 +34,8 @@
       login: function () {
         this.axios.post(process.env.API_URL + '/api/login', {
           username: this.username,
-          password: this.password
+          password: this.password,
+          withCredentials: true
         }).then((response) => {
           console.log(response.data)
           if (response.data.status) {

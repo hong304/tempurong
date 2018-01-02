@@ -32,10 +32,15 @@
     },
     methods: {
       login: function () {
-        this.axios.post(process.env.API_URL + '/api/login', {
-          username: this.username,
-          password: this.password
-        }, {withCredentials: true}).then((response) => {
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/login',
+          data: {
+            username: this.username,
+            password: this.password
+          },
+          withCredentials: true
+        }).then((response) => {
           console.log(response.data)
           if (response.data.status) {
             this.$router.push({name: 'AdminDashboard'})

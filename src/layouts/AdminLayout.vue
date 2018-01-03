@@ -47,8 +47,16 @@
         this.isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent)
       },
       logout () {
-        this.axios.get(process.env.API_URL + '/api/logout').then((response) => {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/logout',
+          headers: {
+            'Authorization': 'Bearer ' + this.$cookie.get('token'),
+            'Accept': 'application/json'
+          }
+        }).then((response) => {
           if (response.data.status) {
+            console.log(response.data.message)
             this.$router.push({name: 'AdminLogin'})
           }
         }, (error) => {
@@ -57,28 +65,29 @@
         })
       },
       checkLogin: function () {
-        let token = document.cookie
-        console.log(token)
-        token = token.substr(5)
-        console.log(token)
-        this.axios({
-          method: 'get',
-          url: process.env.API_URL + '/api/check-login',
-          headers: {
-            'Authorization': 'Bearer ' + token,
-            'Accept': 'application/json'
-          }
-        }).then((response) => {
-          if (response.data.success.id !== null) {
-            console.log('logged in')
-          } else {
-            console.log('not logged')
-            this.$router.push({name: 'AdminLogin'})
-          }
-        }, (error) => {
-          console.log(error)
-          this.error = 'error.authError'
-        })
+        if (this.$cookie.get('token')) {
+          this.axios({
+            method: 'get',
+            url: process.env.API_URL + '/api/check-login',
+            headers: {
+              'Authorization': 'Bearer ' + this.$cookie.get('token'),
+              'Accept': 'application/json'
+            }
+          }).then((response) => {
+            if (response.data.status) {
+              console.log(response.data.message)
+            } else {
+              console.log(response.data.message)
+              this.$router.push({name: 'AdminLogin'})
+            }
+          }, (error) => {
+            console.log(error)
+            this.error = 'error.authError'
+          })
+        } else {
+          console.log('Not Logged-in.')
+          this.$router.push({name: 'AdminLogin'})
+        }
       }
     },
     mounted () {

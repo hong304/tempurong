@@ -41,8 +41,8 @@
           }
         }).then((response) => {
           console.log(response.data)
-          if (response.data.success) {
-            document.cookie = 'token=' + response.data.success.token
+          if (response.data.status) {
+            this.$cookie.set('token', response.data.token)
             this.$router.push({name: 'AdminDashboard'})
           }
         }, (error) => {
@@ -51,14 +51,29 @@
         })
       },
       checkLogin: function () {
-        this.axios.get(process.env.API_URL + '/api/check-login').then((response) => {
-          if (response.data.status) {
-            this.$router.push({name: 'AdminDashboard'})
-          }
-        }, (error) => {
-          console.log(error)
-          this.error = 'error.authError'
-        })
+        if (this.$cookie.get('token')) {
+          this.axios({
+            method: 'get',
+            url: process.env.API_URL + '/api/check-login',
+            headers: {
+              'Authorization': 'Bearer ' + this.$cookie.get('token'),
+              'Accept': 'application/json'
+            }
+          }).then((response) => {
+            if (response.data.status) {
+              console.log(response.data.message)
+            } else {
+              console.log(response.data.message)
+              this.$router.push({name: 'AdminLogin'})
+            }
+          }, (error) => {
+            console.log(error)
+            this.error = 'error.authError'
+          })
+        } else {
+          console.log('Not Logged-in.')
+          this.$router.push({name: 'AdminLogin'})
+        }
       }
     },
     created () {

@@ -6,7 +6,7 @@
 					<div class="login-wrapper">
 						<img src="/static/img/logo.svg" alt="Tempourong Logo"/>
 						<h4>Admin Login</h4>
-						<input v-model="username" placeholder="Username">
+						<input v-model="email" placeholder="Email">
 						<input v-model="password" placeholder="Password" type="password">
 						<h5 class="error-message" v-if="error">
 							<span class="ti-alert"></span>
@@ -25,7 +25,7 @@
     name: 'Login',
     data () {
       return {
-        username: '',
+        email: '',
         password: '',
         error: ''
       }
@@ -36,13 +36,13 @@
           method: 'post',
           url: process.env.API_URL + '/api/login',
           data: {
-            username: this.username,
+            email: this.email,
             password: this.password
-          },
-          withCredentials: true
+          }
         }).then((response) => {
           console.log(response.data)
-          if (response.data.status) {
+          if (response.data.success) {
+            document.cookie = 'token=' + response.data.success.token
             this.$router.push({name: 'AdminDashboard'})
           }
         }, (error) => {

@@ -12,10 +12,10 @@
 					</router-link>
 				</li>
 				<!--<li>-->
-					<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
-						<!--<span class="ti-settings"></span>-->
-						<!--<p>Profile</p>-->
-					<!--</router-link>-->
+				<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
+				<!--<span class="ti-settings"></span>-->
+				<!--<p>Profile</p>-->
+				<!--</router-link>-->
 				<!--</li>-->
 				<li>
 					<a class="nav-link" @click="logout()">
@@ -57,8 +57,22 @@
         })
       },
       checkLogin: function () {
-        this.axios.get(process.env.API_URL + '/api/check-login').then((response) => {
-          if (!response.data.status) {
+        let token = document.cookie
+        console.log(token)
+        token = token.substr(5)
+        console.log(token)
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          headers: {
+            'Authorization': 'Bearer ' + token,
+            'Accept': 'application/json'
+          }
+        }).then((response) => {
+          if (response.data.success.id) {
+            console.log('logged in')
+          } else {
+            console.log('not logged')
             this.$router.push({name: 'AdminLogin'})
           }
         }, (error) => {
@@ -78,7 +92,7 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
+
 	.side-nav {
 		position: fixed;
 		left: 0;
@@ -119,7 +133,7 @@
 			}
 		}
 	}
-	
+
 	.content-wrapper {
 		position: relative;
 		width: calc(100vw - 80px);

@@ -69,7 +69,7 @@
             'Accept': 'application/json'
           }
         }).then((response) => {
-          if (response.data.success.id) {
+          if (response.data.success.id !== null) {
             console.log('logged in')
           } else {
             console.log('not logged')

@@ -48,7 +48,7 @@
       },
       logout () {
         this.axios({
-          method: 'get',
+          method: 'post',
           url: process.env.API_URL + '/api/logout',
           headers: {
             'Authorization': 'Bearer ' + this.$cookie.get('token'),
@@ -72,12 +72,13 @@
             headers: {
               'Authorization': 'Bearer ' + this.$cookie.get('token'),
               'Accept': 'application/json'
-            }
+            },
+            withCredentials: true
           }).then((response) => {
             if (response.data.status) {
               console.log(response.data.message)
             } else {
-              console.log(response.data.message)
+              console.log(response.data)
               this.$router.push({name: 'AdminLogin'})
             }
           }, (error) => {
@@ -85,7 +86,7 @@
             this.error = 'error.authError'
           })
         } else {
-          console.log('Not Logged-in.')
+          console.log('Cannot find token')
           this.$router.push({name: 'AdminLogin'})
         }
       }

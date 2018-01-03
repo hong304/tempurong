@@ -38,7 +38,8 @@
           data: {
             email: this.email,
             password: this.password
-          }
+          },
+          withCredentials: true
         }).then((response) => {
           console.log(response.data)
           if (response.data.status) {
@@ -58,7 +59,8 @@
             headers: {
               'Authorization': 'Bearer ' + this.$cookie.get('token'),
               'Accept': 'application/json'
-            }
+            },
+            withCredentials: true
           }).then((response) => {
             if (response.data.status) {
               console.log(response.data.message)
@@ -84,12 +86,12 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	#login {
 		background-color: #f5f5f5;
 		height: 100vh;
 	}
-	
+
 	.login-wrapper {
 		display: inline-block;
 		padding: 3.5rem;

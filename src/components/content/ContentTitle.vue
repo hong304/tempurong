@@ -1,5 +1,8 @@
 <template>
-	<h2>{{contentTitle}}</h2>
+	<div>
+		<h2>{{contentTitle}}</h2>
+		<h3 v-if="contentSubTitle">{{contentSubTitle}}</h3>
+	</div>
 </template>
 
 <script>
@@ -11,7 +14,8 @@
         default: () => {
           return 'I\'m default title.'
         }
-      }
+      },
+      contentSubTitle: false
     }
   }
 </script>
@@ -27,6 +31,14 @@
 		margin-top: 0;
 		margin-bottom: 2rem;
 		font-weight: bold;
+		color: $brand-secondary;
+	}
+	h3 {
+		font-size: 2rem;
+		text-transform: uppercase;
+		font-weight: bold;
+		margin-top: 0.5rem;
+		margin-bottom: 3rem;
 		color: $brand-secondary;
 	}
 </style>

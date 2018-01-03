@@ -9,8 +9,10 @@
 
 		<!-- rooms section -->
 		<section class="padding-of-section mx-md-5 px-md-5">
-			<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
-			<content-paragraph :contentParagraph="$t('pages.home.roomsSubtitle')"></content-paragraph>
+			<content-title
+				:contentTitle="$t('pages.rooms.pageTitle')"
+				:contentSubTitle="$t('pages.home.roomsSubtitle')"
+			></content-title>
 			<div class="row">
 				<icon-list :icons="amenitiesIcons"></icon-list>
 			</div>
@@ -23,8 +25,10 @@
 
 		<!-- ACTIVITIES section -->
 		<section class="padding-of-section mx-md-5 px-md-5 mb-5 pb-5">
-			<content-title :contentTitle="$t('pages.activities.pageTitle')"></content-title>
-			<content-paragraph :contentParagraph="$t('pages.home.activitiesSubtitle')"></content-paragraph>
+			<content-title
+				:contentTitle="$t('pages.activities.pageTitle')"
+				:contentSubTitle="$t('pages.home.activitiesSubtitle')"
+			></content-title>
 			<div class="row">
 				<icon-list :icons="activitiesIcon"></icon-list>
 			</div>
@@ -42,8 +46,10 @@
 
 
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
-			<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
-			<content-paragraph :contentParagraph="$t('pages.home.foodSubtitle')"></content-paragraph>
+			<content-title
+				:contentTitle="$t('pages.food.pageTitle')"
+				:contentSubTitle="$t('pages.home.foodSubtitle')"
+			></content-title>
 			<div class="row m-0">
 				<div class="col-sm-4 col-xs-6 food-list" v-for="item in foods">
 					<div class="icon-wrapper">
@@ -62,8 +68,10 @@
 			</div>
 		</section>
 		<section class="padding-of-section mx-md-5 px-md-5 py-5">
-			<content-title :contentTitle="$t('pages.home.reviews')"></content-title>
-			<content-paragraph :contentParagraph="$t('pages.home.reviewsSubtitle')"></content-paragraph>
+			<content-title
+				:contentTitle="$t('pages.home.reviews')"
+				:contentSubTitle="$t('pages.home.reviewsSubtitle')"
+			></content-title>
 			<div class="row">
 				<div class="col-md-4 col-xs-12">
 					<testimonal></testimonal>
@@ -160,9 +168,28 @@
           }
         ],
         banners: [
-          {imgSrc: '/static/img/home_banner/banner-03.jpg', title: 'Rooms starting from $250 MYR/night'},
-          {imgSrc: '/static/img/home_banner/banner-04.jpg', title: 'Rooms starting from $250 MYR/night'},
-          {imgSrc: '/static/img/home_banner/banner-05.jpg', title: 'Rooms starting from $250 MYR/night'}
+          {
+            imgSrc: '/static/img/home_banner/banner-03.jpg',
+            title: 'Rooms starting from $250 MYR/night',
+            cta: [
+              {to: {name: 'Rooms'}, btnText: 'viewRooms'}
+            ]
+          },
+          {
+            imgSrc: '/static/img/home_banner/banner-04.jpg',
+            title: 'Explore more. Plan your next adventure.',
+            cta: [
+              {to: {name: 'Activities'}, btnText: 'moreActivities'},
+              {to: {name: 'About'}, btnText: 'aboutUs'}
+            ]
+          },
+          {
+            imgSrc: '/static/img/home_banner/banner-05.jpg',
+            title: 'Relax and get a taste of Borneo',
+            cta: [
+              {to: {name: 'Food'}, btnText: 'foodOptions'}
+            ]
+          }
         ],
         roomType: [],
         foods: []

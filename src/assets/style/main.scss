@@ -7,6 +7,12 @@
   color: #2c3e50;
 }
 
+.border-bottom {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid $brand-primary;
+}
+
 .padding-of-section {
   padding-top: 3rem;
   padding-bottom: 3rem;

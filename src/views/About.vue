@@ -8,7 +8,7 @@
 			</div>
 		</section>
 		<section class="my-5 content-wrapper">
-			<div class="row">
+			<div class="row border-bottom">
 				<div class="col-sm-4 col-xs-12 mb-md-0 mb-4 text-center">
 					<img class="img-fluid" :src="imageSrc"/>
 				</div>
@@ -84,17 +84,17 @@
         imageSrcThree: '/static/img/about/weather.jpg',
         ctaData: [
           {
-            imageSrc: '/static/img/demo-room.jpg',
+            imageSrc: '/static/img/about/room.jpg',
             title: 'Rooms',
             route: {name: 'Rooms'}
           },
           {
-            imageSrc: '/static/img/demo-about-01.jpg',
+            imageSrc: '/static/img/about/activities.jpg',
             title: 'Activities',
             route: {name: 'Activities'}
           },
           {
-            imageSrc: '/static/img/demo-about-01.jpg',
+            imageSrc: '/static/img/about/food.jpg',
             title: 'Food',
             route: {name: 'Food'}
           }

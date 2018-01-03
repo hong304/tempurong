@@ -73,6 +73,7 @@ module.exports = {
     },
     contact: {
       pageTitle: 'Contact',
+      pageSubtitle: 'Find us in Kuala Penyu, Sabah, Malaysia',
       pageIntro: '',
       getThere: 'Getting there',
       getThereContent: 'Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI - the nearest airport) by car. We are happy to pick-up and drop-off up from the airport or Kota Kinabalu City for an additional fee:',
@@ -111,7 +112,8 @@ module.exports = {
       }
     },
     reservations: {
-      pageTitle: 'Reservations'
+      pageTitle: 'Reservations',
+      pageSubtitle: 'Your slice of paradise is waiting!'
     },
     reservationsContact: {
       pageTitle: 'Contact Information',
@@ -263,6 +265,8 @@ module.exports = {
     moreDetails: 'More Details',
     hideDetails: 'Hide Details',
     moreActivities: 'More Activities',
+    aboutUs: 'About Us',
+    foodOptions: 'Food Options',
     discoverMore: 'Discover More',
     dropMessage: 'Drop a Message',
     justAsk: 'Just Ask',

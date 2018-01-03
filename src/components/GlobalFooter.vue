@@ -21,12 +21,6 @@
             <li>
               <icon name="cc-mastercard" scale="3"></icon>
             </li>
-            <li>
-              <img :src="iconSrc"/>
-            </li>
-            <li>
-              <img :src="iconSrc2"/>
-            </li>
           </ul>
         </div>
         <div class="col-md-4 col-xs-12">
@@ -82,8 +76,6 @@
     },
     data () {
       return {
-        iconSrc: '/static/img/icons/payment/alipay.png',
-        iconSrc2: '/static/img/icons/payment/unionpay.png'
       }
     }
   }

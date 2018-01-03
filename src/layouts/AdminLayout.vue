@@ -48,12 +48,13 @@
       },
       logout () {
         this.axios({
-          method: 'post',
+          method: 'get',
           url: process.env.API_URL + '/api/logout',
           headers: {
             'Authorization': 'Bearer ' + this.$cookie.get('token'),
             'Accept': 'application/json'
-          }
+          },
+          withCredentials: true
         }).then((response) => {
           if (response.data.status) {
             console.log(response.data.message)
@@ -102,7 +103,7 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	.side-nav {
 		position: fixed;
 		left: 0;
@@ -143,7 +144,7 @@
 			}
 		}
 	}
-
+	
 	.content-wrapper {
 		position: relative;
 		width: calc(100vw - 80px);

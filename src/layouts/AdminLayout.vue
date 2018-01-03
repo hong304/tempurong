@@ -12,10 +12,10 @@
 					</router-link>
 				</li>
 				<!--<li>-->
-					<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
-						<!--<span class="ti-settings"></span>-->
-						<!--<p>Profile</p>-->
-					<!--</router-link>-->
+				<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
+				<!--<span class="ti-settings"></span>-->
+				<!--<p>Profile</p>-->
+				<!--</router-link>-->
 				<!--</li>-->
 				<li>
 					<a class="nav-link" @click="logout()">
@@ -47,8 +47,16 @@
         this.isMobile = /iPhone|iPod|Android/i.test(navigator.userAgent)
       },
       logout () {
-        this.axios.get(process.env.API_URL + '/api/logout').then((response) => {
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/logout',
+          headers: {
+            'Authorization': 'Bearer ' + this.$cookie.get('token'),
+            'Accept': 'application/json'
+          }
+        }).then((response) => {
           if (response.data.status) {
+            console.log(response.data.message)
             this.$router.push({name: 'AdminLogin'})
           }
         }, (error) => {
@@ -57,14 +65,30 @@
         })
       },
       checkLogin: function () {
-        this.axios.get(process.env.API_URL + '/api/check-login').then((response) => {
-          if (!response.data.status) {
-            this.$router.push({name: 'AdminLogin'})
-          }
-        }, (error) => {
-          console.log(error)
-          this.error = 'error.authError'
-        })
+        if (this.$cookie.get('token')) {
+          this.axios({
+            method: 'get',
+            url: process.env.API_URL + '/api/check-login',
+            headers: {
+              'Authorization': 'Bearer ' + this.$cookie.get('token'),
+              'Accept': 'application/json'
+            },
+            withCredentials: true
+          }).then((response) => {
+            if (response.data.status) {
+              console.log(response.data.message)
+            } else {
+              console.log(response.data)
+              this.$router.push({name: 'AdminLogin'})
+            }
+          }, (error) => {
+            console.log(error)
+            this.error = 'error.authError'
+          })
+        } else {
+          console.log('Cannot find token')
+          this.$router.push({name: 'AdminLogin'})
+        }
       }
     },
     mounted () {
@@ -78,7 +102,7 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
+
 	.side-nav {
 		position: fixed;
 		left: 0;
@@ -119,7 +143,7 @@
 			}
 		}
 	}
-	
+
 	.content-wrapper {
 		position: relative;
 		width: calc(100vw - 80px);

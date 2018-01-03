@@ -12,7 +12,7 @@
 			<content-title :contentTitle="$t('pages.rooms.pageTitle')"></content-title>
 			<content-paragraph :contentParagraph="$t('pages.home.roomsSubtitle')"></content-paragraph>
 			<div class="row">
-				<icon-list :icons="amenitiesIcon"></icon-list>
+				<icon-list :icons="amenitiesIcons"></icon-list>
 			</div>
 			<div class="row m-0">
 				<div class="col-sm-4 col-xs-12 p-0 mb-2 mb-sm-0" v-for="item in roomType">
@@ -117,8 +117,7 @@
     },
     data () {
       return {
-        titleOne: 'Welcome to Tempurong',
-        amenitiesIcon: [
+        amenitiesIcons: [
           {iconSrc: '/static/img/icons/shower.png', title: 'Hot Shower'},
           {iconSrc: '/static/img/icons/towel.png', title: 'Shower Towel'},
           {iconSrc: '/static/img/icons/air-con.png', title: 'Air Conditioning'},

@@ -31,10 +31,16 @@ module.exports = {
   pages: {
     home: {
       welcome: '歡迎來到瓜拉彭尤',
-      services: '我們的服務',
-      activities: '推薦活動',
+      welcomeIntro: '我們是一所坐落在長長的原始海岸線上的私人度假酒店，位於馬來西亞哥打京那巴魯以南約2.5小時車程的沙巴瓜拉奔優。<br><br>保存這一片天堂是我們的夢想，我們很高興能與您分享沙巴的自然之美 - 從島嶼到叢林，再到山脈和更多。我們期望呈現我們最好的部分給大家！',
+      rooms: '設施和客房',
+      roomsSubtitle: '簡單而舒適，我們希望你有賓至如歸的感覺！',
+      activities: '推薦景點及活動',
+      activitiesSubtitle: '放松，探險，美麗與和平。',
+      food: '精彩食物',
+      foodSubtitle: '品嘗沙巴的風味！',
       features: '當地特色',
-      reviews: '顧客評價'
+      reviews: '顧客評價',
+      reviewsSubtitle: '歡迎再來！'
     },
     about: {
       pageTitle: '關於我們',

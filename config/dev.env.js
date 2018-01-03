@@ -4,5 +4,5 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  API_URL: '"http://api.tempurong.buildonauts.com"'
+  API_URL: '"http://localhost:9000"'
 })

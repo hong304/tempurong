@@ -3,8 +3,10 @@
 		<section class="padding-of-section mt-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="$t('pages.food.pageTitle')"></content-title>
-					<h4>{{ $t('pages.food.pageSubtitle') }}</h4>
+					<content-title
+						:contentTitle="$t('pages.food.pageTitle')"
+						:contentSubTitle="$t('pages.food.pageSubtitle')"
+					></content-title>
 					<content-content :contentParagraph="$t('pages.food.pageIntro')"></content-content>
 				</div>
 			</div>
@@ -74,12 +76,6 @@
 			font-weight: bold;
 			margin-top: 0;
 			font-size: 3rem;
-		}
-		h4 {
-			font-size: 2rem;
-			text-transform: uppercase;
-			font-weight: bold;
-			margin-bottom: 3rem;
 		}
 	}
 

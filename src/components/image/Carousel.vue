@@ -8,8 +8,8 @@
 					</div>
 					<div class="carousel-caption" v-if="item.title">
 						<h3>{{item.title}}</h3>
-						<router-link :to="{ name: 'Rooms' }" class="btn btn-main">
-							{{ $t("button.viewRooms") }}
+						<router-link v-for="item in item.cta" :to="item.to" class="btn btn-main">
+							{{ $t("button." + item.btnText) }}
 						</router-link>
 					</div>
 				</slide>
@@ -95,6 +95,9 @@
 				font-weight: bold;
 				font-size: 1.5rem;
 			}
+		}
+		a {
+			margin: 0.5rem;
 		}
 	}
 </style>

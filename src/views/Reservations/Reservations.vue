@@ -3,12 +3,14 @@
 		<section class="padding-of-section mt-5 py-3 py-sm-5">
 			<div class="row mb-0 mb-sm-5">
 				<div class="col-xs-12">
-					<content-title :contentTitle="$t('pages.reservations.pageTitle')"></content-title>
-					<content-paragraph></content-paragraph>
+					<content-title
+						:contentTitle="$t('pages.reservations.pageTitle')"
+						:contentSubTitle="$t('pages.reservations.pageSubtitle')"
+					></content-title>
 				</div>
 			</div>
 		</section>
-		<div class="overlay-wrapper my-5" v-if="!optionSelected">
+		<div class="overlay-wrapper" v-if="!optionSelected">
 			<div class="overlay-options">
 				<div class="picker-input">
 					<HotelDatePicker class="custom-picker"

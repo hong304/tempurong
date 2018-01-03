@@ -6,7 +6,7 @@
 					<div class="login-wrapper">
 						<img src="/static/img/logo.svg" alt="Tempourong Logo"/>
 						<h4>Admin Login</h4>
-						<input v-model="username" placeholder="Username">
+						<input v-model="email" placeholder="Email">
 						<input v-model="password" placeholder="Password" type="password">
 						<h5 class="error-message" v-if="error">
 							<span class="ti-alert"></span>
@@ -25,7 +25,7 @@
     name: 'Login',
     data () {
       return {
-        username: '',
+        email: '',
         password: '',
         error: ''
       }
@@ -36,13 +36,14 @@
           method: 'post',
           url: process.env.API_URL + '/api/login',
           data: {
-            username: this.username,
+            email: this.email,
             password: this.password
           },
           withCredentials: true
         }).then((response) => {
           console.log(response.data)
           if (response.data.status) {
+            this.$cookie.set('token', response.data.token)
             this.$router.push({name: 'AdminDashboard'})
           }
         }, (error) => {
@@ -51,14 +52,30 @@
         })
       },
       checkLogin: function () {
-        this.axios.get(process.env.API_URL + '/api/check-login').then((response) => {
-          if (response.data.status) {
-            this.$router.push({name: 'AdminDashboard'})
-          }
-        }, (error) => {
-          console.log(error)
-          this.error = 'error.authError'
-        })
+        if (this.$cookie.get('token')) {
+          this.axios({
+            method: 'get',
+            url: process.env.API_URL + '/api/check-login',
+            headers: {
+              'Authorization': 'Bearer ' + this.$cookie.get('token'),
+              'Accept': 'application/json'
+            },
+            withCredentials: true
+          }).then((response) => {
+            if (response.data.status) {
+              console.log(response.data.message)
+            } else {
+              console.log(response.data.message)
+              this.$router.push({name: 'AdminLogin'})
+            }
+          }, (error) => {
+            console.log(error)
+            this.error = 'error.authError'
+          })
+        } else {
+          console.log('Not Logged-in.')
+          this.$router.push({name: 'AdminLogin'})
+        }
       }
     },
     created () {
@@ -69,12 +86,12 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	#login {
 		background-color: #f5f5f5;
 		height: 100vh;
 	}
-	
+
 	.login-wrapper {
 		display: inline-block;
 		padding: 3.5rem;

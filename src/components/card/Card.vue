@@ -1,8 +1,10 @@
 <template>
 	<div class="card">
-		<div class="image-wrapper">
-			<img :src="resData.imageSrc"/>
-		</div>
+		<router-link :to="">
+			<div class="image-wrapper">
+				<img :src="resData.imageSrc"/>
+			</div>
+		</router-link>
 		<div class="info-wrapper">
 			<h3>{{ resData.title }}</h3>
 			<p>{{ resData.intro }}</p>

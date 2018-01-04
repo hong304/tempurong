@@ -52,26 +52,26 @@
         })
       },
       checkLogin: function () {
-        if (this.$cookie.get('token')) {
-          this.axios({
-            method: 'get',
-            url: process.env.API_URL + '/api/check-login',
-            withCredentials: true
-          }).then((response) => {
-            if (response.data.status) {
-              console.log(response.data.message)
-            } else {
-              console.log(response.data.message)
-              this.$router.push({name: 'AdminLogin'})
-            }
-          }, (error) => {
-            console.log(error)
-            this.error = 'error.authError'
-          })
-        } else {
-          console.log('Not Logged-in.')
-          this.$router.push({name: 'AdminLogin'})
-        }
+//        if (this.$cookie.get('token')) {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          withCredentials: true
+        }).then((response) => {
+          if (response.data.status) {
+            console.log(response.data.message)
+          } else {
+            console.log(response.data.message)
+            this.$router.push({name: 'AdminLogin'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.authError'
+        })
+//        } else {
+//          console.log('Not Logged-in.')
+//          this.$router.push({name: 'AdminLogin'})
+//        }
       }
     },
     created () {
@@ -82,12 +82,12 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	#login {
 		background-color: #f5f5f5;
 		height: 100vh;
 	}
-
+	
 	.login-wrapper {
 		display: inline-block;
 		padding: 3.5rem;

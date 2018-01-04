@@ -42,7 +42,8 @@
           withCredentials: true
         }).then((response) => {
           if (response.data.status) {
-            this.$cookie.set('token', response.data.token)
+            console.log(response.data)
+//            this.$cookie.set('token', response.data.token)
             this.$router.push({name: 'AdminDashboard'})
           }
         }, (error) => {

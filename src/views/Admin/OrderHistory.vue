@@ -23,9 +23,10 @@
 			<div class="row m-0">
 				<div class="col-xs-12">
 					<vuetable ref="vuetable"
-					          api-url="/api/orderHistory"
+					          :api-url="baseUrl + '/api/orderHistory'"
+					          :http-options="{headers: {'Accept': 'application/json'}, withCredentials: true}"
 					          :fields="tableFields"
-					          pagination-path=""
+					          pagination-path="meta"
 					          @vuetable:pagination-data="onPaginationData">
 						<template slot="guests" slot-scope="props">
 							<p class="m-0">{{ props.rowData.adults + props.rowData.children }}</p>
@@ -87,7 +88,8 @@
             last: 'ti-angle-double-right'
           }
         },
-        orderSummarize: {}
+        orderSummarize: {},
+        baseUrl: process.env.API_URL
       }
     },
     methods: {

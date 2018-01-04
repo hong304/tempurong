@@ -24,6 +24,7 @@
 				<div class="col-xs-12">
 					<vuetable ref="vuetable"
 					          api-url="/api/orderHistory"
+					          :api-mode="true"
 					          :http-options="{withCredentials: true}"
 					          :fields="tableFields"
 					          pagination-path=""

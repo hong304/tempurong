@@ -147,21 +147,25 @@
         },
         adventures: [
           {
+            to: { name: 'Activities' },
             title: 'Coral Reef Snorkeling',
             intro: 'The corals in Sabah are breathtaking, but don’t worry, you’ll have your snorkel on! If you’re lucky, you might spot a sea turtle.',
             imageSrc: '/static/img/landing/CoralReefSnorkeling.jpg'
           },
           {
+            to: { name: 'Activities' },
             title: 'Volcano Mud Bath',
             intro: 'Famed for its skin nutrient benefits, this mud bath is fun and popular! Did you know, the mud makes you float?',
             imageSrc: '/static/img/landing/VolcanoMudBath.jpg'
           },
           {
+            to: { name: 'Activities' },
             title: 'The Rare Proboscis Monkey',
             intro: 'Seen only in Borneo, the Proboscis monkey is one of the largest monkey species native to Asia. Enjoy a day out viewing these wonderful creatures in their natural habitat.',
             imageSrc: '/static/img/landing/TheRareProboscisMonkey.jpg'
           },
           {
+            to: { name: 'Activities' },
             title: 'Magical Fireflies in Nature',
             intro: 'Fireflies only thrive in areas away from urban cities and with clean, flowing water. Enjoy a beautiful evening cruising through the mangroves as they light up the night.',
             imageSrc: '/static/img/landing/MagicalFirefliesInNature.jpg'

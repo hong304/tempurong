@@ -1,6 +1,11 @@
 <template>
 	<div class="card">
-		<div class="image-wrapper">
+		<router-link v-if="resData.to" :to="resData.to">
+			<div class="image-wrapper">
+				<img :src="resData.imageSrc"/>
+			</div>
+		</router-link>
+		<div class="image-wrapper" v-else>
 			<img :src="resData.imageSrc"/>
 		</div>
 		<div class="info-wrapper">

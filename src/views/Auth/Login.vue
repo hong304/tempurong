@@ -56,10 +56,6 @@
           this.axios({
             method: 'get',
             url: process.env.API_URL + '/api/check-login',
-            headers: {
-              'Authorization': 'Bearer ' + this.$cookie.get('token'),
-              'Accept': 'application/json'
-            },
             withCredentials: true
           }).then((response) => {
             if (response.data.status) {

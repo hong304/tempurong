@@ -108,7 +108,11 @@
       }
     },
     created () {
-      this.axios.get(process.env.API_URL + '/api/orderHistorySummarize').then((response) => {
+      this.axios({
+        method: 'get',
+        url: process.env.API_URL + '/api/orderHistorySummarize',
+        withCredentials: true
+      }).then((response) => {
         this.orderSummarize = response.data
       }, (error) => {
         console.log(error)

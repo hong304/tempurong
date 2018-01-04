@@ -41,7 +41,6 @@
           },
           withCredentials: true
         }).then((response) => {
-          console.log(response.data)
           if (response.data.status) {
             this.$cookie.set('token', response.data.token)
             this.$router.push({name: 'AdminDashboard'})

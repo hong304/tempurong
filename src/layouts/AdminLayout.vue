@@ -62,26 +62,26 @@
         })
       },
       checkLogin: function () {
-        if (this.$cookie.get('token')) {
-          this.axios({
-            method: 'get',
-            url: process.env.API_URL + '/api/check-login',
-            withCredentials: true
-          }).then((response) => {
-            if (response.data.status) {
-              console.log(response.data.message)
-            } else {
-              console.log(response.data)
-              this.$router.push({name: 'AdminLogin'})
-            }
-          }, (error) => {
-            console.log(error)
-            this.error = 'error.authError'
-          })
-        } else {
-          console.log('Cannot find token')
-          this.$router.push({name: 'AdminLogin'})
-        }
+//        if (this.$cookie.get('token')) {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          withCredentials: true
+        }).then((response) => {
+          if (response.data.status) {
+            console.log(response.data.message)
+          } else {
+            console.log(response.data)
+            this.$router.push({name: 'AdminLogin'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.authError'
+        })
+//        } else {
+//          console.log('Cannot find token')
+//          this.$router.push({name: 'AdminLogin'})
+//        }
       }
     },
     mounted () {

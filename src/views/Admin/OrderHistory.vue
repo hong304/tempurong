@@ -24,10 +24,7 @@
 				<div class="col-xs-12">
 					<vuetable ref="vuetable"
 					          api-url="/api/orderHistory"
-					          :http-options="{headers: {
-						            'Authorization': 'Bearer ' + $cookie.get('token'),
-						            'Accept': 'application/json'
-						        }, withCredentials: true}"
+					          :http-options="{withCredentials: true}"
 					          :fields="tableFields"
 					          pagination-path=""
 					          @vuetable:pagination-data="onPaginationData">

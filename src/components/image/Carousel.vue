@@ -8,7 +8,7 @@
 					</div>
 					<div class="carousel-caption" v-if="item.title">
 						<h3>{{item.title}}</h3>
-						<router-link v-for="item in item.cta" :to="item.to" class="btn btn-main">
+						<router-link v-for="(item, index) in item.cta" :to="item.to" class="btn btn-main" :key="index">
 							{{ $t("button." + item.btnText) }}
 						</router-link>
 					</div>

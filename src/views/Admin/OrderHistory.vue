@@ -24,13 +24,12 @@
 				<div class="col-xs-12">
 					<vuetable ref="vuetable"
 					          api-url="/api/orderHistory"
-					          :api-mode="true"
-					          :http-options="{        headers: {
+					          :http-options="{ headers: {
           'Authorization': 'Bearer ' + $cookie.get('token'),
           'Accept': 'application/json'
-        },withCredentials: true}"
+        },withCredentials: true }"
 					          :fields="tableFields"
-					          pagination-path=""
+					          pagination-path="meta"
 					          @vuetable:pagination-data="onPaginationData">
 						<template slot="guests" slot-scope="props">
 							<p class="m-0">{{ props.rowData.adults + props.rowData.children }}</p>

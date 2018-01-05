@@ -3,7 +3,7 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="titleOne"></content-title>
+					<content-title :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
@@ -16,7 +16,7 @@
 								<div class="col-xs-12">
 									<h3>Name : {{ clientName }}</h3>
 									<h3>Email : {{ resData.email }}</h3>
-									<h3>Transition ID : {{ resData.transaction_id }}</h3>
+									<h3>Reservation ID : {{ resData.session }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -65,18 +65,9 @@
     name: 'order-detail',
     data () {
       return {
-        titleOne: 'Order Detail',
-        checkInDate: '15 Nov 2017',
-        checkOutDate: '21 Nov 2017',
-        roomType: 'River View',
-        totalRooms: 2,
-        totalPrice: 250,
         resData: {},
-        isAdmin: 1
+        isAdmin: 0
       }
-    },
-    props: {
-      orderId: {}
     },
     computed: {
       clientName: function () {
@@ -100,11 +91,12 @@
         method: 'post',
         url: process.env.API_URL + '/api/orderHistory',
         data: {
-          orderId: this.orderId
+          sessionId: this.$route.params.sessionId
         },
         withCredentials: true
       }).then((response) => {
         this.resData = response.data
+        this.isAdmin = response.data.isAdmin
       }, (error) => {
         console.log(error)
       })

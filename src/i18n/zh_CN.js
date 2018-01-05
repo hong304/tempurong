@@ -93,6 +93,9 @@ module.exports = {
       thankYou: '谢谢您！',
       pageMsg: '您已成功预订我们的房间，我们将会把订单明细电邮给您。'
     },
+    reservationsDetails: {
+      pageTitle: '订单资料'
+    },
     faq: {
       pageTitle: 'FAQ',
       qas: [

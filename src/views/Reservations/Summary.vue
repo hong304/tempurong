@@ -68,7 +68,7 @@
 								
 								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
 								<PayPal
-												v-on:paypal-paymentCompleted="saveReservation"
+												v-on:paypal-paymentAuthorized="saveReservation"
 												:dev="dev"
 												:buttonStyle="paypalBtn"
 												:amount="orderDetails.totalPrice.toString()"
@@ -160,21 +160,19 @@
         })
       },
       saveReservation: function (data) {
-        if (data.state === 'approved') {
-          this.showLoading = true
-          this.axios.post(process.env.API_URL + '/api/reservation/update', {
-            sessionId: data.transactions[0].invoice_number,
-            transactionId: data.id
-          }).then((response) => {
-            console.log(response)
-            this.$localStorage.set('transactionId', response.data.message)
-            this.showLoading = false
-            this.$router.push({name: 'ReservationConfirmed'})
-          }, (error) => {
-            console.log(error)
-            this.error = 'error.reservationCheckout'
-          })
-        }
+        this.showLoading = true
+        this.axios.post(process.env.API_URL + '/api/reservation/update', {
+          sessionId: this.orderSessionId,
+          transactionId: data.paymentToken
+        }).then((response) => {
+          console.log(response)
+          this.$localStorage.set('transactionId', response.data.message)
+          this.showLoading = false
+          this.$router.push({name: 'ReservationConfirmed'})
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.reservationCheckout'
+        })
       }
     },
     computed: {

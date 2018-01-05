@@ -52,8 +52,8 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<p class="mb-2">{{ $t('pages.reservationsSummary.remark') }} : {{ remark }}</p>
-									<p>{{ $t('pages.reservationsSummary.additionalNotes') }} : {{ additionalNotes }}</p>
+									<p class="mb-2">{{ $t('pages.reservationsSummary.remark') }} : {{ orderContact.remarks }}</p>
+									<p>{{ $t('pages.reservationsSummary.additionalNotes') }} : {{ orderContact.additionalNote }}</p>
 								</div>
 							</div>
 						</div>

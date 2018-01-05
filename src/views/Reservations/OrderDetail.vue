@@ -1,55 +1,56 @@
 <template>
-  <div class="container" id="order-detail">
-    <section class="mt-5 py-5">
-      <div class="row">
-        <div class="col-xs-12">
-          <content-title :contentTitle="titleOne"></content-title>
-        </div>
-      </div>
-    </section>
-    <section class="py-5">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="summary-wrapper">
-            <div class="summary-header mb-5">
-              <div class="row client-detail mb-3">
-                <div class="col-xs-12">
-                  <h3>Name : {{ clientName }}</h3>
-                  <h3>Email : {{ resData.email }}</h3>
-                  <h3>Transition ID : {{ resData.transaction_id }}</h3>
-                </div>
-              </div>
-              <div class="row highlight-detail">
-                <div class="col-sm-6 col-xs-12 py-5">
-                  <h3>{{ resData.check_in }} - {{ resData.check_out }}</h3>
-                  <p>({{ totalDays }} days, {{ totalNights }} nights)</p>
-                </div>
-                <div class="col-sm-6 col-xs-12 py-5">
-                  <h3>{{ totalGuests }} Guests</h3>
-                  <p>({{ resData.adults }} adults, {{ resData.children }} children)</p>
-                </div>
-              </div>
-            </div>
-            <div class="summary-body">
-              <div v-for="item in resData.reservation_details">
-                <room-summary-card
-                  :resData="item"
-                  :totalNights="totalNights"
-                ></room-summary-card>
-              </div>
-            </div>
-            <div class="summary-footer">
-              <div>
-                <h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
-                <router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list</router-link>
-                <button class="btn btn-main">Refund</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+	<div class="container" id="order-detail">
+		<section class="mt-5 py-5">
+			<div class="row">
+				<div class="col-xs-12">
+					<content-title :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
+				</div>
+			</div>
+		</section>
+		<section class="py-5">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="summary-wrapper">
+						<div class="summary-header mb-5">
+							<div class="row client-detail mb-3">
+								<div class="col-xs-12">
+									<h3>Name : {{ clientName }}</h3>
+									<h3>Email : {{ resData.email }}</h3>
+									<h3>Reservation ID : {{ resData.session }}</h3>
+								</div>
+							</div>
+							<div class="row highlight-detail">
+								<div class="col-sm-6 col-xs-12 py-5">
+									<h3>{{ resData.check_in }} - {{ resData.check_out }}</h3>
+									<p>({{ totalDays }} days, {{ totalNights }} nights)</p>
+								</div>
+								<div class="col-sm-6 col-xs-12 py-5">
+									<h3>{{ totalGuests }} Guests</h3>
+									<p>({{ resData.adults }} adults, {{ resData.children }} children)</p>
+								</div>
+							</div>
+						</div>
+						<div class="summary-body">
+							<div v-for="item in resData.reservation_details">
+								<room-summary-card
+												:resData="item"
+												:totalNights="totalNights"
+								></room-summary-card>
+							</div>
+						</div>
+						<div class="summary-footer">
+							<div>
+								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
+								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
+								</router-link>
+								<button class="btn btn-main">Refund</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </template>
 
 <script>
@@ -64,18 +65,9 @@
     name: 'order-detail',
     data () {
       return {
-        titleOne: 'Order Detail',
-        checkInDate: '15 Nov 2017',
-        checkOutDate: '21 Nov 2017',
-        roomType: 'River View',
-        totalRooms: 2,
-        totalPrice: 250,
         resData: {},
-        isAdmin: 1
+        isAdmin: 0
       }
-    },
-    props: {
-      orderId: {}
     },
     computed: {
       clientName: function () {
@@ -95,10 +87,16 @@
       }
     },
     created () {
-      this.axios.post(process.env.API_URL + '/api/orderHistory', {
-        orderId: this.orderId
+      this.axios({
+        method: 'post',
+        url: process.env.API_URL + '/api/orderHistory',
+        data: {
+          sessionId: this.$route.params.sessionId
+        },
+        withCredentials: true
       }).then((response) => {
         this.resData = response.data
+        this.isAdmin = response.data.isAdmin
       }, (error) => {
         console.log(error)
       })
@@ -108,70 +106,70 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  @import '../../assets/style/setting';
-
-  .summary-wrapper {
-    margin: 0 5rem;
-    padding: 5rem;
-    border: 1px solid $light-grey;
-    text-align: left;
-    h3, p {
-      color: $brand-secondary;
-    }
-    h3 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      margin: 0;
-    }
-    .summary-header {
-      border-bottom: 1px solid $brand-primary;
-      & > .row {
-        & > div {
-          padding-left: 3.5rem;
-        }
-        &.highlight-detail {
-          & > div {
-            &:first-of-type {
-              border-right: 1px solid $brand-primary;
-            }
-          }
-        }
-        &.client-detail {
-          h3 {
-            margin-bottom: 0.75rem;
-          }
-        }
-      }
-    }
-    .summary-body {
-      border-bottom: 5px solid $brand-primary;
-      margin-bottom: 3.5rem;
-      h3 {
-        margin-bottom: 2rem;
-      }
-    }
-    .summary-header, .summary-header p {
-      margin-bottom: 0;
-    }
-    .summary-body, .summary-footer {
-      h3 {
-        text-transform: uppercase;
-      }
-    }
-    .summary-footer {
-      text-align: right;
-      h3 {
-        margin-bottom: 1.5rem;
-      }
-      .total-price {
-        &:before {
-          content: '$';
-          margin-right: 0.5rem;
-        }
-      }
-    }
-    .btn-main {
-      text-transform: uppercase;
-    }
-  }
+	@import '../../assets/style/setting';
+	
+	.summary-wrapper {
+		margin: 0 5rem;
+		padding: 5rem;
+		border: 1px solid $light-grey;
+		text-align: left;
+		h3, p {
+			color: $brand-secondary;
+		}
+		h3 {
+			font-size: 2.5rem;
+			font-weight: bold;
+			margin: 0;
+		}
+		.summary-header {
+			border-bottom: 1px solid $brand-primary;
+			& > .row {
+				& > div {
+					padding-left: 3.5rem;
+				}
+				&.highlight-detail {
+					& > div {
+						&:first-of-type {
+							border-right: 1px solid $brand-primary;
+						}
+					}
+				}
+				&.client-detail {
+					h3 {
+						margin-bottom: 0.75rem;
+					}
+				}
+			}
+		}
+		.summary-body {
+			border-bottom: 5px solid $brand-primary;
+			margin-bottom: 3.5rem;
+			h3 {
+				margin-bottom: 2rem;
+			}
+		}
+		.summary-header, .summary-header p {
+			margin-bottom: 0;
+		}
+		.summary-body, .summary-footer {
+			h3 {
+				text-transform: uppercase;
+			}
+		}
+		.summary-footer {
+			text-align: right;
+			h3 {
+				margin-bottom: 1.5rem;
+			}
+			.total-price {
+				&:before {
+					content: '$';
+					margin-right: 0.5rem;
+				}
+			}
+		}
+		.btn-main {
+			text-transform: uppercase;
+		}
+	}
 </style>

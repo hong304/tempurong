@@ -103,6 +103,9 @@ module.exports = {
       thankYou: '謝謝您！',
       pageMsg: '您已成功預訂我們的房間，我們將會把訂單明細電郵給您。'
     },
+    reservationsDetails: {
+      pageTitle: '訂單資料'
+    },
     faq: {
       pageTitle: '常见问题'
     },

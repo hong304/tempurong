@@ -5,8 +5,8 @@
 		</div>
 		<div class="info-wrapper col-sm-9 col-xs-12">
 			<div class="content-group">
-				<h3 class="room-type">{{ resData.room_type['name_' + $i18n.locale] }}</h3>
-				<p>{{ resData.room_type['room_title_' + $i18n.locale] }}</p>
+				<h3 class="room-type">{{ resData['name_' + $i18n.locale] }}</h3>
+				<p>{{ resData['room_title_' + $i18n.locale] }}</p>
 			</div>
 			<div class="content-group">
 				{{ $t('components.card.roomSummaryCard.capacity',

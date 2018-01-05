@@ -48,7 +48,7 @@ export default new Router({
         {path: '/reservations/contact', name: 'ReservationContact', component: Payment},
         {path: '/reservations/summary', name: 'ReservationSummary', component: Summary},
         {path: '/reservations/confirm', name: 'ReservationConfirmed', component: SuccessfulBooked},
-        {path: '/order-detail', name: 'OrderDetail', component: OrderDetail, props: true},
+        {path: '/reservations/details/:sessionId', name: 'ReservationDetails', component: OrderDetail, props: true},
         // policy routes
         {path: '/faq', name: 'FAQ', component: FAQ},
         {path: '/policy', name: 'Policy', component: Policy}
@@ -67,7 +67,8 @@ export default new Router({
       children: [
         {path: '', name: 'AdminHome', component: AdminDashboard},
         {path: 'dashboard', name: 'AdminDashboard', component: AdminDashboard},
-        {path: 'order-history', name: 'OrderHistory', component: OrderHistory}
+        {path: 'order-history', name: 'OrderHistory', component: OrderHistory},
+        {path: 'order-details/:sessionId', name: 'OrderDetails', component: OrderDetail, props: true}
       ]
     }
   ],

@@ -146,6 +146,9 @@ module.exports = {
       thankYou: 'Thank you!',
       pageMsg: 'Your reservation is done successfully. We will sent you an email about reservation details.'
     },
+    reservationsDetails: {
+      pageTitle: 'Reservation Details'
+    },
     faq: {
       pageTitle: 'FAQ'
     },

@@ -48,12 +48,9 @@
       },
       logout () {
         this.axios({
-          method: 'post',
+          method: 'get',
           url: process.env.API_URL + '/api/logout',
-          headers: {
-            'Authorization': 'Bearer ' + this.$cookie.get('token'),
-            'Accept': 'application/json'
-          }
+          withCredentials: true
         }).then((response) => {
           if (response.data.status) {
             console.log(response.data.message)
@@ -65,30 +62,26 @@
         })
       },
       checkLogin: function () {
-        if (this.$cookie.get('token')) {
-          this.axios({
-            method: 'get',
-            url: process.env.API_URL + '/api/check-login',
-            headers: {
-              'Authorization': 'Bearer ' + this.$cookie.get('token'),
-              'Accept': 'application/json'
-            },
-            withCredentials: true
-          }).then((response) => {
-            if (response.data.status) {
-              console.log(response.data.message)
-            } else {
-              console.log(response.data)
-              this.$router.push({name: 'AdminLogin'})
-            }
-          }, (error) => {
-            console.log(error)
-            this.error = 'error.authError'
-          })
-        } else {
-          console.log('Cannot find token')
-          this.$router.push({name: 'AdminLogin'})
-        }
+//        if (this.$cookie.get('token')) {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          withCredentials: true
+        }).then((response) => {
+          if (response.data.status) {
+            console.log(response.data.message)
+          } else {
+            console.log(response.data)
+            this.$router.push({name: 'AdminLogin'})
+          }
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.authError'
+        })
+//        } else {
+//          console.log('Cannot find token')
+//          this.$router.push({name: 'AdminLogin'})
+//        }
       }
     },
     mounted () {
@@ -102,7 +95,7 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	.side-nav {
 		position: fixed;
 		left: 0;
@@ -143,7 +136,7 @@
 			}
 		}
 	}
-
+	
 	.content-wrapper {
 		position: relative;
 		width: calc(100vw - 80px);

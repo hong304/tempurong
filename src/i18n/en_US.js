@@ -147,7 +147,8 @@ module.exports = {
       pageMsg: 'Your reservation is done successfully. We will sent you an email about reservation details.'
     },
     reservationsDetails: {
-      pageTitle: 'Reservation Details'
+      pageTitle: 'Reservation Details',
+      confirmRefund: 'Are you sure you want to cancel this booking?'
     },
     faq: {
       pageTitle: 'FAQ'
@@ -182,7 +183,9 @@ module.exports = {
     submit: 'Submit',
     back: 'Back',
     checkOut: 'Check Out',
-    pay: 'Proceed to Payment'
+    pay: 'Proceed to Payment',
+    yes: 'Yes',
+    no: 'No'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',

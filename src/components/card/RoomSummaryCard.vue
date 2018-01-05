@@ -46,7 +46,7 @@
       return {
         counter: 0,
         show: false,
-        imageSrc: this.resData.imageSrc || '/static/img/demo-room.jpg'
+        imageSrc: this.resData.cover_image || '/static/img/demo-room.jpg'
       }
     },
     computed: {

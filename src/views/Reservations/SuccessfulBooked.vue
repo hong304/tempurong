@@ -34,14 +34,14 @@
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
-  import ContentContent from '../../components/content/ContentParagraph.vue'
-  import Card from '@/components/card/Card.vue'
+  import ContentContent from '@/components/content/ContentParagraph.vue'
+  import CtaCard from '@/components/card/CtaCard.vue'
 
   export default {
     components: {
+      CtaCard,
       ContentContent,
-      ContentTitle,
-      Card
+      ContentTitle
     },
     name: 'reservations-payment',
     props: {
@@ -89,13 +89,11 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
-	.message-wrapper {
-		h3 {
-			color: $brand-secondary;
-			font-weight: bold;
-			text-transform: uppercase;
-		}
+
+	h3 {
+		color: $brand-secondary;
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 	
 	.btn-main {

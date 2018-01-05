@@ -1,17 +1,12 @@
 <template>
-	<p>{{ TestimonalParagraph }}</p>
+	<p>{{ resData.content }} <span>{{ resData.from }}</span></p>
 </template>
 
 <script>
   export default {
     name: 'testimonal',
     props: {
-      TestimonalParagraph: {
-        type: String,
-        default: function () {
-          return 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit tincidunt ut laoreet dolore magna aliquam erat volutpat.'
-        }
-      }
+      resData: {}
     }
   }
 </script>
@@ -36,6 +31,11 @@
 		&:after {
 			content: '”';
 			right: 0;
+		}
+		span {
+			display: block;
+			margin-top: 0.5em;
+			font-style: italic;
 		}
 	}
 </style>

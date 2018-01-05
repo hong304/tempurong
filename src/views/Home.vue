@@ -73,14 +73,8 @@
 				:contentSubTitle="$t('pages.home.reviewsSubtitle')"
 			></content-title>
 			<div class="row">
-				<div class="col-md-4 col-xs-12">
-					<testimonal></testimonal>
-				</div>
-				<div class="col-md-4 col-xs-12">
-					<testimonal></testimonal>
-				</div>
-				<div class="col-md-4 col-xs-12">
-					<testimonal></testimonal>
+				<div class="col-md-4 col-xs-12" v-for="item in testimonial">
+					<testimonal :resData="item"></testimonal>
 				</div>
 			</div>
 		</section>
@@ -159,7 +153,26 @@
           }
         ],
         roomType: [],
-        foods: []
+        foods: [],
+        testimonial: [],
+        lang: this.$i18n.locale
+      }
+    },
+    watch: {
+      '$i18n.locale': function (val) {
+        this.lang = this.$i18n.locale
+        this.getTestimonial()
+      }
+    },
+    methods: {
+      getTestimonial () {
+        this.axios.post(process.env.API_URL + '/api/testimonial', {
+          lang: this.lang
+        }).then((response) => {
+          this.testimonial = response.data
+        }, (error) => {
+          console.log(error)
+        })
       }
     },
     mounted () {
@@ -193,6 +206,7 @@
       }, (error) => {
         console.log(error)
       })
+      this.getTestimonial()
     }
   }
 </script>

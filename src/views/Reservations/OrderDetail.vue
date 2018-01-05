@@ -53,7 +53,7 @@
 											</div>
 											<div class="modal-footer">
 												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}</button>
-												<button type="button" class="btn btn-primary">{{ $t('button.yes') }}</button>
+												<button type="button" class="btn btn-primary" @click="refund()">{{ $t('button.yes') }}</button>
 											</div>
 										</div>
 									</div>
@@ -100,17 +100,36 @@
         return this.totalDays - 1
       }
     },
+    methods: {
+      refund: function () {
+        this.axios.post(process.env.API_URL + '/api/refund', {
+          sessionId: this.$route.params.sessionId
+        }).then((response) => {
+          if (response.data.status) {
+            console.log(response.data)
+          } else {
+
+          }
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
     created () {
       this.axios({
         method: 'post',
         url: process.env.API_URL + '/api/orderHistory',
         data: {
           sessionId: this.$route.params.sessionId
-        },
-        withCredentials: true
+        }
       }).then((response) => {
-        this.resData = response.data
-        this.isAdmin = response.data.isAdmin
+        if (response.data.status) {
+          this.resData = response.data.reservationData
+          this.isAdmin = response.data.reservationData.isAdmin
+          this.$i18n.locale = response.data.reservationData.language
+        } else {
+
+        }
       }, (error) => {
         console.log(error)
       })

@@ -14,7 +14,7 @@
 				:contentSubTitle="$t('pages.home.roomsSubtitle')"
 			></content-title>
 			<div class="row">
-				<icon-list :icons="amenitiesIcons"></icon-list>
+				<icon-list :icons="amenities"></icon-list>
 			</div>
 			<div class="row m-0">
 				<div class="col-sm-4 col-xs-12 p-0 mb-2 mb-sm-0" v-for="item in roomType">
@@ -35,7 +35,7 @@
 			<div class="row mt-5">
 				<div class="col-xs-12 col-sm-6" v-for="(item, index) in adventures" :item="item" :index="index"
 						 :key="item.id">
-					<card :resData="item"></card>
+					<landing-activity-card :resData="item"></landing-activity-card>
 				</div>
 			</div>
 			<router-link :to="{ name: 'Activities' }" class="btn btn-main" exact-active-class
@@ -104,73 +104,36 @@
   import ContentParagraph from '@/components/content/ContentParagraph.vue'
   import Carousel from '@/components/image/Carousel.vue'
   import BookingNav from '@/components/booking/BookingNav.vue'
-  import Card from '@/components/card/Card.vue'
   import ImageDivider from '@/components/image/ImageDivider.vue'
   import Testimonal from '@/components/content/Testimonial.vue'
   import IconList from '@/components/list/IconList.vue'
   import RoomSquareCard from '@/components/card/RoomSquareCard.vue'
+  import LandingActivityCard from '@/components/card/LandingActivityCard.vue'
 
   export default {
     name: 'Home',
     components: {
+      LandingActivityCard,
       RoomSquareCard,
       IconList,
       ContentParagraph,
       ContentTitle,
       Carousel,
       BookingNav,
-      Card,
       ImageDivider,
       Testimonal
     },
     data () {
       return {
-        amenitiesIcons: [
-          {iconSrc: '/static/img/icons/shower.png', title: 'Hot Shower'},
-          {iconSrc: '/static/img/icons/towel.png', title: 'Shower Towel'},
-          {iconSrc: '/static/img/icons/air-con.png', title: 'Air Conditioning'},
-          {iconSrc: '/static/img/icons/fan.png', title: 'Fan'}
-        ],
-        activitiesIcon: [
-          {iconSrc: '/static/img/icons/activities/row-boats.png', title: 'Row Boats'},
-          {iconSrc: '/static/img/icons/activities/fishing.png', title: 'Fishing'},
-          {iconSrc: '/static/img/icons/activities/crabbing.png', title: 'Crabbing'},
-          {iconSrc: '/static/img/icons/activities/sea-kayaking.png', title: 'Sea Kayaking'},
-          {iconSrc: '/static/img/icons/activities/beach-volleyball.png', title: 'Beach Volleyball'},
-          {iconSrc: '/static/img/icons/activities/hammock.png', title: 'Hammock'}
-        ],
+        amenities: '',
+        activitiesIcon: '',
         imageDividerData: {
           imageSrc: '/static/img/demo-image-divider-2.jpg',
           infoTitle: 'Special dietary items available!',
           buttonText: this.$i18n.getLocaleMessage(this.$i18n.locale).button.bookNow,
           buttonPath: {name: 'Reservations'}
         },
-        adventures: [
-          {
-            to: { name: 'Activities' },
-            title: 'Coral Reef Snorkeling',
-            intro: 'The corals in Sabah are breathtaking, but don’t worry, you’ll have your snorkel on! If you’re lucky, you might spot a sea turtle.',
-            imageSrc: '/static/img/landing/CoralReefSnorkeling.jpg'
-          },
-          {
-            to: { name: 'Activities' },
-            title: 'Volcano Mud Bath',
-            intro: 'Famed for its skin nutrient benefits, this mud bath is fun and popular! Did you know, the mud makes you float?',
-            imageSrc: '/static/img/landing/VolcanoMudBath.jpg'
-          },
-          {
-            to: { name: 'Activities' },
-            title: 'The Rare Proboscis Monkey',
-            intro: 'Seen only in Borneo, the Proboscis monkey is one of the largest monkey species native to Asia. Enjoy a day out viewing these wonderful creatures in their natural habitat.',
-            imageSrc: '/static/img/landing/TheRareProboscisMonkey.jpg'
-          },
-          {
-            to: { name: 'Activities' },
-            title: 'Magical Fireflies in Nature',
-            intro: 'Fireflies only thrive in areas away from urban cities and with clean, flowing water. Enjoy a beautiful evening cruising through the mangroves as they light up the night.',
-            imageSrc: '/static/img/landing/MagicalFirefliesInNature.jpg'
-          }
-        ],
+        adventures: '',
         banners: [
           {
             imgSrc: '/static/img/home_banner/banner-03.jpg',
@@ -207,6 +170,26 @@
       })
       this.axios.get(process.env.API_URL + '/api/food').then((response) => {
         this.foods = response.data
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/amenities').then((response) => {
+        this.amenities = response.data
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/activity').then((response) => {
+        let actArr = []
+        let advArr = []
+        _.forEach(response.data, (value) => {
+          if (value.icon_list) {
+            actArr.push(value)
+          } else {
+            advArr.push(value)
+          }
+        })
+        this.activitiesIcon = actArr
+        this.adventures = advArr
       }, (error) => {
         console.log(error)
       })

@@ -8,7 +8,8 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-4">
 					<div class="row image-thumbnail">
-						<div v-for="(item, index) in resData.images" :class="{ 'col-xs-12': item.cover_image, 'col-xs-6 mt-3': !item.cover_image }">
+						<div v-for="(item, index) in resData.images"
+								 :class="{ 'col-xs-12': item.cover_image, 'col-xs-6 mt-3': !item.cover_image }">
 							<img :src="item.cover_image || item.image_path" :alt="resData['name_' + $i18n.locale]"/>
 						</div>
 					</div>
@@ -16,10 +17,10 @@
 				<div class="col-xs-12 col-sm-8">
 					<div class="activity-detail">
 						<ul>
-							<li><span class="ti-time"></span> {{ resData.duration }} mins</li>
-							<li><span class="walking-distance"></span> {{ resData.distance }}m from resort</li>
+							<li><span class="ti-time"></span> {{ resData.duration }} {{ $t('pages.activities.mins') }}</li>
+							<li><span class="walking-distance"></span> {{ resData.distance }}{{ $t('pages.activities.distance') }}</li>
 							<li class="icon-group">
-								Difficulties
+								{{ $t('pages.activities.difficulties') }}
 								<span v-for="item in points">
 									<icon v-if="item == 1" name="star"></icon>
 									<icon v-if="item == 0.5" name="star-half-empty"></icon>
@@ -76,7 +77,7 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	.activity-card {
 		color: $brand-secondary;
 		text-align: left;
@@ -108,7 +109,7 @@
 			}
 		}
 	}
-	
+
 	.image-thumbnail {
 		.col-xs-6 {
 			padding-right: 0.5rem;
@@ -118,14 +119,14 @@
 			}
 		}
 	}
-	
+
 	.card-body {
 		img {
 			width: 100%;
 			height: auto;
 		}
 	}
-	
+
 	.icon-group {
 		display: inline-block;
 		& > span {
@@ -134,7 +135,7 @@
 			}
 		}
 	}
-	
+
 	.walking-distance {
 		position: relative;
 		margin-right: 2.5rem;

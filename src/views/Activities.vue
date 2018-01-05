@@ -3,7 +3,7 @@
 		<section class="padding-of-section mt-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="$t('pages.activities.pageTitle')" class="mb-5"></content-title>
+					<content-title :contentTitle="$t('pages.activities.pageTitle')"></content-title>
 					<content-content :contentParagraph="$t('pages.activities.pageIntro')"></content-content>
 				</div>
 			</div>
@@ -12,17 +12,24 @@
 			</div>
 		</section>
 		<section class="padding-of-section mt-5">
-			<content-title :contentTitle="$t('pages.activities.walkingDistance')"></content-title>
-			<div class="row text-left mt-5 pb-4" v-for="(item, index) in activities">
-				<div class="text-center mb-5 mb-md-0" :class="{'col-sm-4 col-xs-12': index === 0 || index === 2, 'col-sm-4 col-xs-12 col-sm-push-8': index === 1 }">
-					<img class="img-fluid" :src="item.images[0].cover_image"/>
+			<div class="row pb-5">
+				<div class="col-xs-12">
+					<content-title :contentTitle="$t('pages.activities.walkingDistance')"></content-title>
+					<content-content :contentParagraph="$t('pages.activities.walkingDistanceIntro')"></content-content>
 				</div>
-				<div :class="{'col-sm-8 col-xs-12': index === 0 || index === 2, 'col-sm-8 col-xs-12 col-sm-pull-4': index === 1 }">
+			</div>
+			<div class="row text-left mt-5 pb-4" v-for="(item, index) in walkingDistances">
+				<div class="text-center mb-5 mb-md-0"
+						 :class="{'col-sm-4 col-xs-12': index === 0 || index === 2, 'col-sm-4 col-xs-12 col-sm-push-8': index === 1 }">
+					<img class="img-fluid" :src="item.image_path"/>
+				</div>
+				<div
+					:class="{'col-sm-8 col-xs-12': index === 0 || index === 2, 'col-sm-8 col-xs-12 col-sm-pull-4': index === 1 }">
 					<h2>{{ item['name_' + $i18n.locale] }}</h2>
 					<div class="activity-detail">
 						<ul>
-							<li><span class="ti-time"></span> {{ item.duration }} mins</li>
-							<li><span class="walking-distance"></span> {{ item.distance }}m from resort</li>
+							<li><span class="ti-time"></span> {{ item.duration }} {{ $t('pages.activities.mins') }}</li>
+							<li><span class="walking-distance"></span> {{ item.distance }}{{ $t('pages.activities.distance') }}</li>
 						</ul>
 					</div>
 					<p v-html="item['description_' + $i18n.locale]"></p>
@@ -33,6 +40,7 @@
 			<div class="row pb-5">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.activities.adventures')"></content-title>
+					<content-content :contentParagraph="$t('pages.activities.adventureIntro')"></content-content>
 				</div>
 			</div>
 			<div class="row mt-5">
@@ -42,7 +50,7 @@
 			</div>
 		</section>
 		<section class="padding-of-section mt-5">
-			<h3>Interesting in Activities?</h3>
+			<h3>{{ $t('pages.activities.ctaTitle')}}</h3>
 			<button class="btn btn-main mb-5" @click="formShow=!formShow" v-if="!formShow">{{ $t('button.dropMessage')
 				}}
 			</button>
@@ -69,50 +77,34 @@
     },
     data () {
       return {
-        activitiesIcon: [
-          {iconSrc: '/static/img/icons/activities/row-boats.png', title: 'Row Boats'},
-          {iconSrc: '/static/img/icons/activities/fishing.png', title: 'Fishing'},
-          {iconSrc: '/static/img/icons/activities/crabbing.png', title: 'Crabbing'},
-          {iconSrc: '/static/img/icons/activities/sea-kayaking.png', title: 'Sea Kayaking'},
-          {iconSrc: '/static/img/icons/activities/beach-volleyball.png', title: 'Beach Volleyball'},
-          {iconSrc: '/static/img/icons/activities/hammock.png', title: 'Hammock'}
-        ],
-        imageSrc: '/static/img/demo-about-01.jpg',
-        locationTitle: 'Healing Well',
-        tourDuration: 30,
-        walkingDistance: 30,
-        locationIntro: 'Over 400 years ago, there was a devastating drought in the area. Villagers were directed to dig a well in a location that was thought to have a water source underground. The villagers tasked with digging the well were skeptical, but with little choice they kept digging anyways. Amazingly, the well they dug was able to provide enough water for the whole village for a long time to come. The water was known to have healing properties, so when elders fell ill, they would bathe in and drink from the well.  This well is now known as the Wellness Healing Well and is a 5-minute walk away from the resort.',
-        currentStep: 1,
-        distanceData: [
-          {'title': 'Tempourong'},
-          {'title': 'Spiritual Tree'},
-          {'title': 'Healing Well'},
-          {'title': 'Love Rock'}
-        ],
-        activities: [],
+        activitiesIcon: [],
+        walkingDistances: [],
         adventures: [],
         formShow: false
       }
     },
-    methods: {
-      getActivityData () {
-        this.axios.get(process.env.API_URL + '/api/activity').then((response) => {
-          this.activities = response.data
-        }, (error) => {
-          console.log(error)
+    mounted () {
+      this.axios.get(process.env.API_URL + '/api/walking-distance').then((response) => {
+        this.walkingDistances = response.data
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/adventures').then((response) => {
+        this.adventures = response.data
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/activity').then((response) => {
+        let actArr = []
+        _.forEach(response.data, (value) => {
+          if (value.icon_list) {
+            actArr.push(value)
+          }
         })
-      },
-      getAdventureData () {
-        this.axios.get(process.env.API_URL + '/api/adventure').then((response) => {
-          this.adventures = response.data
-        }, (error) => {
-          console.log(error)
-        })
-      }
-    },
-    created () {
-      this.getActivityData()
-      this.getAdventureData()
+        this.activitiesIcon = actArr
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 </script>
@@ -229,4 +221,17 @@
 			}
 		}
 	}
+</style>
+<style lang="scss">
+	@import '../assets/style/setting';
+
+	#activities {
+		.content-link {
+			color: $brand-secondary;
+			text-transform: uppercase;
+			text-decoration: underline;
+			font-weight: bold;
+		}
+	}
+
 </style>

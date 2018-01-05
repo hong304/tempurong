@@ -17,44 +17,45 @@
 					</div>
 					<div class="col-sm-6 col-xs-12">
 						<h3>{{ item['name_' + $i18n.locale] }} <span>{{item['room_title_' + $i18n.locale]}}</span></h3>
-						<h5>${{item.price}} MYR per night with breakfasts</h5>
-						<p>{{ item.size }}</p>
+						<h4 v-if="item['room_subtitle_' + $i18n.locale]">{{item['room_subtitle_' + $i18n.locale]}}</h4>
+						<h5>${{item.price}} MYR {{$t('components.card.roomCard.withBreakfast')}}</h5>
+						<p>{{ item['size_' + $i18n.locale] }}</p>
 						<ul class="icon-list">
 							<li class="icon-row">
 								<span class="icon icon-guest"></span>
-								<span v-if="!item.add_bed">{{item.capacity}} guests </span>
-								<span v-if="item.add_bed">{{item.capacity}} guests (adding 1 extra mattress for max.{{ item.capacity + 1
-									}} guests)</span>
+								<span v-if="!item.add_bed">{{ $tc('components.card.roomCard.guests', item.capacity, {count: item.capacity})}} </span>
+								<span v-else>{{ $tc('components.card.roomCard.guests', item.capacity, {count: item.capacity})}} {{$t('components.card.roomCard.addMattressRemarks', {count: item.capacity + 1})}}</span>
 							</li>
 							<li class="icon-row" v-if="item.queen_bed">
 								<span class="icon icon-queen-bed"></span>
-								<span>{{item.queen_bed}} queen beds</span>
+								<span>{{$tc('components.card.roomCard.queenBed', item.queen_bed, {count: item.queen_bed})}}</span>
 							</li>
 							<li class="icon-row" v-if="item.bunk_bed">
 								<span class="icon icon-bunk-bed"></span>
-								<span>{{item.bunk_bed}} bunk beds</span>
+								<span>{{$tc('components.card.roomCard.bunkBed', item.bunk_bed, {count: item.bunk_bed})}}</span>
 							</li>
 							<li class="icon-row" v-if="item.add_bed">
 								<span class="icon icon-mattress"></span>
-								<span>{{item.mattress}} extra mattress (MYR18 per night)</span>
+								<span>{{$t('components.card.roomCard.extraMattress')}} *</span>
 							</li>
 							<li class="icon-row">
 								<span class="icon icon-breakfast"></span>
-								<span>1 extra breakfast (MYR 12 per night)</span>
+								<span>{{$t('components.card.roomCard.extraBreakfast')}}</span>
 							</li>
 						</ul>
+						<p v-if="item.add_bed">* {{ $t('pages.rooms.additionalCost') }}</p>
 						<button class="btn btn-main" @click="showDetails(index)">{{$t('button.moreDetails')}}</button>
 						<collapse class="mt-4" v-model="show[index]">
 							<div class="description" style="margin-bottom: 0">
 								<h5>{{ $t('components.card.roomCard.description') }}</h5>
-								<p>{{item.description}}</p>
+								<p>{{ item['description_' + $i18n.locale] }}</p>
 
 								<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
 								<icon-list :icons="amenities"></icon-list>
 
 								<h5>{{ $t('components.card.roomCard.resortPolicy') }}</h5>
 								<p><span>{{ $t('components.card.roomCard.resortPolicyContent') }}</span>
-									<router-link :to="{ name: 'Policy' }">{{ $t('components.card.roomCard.resortPolicyRoute') }}
+									<router-link :to="{ name: 'Policy' }" target="_blank">{{ $t('components.card.roomCard.resortPolicyRoute') }}
 									</router-link>
 								</p>
 							</div>
@@ -91,12 +92,7 @@
         selected: 1,
         roomTypes: {},
         show: [],
-        amenities: [
-          {iconSrc: '/static/img/icons/shower.png', title: 'Hot Shower'},
-          {iconSrc: '/static/img/icons/towel.png', title: 'Shower Towel'},
-          {iconSrc: '/static/img/icons/air-con.png', title: 'Air Conditioning'},
-          {iconSrc: '/static/img/icons/fan.png', title: 'Fan'}
-        ]
+        amenities: []
       }
     },
     created: function () {
@@ -105,6 +101,11 @@
         _.forEach(this.roomTypes, () => {
           this.show.push(false)
         })
+      }, (error) => {
+        console.log(error)
+      })
+      this.axios.get(process.env.API_URL + '/api/amenities').then((response) => {
+        this.amenities = response.data
       }, (error) => {
         console.log(error)
       })
@@ -205,18 +206,19 @@
 		color: $brand-secondary;
 		h3 {
 			margin: 0;
-			font-size: 2.5em;
+			font-size: 2em;
 			font-weight: bold;
 			text-transform: uppercase;
-			@media screen and (max-width: 767px) {
-				font-size: 2em;
-			}
 			span {
 				font-weight: 400;
 			}
 		}
-		h5 {
+		h4 {
 			margin: 0;
+			font-size: 1.1em;
+		}
+		h5 {
+			margin: 0.25em 0 0;
 			font-size: 1.75em;
 			@media screen and (max-width: 767px) {
 				font-size: 1.35em;
@@ -300,7 +302,7 @@
 				padding: 1.5rem;
 			}
 			h5 {
-				margin-top: 3rem;
+				margin: 3rem 0 1rem;
 				font-weight: bold;
 				&:first-of-type {
 					margin-top: 0;

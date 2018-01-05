@@ -34,7 +34,7 @@
 	.food-card {
 		text-align: left;
 		color: $brand-secondary;
-		margin: 0 0 8rem ;
+		margin: 0 0 4rem;
 		h3 {
 			font-weight: bold;
 			text-transform: uppercase;
@@ -47,6 +47,9 @@
 		}
 		img {
 			width: 70%;
+		}
+		p {
+			min-height: 120px;
 		}
 	}
 </style>

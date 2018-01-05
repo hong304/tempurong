@@ -9,20 +9,11 @@
 			</div>
 		</section>
 		<section class="mb-5 content-wrapper">
-			<div class="row" v-for="term in $t('pages.policy.terms')">
+			<div class="row" v-for="policy in policies">
 				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-					<h3 v-html="term.title"></h3>
-					<p v-html="term.content" :class="{ 'mb-4': term.paymentInfo || term.subContent }"></p>
-					<ul v-if="term.paymentInfo">
-						<li v-for="item in term.paymentInfo">
-							{{ item.title }} {{ item.content }}
-						</li>
-					</ul>
-					<ul v-else-if="term.subContent">
-						<li v-for="item in term.subContent">
-							{{ item }}
-						</li>
-					</ul>
+					<h3 v-html="policy['title_' + $i18n.locale]"></h3>
+					<p v-html="policy['content_' + $i18n.locale]" :class="{ 'mb-4': policy.sub_content_en || policy.sub_content_sc }"></p>
+					<p v-if="policy.sub_content_en || policy.sub_content_sc" v-html="policy['sub_content_' + $i18n.locale]" class="sub-content"></p>
 				</div>
 			</div>
 		</section>
@@ -40,7 +31,16 @@
     },
     name: 'About',
     data () {
-      return {}
+      return {
+        policies: ''
+      }
+    },
+    mounted () {
+      this.axios.get(process.env.API_URL + '/api/policies').then((response) => {
+        this.policies = response.data
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 </script>
@@ -67,7 +67,7 @@
 		.policy-remark {
 			font-style: italic;
 		}
-		ul {
+		.sub-content {
 			list-style-type: none;
 			padding-left: 0;
 			font-weight: bold;

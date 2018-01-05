@@ -31,7 +31,7 @@
 							</div>
 							<div class="row highlight-detail">
 								<div class="col-sm-6 col-xs-12 py-md-5 pt-1">
-									<h3>{{ orderDetails.checkIn }} - {{ orderDetails.checkOut }}</h3>
+									<h3>{{ orderDetails.checkIn }} {{ $t('dateUnit.to') }} {{ orderDetails.checkOut }}</h3>
 									<p>({{ $tc('dateUnit.days', totalDays, {'count': totalDays}) }},
 										{{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }})</p>
 								</div>
@@ -49,6 +49,12 @@
 												:resData="item"
 												:totalNights="totalNights"
 								></room-summary-card>
+							</div>
+							<div class="row">
+								<div class="col-xs-12">
+									<p class="mb-2">{{ $t('pages.reservationsSummary.remark') }} : {{ remark }}</p>
+									<p>{{ $t('pages.reservationsSummary.additionalNotes') }} : {{ additionalNotes }}</p>
+								</div>
 							</div>
 						</div>
 						<p class="error-message" v-if="error"><span class="ti-alert"></span> {{ $t(error) }}</p>
@@ -230,11 +236,6 @@
 		.summary-header {
 			border-bottom: 1px solid $brand-primary;
 			& > .row {
-				& > div {
-					@media screen and (min-width: 768px) {
-						padding-left: 3.5rem;
-					}
-				}
 				&.highlight-detail {
 					& > div {
 						@media screen and (min-width: 768px) {

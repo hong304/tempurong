@@ -1,8 +1,8 @@
 <template>
 	<div class="amenities-list">
 		<div class="amenities-cell" v-for="item in icons">
-			<img :src="item.iconSrc"/>
-			<span>{{ item.title }}</span>
+			<img :src="item.image_path"/>
+			<span>{{ item['name_' + $i18n.locale] }}</span>
 		</div>
 	</div>
 </template>
@@ -11,9 +11,7 @@
   export default {
     name: 'icon-list',
     props: {
-      icons: {
-        type: Array
-      }
+      icons: ''
     }
   }
 </script>

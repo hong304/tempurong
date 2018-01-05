@@ -15,35 +15,33 @@
 				</div>
 			</div>
 		</section>
+
 		<section class="padding-of-section mx-md-5 px-md-5">
-			<content-title :contentTitle="$t('pages.home.activities')"></content-title>
-			<div class="row mt-5">
-				<div class="col-xs-12 col-sm-6" v-for="(item, index) in activitiesData" :item="item" :index="index"
-				     :key="item.id">
-					<card :buttonText="$t('button.more')" :class="{ last: index == 2 || index == 3 }"></card>
-				</div>
-			</div>
-		</section>
-		<section class="padding-of-section mx-md-5 px-md-5">
-			<div class="row my-5">
+			<div class="row text-center mb-5">
 				<div class="col-xs-12">
-					<button class="btn btn-main">Explore more</button>
+					<h3>{{ $t('pages.about.sectionTitle') }}</h3>
+				</div>
+			</div>
+			<div class="row text-center">
+				<div class="col-sm-4 col-xs-12 mb-md-0 mb-4" v-for="item in ctaData">
+					<cta-card :resData="item"></cta-card>
 				</div>
 			</div>
 		</section>
+
 	</div>
 </template>
 
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
-  import ContentContent from '../../components/content/ContentParagraph.vue'
-  import Card from '@/components/card/Card.vue'
+  import ContentContent from '@/components/content/ContentParagraph.vue'
+  import CtaCard from '@/components/card/CtaCard.vue'
 
   export default {
     components: {
+      CtaCard,
       ContentContent,
-      ContentTitle,
-      Card
+      ContentTitle
     },
     name: 'reservations-payment',
     props: {
@@ -56,18 +54,21 @@
     },
     data () {
       return {
-        activitiesData: [
+        ctaData: [
           {
-            infoTitle: 'Activities card 1'
+            imageSrc: '/static/img/about/room.jpg',
+            title: 'Rooms',
+            route: {name: 'Rooms'}
           },
           {
-            infoTitle: 'Activities card 2'
+            imageSrc: '/static/img/about/activities.jpg',
+            title: 'Activities',
+            route: {name: 'Activities'}
           },
           {
-            infoTitle: 'Activities card 3'
-          },
-          {
-            infoTitle: 'Activities card 4'
+            imageSrc: '/static/img/about/food.jpg',
+            title: 'Food',
+            route: {name: 'Food'}
           }
         ]
       }
@@ -88,13 +89,11 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
-	.message-wrapper {
-		h3 {
-			color: $brand-secondary;
-			font-weight: bold;
-			text-transform: uppercase;
-		}
+
+	h3 {
+		color: $brand-secondary;
+		font-weight: bold;
+		text-transform: uppercase;
 	}
 	
 	.btn-main {

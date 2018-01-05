@@ -9,22 +9,23 @@
 					<span class="rooms-number">
 						<button type="button" @click="changeRoom('minus')" class="btn btn-minus"
 										:disabled="!counterRooms"><span
-								class="ti-minus"></span></button>
+							class="ti-minus"></span></button>
 						<span class="counter-num">{{ counterRooms }}</span>
 						<button type="button" @click="changeRoom('add')" class="btn btn-plus"
 										:disabled="counterRooms >= availableRooms"><span
-								class="ti-plus"></span></button>
+							class="ti-plus"></span></button>
 					</span>
 					<h3 v-html="result['name_'+$i18n.locale]"></h3>
 					<p>{{result['room_title_' + $i18n.locale]}}</p>
-					<h4>${{ result.price }} MYR <span>{{$t('components.card.roomCard.withBreakfast')}}</span></h4>
+					<h4>${{ result.price }} MYR <span>({{$t('components.card.roomCard.withBreakfast')}})</span></h4>
 				</div>
 				<ul class="icon-list">
 					<li>
 						<p>
 							<span class="icon icon-guest"></span>
 							<span> {{ $tc('components.card.roomCard.guests', result.capacity, {count: result.capacity})}} </span>
-							<span class="guest-remark" v-if="(result.add_bed)">{{$t('components.card.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
+							<span class="guest-remark"
+										v-if="(result.add_bed)">{{$t('components.card.roomCard.addMattressRemarks', {count: result.capacity + 1})}}</span>
 						</p>
 					</li>
 					<li>
@@ -51,14 +52,14 @@
 					<div class="extra-breakfast">
 						<div>
 							<multiselect
-									class="extra-select custom-multiselect"
-									v-model="roomTypeCondition.breakfast"
-									:options="breakfast_options"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-									:hide-selected="true"
-									:disabled="!counterRooms"
+								class="extra-select custom-multiselect"
+								v-model="roomTypeCondition.breakfast"
+								:options="breakfast_options"
+								:searchable="false"
+								:close-on-select="true"
+								:showLabels="false"
+								:hide-selected="true"
+								:disabled="!counterRooms"
 							></multiselect>
 						</div>
 						<div>
@@ -69,14 +70,14 @@
 					<div class="extra-mattress" v-if="(result.add_bed)">
 						<div>
 							<multiselect
-									class="extra-select custom-multiselect"
-									v-model="roomTypeCondition.mattress"
-									:options="mattress_options"
-									:searchable="false"
-									:close-on-select="true"
-									:showLabels="false"
-									:hide-selected="true"
-									:disabled="!counterRooms"
+								class="extra-select custom-multiselect"
+								v-model="roomTypeCondition.mattress"
+								:options="mattress_options"
+								:searchable="false"
+								:close-on-select="true"
+								:showLabels="false"
+								:hide-selected="true"
+								:disabled="!counterRooms"
 							></multiselect>
 						</div>
 						<div>
@@ -98,12 +99,9 @@
 			<collapse v-model="show">
 				<div class="well" style="margin-bottom: 0">
 					<h5>{{ $t('components.card.roomCard.description') }}</h5>
-					<p>
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+					<p>{{ result['description_' + $i18n.locale] }}</p>
 					<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
-					<ul class="icon-list">
-						<li></li>
-					</ul>
+					<icon-list :icons="amenities"></icon-list>
 				</div>
 			</collapse>
 		</div>
@@ -112,10 +110,12 @@
 
 <script>
   import Multiselect from 'vue-multiselect'
+  import IconList from '@/components/list/IconList.vue'
 
   export default {
     name: 'room-card',
     components: {
+      IconList,
       Multiselect
     },
     props: {
@@ -156,7 +156,8 @@
         breakfast_options: [],
         mattress_options: [],
         needExtra: false,
-        show: false
+        show: false,
+        amenities: []
       }
     },
     methods: {
@@ -211,6 +212,13 @@
         this.roomTypeCondition.breakfast = 0
         this.roomTypeCondition.mattress = 0
       }
+    },
+    mounted () {
+      this.axios.get(process.env.API_URL + '/api/amenities').then((response) => {
+        this.amenities = response.data
+      }, (error) => {
+        console.log(error)
+      })
     },
     created () {
       this.mattressOrBreakfastOption()
@@ -403,6 +411,17 @@
 		}
 		&.icon-mattress {
 			background-image: url("/static/img/icons/mattress.svg");
+		}
+	}
+
+	.well {
+		.amenities-list {
+			.amenities-cell {
+				padding: 0.75rem !important;
+				img {
+					max-width: 50px !important;
+				}
+			}
 		}
 	}
 </style>

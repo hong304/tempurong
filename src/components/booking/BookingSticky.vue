@@ -63,7 +63,7 @@
 				</div>
 			</div>
 			<p><span>{{ $t('components.card.roomCard.resortPolicyContent') }}</span>
-				<router-link :to="{ name: 'Policy' }">{{ $t('components.card.roomCard.resortPolicyRoute') }}
+				<router-link :to="{ name: 'Policy' }" target="_blank">{{ $t('components.card.roomCard.resortPolicyRoute') }}
 				</router-link>
 			</p>
 		</div>
@@ -285,7 +285,7 @@
 	}
 	
 	.summary-detail {
-		overflow-y: scroll;
+		overflow-y: auto;
 		overflow-x: hidden;
 		-ms-overflow-style: none;
 		p {

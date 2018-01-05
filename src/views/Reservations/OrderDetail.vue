@@ -3,7 +3,7 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="titleOne"></content-title>
+					<content-title :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
@@ -16,7 +16,7 @@
 								<div class="col-xs-12">
 									<h3>Name : {{ clientName }}</h3>
 									<h3>Email : {{ resData.email }}</h3>
-									<h3>Transition ID : {{ resData.transaction_id }}</h3>
+									<h3>Reservation ID : {{ resData.session }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -43,7 +43,21 @@
 								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button class="btn btn-main">Refund</button>
+								<button class="btn btn-main" data-toggle="modal" data-target="#confirmModal">Refund</button>
+
+								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-body">
+												<h4 class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}</button>
+												<button type="button" class="btn btn-primary" @click="refund()">{{ $t('button.yes') }}</button>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -65,18 +79,9 @@
     name: 'order-detail',
     data () {
       return {
-        titleOne: 'Order Detail',
-        checkInDate: '15 Nov 2017',
-        checkOutDate: '21 Nov 2017',
-        roomType: 'River View',
-        totalRooms: 2,
-        totalPrice: 250,
         resData: {},
-        isAdmin: 1
+        isAdmin: 0
       }
-    },
-    props: {
-      orderId: {}
     },
     computed: {
       clientName: function () {
@@ -95,16 +100,36 @@
         return this.totalDays - 1
       }
     },
+    methods: {
+      refund: function () {
+        this.axios.post(process.env.API_URL + '/api/refund', {
+          sessionId: this.$route.params.sessionId
+        }).then((response) => {
+          if (response.data.status) {
+            console.log(response.data)
+          } else {
+
+          }
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
     created () {
       this.axios({
         method: 'post',
         url: process.env.API_URL + '/api/orderHistory',
         data: {
-          orderId: this.orderId
-        },
-        withCredentials: true
+          sessionId: this.$route.params.sessionId
+        }
       }).then((response) => {
-        this.resData = response.data
+        if (response.data.status) {
+          this.resData = response.data.reservationData
+          this.isAdmin = response.data.reservationData.isAdmin
+          this.$i18n.locale = response.data.reservationData.language
+        } else {
+
+        }
       }, (error) => {
         console.log(error)
       })

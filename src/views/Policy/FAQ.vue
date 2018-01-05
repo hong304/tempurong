@@ -8,10 +8,10 @@
 			</div>
 		</section>
 		<section class="mb-5 content-wrapper">
-			<div class="row" v-for="qa in $t('pages.faq.qas')">
+			<div class="row" v-for="qa in faqs">
 				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
-					<h3 v-html="qa.question"></h3>
-					<p v-html="qa.answer"></p>
+					<h3 v-html="qa['title_' + $i18n.locale]"></h3>
+					<p v-html="qa['content_' + $i18n.locale]"></p>
 				</div>
 			</div>
 		</section>
@@ -28,7 +28,15 @@
     name: 'About',
     data () {
       return {
+        faqs: ''
       }
+    },
+    mounted () {
+      this.axios.get(process.env.API_URL + '/api/faqs').then((response) => {
+        this.faqs = response.data
+      }, (error) => {
+        console.log(error)
+      })
     }
   }
 </script>

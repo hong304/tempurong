@@ -43,7 +43,7 @@
 								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button class="btn btn-main">Refund</button>
+								<button class="btn btn-main" type="button" @click="refund()">Refund</button>
 							</div>
 						</div>
 					</div>
@@ -86,17 +86,36 @@
         return this.totalDays - 1
       }
     },
+    methods: {
+      refund: function () {
+        this.axios.post(process.env.API_URL + '/api/refund', {
+          sessionId: this.$route.params.sessionId
+        }).then((response) => {
+          if (response.data.status) {
+            console.log(response.data)
+          } else {
+
+          }
+        }, (error) => {
+          console.log(error)
+        })
+      }
+    },
     created () {
       this.axios({
         method: 'post',
         url: process.env.API_URL + '/api/orderHistory',
         data: {
           sessionId: this.$route.params.sessionId
-        },
-        withCredentials: true
+        }
       }).then((response) => {
-        this.resData = response.data
-        this.isAdmin = response.data.isAdmin
+        if (response.data.status) {
+          this.resData = response.data.reservationData
+          this.isAdmin = response.data.reservationData.isAdmin
+          this.$i18n.locale = response.data.reservationData.language
+        } else {
+
+        }
       }, (error) => {
         console.log(error)
       })

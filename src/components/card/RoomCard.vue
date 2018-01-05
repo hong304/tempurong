@@ -1,7 +1,7 @@
 <template>
 	<div class="room-card row">
 		<div class="image-thumb-wrapper col-sm-5 col-xs-12 mb-3 mb-sm-0">
-			<img :src="imageSrc"/>
+			<img :src="result.cover_image"/>
 		</div>
 		<div class="info-wrapper col-sm-7 col-xs-12">
 			<div class="content-wrapper">

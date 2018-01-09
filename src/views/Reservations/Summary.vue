@@ -67,7 +67,7 @@
 									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span></button>
 								
 								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
-								<PayPal
+								<PayPal v-if="!error"
 												v-on:paypal-paymentAuthorized="saveReservation"
 												:dev="dev"
 												:buttonStyle="paypalBtn"
@@ -117,8 +117,7 @@
           tagline: false
         },
         dev: true,
-        error:
-          false,
+        error: false,
         showLoading: false
       }
     },

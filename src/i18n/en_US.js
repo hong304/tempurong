@@ -254,6 +254,7 @@ module.exports = {
     tnc: 'Please agree the term and condition.',
     required: 'The {field} field is required.',
     reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.',
+    roomAvailable: 'Opps! The rooms has been reserved by others, please reserve once again.',
     loginError: 'Incorrect username or password'
   }
 }

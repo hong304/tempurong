@@ -68,13 +68,13 @@
 								
 								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
 								<PayPal v-if="!error"
-												v-on:paypal-paymentAuthorized="saveReservation"
-												:dev="dev"
-												:buttonStyle="paypalBtn"
-												:amount="orderDetails.totalPrice.toString()"
-												currency="MYR"
-												:client="credentials"
-												:invoiceNumber="orderSessionId">
+								        v-on:paypal-paymentAuthorized="saveReservation"
+								        :dev="dev"
+								        :buttonStyle="paypalBtn"
+								        :amount="orderDetails.totalPrice.toString()"
+								        currency="MYR"
+								        :client="credentials"
+								        :invoiceNumber="orderSessionId">
 								</PayPal>
 							</div>
 						</div>
@@ -137,6 +137,9 @@
     },
     methods: {
       goToReservationContact: function () {
+        if (this.error) {
+          this.$router.push({name: 'Reservations'})
+        }
         this.$router.push({name: 'ReservationContact'})
       },
       reservation: function () {
@@ -151,7 +154,7 @@
           if (response.data.status) {
             this.orderSessionId = response.data.message
           } else {
-            this.error = 'error.reservationCheckout'
+            this.error = response.data.message
           }
         }, (error) => {
           console.log(error)

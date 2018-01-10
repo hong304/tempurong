@@ -228,6 +228,7 @@ module.exports = {
     tnc: '请同意条款及细则',
     required: '请填写{field}。',
     reservationCheckout: '你的订单出现异常情况，请重新预订。',
+    roomAvailable: '很抱歉，房间已被其他人预订，请重新预订。',
     loginError: '登入账号或密码错误。'
   }
 }

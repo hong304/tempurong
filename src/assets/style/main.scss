@@ -82,3 +82,13 @@
 .error-message {
   color: red;
 }
+
+#tnc {
+  a {
+    color: $brand-secondary;
+    text-decoration: underline;
+    &:hover {
+      color: $brand-primary;
+    }
+  }
+}

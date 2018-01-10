@@ -88,7 +88,7 @@ module.exports = {
       remarks: '備註',
       additionalNotes: '附加資料，如機場接送及感興趣的活動',
       tnc: '條款及細則',
-      tncCheckbox: '我已細閱並同意以上的條款及細則和取消政策。'
+      tncCheckbox: '我已細閱並同意<a target="_blank" href="/policy">條款及細則和取消政策</a>。'
     },
     reservationsSummary: {
       pageTitle: '訂單詳情',

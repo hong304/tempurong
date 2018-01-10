@@ -14,37 +14,44 @@
 					<ul class="nav navbar-nav">
 						<!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
 						<li>
-							<router-link :to="{ name: 'About' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'About' }" class="navbar-link" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.about") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Rooms' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'Rooms' }" class="navbar-link" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.rooms") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Activities' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'Activities' }" class="navbar-link" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.activities") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Food' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'Food' }" class="navbar-link" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.food") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'FAQ' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'FAQ' }" class="navbar-link" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.FAQ") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Contact' }" class="navbar-link" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'Contact' }" class="navbar-link" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.contact") }}
 							</router-link>
 						</li>
 						<li>
-							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" exact-active-class @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
+							<router-link :to="{ name: 'Reservations' }" class="navbar-link reservation" exact-active-class
+							             @click.native="(showNavbar) ? showNavbar=!showNavbar : ''">
 								{{ $t("menu.reservations") }}
 							</router-link>
 						</li>
@@ -52,10 +59,10 @@
 					<div class="nav navbar-nav navbar-right">
 						<div class="language-select">
 							<button v-bind:class="{ active: ($i18n.locale === 'en') }" @click="changeLanguage('en')"
-											role="button">{{$i18n.getLocaleMessage('en').languageShort}}
+							        role="button">{{$i18n.getLocaleMessage('en').languageShort}}
 							</button>
 							<button v-bind:class="{ active: ($i18n.locale === 'sc') }" @click="changeLanguage('sc')"
-											role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
+							        role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
 							</button>
 						</div>
 						<!--<multiselect-->
@@ -96,8 +103,10 @@
       language (val) {
         if (val.indexOf('English') !== -1) {
           this.$i18n.locale = 'en'
+          this.$localStorage.set('locale', 'en')
         } else {
           this.$i18n.locale = 'sc'
+          this.$localStorage.set('locale', 'sc')
         }
       }
     },
@@ -105,19 +114,23 @@
       changeLanguage: function (val) {
         this.$i18n.locale = val
         this.showNavbar = false
+        this.$localStorage.set('locale', val)
       }
+    },
+    mounted: function () {
+      this.changeLanguage(this.$localStorage.get('locale', 'en'))
     }
   }
 </script>
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-
+	
 	.navbar {
 		margin-bottom: 0;
 		background-color: white;
 	}
-
+	
 	.navbar-default {
 		background-color: white;
 		border-bottom: 1px solid $light-grey;
@@ -146,7 +159,7 @@
 			}
 		}
 	}
-
+	
 	.navbar-collapse {
 		padding: 0;
 		.navbar-wrapper {
@@ -155,7 +168,7 @@
 			@media screen and (max-width: 767px) {
 				height: auto;
 			}
-
+			
 			.navbar-nav {
 				display: inline-block;
 				float: none;
@@ -202,7 +215,7 @@
 			}
 		}
 	}
-
+	
 	.language-select {
 		padding: 15px 15px 0;
 		line-height: 20px;
@@ -229,7 +242,7 @@
 			}
 		}
 	}
-
+	
 	.multiselect {
 		padding: 15px;
 		line-height: 20px;
@@ -238,7 +251,7 @@
 
 <style lang="scss">
 	@import '../assets/style/setting';
-
+	
 	.lang-select {
 		position: relative !important;
 		box-sizing: border-box !important;

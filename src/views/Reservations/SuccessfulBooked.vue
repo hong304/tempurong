@@ -57,17 +57,17 @@
         ctaData: [
           {
             imageSrc: '/static/img/about/room.jpg',
-            title: 'Rooms',
+            title: 'menu.rooms',
             route: {name: 'Rooms'}
           },
           {
             imageSrc: '/static/img/about/activities.jpg',
-            title: 'Activities',
+            title: 'menu.activities',
             route: {name: 'Activities'}
           },
           {
             imageSrc: '/static/img/about/food.jpg',
-            title: 'Food',
+            title: 'menu.food',
             route: {name: 'Food'}
           }
         ]

@@ -5,7 +5,7 @@
 		</div>
 		<div class="overlay-wrapper">
 			<div class="content-wrapper">
-				<h3>{{ resData.title }}</h3>
+				<h3>{{ $t(resData.title) }}</h3>
 			</div>
 			<router-link :to="resData.route" class="btn btn-text-only">
 				{{ $t("button.moreDetails") }} >

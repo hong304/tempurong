@@ -16,7 +16,8 @@
 								<div class="col-xs-12">
 									<h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
 									<h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ resData.email }}</h3>
-									<h3>Reservation ID : {{ resData.session }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.reservationStatus') }} : {{ $t( 'pages.reservationsDetails.status.' +  resData.status) }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -52,10 +53,10 @@
 						</div>
 						<div class="summary-footer">
 							<div>
-								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
+								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span class="total-price">{{ resData.amount }}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button class="btn btn-main" data-toggle="modal" data-target="#confirmModal">Refund</button>
+								<button v-if="resData.status != 'refunded'" class="btn btn-main" data-toggle="modal" data-target="#confirmModal">Refund</button>
 								
 								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"
 								     aria-labelledby="confirmModalLabel">

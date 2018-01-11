@@ -148,7 +148,13 @@ module.exports = {
     },
     reservationsDetails: {
       pageTitle: 'Reservation Details',
-      confirmRefund: 'Are you sure you want to cancel this booking?'
+      confirmRefund: 'Are you sure you want to cancel this booking?',
+      reservationId: 'Reservation Number',
+      reservationStatus: 'Reservation Status',
+      status: {
+        completed: 'Paid',
+        refunded: 'Refunded'
+      }
     },
     faq: {
       pageTitle: 'FAQ'

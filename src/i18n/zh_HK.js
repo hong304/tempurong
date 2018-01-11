@@ -104,7 +104,14 @@ module.exports = {
       pageMsg: '您已成功預訂我們的房間，我們將會把訂單明細電郵給您。'
     },
     reservationsDetails: {
-      pageTitle: '訂單資料'
+      pageTitle: '訂單資料',
+      confirmRefund: '您是否確定要取消訂單？',
+      reservationId: '訂單編號',
+      reservationStatus: '訂單狀態',
+      status: {
+        completed: '已付款',
+        refunded: '已退款'
+      }
     },
     faq: {
       pageTitle: '常见问题'

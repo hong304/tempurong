@@ -133,7 +133,14 @@ module.exports = {
       pageMsg: '您已成功预订我们的房间，我们将会把订单明细电邮给您。'
     },
     reservationsDetails: {
-      pageTitle: '订单资料'
+      pageTitle: '订单资料',
+      confirmRefund: '您是否确定要取消订单？',
+      reservationId: '订单编号',
+      reservationStatus: '订单状态',
+      status: {
+        completed: '已付款',
+        refunded: '已退款'
+      }
     },
     faq: {
       pageTitle: '常见问题'

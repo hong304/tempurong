@@ -52,8 +52,16 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<p class="mb-2">{{ $t('pages.reservationsSummary.remark') }} : {{ orderContact.remarks }}</p>
-									<p>{{ $t('pages.reservationsSummary.additionalNotes') }} : {{ orderContact.additionalNote }}</p>
+									<table class="remarks-table">
+										<tr>
+											<td><p>{{ $t('pages.reservationsSummary.remark') }}: </p></td>
+											<td><p v-html="getHtml(orderContact.remarks)"></p></td>
+										</tr>
+										<tr>
+											<td><p>{{ $t('pages.reservationsSummary.additionalNotes') }}: </p></td>
+											<td><p v-html="getHtml(orderContact.additionalNote)"></p></td>
+										</tr>
+									</table>
 								</div>
 							</div>
 						</div>
@@ -175,6 +183,13 @@
           console.log(error)
           this.error = 'error.reservationCheckout'
         })
+      },
+      nl2br: function (str, isXhtml) {
+        let breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>'
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2')
+      },
+      getHtml: function (val) {
+        return this.nl2br(val)
       }
     },
     computed: {
@@ -265,6 +280,12 @@
 		.summary-body, .summary-footer {
 			h3 {
 				text-transform: uppercase;
+			}
+			.remarks-table {
+				td {
+					padding: 0.5rem;
+					vertical-align: top;
+				}
 			}
 		}
 		.summary-footer {

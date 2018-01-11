@@ -14,19 +14,23 @@
 						<div class="summary-header mb-5">
 							<div class="row client-detail mb-3">
 								<div class="col-xs-12">
-									<h3>Name : {{ clientName }}</h3>
-									<h3>Email : {{ resData.email }}</h3>
-									<h3>Reservation ID : {{ resData.session }}</h3>
+									<h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
+									<h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ resData.email }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.reservationStatus')
+										}} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
-								<div class="col-sm-6 col-xs-12 py-5">
-									<h3>{{ resData.check_in }} - {{ resData.check_out }}</h3>
-									<p>({{ totalDays }} days, {{ totalNights }} nights)</p>
+								<div class="col-sm-6 col-xs-12 py-md-5 pt-1">
+									<h3>{{ resData.check_in }} {{ $t('dateUnit.to') }} {{ resData.check_out }}</h3>
+									<p>({{ $tc('dateUnit.days', totalDays, {'count': totalDays}) }},
+										{{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }})</p>
 								</div>
-								<div class="col-sm-6 col-xs-12 py-5">
-									<h3>{{ totalGuests }} Guests</h3>
-									<p>({{ resData.adults }} adults, {{ resData.children }} children)</p>
+								<div class="col-sm-6 col-xs-12 py-md-5 pb-3">
+									<h3>{{$tc('commonUnits.guests', totalGuests, {'count': totalGuests})}}</h3>
+									<p>({{ $tc('commonUnits.adults', resData.adults, {'count': resData.adults}) }},
+										{{ $tc('commonUnits.children', resData.children, {'count': resData.children}) }})</p>
 								</div>
 							</div>
 						</div>
@@ -37,22 +41,38 @@
 												:totalNights="totalNights"
 								></room-summary-card>
 							</div>
+							<table class="remarks-table">
+								<tr>
+									<td><p>{{ $t('pages.reservationsSummary.remark') }}:</p></td>
+									<td><p v-html="resData.remarks"></p></td>
+								</tr>
+								<tr>
+									<td><p>{{ $t('pages.reservationsSummary.additionalNotes') }}: </p></td>
+									<td><p v-html="resData.addition_note"></p></td>
+								</tr>
+							</table>
 						</div>
 						<div class="summary-footer">
 							<div>
-								<h3>Total Amount: <span class="total-price">{{ resData.amount }}MYR</span></h3>
+								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span class="total-price">{{ resData.amount
+									}}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button class="btn btn-main" data-toggle="modal" data-target="#confirmModal">Refund</button>
-
-								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+								<button v-if="resData.status != 'refunded'" class="btn btn-main" data-toggle="modal"
+								        data-target="#confirmModal">Refund
+								</button>
+								
+								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"
+								     aria-labelledby="confirmModalLabel">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-body">
-												<h4 class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+												<h4 class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund')
+													}}</h4>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}
+												</button>
 												<button type="button" class="btn btn-primary" @click="refund()">{{ $t('button.yes') }}</button>
 											</div>
 										</div>
@@ -127,10 +147,12 @@
           this.resData = response.data.reservationData
           this.isAdmin = response.data.reservationData.isAdmin
           this.$i18n.locale = response.data.reservationData.language
+          this.$localStorage.set('locale', response.data.reservationData.language)
         } else {
-
+          this.$router.push({name: 'Reservations'})
         }
       }, (error) => {
+        this.$router.push({name: 'Reservations'})
         console.log(error)
       })
     }
@@ -179,6 +201,12 @@
 			margin-bottom: 3.5rem;
 			h3 {
 				margin-bottom: 2rem;
+			}
+			.remarks-table {
+				td {
+					padding: 0.5rem;
+					vertical-align: top;
+				}
 			}
 		}
 		.summary-header, .summary-header p {

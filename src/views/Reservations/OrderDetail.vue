@@ -58,26 +58,15 @@
 									}}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button v-if="resData.status != 'refunded'" class="btn btn-main" data-toggle="modal"
-								        data-target="#confirmModal">Refund
-								</button>
-								
-								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"
-								     aria-labelledby="confirmModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-body">
-												<h4 class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund')
-													}}</h4>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}
-												</button>
-												<button type="button" class="btn btn-primary" @click="refund()">{{ $t('button.yes') }}</button>
-											</div>
-										</div>
-									</div>
-								</div>
+								<button v-if="resData.status != 'refunded'" class="btn btn-main" @click="openModal=true">Refund</button>
+
+								<modal v-model="openModal" :header="false" :footer="false" ref="modal" id="confirmModal">
+									<h4 class="modal-title" id="confirmModalLabel">>{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+									<hr>
+									<btn class="btn btn-border" @click="openModal=false">{{ $t('button.no') }}</btn>
+									<btn class="btn btn-main" @click="refund()">{{ $t('button.yes') }}</btn>
+								</modal>
+
 							</div>
 						</div>
 					</div>
@@ -90,9 +79,13 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
+  import Modal from 'uiv/src/components/modal/Modal'
+  import Btn from 'uiv/src/components/button/Btn'
 
   export default {
     components: {
+      Btn,
+      Modal,
       RoomSummaryCard,
       ContentTitle
     },
@@ -100,7 +93,8 @@
     data () {
       return {
         resData: {},
-        isAdmin: 0
+        isAdmin: 0,
+        openModal: false
       }
     },
     computed: {

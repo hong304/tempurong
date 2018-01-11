@@ -37,6 +37,16 @@
 												:totalNights="totalNights"
 								></room-summary-card>
 							</div>
+							<table class="remarks-table">
+								<tr>
+									<td><p>Remarks: </p></td>
+									<td><p v-html="resData.remarks"></p></td>
+								</tr>
+								<tr>
+									<td><p>Additional Notes: </p></td>
+									<td><p v-html="resData.addition_note"></p></td>
+								</tr>
+							</table>
 						</div>
 						<div class="summary-footer">
 							<div>
@@ -44,15 +54,18 @@
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
 								<button class="btn btn-main" data-toggle="modal" data-target="#confirmModal">Refund</button>
-
-								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel">
+								
+								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"
+								     aria-labelledby="confirmModalLabel">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<div class="modal-body">
-												<h4 class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+												<h4 class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund')
+													}}</h4>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}</button>
+												<button type="button" class="btn btn-default" data-dismiss="modal">{{ $t('button.no') }}
+												</button>
 												<button type="button" class="btn btn-primary" @click="refund()">{{ $t('button.yes') }}</button>
 											</div>
 										</div>
@@ -179,6 +192,12 @@
 			margin-bottom: 3.5rem;
 			h3 {
 				margin-bottom: 2rem;
+			}
+			.remarks-table {
+				td {
+					padding: 0.5rem;
+					vertical-align: top;
+				}
 			}
 		}
 		.summary-header, .summary-header p {

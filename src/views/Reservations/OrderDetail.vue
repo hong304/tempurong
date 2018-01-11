@@ -17,7 +17,8 @@
 									<h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
 									<h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ resData.email }}</h3>
 									<h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
-									<h3>{{ $t('pages.reservationsDetails.reservationStatus') }} : {{ $t( 'pages.reservationsDetails.status.' +  resData.status) }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.reservationStatus')
+										}} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -27,7 +28,7 @@
 										{{ $tc('dateUnit.nights', totalNights, {'count': totalNights}) }})</p>
 								</div>
 								<div class="col-sm-6 col-xs-12 py-md-5 pb-3">
-									<h3>{{$tc('commonUnits.guests',totalGuests, {'count': totalGuests})}}</h3>
+									<h3>{{$tc('commonUnits.guests', totalGuests, {'count': totalGuests})}}</h3>
 									<p>({{ $tc('commonUnits.adults', resData.adults, {'count': resData.adults}) }},
 										{{ $tc('commonUnits.children', resData.children, {'count': resData.children}) }})</p>
 								</div>
@@ -53,10 +54,13 @@
 						</div>
 						<div class="summary-footer">
 							<div>
-								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span class="total-price">{{ resData.amount }}MYR</span></h3>
+								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span class="total-price">{{ resData.amount
+									}}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button v-if="resData.status != 'refunded'" class="btn btn-main" data-toggle="modal" data-target="#confirmModal">Refund</button>
+								<button v-if="resData.status != 'refunded'" class="btn btn-main" data-toggle="modal"
+								        data-target="#confirmModal">Refund
+								</button>
 								
 								<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog"
 								     aria-labelledby="confirmModalLabel">
@@ -143,10 +147,12 @@
           this.resData = response.data.reservationData
           this.isAdmin = response.data.reservationData.isAdmin
           this.$i18n.locale = response.data.reservationData.language
+          this.$localStorage.set('locale', response.data.reservationData.language)
         } else {
-
+          this.$router.push({name: 'Reservations'})
         }
       }, (error) => {
+        this.$router.push({name: 'Reservations'})
         console.log(error)
       })
     }

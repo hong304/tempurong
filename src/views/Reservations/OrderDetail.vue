@@ -58,14 +58,17 @@
 									}}MYR</span></h3>
 								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
 								</router-link>
-								<button v-if="resData.status != 'refunded'" class="btn btn-main" @click="openModal=true">Refund</button>
+								<button v-if="resData.status != 'refunded'" class="btn btn-main" @click="openModal = true">Refund</button>
 
-								<modal v-model="openModal" :header="false" :footer="false" ref="modal" id="confirmModal">
-									<h4 class="modal-title" id="confirmModalLabel">>{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
-									<hr>
-									<btn class="btn btn-border" @click="openModal=false">{{ $t('button.no') }}</btn>
-									<btn class="btn btn-main" @click="refund()">{{ $t('button.yes') }}</btn>
-								</modal>
+								<transition name="fade">
+									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
+										<h4 slot="header" class="modal-title" id="confirmModalLabel">{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+										<div slot="footer" class="text-center">
+											<button type="button" class="btn btn-border" @click="openModal = false">{{ $t('button.no') }}</button>
+											<button type="button" class="btn btn-main" @click="refund()">{{ $t('button.yes') }}</button>
+										</div>
+									</vue-modal>
+								</transition>
 
 							</div>
 						</div>
@@ -79,13 +82,11 @@
 <script>
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
-  import Modal from 'uiv/src/components/modal/Modal'
-  import Btn from 'uiv/src/components/button/Btn'
+  import VueModal from '@/components/modal/Modal.vue'
 
   export default {
     components: {
-      Btn,
-      Modal,
+      VueModal,
       RoomSummaryCard,
       ContentTitle
     },
@@ -227,4 +228,25 @@
 			text-transform: uppercase;
 		}
 	}
+
+	.fade-enter-active, .fade-leave-active {
+		transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+		opacity: 0;
+	}
+
+	.btn {
+		&.btn-border {
+			border-color: $brand-primary;
+			color: $brand-primary;
+			padding: 0.45rem 1.25rem;
+			font-size: 0.95em;
+			&:hover, &:focus {
+				background-color: $brand-primary;
+				color: white;
+			}
+		}
+	}
+
 </style>

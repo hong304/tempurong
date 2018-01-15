@@ -6,8 +6,8 @@
 					<div class="banner-wrapper">
 						<img class="banner-img" :src="item.imgSrc">
 					</div>
-					<div class="carousel-caption" v-if="item.title">
-						<h3>{{item.title}}</h3>
+					<div class="carousel-caption" v-if="item['title_' + $i18n.locale]">
+						<h3>{{item['title_' + $i18n.locale]}}</h3>
 						<router-link v-for="(item, index) in item.cta" :to="item.to" class="btn btn-main" :key="index">
 							{{ $t("button." + item.btnText) }}
 						</router-link>

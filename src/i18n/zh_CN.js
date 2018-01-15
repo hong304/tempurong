@@ -3,7 +3,7 @@ module.exports = {
   languageShort: '简',
   companyName: '金沙龙沙度假村',
   menu: {
-    companyName: '金沙龙沙<br>度假村',
+    companyName: '登步隆金沙湾龙虾<br>度假村',
     quickMenu: '快捷主单',
     about: '关於我们',
     rooms: '房间',
@@ -27,7 +27,7 @@ module.exports = {
     master: '万事达卡',
     visa: '维萨卡'
   },
-  copyright: '© 2017 金沙龙沙度假村 版权所有。',
+  copyright: '© 2017 登步隆金沙湾龙虾度假村 版权所有。',
   pages: {
     home: {
       welcome: '欢迎来到瓜拉彭尤',
@@ -51,7 +51,7 @@ module.exports = {
       turtleIntro: '从十一月底到三月（因潮汐不定，有时甚至到五月份），你可能很幸运地看到小海龟孵化，当然大自然生态没有百分百保证。海龟会挖出他们的巢穴，在诞下大约一百只蛋后，母龟就会回到海里。然後在大约四十五到五十天之后，海龟蛋就孵化出来，小海龟会顺着自然本能，努力往海的方向奔爬，希望投奔大海，返回海洋。<br><br>这里是非常特别和宝贵的地方，海龟会在我们的海滩上下蛋，所以有研究团队长期陪伴我们研究这些奇妙的生物。如果你对这个领域的研究感兴趣，请不用犹豫和我们联系，我们将非常乐意合作，因为我们非常关心我们的环境和野生动植物。',
       weather: '天气',
       weatherIntro: '哥打京那巴鲁和沙巴总体来说是郁郁葱葱，但因热带气候，所以一年四季都会有相当数量的降雨，不过也不是全天候的事情。一般来说，一月到三月的气候比较凉爽和干燥，是来旅游的最佳时间。<br><br>10月份通常比较潮湿，但是近年来气候模式一直在变化，所以一般日子的天气都是晴朗的。五月和四月则是非常潮湿和炎热，所以在岛屿附近游泳或到凉爽的山上游玩是不错的选择！',
-      sectionTitle: 'Want to explore more about kuala penyu?'
+      sectionTitle: '想要了解更多关于瓜拉奔优的咨询吗？'
     },
     rooms: {
       pageTitle: '房间',
@@ -68,7 +68,7 @@ module.exports = {
       mins: '分钟',
       distance: '米 距离渡假村',
       difficulties: '难度',
-      ctaTitle: 'Interesting in Activities?'
+      ctaTitle: '对任何活动感兴趣？'
     },
     food: {
       pageTitle: '精彩美食',
@@ -80,9 +80,9 @@ module.exports = {
     },
     contact: {
       pageTitle: '如何到达目的地？',
-      pageSubtitle: 'Find us in Kuala Penyu, Sabah, Malaysia',
+      pageSubtitle: '在马来西亚沙巴的瓜拉奔优找到我们',
       pageIntro: '',
-      getThere: 'Getting there',
+      getThere: '如何到达那里？',
       getThereContent: '登步隆金沙龙虾湾距离哥打京那巴鲁国际机场（BKI亚庇——最近的机场）约2小时车程。我们很乐意提供往返机场或哥打京那巴鲁市的接送服务，但需要支付额外的费用：',
       transportation: [
         {
@@ -103,10 +103,24 @@ module.exports = {
           title: '自驾',
           content: '请使用位智（Waze）或谷歌（Google）地图作为您的导航系统。目的地请输入 「Tempurong Golden Beach Resort」，准确的路线将会显示在地图上。'
         }
-      ]
+      ],
+      findUs: {
+        information: [
+          {
+            title: '地址',
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+          },
+          {
+            title: '电话',
+            content: '+60 88-230 916'
+          }
+        ]
+      },
+      moreInfo: '了解更多这个地方'
     },
     reservations: {
-      pageTitle: '房间预订'
+      pageTitle: '房间预订',
+      pageSubtitle: '你的这片天堂在等待着呢！'
     },
     reservationsContact: {
       pageTitle: '联系资料',
@@ -167,13 +181,17 @@ module.exports = {
     moreDetails: '更多详情',
     hideDetails: '隐藏详情',
     moreActivities: '更多活动',
+    aboutUs: '关于我们',
+    foodOptions: '食物选择',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',
     submit: '提交',
     back: '返回',
     checkOut: '提交订单',
-    pay: '付款'
+    pay: '付款',
+    yes: '是',
+    no: '否'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

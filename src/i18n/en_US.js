@@ -116,7 +116,8 @@ module.exports = {
             content: '+60 88-230 916'
           }
         ]
-      }
+      },
+      moreInfo: 'Know more about the area?'
     },
     reservations: {
       pageTitle: 'Reservations',

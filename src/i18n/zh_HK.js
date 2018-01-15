@@ -74,10 +74,48 @@ module.exports = {
       pageTitle: '精彩美食'
     },
     contact: {
-      pageTitle: '聯繫我們'
+      pageTitle: '聯繫我們',
+      pageSubtitle: 'Find us in Kuala Penyu, Sabah, Malaysia',
+      pageIntro: '',
+      getThere: 'Getting there',
+      getThereContent: 'Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI - the nearest airport) by car. We are happy to pick-up and drop-off up from the airport or Kota Kinabalu City for an additional fee:',
+      transportation: [
+        {
+          title: 'Airport or KK city pickup',
+          content: 'For 1-4 pax, the total cost is MYR250 each way (MYR500 round trip) <br> For 5-10 pax, the total cost is MYR350 each way (MYR700 round trip)'
+        },
+        {
+          title: 'Bus',
+          content: 'Take a bus from Kota Kinabalu (Bus terminal opposite our KK High Court) to Menumbok Ferry Terminal and ask a driver to drop you off in Kayul roundabout (3 turtles roundabout) between Kuala Penyu and Menumbok (ferry terminal to Labuan). From there, we could come to pick you up and drive you to our paradise for a MYR10 fee.',
+          subTitle: 'Bus Service K.K-Menumbok (near Kuala Penyu)-K.K',
+          subContent: [
+            'From Kota Kinabalu to Menumbok: <br> 6:45 am / 10:00 am / 12:30 pm',
+            'From Menumbok to Kota Kinabalu: <br> 10:00 am / 3:30 pm / 4:30 pm',
+            'Bus ticket is MYR 15 one way.'
+          ]
+        },
+        {
+          title: 'Self driving by car',
+          content: 'Please use Waze or Google map as GPS and type location as Tempurong Golden Beach Resort, it should be accurately plotted on the map.'
+        }
+      ],
+      findUs: {
+        information: [
+          {
+            title: '地址',
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+          },
+          {
+            title: '電話',
+            content: '+60 88-230 916'
+          }
+        ]
+      },
+      moreInfo: '了解更多這個地方'
     },
     reservations: {
-      pageTitle: '房間預訂'
+      pageTitle: '房間預訂',
+      pageSubtitle: 'Your slice of paradise is waiting!'
     },
     reservationsContact: {
       pageTitle: '聯繫資料',
@@ -138,13 +176,17 @@ module.exports = {
     moreDetails: '更多詳情',
     hideDetails: '隱藏詳情',
     moreActivities: '更多活動',
+    aboutUs: '關於我們',
+    foodOptions: '食物選擇',
     discoverMore: '探索更多',
     dropMessage: '留言',
     justAsk: '留言',
     submit: '提交',
     back: '返回',
     checkOut: '提交訂單',
-    pay: '付款'
+    pay: '付款',
+    yes: '是',
+    no: '否'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

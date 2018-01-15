@@ -50,7 +50,7 @@
 			</div>
 			<div class="row mt-5 mb-5">
 				<div class="col-xs-12">
-					<h4 class="text-center">Know more about the area?</h4>
+					<h4 class="text-center">{{$t('pages.contact.moreInfo')}}</h4>
 					<router-link :to="{ name: 'Activities' }" class="btn btn-main text-center">
 						{{ $t('button.moreActivities') }}
 					</router-link>

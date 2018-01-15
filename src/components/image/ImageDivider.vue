@@ -5,10 +5,10 @@
 		</div>
 		<div class="overlay-info-wrapper px-4 px-md-0">
 			<div class="content-wrapper">
-				<h3 v-if="resData.infoTitle">{{ resData.infoTitle }}</h3>
+				<h3 v-if="resData['infoTitle_' + $i18n.locale]">{{ resData['infoTitle_' + $i18n.locale] }}</h3>
 				<p v-if="resData.infoParagraph">{{ resData.infoParagraph }}</p>
 			</div>
-			<router-link v-if="resData.buttonPath" :to="resData.buttonPath" class="btn btn-border">{{ resData.buttonText }}</router-link>
+			<router-link v-if="resData.buttonPath" :to="resData.buttonPath" class="btn btn-border">{{ $t(resData.buttonText) }}</router-link>
 		</div>
 	</div>
 </template>

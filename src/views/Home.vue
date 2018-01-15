@@ -63,7 +63,6 @@
 			<div class="row">
 				<image-divider
 					:resData="imageDividerData"
-					:buttonText="$t('button.moreRooms')"
 				></image-divider>
 			</div>
 		</section>
@@ -123,22 +122,25 @@
         activitiesIcon: '',
         imageDividerData: {
           imageSrc: '/static/img/demo-image-divider-2.jpg',
-          infoTitle: 'Special dietary items available!',
-          buttonText: this.$i18n.getLocaleMessage(this.$i18n.locale).button.bookNow,
+          infoTitle_en: 'Special dietary items available!',
+          infoTitle_sc: '含有特别的饮食项目！',
+          buttonText: 'button.bookNow',
           buttonPath: {name: 'Reservations'}
         },
         adventures: '',
         banners: [
           {
             imgSrc: '/static/img/home_banner/banner-03.jpg',
-            title: 'Rooms starting from $250 MYR/night',
+            title_en: 'Rooms starting from $250 MYR/night',
+            title_sc: '客房价格由MYR 250/晚起',
             cta: [
               {to: {name: 'Rooms'}, btnText: 'viewRooms'}
             ]
           },
           {
             imgSrc: '/static/img/home_banner/banner-04.jpg',
-            title: 'Explore more. Plan your next adventure.',
+            title_en: 'Explore more. Plan your next adventure.',
+            title_sc: '探索更多。计划你的下一个冒险。',
             cta: [
               {to: {name: 'Activities'}, btnText: 'moreActivities'},
               {to: {name: 'About'}, btnText: 'aboutUs'}
@@ -146,7 +148,8 @@
           },
           {
             imgSrc: '/static/img/home_banner/banner-05.jpg',
-            title: 'Relax and get a taste of Borneo',
+            title_en: 'Relax and get a taste of Borneo.',
+            title_sc: '放松一下，品尝婆罗洲风味。',
             cta: [
               {to: {name: 'Food'}, btnText: 'foodOptions'}
             ]

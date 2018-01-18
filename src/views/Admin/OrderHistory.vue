@@ -32,7 +32,7 @@
 							<p class="m-0">{{ props.rowData.adults + props.rowData.children }}</p>
 						</template>
 						<template slot="detail" slot-scope="props">
-							<router-link :to="{ name: 'OrderDetail', params: {orderId: props.rowData.id}}"><span
+							<router-link :to="{ name: 'OrderDetails', params: {sessionId: props.rowData.session}}"><span
 											class="ti-zoom-in"></span></router-link>
 						</template>
 					</vuetable>

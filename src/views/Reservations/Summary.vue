@@ -112,7 +112,7 @@
         orderSessionId: '',
         credentials: {
           sandbox: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN',
-          production: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN'
+          production: 'AUYcTNktgo4TPoHQV20vzFTSgFKmaYRiwjm_vEEbxkLUuPswRJbfW29WofgpPpB3fY_VNuEt4uih8buF'
         },
         paypalBtn: {
           label: 'paypal',
@@ -124,7 +124,7 @@
             'gold',         // gold | blue | silver | black
           tagline: false
         },
-        dev: true,
+        dev: process.env.PAYPAL_DEV,
         error: false,
         showLoading: false
       }

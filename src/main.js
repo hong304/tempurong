@@ -17,6 +17,7 @@ import VueAxios from 'vue-axios'
 import moment from 'vue-moment'
 import VueLocalStorage from 'vue-localstorage'
 import VueCookie from 'vue-cookie'
+import VueAnalytics from 'vue-analytics'
 // import VeeValidate from 'vee-validate'
 
 window._ = require('lodash')
@@ -28,6 +29,9 @@ Vue.use(VueAxios, axios)
 Vue.use(moment)
 Vue.use(VueLocalStorage)
 Vue.use(VueCookie)
+Vue.use(VueAnalytics, {
+  id: 'UA-112683641-1'
+})
 // Vue.use(VeeValidate)
 
 const i18n = new VueI18n({

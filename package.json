@@ -19,6 +19,7 @@
     "uiv": "^0.13.0",
     "vee-validate": "^2.0.0-rc.23",
     "vue": "^2.5.3",
+    "vue-analytics": "^5.8.0",
     "vue-awesome": "^2.3.4",
     "vue-axios": "^2.0.2",
     "vue-cookie": "^1.1.4",

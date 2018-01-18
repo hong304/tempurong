@@ -30,7 +30,7 @@ Vue.use(moment)
 Vue.use(VueLocalStorage)
 Vue.use(VueCookie)
 Vue.use(VueAnalytics, {
-  id: 'UA-112683641-1'
+  id: 'UA-112693500-1'
 })
 // Vue.use(VeeValidate)
 

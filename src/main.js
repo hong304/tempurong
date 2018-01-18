@@ -29,7 +29,7 @@ Vue.use(VueAxios, axios)
 Vue.use(moment)
 Vue.use(VueLocalStorage)
 Vue.use(VueCookie)
-gtagjs(router, 'UA-112693500-1', {debug: true, scriptId: 'gtagjs'})
+gtagjs(router, 'UA-112693500-1', {debug: false, scriptId: 'gtagjs'})
 // Vue.use(VeeValidate)
 
 const i18n = new VueI18n({

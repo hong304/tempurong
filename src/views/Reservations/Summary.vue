@@ -112,7 +112,7 @@
         orderSessionId: '',
         credentials: {
           sandbox: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN',
-          production: 'ARRme_4jYmfXIawcu32gQiJtv1BdrYmUCyDlkrGVtNc6x-9qklMjATIeTLaz3zO19PtTYdbpsEipwzpN'
+          production: 'AUYcTNktgo4TPoHQV20vzFTSgFKmaYRiwjm_vEEbxkLUuPswRJbfW29WofgpPpB3fY_VNuEt4uih8buF'
         },
         paypalBtn: {
           label: 'paypal',
@@ -216,6 +216,14 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
+
+      this.axios.get(process.env.API_URL + '/api/getEnvironment').then((response) => {
+        if (response.data.status) {
+          this.dev = response.data.development
+        }
+      }, (error) => {
+        console.log(error)
+      })
     },
     mounted () {
       this.reservation()

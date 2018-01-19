@@ -56,7 +56,7 @@
 							<div>
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span class="total-price">{{ resData.amount
 									}}MYR</span></h3>
-								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main">Back to order list
+								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }" class="btn btn-main pull-left">Back to order list
 								</router-link>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main" @click="openModal = true">Refund</button>
 
@@ -94,7 +94,7 @@
     data () {
       return {
         resData: {},
-        isAdmin: 0,
+        isAdmin: false,
         openModal: false
       }
     },
@@ -136,7 +136,8 @@
         url: process.env.API_URL + '/api/orderHistory',
         data: {
           sessionId: this.$route.params.sessionId
-        }
+        },
+        withCredentials: true
       }).then((response) => {
         if (response.data.status) {
           this.resData = response.data.reservationData

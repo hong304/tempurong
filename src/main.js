@@ -17,6 +17,7 @@ import VueAxios from 'vue-axios'
 import moment from 'vue-moment'
 import VueLocalStorage from 'vue-localstorage'
 import VueCookie from 'vue-cookie'
+import gtagjs from 'vue-gtagjs'
 // import VeeValidate from 'vee-validate'
 
 window._ = require('lodash')
@@ -28,6 +29,7 @@ Vue.use(VueAxios, axios)
 Vue.use(moment)
 Vue.use(VueLocalStorage)
 Vue.use(VueCookie)
+gtagjs(router, 'UA-112693500-1', {debug: false, scriptId: 'gtagjs'})
 // Vue.use(VeeValidate)
 
 const i18n = new VueI18n({

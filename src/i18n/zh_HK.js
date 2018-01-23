@@ -130,6 +130,7 @@ module.exports = {
     },
     reservationsSummary: {
       pageTitle: '訂單詳情',
+      pageSubtitle: '請付款以完成訂單。',
       clientName: '姓名',
       clientEmail: '電郵',
       remark: '備註',

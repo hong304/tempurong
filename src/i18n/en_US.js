@@ -136,6 +136,7 @@ module.exports = {
     },
     reservationsSummary: {
       pageTitle: 'Booking Summary',
+      pageSubtitle: 'Your reservation is not complete until you complete payment.',
       clientName: 'Name',
       clientEmail: 'Email',
       remark: 'Remark',

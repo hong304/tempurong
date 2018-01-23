@@ -135,6 +135,7 @@ module.exports = {
     },
     reservationsSummary: {
       pageTitle: '订单详情',
+      pageSubtitle: '请付款以完成订单。',
       clientName: '姓名',
       clientEmail: '电邮',
       remark: '备注',

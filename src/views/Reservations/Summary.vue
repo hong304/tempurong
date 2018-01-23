@@ -126,7 +126,7 @@
             'gold',         // gold | blue | silver | black
           tagline: false
         },
-        dev: true,
+        dev: false,
         error: false,
         showLoading: false
       }

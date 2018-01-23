@@ -132,7 +132,7 @@ module.exports = {
       remarks: 'Remarks',
       additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
       tnc: 'Terms & Conditions',
-      tncCheckbox: 'I have read and agree to <a href="/policy" target="_blank">Terms and Conditions and cancellation policy</a>.'
+      tncCheckbox: 'I have read and agreed to the <a href="/policy" target="_blank">Resort Policy</a>, including the refund terms stated within.'
     },
     reservationsSummary: {
       pageTitle: 'Booking Summary',

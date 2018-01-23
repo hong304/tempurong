@@ -130,7 +130,7 @@ module.exports = {
       lastName: 'Last Name',
       email: 'Email',
       countryCode: 'Country Code',
-      mobile: 'Mobile',
+      mobile: 'Contact Number',
       remarks: 'Remarks',
       additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
       tnc: 'Terms & Conditions',
@@ -140,7 +140,7 @@ module.exports = {
       pageTitle: 'Booking Summary',
       clientName: 'Name',
       clientEmail: 'Email',
-      clientMobile: 'Mobile',
+      clientMobile: 'Contact Number',
       remark: 'Remark',
       additionalNotes: 'Additional Notes',
       totalAmount: 'Total Amount'

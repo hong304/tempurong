@@ -1,9 +1,5 @@
 <template>
 	<div class="activity-card">
-		<div class="card-header">
-			<h2>{{ resData['name_' + $i18n.locale] }}</h2>
-			<h4 v-if="resData.subtitle_en">({{ resData['subtitle_' + $i18n.locale] }})</h4>
-		</div>
 		<div class="card-body mt-5">
 			<div class="row">
 				<div class="col-xs-12 col-sm-4">
@@ -16,9 +12,9 @@
 				</div>
 				<div class="col-xs-12 col-sm-8">
 					<div class="activity-detail">
-						<ul>
-							<li><span class="ti-time"></span> {{ resData.duration }} {{ $t('pages.activities.mins') }}</li>
-							<li><span class="walking-distance"></span> {{ resData.distance }}{{ $t('pages.activities.distance') }}</li>
+						<h2>{{ resData['name_' + $i18n.locale] }}</h2>
+						<h4 v-if="resData.subtitle_en">({{ resData['subtitle_' + $i18n.locale] }})</h4>
+						<ul class="mt-3">
 							<li class="icon-group">
 								{{ $t('pages.activities.difficulties') }}
 								<span v-for="item in points">

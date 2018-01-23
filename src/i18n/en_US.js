@@ -67,7 +67,7 @@ module.exports = {
       adventureIntro: 'Here are a few sample itineraries that are very popular with our guests. Please feel free to contact us if you would like to hear all our options, as activities can change with the seasons.',
       mins: 'mins',
       distance: 'm from resort',
-      difficulties: 'Difficulties',
+      difficulties: 'Difficulty Rating',
       ctaTitle: 'Interesting in Activities?'
     },
     food: {

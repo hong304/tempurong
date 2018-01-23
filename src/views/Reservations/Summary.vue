@@ -126,7 +126,7 @@
             'gold',         // gold | blue | silver | black
           tagline: false
         },
-        dev: false,
+        dev: process.env.PAYPAL_DEV,
         error: false,
         showLoading: false
       }
@@ -218,14 +218,6 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
-
-      this.axios.get(process.env.API_URL + '/api/getEnvironment').then((response) => {
-        if (response.data.status) {
-          this.dev = response.data.development
-        }
-      }, (error) => {
-        console.log(error)
-      })
     },
     mounted () {
       this.reservation()

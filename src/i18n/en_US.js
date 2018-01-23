@@ -67,7 +67,7 @@ module.exports = {
       adventureIntro: 'Here are a few sample itineraries that are very popular with our guests. Please feel free to contact us if you would like to hear all our options, as activities can change with the seasons.',
       mins: 'mins',
       distance: 'm from resort',
-      difficulties: 'Difficulties',
+      difficulties: 'Difficulty Rating',
       ctaTitle: 'Interesting in Activities?'
     },
     food: {
@@ -129,6 +129,8 @@ module.exports = {
       firstName: 'First Name',
       lastName: 'Last Name',
       email: 'Email',
+      countryCode: 'Country Code',
+      mobile: 'Contact Number',
       remarks: 'Remarks',
       additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
       tnc: 'Terms & Conditions',
@@ -139,6 +141,7 @@ module.exports = {
       pageSubtitle: 'Your reservation is not complete until you complete payment.',
       clientName: 'Name',
       clientEmail: 'Email',
+      clientMobile: 'Contact Number',
       remark: 'Remark',
       additionalNotes: 'Additional Notes',
       totalAmount: 'Total Amount'

@@ -123,6 +123,8 @@ module.exports = {
       firstName: '名字',
       lastName: '姓氏',
       email: '電郵',
+      countryCode: '區碼',
+      mobile: '聯絡電話',
       remarks: '備註',
       additionalNotes: '附加資料，如機場接送及感興趣的活動',
       tnc: '條款及細則',
@@ -133,6 +135,7 @@ module.exports = {
       pageSubtitle: '請付款以完成訂單。',
       clientName: '姓名',
       clientEmail: '電郵',
+      clientMobile: '聯絡電話',
       remark: '備註',
       additionalNotes: '附加資料',
       totalAmount: '合計'

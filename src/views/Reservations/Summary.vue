@@ -14,7 +14,8 @@
 		<section class="mt-5 py-sm-5 py-3">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title :contentTitle="$t('pages.reservationsSummary.pageTitle')"></content-title>
+					<content-title :contentTitle="$t('pages.reservationsSummary.pageTitle')" :contentSubTitle="$t('pages.reservationsSummary.pageSubtitle')"></content-title>
+
 				</div>
 			</div>
 		</section>

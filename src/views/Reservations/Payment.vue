@@ -26,9 +26,21 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-xs-12">
+								<div class="col-sm-6 col-xs-12">
 									<input v-model="contact.email"
 									       v-bind:placeholder="$t('pages.reservationsContact.email') + ' *'">
+								</div>
+								<div class="col-sm-6 col-xs-12">
+									<div class="row">
+										<div class="col-xs-4">
+											<input v-model="contact.countryCode"
+														 v-bind:placeholder="$t('pages.reservationsContact.countryCode') + ' *'">
+										</div>
+										<div class="col-xs-8">
+											<input v-model="contact.mobile"
+														 v-bind:placeholder="$t('pages.reservationsContact.mobile') + ' *'">
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="row">
@@ -92,6 +104,8 @@
           firstName: '',
           lastName: '',
           email: '',
+          countryCode: '',
+          mobile: '',
           remarks: '',
           additionalNote: '',
           tnc: ''
@@ -109,6 +123,8 @@
           firstName: this.contact.firstName,
           lastName: this.contact.lastName,
           email: this.contact.email,
+          countryCode: this.contact.countryCode,
+          mobile: this.contact.mobile,
           tnc: this.contact.tnc
         }).then((result) => {
           if (result) {
@@ -138,6 +154,8 @@
         firstName: 'required',
         lastName: 'required',
         email: 'required|email',
+        countryCode: 'required',
+        mobile: 'required',
         tnc: 'required'
       })
       this.$set(this, 'errors', this.validator.errors)

@@ -28,6 +28,7 @@
 								<div class="col-xs-12">
 									<h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
 									<h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ orderContact.email }}</h3>
+									<h3>{{ $t('pages.reservationsSummary.clientMobile') }} : {{ orderContact.countryCode }} {{ orderContact.mobile }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">

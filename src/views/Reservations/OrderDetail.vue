@@ -16,6 +16,7 @@
                                 <div class="col-xs-12">
                                     <h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
                                     <h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ resData.email }}</h3>
+                                    <h3>{{ $t('pages.reservationsSummary.clientMobile') }} : {{ resData.countryCode }} {{ resData.mobile }}</h3>
                                     <h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
                                     <h3>{{ $t('pages.reservationsDetails.reservationStatus')
                                         }} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>

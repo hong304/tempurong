@@ -128,6 +128,8 @@ module.exports = {
       firstName: '名字',
       lastName: '姓氏',
       email: '电邮',
+      countryCode: '区码',
+      mobile: '联络电话',
       remarks: '备注',
       additionalNotes: '附加资料，如机场接送及感兴趣的活动',
       tnc: '条款及细则',
@@ -137,6 +139,7 @@ module.exports = {
       pageTitle: '订单详情',
       clientName: '姓名',
       clientEmail: '电邮',
+      clientMobile: '联络电话',
       remark: '备注',
       additionalNotes: '附加资料',
       totalAmount: '合计'

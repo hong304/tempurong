@@ -28,6 +28,7 @@
 								<div class="col-xs-12">
 									<h3>{{ $t('pages.reservationsSummary.clientName') }} : {{ clientName }}</h3>
 									<h3>{{ $t('pages.reservationsSummary.clientEmail') }} : {{ orderContact.email }}</h3>
+									<h3>{{ $t('pages.reservationsSummary.clientMobile') }} : {{ orderContact.countryCode }} {{ orderContact.mobile }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -125,7 +126,7 @@
             'gold',         // gold | blue | silver | black
           tagline: false
         },
-        dev: true,
+        dev: process.env.PAYPAL_DEV,
         error: false,
         showLoading: false
       }
@@ -217,14 +218,6 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
-
-      this.axios.get(process.env.API_URL + '/api/getEnvironment').then((response) => {
-        if (response.data.status) {
-          this.dev = response.data.development
-        }
-      }, (error) => {
-        console.log(error)
-      })
     },
     mounted () {
       this.reservation()

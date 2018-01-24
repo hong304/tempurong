@@ -68,11 +68,11 @@ module.exports = {
       mins: 'mins',
       distance: 'm from resort',
       difficulties: 'Difficulty Rating',
-      ctaTitle: 'Interesting in Activities?'
+      ctaTitle: 'Interested in Activities?'
     },
     food: {
       pageTitle: 'Food',
-      pageSubtitle: 'Include in the freshest of ingredients',
+      pageSubtitle: 'Includes the freshest of ingredients',
       pageIntro: 'We strive to cultivate much of our own produce on-site and aim to raise our own fish. Malaysia has such an abundance of vegetation that we gather from the wild and purchase from local village markets. Being right by the sea, we often have fresh clams, fish, prawns and even wild-caught chickens. Plan your vacations around meals and you’ll never be disappointed!',
       addOn: 'Special Dietary items available, just ask.',
       addOnContent: 'We have so many options for food, and can accomodate vegetarians, pescatarians, and more, so please check out our food options or reach out to us directly for ideas so that you don’t have to worry about a thing.<br><br>We are happy to accommodate to your preferences, we just need some notice ahead of time to prepare fresh!',
@@ -82,7 +82,7 @@ module.exports = {
       pageTitle: 'Contact',
       pageSubtitle: 'Find us in Kuala Penyu, Sabah, Malaysia',
       pageIntro: '',
-      getThere: 'Getting there',
+      getThere: 'Getting Here',
       getThereContent: 'Tempurong Golden Beach is located approximately two hours away from Kota Kinabalu International Airport (BKI - the nearest airport) by car. We are happy to pick-up and drop-off up from the airport or Kota Kinabalu City for an additional fee:',
       transportation: [
         {
@@ -142,7 +142,7 @@ module.exports = {
       clientName: 'Name',
       clientEmail: 'Email',
       clientMobile: 'Contact Number',
-      remark: 'Remark',
+      remark: 'Remarks',
       additionalNotes: 'Additional Notes',
       totalAmount: 'Total Amount'
     },
@@ -189,7 +189,7 @@ module.exports = {
     aboutUs: 'About Us',
     foodOptions: 'Food Options',
     discoverMore: 'Discover More',
-    dropMessage: 'Drop a Message',
+    dropMessage: 'Drop us a Message',
     justAsk: 'Just Ask',
     submit: 'Submit',
     back: 'Back',
@@ -262,7 +262,7 @@ module.exports = {
     noRoomSelected: 'Please select at least one room.',
     guestAndRoomNoConflict: 'Total guest cannot larger than maximum capacity of all rooms.',
     email: 'Please insert valid email address.',
-    tnc: 'Please agree the term and condition.',
+    tnc: 'Please agree to the terms and condition.',
     required: 'The {field} field is required.',
     reservationCheckout: 'Your reservation has somethings wrong. Please reserve once again.',
     roomAvailable: 'Opps! The rooms has been reserved by others, please reserve once again.',

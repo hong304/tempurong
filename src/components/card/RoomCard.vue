@@ -99,7 +99,7 @@
 			<collapse v-model="show">
 				<div class="well" style="margin-bottom: 0">
 					<h5>{{ $t('components.card.roomCard.description') }}</h5>
-					<p>{{ result['description_' + $i18n.locale] }}</p>
+					<p v-html="result['description_' + $i18n.locale]"></p>
 					<h5>{{ $t('components.card.roomCard.amenities') }}</h5>
 					<icon-list :icons="amenities"></icon-list>
 				</div>

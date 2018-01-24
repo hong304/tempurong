@@ -25,6 +25,7 @@
 							</button>
 						</slot>
 					</div>
+					<slot name="processing" v-if="this.$slots.processing"></slot>
 				</div>
 			</div>
 		</div>
@@ -57,6 +58,7 @@
 	}
 
 	.modal-container {
+		position: relative;
 		width: 300px;
 		margin: 0px auto;
 		padding: 20px 30px;

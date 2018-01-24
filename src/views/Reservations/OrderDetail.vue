@@ -74,9 +74,20 @@
                                             <button type="button" class="btn btn-border" @click="openModal = false">
                                                 {{ $t('button.no') }}
                                             </button>
-                                            <button type="button" class="btn btn-main" @click="refund()">
+                                            <button type="button" class="btn btn-main" @click="refund()" :disabled="processing">
                                                 {{ $t('button.yes') }}
                                             </button>
+                                        </div>
+                                        <div id="processing" slot="processing" v-if="processing">
+                                            <div class="overlay-wrapper">
+                                                <div class="spinner">
+                                                    <div class="bounce1"></div>
+                                                    <div class="bounce2"></div>
+                                                    <div class="bounce3"></div>
+                                                </div>
+                                                <h3>Processing</h3>
+                                                <p>Please don't refresh or close the page until the process is finished.</p>
+                                            </div>
                                         </div>
                                     </vue-modal>
                                 </transition>
@@ -120,7 +131,8 @@
         isAdmin: false,
         openModal: false,
         refundModal: false,
-        refundMessage: ''
+        refundMessage: '',
+        processing: false
       }
     },
     computed: {
@@ -142,10 +154,12 @@
     },
     methods: {
       refund: function () {
+        this.processing = true
         this.axios.post(process.env.API_URL + '/api/refund', {
           sessionId: this.$route.params.sessionId
         }).then((response) => {
           if (response.data.status) {
+            this.processing = false
             console.log(response.data)
             this.openModal = false
             this.refundModal = true
@@ -279,6 +293,77 @@
                 background-color: $brand-primary;
                 color: white;
             }
+        }
+    }
+
+    #processing {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        padding: 2em;
+        z-index: 10;
+        overflow: hidden;
+        .overlay-wrapper {
+            flex: 0 1 auto;
+            h3 {
+                text-transform: uppercase;
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .spinner {
+        margin: 0 auto;
+        width: 70px;
+        text-align: center;
+    }
+
+    .spinner > div {
+        width: 18px;
+        height: 18px;
+        background-color: $brand-secondary;
+
+        border-radius: 100%;
+        display: inline-block;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .spinner .bounce1 {
+        -webkit-animation-delay: -0.32s;
+        animation-delay: -0.32s;
+    }
+
+    .spinner .bounce2 {
+        -webkit-animation-delay: -0.16s;
+        animation-delay: -0.16s;
+    }
+
+    @-webkit-keyframes sk-bouncedelay {
+        0%, 80%, 100% {
+            -webkit-transform: scale(0)
+        }
+        40% {
+            -webkit-transform: scale(1.0)
+        }
+    }
+
+    @keyframes sk-bouncedelay {
+        0%, 80%, 100% {
+            -webkit-transform: scale(0);
+            transform: scale(0);
+        }
+        40% {
+            -webkit-transform: scale(1.0);
+            transform: scale(1.0);
         }
     }
 

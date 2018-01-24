@@ -196,7 +196,8 @@ module.exports = {
     checkOut: 'Check Out',
     pay: 'Proceed to Payment',
     yes: 'Yes',
-    no: 'No'
+    no: 'No',
+    okay: 'Okay'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',

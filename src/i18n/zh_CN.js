@@ -195,7 +195,8 @@ module.exports = {
     checkOut: '提交订单',
     pay: '付款',
     yes: '是',
-    no: '否'
+    no: '否',
+    okay: '确认'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

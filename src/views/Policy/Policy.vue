@@ -9,7 +9,7 @@
 			</div>
 		</section>
 		<section class="mb-5 content-wrapper">
-			<div class="row" v-for="policy in policies">
+			<div class="row" v-for="policy in policies" v-bind:id=" policy.title === 'Refund of Unused Services' ? 'refund' : ''">
 				<div class="col-sm-10 col-xs-12 col-sm-offset-1">
 					<h3 v-html="policy['title_' + $i18n.locale]"></h3>
 					<p v-html="policy['content_' + $i18n.locale]" :class="{ 'mb-4': policy.sub_content_en || policy.sub_content_sc }"></p>

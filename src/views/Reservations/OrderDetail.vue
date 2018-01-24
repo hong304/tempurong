@@ -81,6 +81,18 @@
                                     </vue-modal>
                                 </transition>
 
+                                <transition name="fade">
+                                    <vue-modal v-if="refundModal" @close="refundModal = false" class="text-center">
+                                        <h4 slot="header" class="modal-title" id="refundModalLabel">
+                                            {{ refundMessage }}</h4>
+                                        <div slot="footer" class="text-center">
+                                            <button type="button" class="btn btn-main" @click="refundModal = false">
+                                                {{ $t('button.okay') }}
+                                            </button>
+                                        </div>
+                                    </vue-modal>
+                                </transition>
+
                             </div>
                         </div>
                     </div>
@@ -106,7 +118,9 @@
       return {
         resData: {},
         isAdmin: false,
-        openModal: false
+        openModal: false,
+        refundModal: false,
+        refundMessage: ''
       }
     },
     computed: {
@@ -134,6 +148,8 @@
           if (response.data.status) {
             console.log(response.data)
             this.openModal = false
+            this.refundModal = true
+            this.refundMessage = response.data.message
             this.getOrderDetails()
           }
         }, (error) => {

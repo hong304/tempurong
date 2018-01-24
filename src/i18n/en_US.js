@@ -147,9 +147,9 @@ module.exports = {
       totalAmount: 'Total Amount'
     },
     reservationsBooked: {
-      pageTitle: 'Reservation Success',
+      pageTitle: 'Reservation Confirmed!',
       thankYou: 'Thank you!',
-      pageMsg: 'Your reservation is done successfully. We will sent you an email about reservation details.'
+      pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within 24 hours, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
     },
     reservationsDetails: {
       pageTitle: 'Reservation Details',

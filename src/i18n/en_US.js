@@ -113,7 +113,7 @@ module.exports = {
           },
           {
             title: 'Tel',
-            content: '+60 88-230 916'
+            content: '+60 88-253 335'
           }
         ]
       },

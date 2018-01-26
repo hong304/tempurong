@@ -107,7 +107,7 @@ module.exports = {
           },
           {
             title: '電話',
-            content: '+60 88-230 916'
+            content: '+60 88-253 335'
           }
         ]
       },

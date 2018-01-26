@@ -104,17 +104,17 @@
         return this.totalDays - 1
       },
       roomsTotalCapacity: function () {
-        let maxCapacity = 0
+        let totalCapacity = 0
         this.orderDetails.roomObjects.forEach(function (item) {
           if (item.noOfRoom > 0) {
             let roomCapacity = item.capacity
-            if (item.add_bed) {
-              roomCapacity = roomCapacity + 1
+            totalCapacity = totalCapacity + (roomCapacity * item.noOfRoom)
+            if (item.mattress) {
+              totalCapacity = totalCapacity + item.mattress
             }
-            maxCapacity = maxCapacity + (roomCapacity * item.noOfRoom)
           }
         })
-        return maxCapacity
+        return totalCapacity
       }
     },
     methods: {

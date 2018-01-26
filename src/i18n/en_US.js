@@ -159,7 +159,9 @@ module.exports = {
       status: {
         completed: 'Paid',
         refunded: 'Refunded'
-      }
+      },
+      refundTime: 'Refund Date',
+      refundAmount: 'Refunded Amount'
     },
     faq: {
       pageTitle: 'FAQ'

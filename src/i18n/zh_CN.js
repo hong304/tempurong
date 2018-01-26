@@ -158,7 +158,9 @@ module.exports = {
       status: {
         completed: '已付款',
         refunded: '已退款'
-      }
+      },
+      refundTime: '退款日期',
+      refundAmount: '退款金额'
     },
     faq: {
       pageTitle: '常见问题'

@@ -20,6 +20,10 @@
                                     <h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
                                     <h3>{{ $t('pages.reservationsDetails.reservationStatus')
                                         }} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>
+                                    <h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundAmount')
+                                        }} : $ {{ resData.refund_amount }} MYR</h3>
+                                    <h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundTime')
+                                        }} : {{ resData.refund_at }}</h3>
                                 </div>
                             </div>
                             <div class="row highlight-detail">

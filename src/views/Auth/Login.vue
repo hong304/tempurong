@@ -29,7 +29,7 @@
       return {
         email: '',
         password: '',
-        error: ''
+        error: false
       }
     },
     methods: {
@@ -84,12 +84,12 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	#login {
 		background-color: #f5f5f5;
 		height: 100vh;
 	}
-	
+
 	.login-wrapper {
 		display: inline-block;
 		padding: 3.5rem;

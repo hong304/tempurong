@@ -15,12 +15,12 @@
 							<p>Order History</p>
 						</router-link>
 					</li>
-					<!--<li>-->
-					<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
-					<!--<span class="ti-settings"></span>-->
-					<!--<p>Profile</p>-->
-					<!--</router-link>-->
-					<!--</li>-->
+					<li>
+						<router-link :to="{ name: 'ChangePassword' }" class="nav-link">
+						<span class="ti-settings"></span>
+						<p>Change Password</p>
+						</router-link>
+					</li>
 					<li>
 						<a class="nav-link" @click="logout()">
 							<span class="ti-power-off"></span>

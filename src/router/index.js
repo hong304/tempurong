@@ -26,6 +26,7 @@ import Login from '@/views/Auth/Login'
 import AdminLayout from '@/layouts/AdminLayout'
 import AdminDashboard from '@/views/Admin/AdminDashboard'
 import OrderHistory from '@/views/Admin/OrderHistory'
+import ChangePassword from '@/views/Admin/User/ChangePassword'
 
 Vue.use(Router)
 
@@ -68,7 +69,8 @@ export default new Router({
         {path: '', name: 'AdminHome', component: AdminDashboard},
         {path: 'dashboard', name: 'AdminDashboard', component: AdminDashboard},
         {path: 'order-history', name: 'OrderHistory', component: OrderHistory},
-        {path: 'order-details/:sessionId', name: 'OrderDetails', component: OrderDetail, props: true}
+        {path: 'order-details/:sessionId', name: 'OrderDetails', component: OrderDetail, props: true},
+        {path: 'change-password', name: 'ChangePassword', component: ChangePassword}
       ]
     }
   ],

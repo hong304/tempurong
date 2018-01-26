@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid" id="order-history">
+	<div class="container-fluid p-0" id="order-history">
 		<section>
 			<div class="row m-0 text-left">
 				<div class="col-xs-12">
@@ -22,25 +22,9 @@
 			</div>
 			<div class="row m-0">
 				<div class="col-xs-12">
-					<vuetable ref="vuetable"
-					          :api-url="baseUrl + '/api/orderHistory'"
-					          :http-options="{headers: {'Accept': 'application/json'}, withCredentials: true}"
-					          :fields="tableFields"
-					          pagination-path="meta"
-					          @vuetable:pagination-data="onPaginationData">
-						<template slot="guests" slot-scope="props">
-							<p class="m-0">{{ props.rowData.adults + props.rowData.children }}</p>
-						</template>
-						<template slot="detail" slot-scope="props">
-							<router-link :to="{ name: 'OrderDetails', params: {sessionId: props.rowData.session}}"><span
-											class="ti-zoom-in"></span></router-link>
-						</template>
-					</vuetable>
-					
-					<vuetable-pagination ref="pagination"
-					                     :css="paginCss"
-					                     @vuetable-pagination:change-page="onChangePage"
-					></vuetable-pagination>
+					<v-server-table :url="apiUrl" :columns="columns" :options="options"
+													@filter="onFiltered"
+					></v-server-table>
 				</div>
 			</div>
 		</section>
@@ -48,44 +32,31 @@
 </template>
 
 <script>
-  import Vuetable from 'vuetable-2/src/components/Vuetable'
-  import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
-
   export default {
     name: 'OrderHistory',
-    components: {
-      Vuetable,
-      VuetablePagination
-    },
+    components: {},
     data () {
       return {
-        tableFields: [
-          {name: '__sequence', title: 'ID'},
-          {name: 'first_name', title: 'First Name'},
-          {name: 'last_name', title: 'Last Name'},
-          {name: 'email', title: 'Email'},
-          {name: 'check_in', title: 'Check In Date'},
-          {name: 'check_out', title: 'Check Out Date'},
-          {name: '__slot:guests', title: 'Guests'},
-          {name: 'amount', title: 'Total Amount'},
-          {name: 'created_at', title: 'Order Time'},
-          {name: 'status', title: 'Status'},
-          {name: '__slot:detail', title: 'Detail'}
-        ],
-        paginCss: {
-          wrapperClass: 'ui right floated pagination menu',
-          activeClass: 'active large',
-          disabledClass: 'disabled',
-          pageClass: 'item',
-          linkClass: 'icon item',
-          paginationClass: 'ui bottom attached segment grid',
-          paginationInfoClass: 'left floated left aligned six wide column',
-          dropdownClass: 'ui search dropdown',
-          icons: {
-            first: 'ti-angle-double-left',
-            prev: 'ti-angle-left',
-            next: 'ti-angle-right',
-            last: 'ti-angle-double-right'
+        apiUrl: process.env.API_URL + '/api/orderHistory',
+        columns: ['id', 'first_name', 'last_name', 'email', 'check_in', 'check_out', 'guests', 'amount', 'created_at', 'status', 'detail'],
+        options: {
+          orderBy: { ascending: false, column: 'created_at' },
+          requestFunction: function (data) {
+            return this.axios({
+              method: 'post',
+              data: data,
+              url: process.env.API_URL + '/api/orderHistory',
+              withCredentials: true
+            }).catch(function (e) {
+              this.dispatch('error', e)
+            }.bind(this))
+          },
+          responseAdapter: function (resp) {
+            var d = resp.data
+            return {
+              data: d.data,
+              count: d.count
+            }
           }
         },
         orderSummarize: {},
@@ -93,6 +64,9 @@
       }
     },
     methods: {
+      onFiltered (data) {
+        console.log(data)
+      },
       onPaginationData (paginationData) {
         this.$refs.pagination.setPaginationData(paginationData)
       },
@@ -125,16 +99,16 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	h3 {
 		font-weight: bold;
 	}
-	
+
 	.button {
 		background: none;
 		border: none;
 	}
-	
+
 	#order-summarize {
 		ul {
 			list-style-type: none;
@@ -172,7 +146,7 @@
 
 <style lang="scss">
 	@import '../../assets/style/setting';
-	
+
 	.vuetable {
 		text-align: left;
 		border: 1px solid rgba(34, 36, 38, .1);
@@ -226,7 +200,7 @@
 			}
 		}
 	}
-	
+
 	.pagination {
 		.item {
 			padding: 5px 7px;

@@ -1,31 +1,36 @@
 <template>
 	<div id="admin">
-		<div class="side-nav">
+		<div class="top-nav">
+			<button class="menu-collapse" @click="sideCollapsed = !sideCollapsed"><span class="ti-menu"></span></button>
 			<router-link :to="{ name: 'AdminHome' }" class="nav-brand" role="button">
 				<img src="/static/img/logo.png" :alt="$t('companyName')">
 			</router-link>
-			<ul>
-				<li>
-					<router-link :to="{ name: 'OrderHistory' }" class="nav-link">
-						<span class="ti-list"></span>
-						<p>Order History</p>
-					</router-link>
-				</li>
-				<!--<li>-->
-				<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
-				<!--<span class="ti-settings"></span>-->
-				<!--<p>Profile</p>-->
-				<!--</router-link>-->
-				<!--</li>-->
-				<li>
-					<a class="nav-link" @click="logout()">
-						<span class="ti-power-off"></span>
-						<p>Logout</p>
-					</a>
-				</li>
-			</ul>
 		</div>
-		<div class="content-wrapper">
+		<transition name="slide">
+			<div class="side-nav" v-if="!sideCollapsed">
+				<ul>
+					<li>
+						<router-link :to="{ name: 'OrderHistory' }" class="nav-link">
+							<span class="ti-list"></span>
+							<p>Order History</p>
+						</router-link>
+					</li>
+					<!--<li>-->
+					<!--<router-link :to="{ name: 'Home' }" class="nav-link">-->
+					<!--<span class="ti-settings"></span>-->
+					<!--<p>Profile</p>-->
+					<!--</router-link>-->
+					<!--</li>-->
+					<li>
+						<a class="nav-link" @click="logout()">
+							<span class="ti-power-off"></span>
+							<p>Logout</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</transition>
+		<div class="content-wrapper" :class="{ 'extend': sideCollapsed }">
 			<router-view :isMobile="isMobile"></router-view>
 		</div>
 	</div>
@@ -36,7 +41,8 @@
     name: 'AdminLayout',
     data () {
       return {
-        isMobile: /iPhone|iPod|Android/i.test(navigator.userAgent)
+        isMobile: /iPhone|iPod|Android/i.test(navigator.userAgent),
+        sideCollapsed: false
       }
     },
     beforeDestroy: function () {
@@ -95,26 +101,50 @@
 
 <style lang="scss" scoped>
 	@import '../assets/style/setting';
-	
-	.side-nav {
+
+	.top-nav {
 		position: fixed;
+		width: 100%;
+		height: 50px;
 		left: 0;
 		top: 0;
-		height: 100vh;
-		width: 80px;
-		padding: 15px;
-		background: #2B2E33;
+		padding: 10px;
+		background: grey;
+		text-align: left;
+		z-index: 9999;
+		.menu-collapse {
+			display: inline-block;
+			float: left;
+			background: none;
+			border: none;
+			color: white;
+			margin-right: 0.3em;
+			font-size: 1.5em;
+			line-height: 30px;
+		}
 		.nav-brand {
-			width: 50px;
-			height: auto;
+			display: inline-block;
+			width: auto;
+			height: 100%;
 			img {
-				width: 100%;
-				height: auto;
+				width: auto;
+				height: 100%;
 			}
 		}
+	}
+
+	.side-nav {
+		position: fixed;
+		display: inline-block;
+		left: 0;
+		top: 50px;
+		height: calc(100vh - 50px);
+		width: 60px;
+		padding: 10px;
+		background: #2B2E33;
+		overflow-y: auto;
 		& > ul {
 			list-style-type: none;
-			margin-top: 2rem;
 			padding-left: 0;
 			color: white;
 			& > li {
@@ -136,10 +166,26 @@
 			}
 		}
 	}
-	
+
 	.content-wrapper {
 		position: relative;
-		width: calc(100vw - 80px);
-		left: 80px;
+		display: inline-block;
+		top: 50px;
+		float: right;
+		width: calc(100% - 60px);
+		overflow-x: auto;
+		transition: width 300ms ease;
+		&.extend {
+			width: 100%;
+		}
+	}
+
+
+	.slide-enter-active, .slide-leave-active {
+		transition: all .3s ease;
+	}
+	.slide-enter, .slide-leave-to {
+		transform: translateX(-80px);
+		opacity: 0;
 	}
 </style>

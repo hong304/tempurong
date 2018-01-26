@@ -18,6 +18,7 @@ import moment from 'vue-moment'
 import VueLocalStorage from 'vue-localstorage'
 import VueCookie from 'vue-cookie'
 import gtagjs from 'vue-gtagjs'
+import {ServerTable} from 'vue-tables-2'
 // import VeeValidate from 'vee-validate'
 
 window._ = require('lodash')
@@ -29,6 +30,8 @@ Vue.use(VueAxios, axios)
 Vue.use(moment)
 Vue.use(VueLocalStorage)
 Vue.use(VueCookie)
+Vue.use(ServerTable)
+
 gtagjs(router, 'UA-112693500-1', {debug: false, scriptId: 'gtagjs'})
 // Vue.use(VeeValidate)
 

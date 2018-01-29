@@ -1,7 +1,7 @@
 module.exports = {
   language: '中文',
   languageShort: '简',
-  companyName: '金沙龙沙度假村',
+  companyName: '登步隆金沙湾龙虾度假村',
   menu: {
     companyName: '登步隆金沙湾龙虾<br>度假村',
     quickMenu: '快捷主单',

@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid" id="order-history">
+	<div class="container-fluid p-0" id="order-history">
 		<section>
 			<div class="row m-0 text-left">
 				<div class="col-xs-12">
@@ -22,25 +22,33 @@
 			</div>
 			<div class="row m-0">
 				<div class="col-xs-12">
-					<vuetable ref="vuetable"
-					          :api-url="baseUrl + '/api/orderHistory'"
-					          :http-options="{headers: {'Accept': 'application/json'}, withCredentials: true}"
-					          :fields="tableFields"
-					          pagination-path="meta"
-					          @vuetable:pagination-data="onPaginationData">
-						<template slot="guests" slot-scope="props">
-							<p class="m-0">{{ props.rowData.adults + props.rowData.children }}</p>
+					<v-server-table :url="apiUrl" :columns="columns" :options="options">
+						<p slot="guests" slot-scope="props" class="mb-0">{{ props.row.adults + props.row.children }}</p>
+						<router-link slot="detail" slot-scope="props"
+												 :to="{ name: 'OrderDetails', params: {sessionId: props.row.session}}">
+							<span class="ti-zoom-in"></span></router-link>
+
+						<template slot="note" slot-scope="props">
+							<div v-if="props.row.remarks || props.row.addition_note">
+								<btn class="show-note" :id="'btn' + props.row.id"><span class="ti-comment-alt"></span></btn>
+								<popover placement="left" trigger="hover" :target="'#btn' + props.row.id">
+									<template slot="popover" class="notes">
+										<div v-if="props.row.remarks">
+											<h5 class="mb-1">Remarks</h5>
+											<p>{{ props.row.remarks }}</p>
+										</div>
+										<div v-if="props.row.addition_note" class="mt-4">
+											<h5 class="mb-1">Addition Note</h5>
+											<p>{{ props.row.addition_note }}</p>
+										</div>
+									</template>
+								</popover>
+							</div>
+							<div v-else>
+								<p class="mb-0"> - </p>
+							</div>
 						</template>
-						<template slot="detail" slot-scope="props">
-							<router-link :to="{ name: 'OrderDetails', params: {sessionId: props.rowData.session}}"><span
-											class="ti-zoom-in"></span></router-link>
-						</template>
-					</vuetable>
-					
-					<vuetable-pagination ref="pagination"
-					                     :css="paginCss"
-					                     @vuetable-pagination:change-page="onChangePage"
-					></vuetable-pagination>
+					</v-server-table>
 				</div>
 			</div>
 		</section>
@@ -48,65 +56,44 @@
 </template>
 
 <script>
-  import Vuetable from 'vuetable-2/src/components/Vuetable'
-  import VuetablePagination from 'vuetable-2/src/components/VuetablePagination'
-
   export default {
     name: 'OrderHistory',
-    components: {
-      Vuetable,
-      VuetablePagination
-    },
+    components: {},
     data () {
       return {
-        tableFields: [
-          {name: '__sequence', title: 'ID'},
-          {name: 'first_name', title: 'First Name'},
-          {name: 'last_name', title: 'Last Name'},
-          {name: 'email', title: 'Email'},
-          {name: 'check_in', title: 'Check In Date'},
-          {name: 'check_out', title: 'Check Out Date'},
-          {name: '__slot:guests', title: 'Guests'},
-          {name: 'amount', title: 'Total Amount'},
-          {name: 'created_at', title: 'Order Time'},
-          {name: 'status', title: 'Status'},
-          {name: '__slot:detail', title: 'Detail'}
-        ],
-        paginCss: {
-          wrapperClass: 'ui right floated pagination menu',
-          activeClass: 'active large',
-          disabledClass: 'disabled',
-          pageClass: 'item',
-          linkClass: 'icon item',
-          paginationClass: 'ui bottom attached segment grid',
-          paginationInfoClass: 'left floated left aligned six wide column',
-          dropdownClass: 'ui search dropdown',
-          icons: {
-            first: 'ti-angle-double-left',
-            prev: 'ti-angle-left',
-            next: 'ti-angle-right',
-            last: 'ti-angle-double-right'
+        apiUrl: process.env.API_URL + '/api/adminOrderHistory',
+        columns: ['id', 'first_name', 'last_name', 'email', 'check_in', 'check_out', 'guests', 'amount', 'created_at', 'status', 'detail', 'note'],
+        options: {
+          orderBy: {ascending: false, column: 'created_at'},
+          requestKeys: {
+            query: 'searchItem',
+            limit: 'limit',
+            orderBy: 'orderBy',
+            ascending: 'ascending',
+            page: 'page',
+            byColumn: 'byColumn'
+          },
+          pagination: { chunk: 10 },
+          requestFunction: function (data) {
+            return this.axios({
+              method: 'post',
+              data: data,
+              url: process.env.API_URL + '/api/adminOrderHistory',
+              withCredentials: true
+            }).catch(function (e) {
+              this.dispatch('error', e)
+            }.bind(this))
+          },
+          responseAdapter: function (resp) {
+            var d = resp.data
+            return {
+              data: d.data,
+              count: d.total
+            }
           }
         },
         orderSummarize: {},
         baseUrl: process.env.API_URL
-      }
-    },
-    methods: {
-      onPaginationData (paginationData) {
-        this.$refs.pagination.setPaginationData(paginationData)
-      },
-      onChangePage (page) {
-        this.$refs.vuetable.changePage(page)
-      },
-      editRow (rowData) {
-        alert('You clicked edit on' + JSON.stringify(rowData))
-      },
-      deleteRow (rowData) {
-        alert('You clicked delete on' + JSON.stringify(rowData))
-      },
-      logData () {
-        console.log(this.orderData)
       }
     },
     created () {
@@ -125,16 +112,31 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	h3 {
 		font-weight: bold;
 	}
-	
+
 	.button {
 		background: none;
 		border: none;
 	}
-	
+
+	.popover-content {
+		h5 {
+			color: $brand-secondary;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+	}
+
+	.show-note {
+		background: none;
+		border: none;
+		padding: 0;
+		color: #337ab7;
+	}
+
 	#order-summarize {
 		ul {
 			list-style-type: none;
@@ -172,83 +174,10 @@
 
 <style lang="scss">
 	@import '../../assets/style/setting';
-	
-	.vuetable {
-		text-align: left;
-		border: 1px solid rgba(34, 36, 38, .1);
-		padding: 2rem;
-		thead {
-			color: white;
-			text-transform: uppercase;
-			font-weight: bold;
-			border-bottom: 3px solid rgba(34, 36, 38, .3);
-			tr {
-				th {
-					padding: 1.5rem;
-					background-color: #6D7580;
-					border: none;
-					&:first-of-type {
-						border-left: none;
-					}
-					&:last-of-type {
-						text-align: center;
-						border-right: 1px solid #6D7580;
-					}
-				}
-			}
-		}
-		tbody {
-			tr {
-				td {
-					padding: 1em;
-					color: #6D7580;
-					font-weight: 400;
-					border-left: none;
-					&:last-of-type {
-						border-left: 1px solid rgba(34, 36, 38, .1);
-						text-align: center;
-						a {
-							padding: 0.5rem;
-							color: #6D7580;
-							border-radius: 0.5rem;
-							transition: all 250ms linear;
-							&:hover {
-								text-decoration: none;
-								color: white;
-								background-color: #6D7580;
-							}
-						}
-					}
-					&:first-of-type {
-						border-left: none;
-					}
-				}
-			}
-		}
-	}
-	
-	.pagination {
-		.item {
-			padding: 5px 7px;
-			margin: 0 5px;
-			color: white;
-			background-color: $brand-primary;
-			border-radius: 5px;
-			&.icon {
-				padding: 5px;
-			}
-			&.active {
-				background-color: $brand-secondary;
-			}
-			&:hover, &:focus {
-				background-color: $brand-secondary;
-				text-decoration: none;
-				cursor: pointer;
-			}
-			i {
-				position: relative;
-				top: 1px;
-			}
+
+	.VueTables__search {
+		@media screen and (max-width: 320px) {
+			max-width: 150px;
 		}
 	}
 </style>

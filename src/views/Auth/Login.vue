@@ -4,15 +4,17 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="login-wrapper">
-						<img src="/static/img/logo.svg" alt="Tempourong Logo"/>
-						<h4>Admin Login</h4>
-						<input v-model="email" placeholder="Email">
-						<input v-model="password" placeholder="Password" type="password">
-						<h5 class="error-message" v-if="error">
-							<span class="ti-alert"></span>
-							{{ $t(error) }}
-						</h5>
-						<button class="btn btn-main" @click="login()"><span class="ti-unlock"></span> Log in</button>
+						<form @submit.prevent="">
+							<img src="/static/img/logo.svg" alt="Tempourong Logo"/>
+							<h4>Admin Login</h4>
+							<input v-model="email" placeholder="Email" v-on:keyup.enter="login">
+							<input v-model="password" placeholder="Password" type="password" v-on:keyup.enter="login">
+							<h5 class="error-message" v-if="error">
+								<span class="ti-alert"></span>
+								{{ $t(error) }}
+							</h5>
+							<button class="btn btn-main" @click="login"><span class="ti-unlock"></span> Log in</button>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -27,7 +29,7 @@
       return {
         email: '',
         password: '',
-        error: ''
+        error: false
       }
     },
     methods: {
@@ -82,12 +84,12 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	#login {
 		background-color: #f5f5f5;
 		height: 100vh;
 	}
-	
+
 	.login-wrapper {
 		display: inline-block;
 		padding: 3.5rem;

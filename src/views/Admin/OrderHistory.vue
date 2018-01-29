@@ -25,7 +25,7 @@
 					<v-server-table :url="apiUrl" :columns="columns" :options="options">
 						<p slot="guests" slot-scope="props" class="mb-0">{{ props.row.adults + props.row.children }}</p>
 						<router-link slot="detail" slot-scope="props"
-												 :to="{ name: 'OrderDetails', params: {sessionId: props.row.session}}">
+												 :to="{ name: 'AdminOrderDetail', params: {sessionId: props.row.session}}">
 							<span class="ti-zoom-in"></span></router-link>
 
 						<template slot="note" slot-scope="props">

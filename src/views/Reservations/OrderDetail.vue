@@ -24,7 +24,7 @@
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundAmount')
 										}} : $ {{ resData.refund_amount }} MYR</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundTime')
-										}} : {{ resData.refund_at }}</h3>
+										}} : {{ refundDate }}</h3>
 								</div>
 							</div>
 							<div class="row highlight-detail">
@@ -168,6 +168,9 @@
       },
       checkOut: function () {
         return this.$moment(this.resData.check_out).lang(this.momentLocale).format('LL')
+      },
+      refundDate: function () {
+        return this.$moment(this.resData.refund_at).lang(this.momentLocale).format('LLL')
       }
     },
     methods: {

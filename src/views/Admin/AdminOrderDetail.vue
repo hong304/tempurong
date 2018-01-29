@@ -1,13 +1,13 @@
 <template>
 	<div class="container" id="order-detail">
-		<section class="mt-5 py-5">
+		<section class="mt-md-5 py-md-5 mt-2 py-2">
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
-		<section class="py-5">
+		<section class="py-md-5 py-2">
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="summary-wrapper">
@@ -44,8 +44,8 @@
 						<div class="summary-body">
 							<div v-for="item in resData.reservation_details">
 								<room-summary-card
-												:resData="item"
-												:totalNights="totalNights"
+									:resData="item"
+									:totalNights="totalNights"
 								></room-summary-card>
 							</div>
 							<table class="remarks-table">
@@ -62,12 +62,15 @@
 						<div class="summary-footer">
 							<div>
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span
-												class="total-price">{{ resData.amount
+									class="total-price">{{ resData.amount
 									}}MYR</span></h3>
+								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }"
+														 class="btn btn-main pull-left">Back to order list
+								</router-link>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main"
-								        @click="openModal = true">Refund
+												@click="openModal = true">Refund
 								</button>
-								
+
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
 										<h4 slot="header" class="modal-title" id="confirmModalLabel">
@@ -93,7 +96,7 @@
 										</div>
 									</vue-modal>
 								</transition>
-								
+
 								<transition name="fade">
 									<vue-modal v-if="refundModal" @close="refundModal = false" class="text-center">
 										<h4 slot="header" class="modal-title" id="refundModalLabel">
@@ -105,10 +108,25 @@
 										</div>
 									</vue-modal>
 								</transition>
-							
+
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div class="row note mb-5 pb-5">
+				<div class="col-xs-12">
+					<div class="row m-0">
+						<h5>Internal Note:</h5>
+						<button @click="addEdit=!addEdit" class="add-edit"><span class="ti-pencil"></span></button>
+					</div>
+					<p class="note-content" v-if="note">{{ note }}</p>
+					<transition name="slide">
+						<div class="row m-0 note-input" v-if="addEdit">
+							<input v-model="note" name="note" placeholder="Enter any internal note">
+							<button @click="addEditNote"><span class="ti-save"></span></button>
+						</div>
+					</transition>
 				</div>
 			</div>
 		</section>
@@ -126,14 +144,17 @@
       RoomSummaryCard,
       ContentTitle
     },
-    name: 'order-detail',
+    name: 'admin-order-detail',
     data () {
       return {
         resData: {},
+        isAdmin: false,
         openModal: false,
         refundModal: false,
         refundMessage: '',
-        processing: false
+        processing: false,
+        addEdit: false,
+        note: ''
       }
     },
     computed: {
@@ -198,6 +219,7 @@
         }).then((response) => {
           if (response.data.status) {
             this.resData = response.data.reservationData
+            this.isAdmin = response.data.reservationData.isAdmin
             this.$i18n.locale = response.data.reservationData.language
             this.$localStorage.set('locale', response.data.reservationData.language)
           } else {
@@ -207,6 +229,9 @@
           this.$router.push({name: 'Reservations'})
           console.log(error)
         })
+      },
+      addEditNote: function () {
+        this.addEdit = false
       }
     },
     created () {
@@ -218,12 +243,14 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
 	.summary-wrapper {
-		margin: 0 5rem;
 		padding: 5rem;
 		border: 1px solid $light-grey;
 		text-align: left;
+		@media screen and (max-width: 767px) {
+			padding: 1.5rem;
+		}
 		h3, p {
 			color: $brand-secondary;
 		}
@@ -231,13 +258,13 @@
 			font-size: 2.5rem;
 			font-weight: bold;
 			margin: 0;
+			@media screen and (max-width: 767px) {
+				font-size: 1.5rem;
+			}
 		}
 		.summary-header {
 			border-bottom: 1px solid $brand-primary;
 			& > .row {
-				& > div {
-					padding-left: 3.5rem;
-				}
 				&.highlight-detail {
 					& > div {
 						&:first-of-type {
@@ -289,16 +316,16 @@
 			text-transform: uppercase;
 		}
 	}
-	
+
 	.fade-enter-active, .fade-leave-active {
 		transition: opacity .5s;
 	}
-	
+
 	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
 	{
 		opacity: 0;
 	}
-	
+
 	.btn {
 		&.btn-border {
 			border-color: $brand-primary;
@@ -311,7 +338,61 @@
 			}
 		}
 	}
-	
+
+	.note {
+		h5 {
+			display: inline-block;
+			float: left;
+		}
+		.add-edit {
+			float: left;
+			background: none;
+			border: none;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size: 14px;
+			line-height: 1.1;
+			padding: 0 5px;
+			&:hover, &:focus {
+				cursor: pointer;
+			}
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
+		.note-content {
+			border: 1px solid $brand-primary;
+			padding: 1rem;
+			text-align: left;
+		}
+		.note-input {
+			input {
+				border: none;
+				border-bottom: 1px solid $brand-primary;
+				width: calc(100% - 30px);
+				line-height: 27px;
+				&:hover, &:focus {
+					outline: none !important;
+					border-bottom-color: $brand-secondary;
+				}
+			}
+			button {
+				border: none;
+				background: $brand-primary;
+				color: white;
+				float: right;
+				width: 30px;
+				height: 30px;
+				padding-top: 5px;
+				span {
+					margin: 2px;
+				}
+			}
+		}
+	}
+
 	#processing {
 		position: absolute;
 		display: flex;
@@ -335,34 +416,34 @@
 			}
 		}
 	}
-	
+
 	.spinner {
 		margin: 0 auto;
 		width: 70px;
 		text-align: center;
 	}
-	
+
 	.spinner > div {
 		width: 18px;
 		height: 18px;
 		background-color: $brand-secondary;
-		
+
 		border-radius: 100%;
 		display: inline-block;
 		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 	}
-	
+
 	.spinner .bounce1 {
 		-webkit-animation-delay: -0.32s;
 		animation-delay: -0.32s;
 	}
-	
+
 	.spinner .bounce2 {
 		-webkit-animation-delay: -0.16s;
 		animation-delay: -0.16s;
 	}
-	
+
 	@-webkit-keyframes sk-bouncedelay {
 		0%, 80%, 100% {
 			-webkit-transform: scale(0)
@@ -371,7 +452,7 @@
 			-webkit-transform: scale(1.0)
 		}
 	}
-	
+
 	@keyframes sk-bouncedelay {
 		0%, 80%, 100% {
 			-webkit-transform: scale(0);
@@ -381,6 +462,16 @@
 			-webkit-transform: scale(1.0);
 			transform: scale(1.0);
 		}
+	}
+
+	/* Enter and leave animations can use different */
+	/* durations and timing functions.              */
+	.slide-enter-active, .slide-leave-active {
+		transition: all .3s ease;
+	}
+	.slide-enter, .slide-leave-to {
+		transform: translateY(-20px);
+		opacity: 0;
 	}
 
 </style>

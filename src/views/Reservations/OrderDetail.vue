@@ -203,7 +203,9 @@
           if (response.data.status) {
             this.resData = response.data.reservationData
             this.isAdmin = response.data.reservationData.isAdmin
-            this.$i18n.locale = response.data.reservationData.language
+            if (!this.isAdmin) {
+              this.$i18n.locale = response.data.reservationData.language
+            }
             this.$localStorage.set('locale', response.data.reservationData.language)
           } else {
             this.$router.push({name: 'Reservations'})

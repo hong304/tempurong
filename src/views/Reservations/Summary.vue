@@ -95,7 +95,9 @@
 								        :invoiceNumber="orderSessionId">
 								</PayPal>
 								
-								<button v-if="!error" class="btn btn-main" @click="">{{$t('button.skipPayment')}}</button>
+								<button v-if="!error && isAdmin" class="btn btn-main" @click="adminSkipPayment()">
+									{{$t('button.skipPayment')}}
+								</button>
 							</div>
 						</div>
 					</div>
@@ -189,6 +191,26 @@
         this.axios.post(process.env.API_URL + '/api/reservation/update', {
           sessionId: this.orderSessionId,
           transactionId: data.paymentToken
+        }).then((response) => {
+          console.log(response)
+          this.$localStorage.set('transactionId', response.data.message)
+          this.$localStorage.set('sessionId', '')
+          this.showLoading = false
+          this.$router.push({name: 'ReservationConfirmed'})
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.reservationCheckout'
+        })
+      },
+      adminSkipPayment: function () {
+        this.showLoading = true
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/reservation/skip-payment',
+          data: {
+            sessionId: this.orderSessionId
+          },
+          withCredentials: true
         }).then((response) => {
           console.log(response)
           this.$localStorage.set('transactionId', response.data.message)

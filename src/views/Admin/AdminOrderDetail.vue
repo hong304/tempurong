@@ -21,6 +21,7 @@
 									<h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
 									<h3>{{ $t('pages.reservationsDetails.reservationStatus')
 										}} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.payment') }} : {{ $t('pages.reservationsDetails.paymentMethods.' + resData.payment_method ) }}</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundAmount')
 										}} : $ {{ resData.refund_amount }} MYR</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundTime')
@@ -67,7 +68,7 @@
 								<router-link :to="{ name: 'OrderHistory' }"
 								             class="btn btn-main pull-left">Back to order list
 								</router-link>
-								<button v-if="resData.status != 'refunded'" class="btn btn-main"
+								<button v-if="resData.status != 'refunded' && resData.payment_method == 'paypal' " class="btn btn-main"
 								        @click="openModal = true">{{ $t('button.refund')}}
 									<span v-if="resData.amount_canbe_refund">$ {{resData.amount_canbe_refund}}MYR</span>
 								</button>

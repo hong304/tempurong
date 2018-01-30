@@ -155,7 +155,12 @@ module.exports = {
         refunded: '已退款'
       },
       refundTime: '退款日期',
-      refundAmount: '退款金額'
+      refundAmount: '退款金額',
+      payment: '付款方法',
+      paymentMethods: {
+        paypal: 'Paypal',
+        admin: '由行政人員直接預訂'
+      }
     },
     faq: {
       pageTitle: '常见问题'

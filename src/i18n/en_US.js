@@ -161,7 +161,12 @@ module.exports = {
         refunded: 'Refunded'
       },
       refundTime: 'Refund Date',
-      refundAmount: 'Refunded Amount'
+      refundAmount: 'Refunded Amount',
+      payment: 'Payment Method',
+      paymentMethods: {
+        paypal: 'Paypal',
+        admin: 'Payment Skiped by Admin'
+      }
     },
     faq: {
       pageTitle: 'FAQ'

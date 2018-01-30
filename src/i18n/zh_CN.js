@@ -160,7 +160,12 @@ module.exports = {
         refunded: '已退款'
       },
       refundTime: '退款日期',
-      refundAmount: '退款金额'
+      refundAmount: '退款金额',
+      payment: '付款方法',
+      paymentMethods: {
+        paypal: 'Paypal',
+        admin: '由行政人员直接预订'
+      }
     },
     faq: {
       pageTitle: '常见问题'

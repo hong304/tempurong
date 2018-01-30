@@ -64,7 +64,7 @@
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span
 												class="total-price">{{ resData.amount
 									}}MYR</span></h3>
-								<button v-if="resData.status != 'refunded'" class="btn btn-main"
+								<button v-if="resData.status != 'refunded' && resData.payment_method == 'paypal' " class="btn btn-main"
 								        @click="openModal = true"> {{ $t('button.refund')}}
 								</button>
 								

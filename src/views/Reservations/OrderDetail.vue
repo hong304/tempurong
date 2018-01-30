@@ -138,7 +138,7 @@
     },
     computed: {
       clientName: function () {
-        return this.resData.last_name + this.resData.first_name
+        return this.resData.last_name + ' ' + this.resData.first_name
       },
       totalGuests: function () {
         return this.resData.adults + this.resData.children

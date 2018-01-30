@@ -69,7 +69,9 @@
 								</router-link>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main"
 								        @click="openModal = true">Refund
+									<span v-if="resData.amount_canbe_refund">$ {{resData.amount_canbe_refund}}MYR</span>
 								</button>
+								
 								
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
@@ -173,7 +175,7 @@
     },
     computed: {
       clientName: function () {
-        return this.resData.last_name + this.resData.first_name
+        return this.resData.last_name + ' ' + this.resData.first_name
       },
       totalGuests: function () {
         return this.resData.adults + this.resData.children

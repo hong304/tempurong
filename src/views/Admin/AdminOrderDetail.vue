@@ -44,8 +44,8 @@
 						<div class="summary-body">
 							<div v-for="item in resData.reservation_details">
 								<room-summary-card
-									:resData="item"
-									:totalNights="totalNights"
+												:resData="item"
+												:totalNights="totalNights"
 								></room-summary-card>
 							</div>
 							<table class="remarks-table">
@@ -62,15 +62,15 @@
 						<div class="summary-footer">
 							<div>
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span
-									class="total-price">{{ resData.amount
+												class="total-price">{{ resData.amount
 									}}MYR</span></h3>
 								<router-link :to="{ name: 'OrderHistory' }"
-														 class="btn btn-main pull-left">Back to order list
+								             class="btn btn-main pull-left">Back to order list
 								</router-link>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main"
-												@click="openModal = true">Refund
+								        @click="openModal = true">Refund
 								</button>
-
+								
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
 										<h4 slot="header" class="modal-title" id="confirmModalLabel">
@@ -96,7 +96,7 @@
 										</div>
 									</vue-modal>
 								</transition>
-
+								
 								<transition name="fade">
 									<vue-modal v-if="refundModal" @close="refundModal = false" class="text-center">
 										<h4 slot="header" class="modal-title" id="refundModalLabel">
@@ -108,7 +108,7 @@
 										</div>
 									</vue-modal>
 								</transition>
-
+							
 							</div>
 						</div>
 					</div>
@@ -120,21 +120,26 @@
 						<h5>Internal Note:</h5>
 						<button @click="addEdit=!addEdit" class="add-edit"><span class="ti-pencil"></span></button>
 					</div>
-					<transition name="slide">
+					<transition name="slide" v-if="!addEdit">
 						<div class="row m-0 mb-4">
-							<p class="note-content" v-if="note">{{ note }}</p>
+							<p class="note-content" v-if="resData.internal_note" v-html="getHtml(resData.internal_note)"></p>
+						</div>
+					</transition>
+					<transition name="slide" v-if="addEdit">
+						<div class="row m-0 mb-4">
+							<p class="note-content" v-if="internalNote" v-html="getHtml(internalNote)"></p>
 						</div>
 					</transition>
 					<transition name="slide">
 						<div class="row m-0 note-input" v-if="addEdit">
 							<textarea-autosize
-								placeholder="Enter any internal note"
-								ref="note"
-								v-model="note"
-								:min-height="15"
-								:max-height="350"
+											placeholder="Enter any internal note"
+											ref="note"
+											v-model="internalNote"
+											:min-height="15"
+											:max-height="350"
 							></textarea-autosize>
-							<button @click="addEditNote"><span class="ti-save"></span></button>
+							<button @click="saveInternalNote()"><span class="ti-save"></span></button>
 						</div>
 					</transition>
 				</div>
@@ -163,7 +168,7 @@
         refundMessage: '',
         processing: false,
         addEdit: false,
-        note: ''
+        internalNote: ''
       }
     },
     computed: {
@@ -228,6 +233,7 @@
         }).then((response) => {
           if (response.data.status) {
             this.resData = response.data.reservationData
+            this.internalNote = response.data.reservationData.internal_note
             this.$i18n.locale = response.data.reservationData.language
             this.$localStorage.set('locale', response.data.reservationData.language)
           } else {
@@ -238,8 +244,34 @@
           console.log(error)
         })
       },
-      addEditNote: function () {
+      saveInternalNote: function () {
         this.addEdit = false
+        this.processing = true
+
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/saveInternalNote',
+          data: {
+            sessionId: this.$route.params.sessionId,
+            internal_note: this.internalNote
+          },
+          withCredentials: true
+        }).then((response) => {
+          if (response.data.status) {
+            this.processing = false
+            console.log(response.data)
+            this.getOrderDetails()
+          }
+        }, (error) => {
+          console.log(error)
+        })
+      },
+      nl2br: function (str, isXhtml) {
+        let breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>'
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2')
+      },
+      getHtml: function (val) {
+        return this.nl2br(val)
       }
     },
     created () {
@@ -251,7 +283,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	.summary-wrapper {
 		padding: 5rem;
 		border: 1px solid $light-grey;
@@ -324,16 +356,16 @@
 			text-transform: uppercase;
 		}
 	}
-
+	
 	.fade-enter-active, .fade-leave-active {
 		transition: opacity .5s;
 	}
-
+	
 	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */
 	{
 		opacity: 0;
 	}
-
+	
 	.btn {
 		&.btn-border {
 			border-color: $brand-primary;
@@ -346,7 +378,7 @@
 			}
 		}
 	}
-
+	
 	.note {
 		h5 {
 			display: inline-block;
@@ -399,7 +431,7 @@
 			}
 		}
 	}
-
+	
 	#processing {
 		position: absolute;
 		display: flex;
@@ -423,34 +455,34 @@
 			}
 		}
 	}
-
+	
 	.spinner {
 		margin: 0 auto;
 		width: 70px;
 		text-align: center;
 	}
-
+	
 	.spinner > div {
 		width: 18px;
 		height: 18px;
 		background-color: $brand-secondary;
-
+		
 		border-radius: 100%;
 		display: inline-block;
 		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 	}
-
+	
 	.spinner .bounce1 {
 		-webkit-animation-delay: -0.32s;
 		animation-delay: -0.32s;
 	}
-
+	
 	.spinner .bounce2 {
 		-webkit-animation-delay: -0.16s;
 		animation-delay: -0.16s;
 	}
-
+	
 	@-webkit-keyframes sk-bouncedelay {
 		0%, 80%, 100% {
 			-webkit-transform: scale(0)
@@ -459,7 +491,7 @@
 			-webkit-transform: scale(1.0)
 		}
 	}
-
+	
 	@keyframes sk-bouncedelay {
 		0%, 80%, 100% {
 			-webkit-transform: scale(0);
@@ -470,12 +502,13 @@
 			transform: scale(1.0);
 		}
 	}
-
+	
 	/* Enter and leave animations can use different */
 	/* durations and timing functions.              */
 	.slide-enter-active, .slide-leave-active {
 		transition: all .3s ease;
 	}
+	
 	.slide-enter, .slide-leave-to {
 		transform: translateY(-20px);
 		opacity: 0;

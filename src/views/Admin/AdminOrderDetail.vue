@@ -120,10 +120,20 @@
 						<h5>Internal Note:</h5>
 						<button @click="addEdit=!addEdit" class="add-edit"><span class="ti-pencil"></span></button>
 					</div>
-					<p class="note-content" v-if="note">{{ note }}</p>
+					<transition name="slide">
+						<div class="row m-0 mb-4">
+							<p class="note-content" v-if="note">{{ note }}</p>
+						</div>
+					</transition>
 					<transition name="slide">
 						<div class="row m-0 note-input" v-if="addEdit">
-							<input v-model="note" name="note" placeholder="Enter any internal note">
+							<textarea-autosize
+								placeholder="Enter any internal note"
+								ref="note"
+								v-model="note"
+								:min-height="15"
+								:max-height="350"
+							></textarea-autosize>
 							<button @click="addEditNote"><span class="ti-save"></span></button>
 						</div>
 					</transition>
@@ -366,11 +376,10 @@
 			text-align: left;
 		}
 		.note-input {
-			input {
+			textarea {
 				border: none;
 				border-bottom: 1px solid $brand-primary;
-				width: calc(100% - 30px);
-				line-height: 27px;
+				width: calc(100% - 45px);
 				&:hover, &:focus {
 					outline: none !important;
 					border-bottom-color: $brand-secondary;
@@ -381,8 +390,8 @@
 				background: $brand-primary;
 				color: white;
 				float: right;
-				width: 30px;
-				height: 30px;
+				width: 45px;
+				height: 45px;
 				padding-top: 5px;
 				span {
 					margin: 2px;

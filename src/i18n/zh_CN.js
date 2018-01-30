@@ -144,7 +144,8 @@ module.exports = {
       clientMobile: '联络电话',
       remark: '备注',
       additionalNotes: '附加资料',
-      totalAmount: '合计'
+      totalAmount: '合计',
+      sessionTimeOutMessage: '由於订单已闲置超过十分钟，请重新预订。'
     },
     reservationsBooked: {
       pageTitle: '步骤 5/5 : 成功预订',

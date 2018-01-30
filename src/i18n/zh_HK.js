@@ -138,7 +138,8 @@ module.exports = {
       clientMobile: '聯絡電話',
       remark: '備註',
       additionalNotes: '附加資料',
-      totalAmount: '合計'
+      totalAmount: '合計',
+      sessionTimeOutMessage: '由於訂單已閒置超過十分鐘，請重新預訂。'
     },
     reservationsBooked: {
       pageTitle: '預訂確認',

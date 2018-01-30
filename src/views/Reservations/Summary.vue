@@ -304,7 +304,7 @@
       this.reservation()
       setTimeout(() => {
         this.timeOutModal = true
-      }, 10 * 60 * 60)
+      }, 10 * 60 * 60 * 1000)
     }
   }
 </script>

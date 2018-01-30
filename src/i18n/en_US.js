@@ -165,7 +165,7 @@ module.exports = {
       payment: 'Payment Method',
       paymentMethods: {
         paypal: 'Paypal',
-        admin: 'Payment Skiped by Admin'
+        admin: 'Payment Skipped by Admin'
       }
     },
     faq: {

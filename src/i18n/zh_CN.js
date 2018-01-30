@@ -16,7 +16,7 @@ module.exports = {
   },
   address: {
     title: '地址',
-    address: 'Jalan Kampung Tempurung Kuala Penyu 89740'
+    address: 'Jalan Kampung Tempurung Kuala Penyu 89747'
   },
   tel: {
     title: '电话',
@@ -60,7 +60,7 @@ module.exports = {
     },
     activities: {
       pageTitle: '推荐活动',
-      pageIntro: '在沙您可以享受很多活动，我们期待着向您展示一些最原始的海滩，茂密的森林，偏远的岛屿，稀有的野生动物等等。无需打电话给各个旅行社，我们很乐意为您准备完美的行程，并在您放松的同时做好一切安排，让您安心享受您的时间。只要在您预订的时候留下备注，或给我们留言，让我们知道您的兴趣，我们会尽快回复您！<br><br>如果你想体验更缓慢的步伐，我们也有其他活动，如划船，钓鱼，钓螃蟹，海上划皮艇，海沙浴和沙滩排球。在我们家门口的白色沙滩上，我们有几个吊床，可以打个盹，读一本书，倾听大自然的声音，观赏美丽的日落，是生活中最美好的事物的其中之一！',
+      pageIntro: '在沙巴您可以享受很多活动，我们期待着向您展示一些最原始的海滩，茂密的森林，偏远的岛屿，稀有的野生动物等等。无需打电话给各个旅行社，我们很乐意为您准备完美的行程，并在您放松的同时做好一切安排，让您安心享受您的时间。只要在您预订的时候留下备注，或给我们留言，让我们知道您的兴趣，我们会尽快回复您！<br><br>如果你想体验更缓慢的步伐，我们也有其他活动，如划船，钓鱼，钓螃蟹，海上划皮艇，海沙浴和沙滩排球。在我们家门口的白色沙滩上，我们有几个吊床，可以打个盹，读一本书，倾听大自然的声音，观赏美丽的日落，是生活中最美好的事物的其中之一！',
       walkingDistance: '步行距离',
       walkingDistanceIntro: '附近有几个地方是本地传说的一部分。走一走，听一听。故事与环境融为一体，您将感受到不一样的体会！',
       adventures: '历奇探险',
@@ -108,7 +108,7 @@ module.exports = {
         information: [
           {
             title: '地址',
-            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89747 Kuala Penyu, <br>Sabah, Malaysia'
           },
           {
             title: '电话',
@@ -119,11 +119,12 @@ module.exports = {
       moreInfo: '了解更多这个地方'
     },
     reservations: {
-      pageTitle: '房间预订',
+      pageTitle: '步骤 1/5 : 房间预订',
+      pageTitle2: '步骤 2/5 : 房间预订',
       pageSubtitle: '你的这片天堂在等待着呢！'
     },
     reservationsContact: {
-      pageTitle: '联系资料',
+      pageTitle: '步骤 3/5 : 联系资料',
       fillInContact: '请填写以下资料。',
       firstName: '名字',
       lastName: '姓氏',
@@ -136,7 +137,7 @@ module.exports = {
       tncCheckbox: '我已细阅并同意<a target="_blank" href="/policy">条款及细则和取消政策</a>。'
     },
     reservationsSummary: {
-      pageTitle: '订单详情',
+      pageTitle: '步骤 4/5 : 订单详情',
       pageSubtitle: '请付款以完成订单。',
       clientName: '姓名',
       clientEmail: '电邮',
@@ -146,7 +147,7 @@ module.exports = {
       totalAmount: '合计'
     },
     reservationsBooked: {
-      pageTitle: '成功预订',
+      pageTitle: '步骤 5/5 : 成功预订',
       thankYou: '谢谢您！',
       pageMsg: '您的订单已经确认。您将会在短时间内收到我们的电邮。如果你在24小时後仍没有收到我们的电邮，请先查看您的垃圾邮件夹，如还是没有，请发电邮到<a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a> 与我们联络。'
     },

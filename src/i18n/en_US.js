@@ -16,7 +16,7 @@ module.exports = {
   },
   address: {
     title: 'Address',
-    address: 'Jalan Kampung Tempurung Kuala Penyu 89740'
+    address: 'Jalan Kampung Tempurung Kuala Penyu 89747'
   },
   tel: {
     title: 'Tel',
@@ -109,7 +109,7 @@ module.exports = {
         information: [
           {
             title: 'Address',
-            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89747 Kuala Penyu, <br>Sabah, Malaysia'
           },
           {
             title: 'Tel',
@@ -120,11 +120,12 @@ module.exports = {
       moreInfo: 'Know more about the area?'
     },
     reservations: {
-      pageTitle: 'Reservations',
+      pageTitle: 'Step 1/5 : Reservations',
+      pageTitle2: 'Step 2/5 : Reservations',
       pageSubtitle: 'Your slice of paradise is waiting!'
     },
     reservationsContact: {
-      pageTitle: 'Contact Information',
+      pageTitle: 'Step 3/5 : Contact Information',
       fillInContact: 'Please fill in all the following information.',
       firstName: 'First Name',
       lastName: 'Last Name',
@@ -137,17 +138,16 @@ module.exports = {
       tncCheckbox: 'I have read and agreed to the <a href="/policy" target="_blank">Resort Policy</a>, including the refund terms stated within.'
     },
     reservationsSummary: {
-      pageTitle: 'Booking Summary',
+      pageTitle: 'Step 4/5 : Booking Summary',
       pageSubtitle: 'Your reservation is not complete until you complete payment.',
       clientName: 'Name',
       clientEmail: 'Email',
       clientMobile: 'Contact Number',
       remark: 'Remarks',
-      additionalNotes: 'Additional Notes',
-      totalAmount: 'Total Amount'
+      additionalNotes: 'Additional Notes'
     },
     reservationsBooked: {
-      pageTitle: 'Reservation Confirmed!',
+      pageTitle: 'Step 5/5 : Reservation Confirmed!',
       thankYou: 'Thank you!',
       pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within 24 hours, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
     },

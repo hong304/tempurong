@@ -16,7 +16,7 @@ module.exports = {
   },
   address: {
     title: '地址',
-    address: 'Jalan Kampung Tempurung Kuala Penyu 89740'
+    address: 'Jalan Kampung Tempurung Kuala Penyu 89747'
   },
   tel: {
     title: '電話',
@@ -103,7 +103,7 @@ module.exports = {
         information: [
           {
             title: '地址',
-            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89747 Kuala Penyu, <br>Sabah, Malaysia'
           },
           {
             title: '電話',

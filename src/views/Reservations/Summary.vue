@@ -138,7 +138,8 @@
         },
         dev: process.env.PAYPAL_DEV,
         error: false,
-        showLoading: false
+        showLoading: false,
+        isAdmin: false
       }
     },
     props: {
@@ -169,10 +170,12 @@
         this.axios.post(process.env.API_URL + '/api/reservation', {
           order: order,
           clientInfo: clientInfo,
-          lang: this.$i18n.locale
+          lang: this.$i18n.locale,
+          sessionId: this.orderSessionId
         }).then((response) => {
           if (response.data.status) {
             this.orderSessionId = response.data.message
+            this.$localStorage.set('sessionId', this.orderSessionId)
           } else {
             this.error = response.data.message
           }
@@ -202,6 +205,17 @@
       },
       getHtml: function (val) {
         return this.nl2br(val)
+      },
+      checkLogin: function () {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          withCredentials: true
+        }).then((response) => {
+          this.isAdmin = response.data.status
+        }, (error) => {
+          console.log(error)
+        })
       }
     },
     computed: {
@@ -241,8 +255,10 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
+      this.checkLogin()
     },
     mounted () {
+      this.orderSessionId = this.$localStorage.get('sessionId', '')
       this.reservation()
     }
   }

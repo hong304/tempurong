@@ -16,7 +16,7 @@ module.exports = {
   },
   address: {
     title: '地址',
-    address: 'Jalan Kampung Tempurung Kuala Penyu 89740'
+    address: 'Jalan Kampung Tempurung Kuala Penyu 89747'
   },
   tel: {
     title: '电话',
@@ -60,7 +60,7 @@ module.exports = {
     },
     activities: {
       pageTitle: '推荐活动',
-      pageIntro: '在沙您可以享受很多活动，我们期待着向您展示一些最原始的海滩，茂密的森林，偏远的岛屿，稀有的野生动物等等。无需打电话给各个旅行社，我们很乐意为您准备完美的行程，并在您放松的同时做好一切安排，让您安心享受您的时间。只要在您预订的时候留下备注，或给我们留言，让我们知道您的兴趣，我们会尽快回复您！<br><br>如果你想体验更缓慢的步伐，我们也有其他活动，如划船，钓鱼，钓螃蟹，海上划皮艇，海沙浴和沙滩排球。在我们家门口的白色沙滩上，我们有几个吊床，可以打个盹，读一本书，倾听大自然的声音，观赏美丽的日落，是生活中最美好的事物的其中之一！',
+      pageIntro: '在沙巴您可以享受很多活动，我们期待着向您展示一些最原始的海滩，茂密的森林，偏远的岛屿，稀有的野生动物等等。无需打电话给各个旅行社，我们很乐意为您准备完美的行程，并在您放松的同时做好一切安排，让您安心享受您的时间。只要在您预订的时候留下备注，或给我们留言，让我们知道您的兴趣，我们会尽快回复您！<br><br>如果你想体验更缓慢的步伐，我们也有其他活动，如划船，钓鱼，钓螃蟹，海上划皮艇，海沙浴和沙滩排球。在我们家门口的白色沙滩上，我们有几个吊床，可以打个盹，读一本书，倾听大自然的声音，观赏美丽的日落，是生活中最美好的事物的其中之一！',
       walkingDistance: '步行距离',
       walkingDistanceIntro: '附近有几个地方是本地传说的一部分。走一走，听一听。故事与环境融为一体，您将感受到不一样的体会！',
       adventures: '历奇探险',
@@ -108,7 +108,7 @@ module.exports = {
         information: [
           {
             title: '地址',
-            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89740 Kuala Penyu, <br>Sabah, Malaysia'
+            content: 'Jalan Kg Tempurong, Kuala Penyu,<br> 89747 Kuala Penyu, <br>Sabah, Malaysia'
           },
           {
             title: '电话',

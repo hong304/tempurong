@@ -64,7 +64,7 @@
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span
 									class="total-price">{{ resData.amount
 									}}MYR</span></h3>
-								<router-link v-if="isAdmin" :to="{ name: 'OrderHistory' }"
+								<router-link :to="{ name: 'OrderHistory' }"
 														 class="btn btn-main pull-left">Back to order list
 								</router-link>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main"
@@ -148,7 +148,6 @@
     data () {
       return {
         resData: {},
-        isAdmin: false,
         openModal: false,
         refundModal: false,
         refundMessage: '',
@@ -219,7 +218,6 @@
         }).then((response) => {
           if (response.data.status) {
             this.resData = response.data.reservationData
-            this.isAdmin = response.data.reservationData.isAdmin
             this.$i18n.locale = response.data.reservationData.language
             this.$localStorage.set('locale', response.data.reservationData.language)
           } else {

@@ -1,9 +1,9 @@
 module.exports = {
   language: '中文',
   languageShort: '簡',
-  companyName: '金沙龍沙度假村',
+  companyName: '登步隆金沙龍蝦灣度假村',
   menu: {
-    companyName: '金沙龍沙<br>度假村',
+    companyName: '登步隆金沙龍蝦灣<br>度假村',
     quickMenu: '快捷主單',
     about: '關於我們',
     rooms: '房間',
@@ -27,7 +27,7 @@ module.exports = {
     master: '萬事達卡',
     visa: '維薩卡'
   },
-  copyright: '© 2017 金沙龍沙度假村 版權所有。',
+  copyright: '© 2017 登步隆金沙龍蝦灣度假村 版權所有。',
   pages: {
     home: {
       welcome: '歡迎來到瓜拉彭尤',

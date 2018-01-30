@@ -85,7 +85,6 @@
 									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span>
 								</button>
 								
-								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
 								<PayPal v-if="!error"
 								        v-on:paypal-paymentAuthorized="saveReservation"
 								        :dev="dev"
@@ -95,6 +94,8 @@
 								        :client="credentials"
 								        :invoiceNumber="orderSessionId">
 								</PayPal>
+								
+								<button v-if="!error" class="btn btn-main" @click="">{{$t('button.skipPayment')}}</button>
 							</div>
 						</div>
 					</div>

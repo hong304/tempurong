@@ -68,7 +68,7 @@
 								             class="btn btn-main pull-left">Back to order list
 								</router-link>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main"
-								        @click="openModal = true">Refund
+								        @click="openModal = true">{{ $t('button.refund')}}
 									<span v-if="resData.amount_canbe_refund">$ {{resData.amount_canbe_refund}}MYR</span>
 								</button>
 								
@@ -119,7 +119,7 @@
 			<div class="row note mb-5 pb-5">
 				<div class="col-xs-12">
 					<div class="row m-0">
-						<h5>Internal Note:</h5>
+						<h5>{{$t('pages.admin.orderDetails.internalNote')}}</h5>
 						<button @click="addEdit=!addEdit" class="add-edit"><span class="ti-pencil"></span></button>
 					</div>
 					<transition name="slide" v-if="!addEdit">

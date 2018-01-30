@@ -168,6 +168,11 @@ module.exports = {
     policy: {
       pageTitle: '度假村政策',
       pageIntro: '当购买金沙龙虾湾度假村Tempurong Golden Beach Resort（TGBR）提供的任何住宿和/或旅行服务将构成您与TGBR之间的合同安排，并表示您接受此处列出的条款及细则。请确保您在预订前仔细阅读并了解这些条款及细则。<br><br>另请注意，度假村仅接受现金付款。请务必兑换足够金额以确保抵达时可以支付所有费用。'
+    },
+    admin: {
+      orderDetails: {
+        internalNote: '内部备注'
+      }
     }
   },
   datePicker: {
@@ -198,7 +203,9 @@ module.exports = {
     pay: '付款',
     yes: '是',
     no: '否',
-    okay: '确认'
+    okay: '确认',
+    refund: '退款',
+    skipPayment: '跳过付款步骤'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

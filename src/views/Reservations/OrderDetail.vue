@@ -65,7 +65,7 @@
 												class="total-price">{{ resData.amount
 									}}MYR</span></h3>
 								<button v-if="resData.status != 'refunded'" class="btn btn-main"
-								        @click="openModal = true">Refund
+								        @click="openModal = true"> {{ $t('button.refund')}}
 								</button>
 								
 								<transition name="fade">

@@ -95,7 +95,7 @@
 								        :invoiceNumber="orderSessionId">
 								</PayPal>
 								
-								<button v-if="!error && isAdmin" class="btn btn-main" @click="adminSkipPayment()">
+								<button v-if="!error && isAdmin" class="mt-4 btn btn-main" @click="adminSkipPayment()">
 									{{$t('button.skipPayment')}}
 								</button>
 							</div>
@@ -104,6 +104,19 @@
 				</div>
 			</div>
 		</section>
+
+		<transition name="fade">
+			<vue-modal v-if="timeOutModal" @close="timeOutModal = false" class="text-center">
+				<h4 slot="header" class="modal-title" id="refundModalLabel">
+					{{ refundMessage }}</h4>
+				<div slot="footer" class="text-center">
+					<button type="button" class="btn btn-main" @click="timeOutModal = false">
+						{{ $t('button.okay') }}
+					</button>
+				</div>
+			</vue-modal>
+		</transition>
+
 	</div>
 </template>
 
@@ -111,9 +124,11 @@
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
   import PayPal from 'vue-paypal-checkout'
+  import VueModal from '@/components/modal/Modal.vue'
 
   export default {
     components: {
+      VueModal,
       RoomSummaryCard,
       ContentTitle,
       PayPal
@@ -141,7 +156,8 @@
         dev: process.env.PAYPAL_DEV,
         error: false,
         showLoading: false,
-        isAdmin: false
+        isAdmin: false,
+        timeOutModal: false
       }
     },
     props: {

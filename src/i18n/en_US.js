@@ -144,7 +144,8 @@ module.exports = {
       clientEmail: 'Email',
       clientMobile: 'Contact Number',
       remark: 'Remarks',
-      additionalNotes: 'Additional Notes'
+      additionalNotes: 'Additional Notes',
+      totalAmount: 'Total Amount'
     },
     reservationsBooked: {
       pageTitle: 'Step 5/5 : Reservation Confirmed!',

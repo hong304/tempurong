@@ -119,11 +119,12 @@ module.exports = {
       moreInfo: '了解更多这个地方'
     },
     reservations: {
-      pageTitle: '房间预订',
+      pageTitle: '步骤 1/5 : 房间预订',
+      pageTitle2: '步骤 2/5 : 房间预订',
       pageSubtitle: '你的这片天堂在等待着呢！'
     },
     reservationsContact: {
-      pageTitle: '联系资料',
+      pageTitle: '步骤 3/5 : 联系资料',
       fillInContact: '请填写以下资料。',
       firstName: '名字',
       lastName: '姓氏',
@@ -136,7 +137,7 @@ module.exports = {
       tncCheckbox: '我已细阅并同意<a target="_blank" href="/policy">条款及细则和取消政策</a>。'
     },
     reservationsSummary: {
-      pageTitle: '订单详情',
+      pageTitle: '步骤 4/5 : 订单详情',
       pageSubtitle: '请付款以完成订单。',
       clientName: '姓名',
       clientEmail: '电邮',
@@ -146,7 +147,7 @@ module.exports = {
       totalAmount: '合计'
     },
     reservationsBooked: {
-      pageTitle: '成功预订',
+      pageTitle: '步骤 5/5 : 成功预订',
       thankYou: '谢谢您！',
       pageMsg: '您的订单已经确认。您将会在短时间内收到我们的电邮。如果你在24小时後仍没有收到我们的电邮，请先查看您的垃圾邮件夹，如还是没有，请发电邮到<a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a> 与我们联络。'
     },

@@ -4,9 +4,14 @@
             <div class="row mb-0 mb-sm-5">
                 <div class="col-xs-12">
                     <content-title
+                            v-if="!optionSelected"
                             :contentTitle="$t('pages.reservations.pageTitle')"
                             :contentSubTitle="$t('pages.reservations.pageSubtitle')"
                     ></content-title>
+                  <content-title v-if="optionSelected"
+                                 :contentTitle="$t('pages.reservations.pageTitle2')"
+                                 :contentSubTitle="$t('pages.reservations.pageSubtitle')"
+                  ></content-title>
                 </div>
             </div>
         </section>

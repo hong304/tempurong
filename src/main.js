@@ -19,6 +19,8 @@ import VueLocalStorage from 'vue-localstorage'
 import VueCookie from 'vue-cookie'
 import gtagjs from 'vue-gtagjs'
 import {ServerTable} from 'vue-tables-2'
+import store from './store'
+
 // import VeeValidate from 'vee-validate'
 
 window._ = require('lodash')
@@ -47,5 +49,6 @@ new Vue({
   router,
   template: '<App/>',
   components: {App},
-  i18n: i18n
+  i18n: i18n,
+  store
 })

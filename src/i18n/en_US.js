@@ -145,7 +145,8 @@ module.exports = {
       clientMobile: 'Contact Number',
       remark: 'Remarks',
       additionalNotes: 'Additional Notes',
-      totalAmount: 'Total Amount'
+      totalAmount: 'Total Amount',
+      sessionTimeOutMessage: 'Oops, your session has timed out after 10 minutes. Please retry your booking from the beginning.'
     },
     reservationsBooked: {
       pageTitle: 'Step 5/5 : Reservation Confirmed!',

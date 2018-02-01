@@ -104,19 +104,19 @@
 				</div>
 			</div>
 		</section>
-
+		
 		<transition name="fade">
-			<vue-modal v-if="timeOutModal" @close="timeOutModal = false" class="text-center">
+			<vue-modal v-if="timeOutModal" @close="backToReservation()" class="text-center">
 				<h4 slot="header" class="modal-title" id="refundModalLabel">
-					{{ refundMessage }}</h4>
+					{{ $t('pages.reservationsSummary.sessionTimeOutMessage') }}</h4>
 				<div slot="footer" class="text-center">
-					<button type="button" class="btn btn-main" @click="timeOutModal = false">
+					<button type="button" class="btn btn-main" @click="backToReservation()">
 						{{ $t('button.okay') }}
 					</button>
 				</div>
 			</vue-modal>
 		</transition>
-
+	
 	</div>
 </template>
 
@@ -180,6 +180,10 @@
           this.$router.push({name: 'Reservations'})
         }
         this.$router.push({name: 'ReservationContact'})
+      },
+      backToReservation: function () {
+        this.timeOutModal = false
+        this.$router.push({name: 'Reservations'})
       },
       reservation: function () {
         let order = JSON.parse(this.$localStorage.get('orderDetails'))
@@ -298,6 +302,9 @@
     mounted () {
       this.orderSessionId = this.$localStorage.get('sessionId', '')
       this.reservation()
+      setTimeout(() => {
+        this.timeOutModal = true
+      }, 10 * 60 * 60 * 1000)
     }
   }
 </script>

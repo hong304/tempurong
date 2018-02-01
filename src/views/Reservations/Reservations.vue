@@ -286,6 +286,8 @@
       if (this.orderDetails.checkIn.length > 0 && this.orderDetails.roomObjects.length <= 0) {
         this.checkSelected()
       }
+    },
+    created () {
       this.$store.dispatch('getStartDate')
     }
   }

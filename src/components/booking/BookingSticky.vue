@@ -1,14 +1,9 @@
 <template>
 	<div class="booking-sticky" :class="{ shown: show, 'one-error': hasError  }">
-		<div class="summary-shorthand" :class="{ 'has-detail': show }">
+		<div class="summary-shorthand">
 			<button type="button" @click="show=!show" class="btn btn-close"><span
 				:class="{ 'ti-angle-down': !show, 'ti-angle-up': show}"></span>
 			</button>
-			<div class="sticky-action">
-				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
-					{{ $t('button.book') }}
-				</button>
-			</div>
 			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong>
 				${{ orderDetails.totalPrice }} MYR
 			</h2>
@@ -20,6 +15,7 @@
 			</h4>
 			<p class="check-in-out"><span class="ti-calendar"></span> {{orderDetails.checkIn}} - {{orderDetails.checkOut}}</p>
 			<h5 class="error-message" v-if="hasError"><span class="ti-alert"></span> {{ $t(hasError) }}</h5>
+			<div class="divider" v-if="show"></div>
 		</div>
 		<div class="summary-detail" v-show="show">
 			<div class="picker-input">
@@ -71,6 +67,11 @@
 				<router-link :to="{ name: 'Policy' }" target="_blank">{{ $t('components.card.roomCard.resortPolicyRoute') }}
 				</router-link>
 			</p>
+		</div>
+		<div class="sticky-action">
+			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
+				{{ $t('button.book') }}
+			</button>
 		</div>
 	</div>
 </template>
@@ -190,19 +191,17 @@
 	
 	.summary-shorthand {
 		position: relative;
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 1px solid $light-grey;
 		transition: margin 250ms linear, padding 250ms linear;
 		@media screen and (max-width: 767px) {
 			min-height: calc(8vh);
-			margin-bottom: 0;
-			padding-bottom: 0;
-			border-bottom-color: transparent;
-			&.has-detail {
+		}
+		.divider {
+			padding-bottom: 2rem;
+			margin-bottom: 2rem;
+			border-bottom: 1px solid $light-grey;
+			@media screen and (max-width: 767px) {
 				margin-bottom: 1.5rem;
 				padding-bottom: 1.5rem;
-				border-bottom-color: $light-grey;
 			}
 		}
 		.total-price {
@@ -282,11 +281,12 @@
 	}
 	
 	.sticky-action {
+		position: relative;
 		@media screen and (max-width: 991px) {
 			position: absolute;
 			display: inline-block;
-			right: 0;
-			top: 0;
+			right: 1rem;
+			top: 1rem;
 			.btn-main {
 				border-radius: 0.75rem;
 			}

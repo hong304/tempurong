@@ -187,6 +187,7 @@
         }
       },
       roomDataUpdate: function (val) {
+
         this.mattressUpdate++
         this.orderDetails.roomObjects[val.index] = val
 

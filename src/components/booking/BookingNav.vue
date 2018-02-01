@@ -333,13 +333,13 @@
 			align-self: center;
 			line-height: 40px;
 			margin: 1rem 1rem 1rem 0.5rem;
-			padding: 0 2rem;
 			background-color: white;
 			border-radius: 5px;
 			@media screen and (max-width: 767px) {
 				margin: 0.5rem 1rem 1rem;
 			}
 			& > a {
+				padding: 0 2rem;
 				color: $brand-primary;
 				&:hover, &:focus {
 					text-decoration: none;

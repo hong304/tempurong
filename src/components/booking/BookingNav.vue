@@ -1,10 +1,10 @@
 <template>
-	<section>
+	<section v-if="currentStartDate">
 		<div class="row">
 			<div class="picker-nav-bar">
 				<div class="picker-input">
 					<HotelDatePicker
-									:startDate="new Date()"
+						:startDate=currentStartDate
 									:i18n="defineDatePicker()"
 									v-on:checkInChanged="checkIn = $event"
 									v-on:checkOutChanged="checkOutSelected($event)">
@@ -69,6 +69,11 @@
         errorPeople: false
       }
     },
+    computed: {
+      currentStartDate () {
+        return this.$store.getters.getterStartDate || null
+      }
+    },
     mounted: function () {
     },
     methods: {
@@ -92,6 +97,9 @@
           this.errorPeople = false
         }
       }
+    },
+    created () {
+      this.$store.dispatch('getStartDate')
     }
   }
 </script>

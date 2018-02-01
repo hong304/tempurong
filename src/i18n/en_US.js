@@ -144,7 +144,9 @@ module.exports = {
       clientEmail: 'Email',
       clientMobile: 'Contact Number',
       remark: 'Remarks',
-      additionalNotes: 'Additional Notes'
+      additionalNotes: 'Additional Notes',
+      totalAmount: 'Total Amount',
+      sessionTimeOutMessage: 'Oops, your session has timed out after 10 minutes. Please retry your booking from the beginning.'
     },
     reservationsBooked: {
       pageTitle: 'Step 5/5 : Reservation Confirmed!',
@@ -161,7 +163,12 @@ module.exports = {
         refunded: 'Refunded'
       },
       refundTime: 'Refund Date',
-      refundAmount: 'Refunded Amount'
+      refundAmount: 'Refunded Amount',
+      payment: 'Payment Method',
+      paymentMethods: {
+        paypal: 'Paypal',
+        admin: 'Payment Skipped by Admin'
+      }
     },
     faq: {
       pageTitle: 'FAQ'
@@ -169,6 +176,11 @@ module.exports = {
     policy: {
       pageTitle: 'Resort Policy',
       pageIntro: 'The purchase of any accommodation and/or travel services offered by Tempurong Golden Beach Resort (“TGBR”) constitutes a contractual arrangement between you and TGBR, and represents your acceptance of the Tempurong Golden Beach Resort Terms & Conditions set out herein. Please ensure that you read carefully and understand these Terms & Conditions prior to booking.<br><br>Also note that the property is only able to accept cash on site. Please be sure to exchange the appropriate amount to ensure settlement of bill upon arrival.'
+    },
+    admin: {
+      orderDetails: {
+        internalNote: 'Internal Notes'
+      }
     }
   },
   datePicker: {
@@ -199,7 +211,9 @@ module.exports = {
     pay: 'Proceed to Payment',
     yes: 'Yes',
     no: 'No',
-    okay: 'Okay'
+    okay: 'Okay',
+    refund: 'Refund',
+    skipPayment: 'Skip Payment Process'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',

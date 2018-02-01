@@ -85,7 +85,6 @@
 									<span class="ti-icon ti-pencil-alt"></span><span>{{$t('button.back')}}</span>
 								</button>
 								
-								<!--<button class="btn btn-main" @click="reservation()">{{$t('button.pay')}}</button>-->
 								<PayPal v-if="!error"
 								        v-on:paypal-paymentAuthorized="saveReservation"
 								        :dev="dev"
@@ -95,12 +94,29 @@
 								        :client="credentials"
 								        :invoiceNumber="orderSessionId">
 								</PayPal>
+								
+								<button v-if="!error && isAdmin" class="mt-4 btn btn-main" @click="adminSkipPayment()">
+									{{$t('button.skipPayment')}}
+								</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+		
+		<transition name="fade">
+			<vue-modal v-if="timeOutModal" @close="backToReservation()" class="text-center">
+				<h4 slot="header" class="modal-title" id="refundModalLabel">
+					{{ $t('pages.reservationsSummary.sessionTimeOutMessage') }}</h4>
+				<div slot="footer" class="text-center">
+					<button type="button" class="btn btn-main" @click="backToReservation()">
+						{{ $t('button.okay') }}
+					</button>
+				</div>
+			</vue-modal>
+		</transition>
+	
 	</div>
 </template>
 
@@ -108,9 +124,11 @@
   import ContentTitle from '@/components/content/ContentTitle.vue'
   import RoomSummaryCard from '@/components/card/RoomSummaryCard.vue'
   import PayPal from 'vue-paypal-checkout'
+  import VueModal from '@/components/modal/Modal.vue'
 
   export default {
     components: {
+      VueModal,
       RoomSummaryCard,
       ContentTitle,
       PayPal
@@ -137,7 +155,9 @@
         },
         dev: process.env.PAYPAL_DEV,
         error: false,
-        showLoading: false
+        showLoading: false,
+        isAdmin: false,
+        timeOutModal: false
       }
     },
     props: {
@@ -161,6 +181,10 @@
         }
         this.$router.push({name: 'ReservationContact'})
       },
+      backToReservation: function () {
+        this.timeOutModal = false
+        this.$router.push({name: 'Reservations'})
+      },
       reservation: function () {
         let order = JSON.parse(this.$localStorage.get('orderDetails'))
         let clientInfo = JSON.parse(this.$localStorage.get('orderContact'))
@@ -168,10 +192,12 @@
         this.axios.post(process.env.API_URL + '/api/reservation', {
           order: order,
           clientInfo: clientInfo,
-          lang: this.$i18n.locale
+          lang: this.$i18n.locale,
+          sessionId: this.orderSessionId
         }).then((response) => {
           if (response.data.status) {
             this.orderSessionId = response.data.message
+            this.$localStorage.set('sessionId', this.orderSessionId)
           } else {
             this.error = response.data.message
           }
@@ -188,6 +214,26 @@
         }).then((response) => {
           console.log(response)
           this.$localStorage.set('transactionId', response.data.message)
+          this.$localStorage.set('sessionId', '')
+          this.showLoading = false
+          this.$router.push({name: 'ReservationConfirmed'})
+        }, (error) => {
+          console.log(error)
+          this.error = 'error.reservationCheckout'
+        })
+      },
+      adminSkipPayment: function () {
+        this.showLoading = true
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/reservation/skip-payment',
+          data: {
+            sessionId: this.orderSessionId
+          },
+          withCredentials: true
+        }).then((response) => {
+          console.log(response)
+          this.$localStorage.set('transactionId', response.data.message)
           this.showLoading = false
           this.$router.push({name: 'ReservationConfirmed'})
         }, (error) => {
@@ -201,6 +247,17 @@
       },
       getHtml: function (val) {
         return this.nl2br(val)
+      },
+      checkLogin: function () {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          withCredentials: true
+        }).then((response) => {
+          this.isAdmin = response.data.status
+        }, (error) => {
+          console.log(error)
+        })
       }
     },
     computed: {
@@ -240,9 +297,14 @@
         this.orderDetails = JSON.parse(this.$localStorage.get('orderDetails'))
         this.orderContact = JSON.parse(this.$localStorage.get('orderContact'))
       }
+      this.checkLogin()
     },
     mounted () {
+      this.orderSessionId = this.$localStorage.get('sessionId', '')
       this.reservation()
+      setTimeout(() => {
+        this.timeOutModal = true
+      }, 10 * 60 * 60 * 1000)
     }
   }
 </script>

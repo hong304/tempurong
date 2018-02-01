@@ -22,6 +22,7 @@ import {ServerTable} from 'vue-tables-2'
 import store from './store'
 
 // import VeeValidate from 'vee-validate'
+import VueTextareaAutosize from 'vue-textarea-autosize'
 
 window._ = require('lodash')
 
@@ -33,6 +34,7 @@ Vue.use(moment)
 Vue.use(VueLocalStorage)
 Vue.use(VueCookie)
 Vue.use(ServerTable)
+Vue.use(VueTextareaAutosize)
 
 gtagjs(router, 'UA-112693500-1', {debug: false, scriptId: 'gtagjs'})
 // Vue.use(VeeValidate)

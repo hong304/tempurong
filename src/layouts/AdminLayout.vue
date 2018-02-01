@@ -5,6 +5,14 @@
 			<router-link :to="{ name: 'AdminHome' }" class="nav-brand" role="button">
 				<img src="/static/img/logo.png" :alt="$t('companyName')">
 			</router-link>
+			<div class="language-select">
+				<button v-bind:class="{ active: ($i18n.locale === 'en') }" @click="changeLanguage('en')"
+								role="button">{{$i18n.getLocaleMessage('en').languageShort}}
+				</button>
+				<button v-bind:class="{ active: ($i18n.locale === 'sc') }" @click="changeLanguage('sc')"
+								role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
+				</button>
+			</div>
 		</div>
 		<transition name="slide">
 			<div class="side-nav" v-if="!sideCollapsed">
@@ -42,7 +50,9 @@
     data () {
       return {
         isMobile: /iPhone|iPod|Android/i.test(navigator.userAgent),
-        sideCollapsed: false
+        sideCollapsed: false,
+        language: '',
+        languageOptions: [this.$i18n.getLocaleMessage('en').language, this.$i18n.getLocaleMessage('sc').language]
       }
     },
     beforeDestroy: function () {
@@ -84,17 +94,30 @@
           console.log(error)
           this.error = 'error.authError'
         })
-//        } else {
-//          console.log('Cannot find token')
-//          this.$router.push({name: 'AdminLogin'})
-//        }
+      },
+      changeLanguage: function (val) {
+        this.$i18n.locale = val
+        this.showNavbar = false
+        this.$localStorage.set('locale', val)
       }
     },
     mounted () {
       window.addEventListener('resize', this.handleResize)
+      this.changeLanguage(this.$localStorage.get('locale', 'en'))
     },
     created () {
       this.checkLogin()
+    },
+    watch: {
+      language (val) {
+        if (val.indexOf('English') !== -1) {
+          this.$i18n.locale = 'en'
+          this.$localStorage.set('locale', 'en')
+        } else {
+          this.$i18n.locale = 'sc'
+          this.$localStorage.set('locale', 'sc')
+        }
+      }
     }
   }
 </script>
@@ -109,7 +132,7 @@
 		left: 0;
 		top: 0;
 		padding: 10px;
-		background: grey;
+		background: #2B2E33;
 		text-align: left;
 		z-index: 9999;
 		.menu-collapse {
@@ -131,6 +154,21 @@
 				height: 100%;
 			}
 		}
+		.language-select {
+			float: right;
+			button {
+				background: none;
+				border: none;
+				color: white;
+				opacity: 0.5;
+				&.active {
+					opacity: 1;
+				}
+				&:hover, &:focus {
+					opacity: 1;
+				}
+			}
+		}
 	}
 
 	.side-nav {
@@ -141,7 +179,7 @@
 		height: calc(100vh - 50px);
 		width: 60px;
 		padding: 10px;
-		background: #2B2E33;
+		background: #424242;
 		overflow-y: auto;
 		& > ul {
 			list-style-type: none;

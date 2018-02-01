@@ -1,13 +1,13 @@
 <template>
 	<div class="container" id="order-detail">
-		<section class="mt-5 py-5">
+		<section class="mt-md-5 py-md-5 mt-2 py-2">
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
 				</div>
 			</div>
 		</section>
-		<section class="py-5">
+		<section class="py-md-5 py-2">
 			<div class="row">
 				<div class="col-xs-12">
 					<div class="summary-wrapper">
@@ -21,6 +21,7 @@
 									<h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
 									<h3>{{ $t('pages.reservationsDetails.reservationStatus')
 										}} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.payment') }} : {{ $t('pages.reservationsDetails.paymentMethods.' + resData.payment_method ) }}</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundAmount')
 										}} : $ {{ resData.refund_amount }} MYR</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundTime')
@@ -64,9 +65,14 @@
 								<h3>{{$t('pages.reservationsSummary.totalAmount')}} : <span
 												class="total-price">{{ resData.amount
 									}}MYR</span></h3>
+								<router-link :to="{ name: 'OrderHistory' }"
+								             class="btn btn-main pull-left">Back to order list
+								</router-link>
 								<button v-if="resData.status != 'refunded' && resData.payment_method == 'paypal' " class="btn btn-main"
-								        @click="openModal = true"> {{ $t('button.refund')}}
+								        @click="openModal = true">{{ $t('button.refund')}}
+									<span v-if="resData.amount_canbe_refund">$ {{resData.amount_canbe_refund}}MYR</span>
 								</button>
+								
 								
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
@@ -111,6 +117,36 @@
 					</div>
 				</div>
 			</div>
+			<div class="row note mb-5 pb-5">
+				<div class="col-xs-12">
+					<div class="row m-0">
+						<h5>{{$t('pages.admin.orderDetails.internalNote')}}</h5>
+						<button @click="addEdit=!addEdit" class="add-edit"><span class="ti-pencil"></span></button>
+					</div>
+					<transition name="slide" v-if="!addEdit">
+						<div class="row m-0 mb-4">
+							<p class="note-content" v-if="resData.internal_note" v-html="getHtml(resData.internal_note)"></p>
+						</div>
+					</transition>
+					<transition name="slide" v-if="addEdit">
+						<div class="row m-0 mb-4">
+							<p class="note-content" v-if="internalNote" v-html="getHtml(internalNote)"></p>
+						</div>
+					</transition>
+					<transition name="slide">
+						<div class="row m-0 note-input" v-if="addEdit">
+							<textarea-autosize
+											placeholder="Enter any internal note"
+											ref="note"
+											v-model="internalNote"
+											:min-height="15"
+											:max-height="350"
+							></textarea-autosize>
+							<button @click="saveInternalNote()"><span class="ti-save"></span></button>
+						</div>
+					</transition>
+				</div>
+			</div>
 		</section>
 	</div>
 </template>
@@ -126,14 +162,16 @@
       RoomSummaryCard,
       ContentTitle
     },
-    name: 'order-detail',
+    name: 'admin-order-detail',
     data () {
       return {
         resData: {},
         openModal: false,
         refundModal: false,
         refundMessage: '',
-        processing: false
+        processing: false,
+        addEdit: false,
+        internalNote: ''
       }
     },
     computed: {
@@ -198,6 +236,7 @@
         }).then((response) => {
           if (response.data.status) {
             this.resData = response.data.reservationData
+            this.internalNote = response.data.reservationData.internal_note
             this.$i18n.locale = response.data.reservationData.language
             this.$localStorage.set('locale', response.data.reservationData.language)
           } else {
@@ -207,6 +246,35 @@
           this.$router.push({name: 'Reservations'})
           console.log(error)
         })
+      },
+      saveInternalNote: function () {
+        this.addEdit = false
+        this.processing = true
+
+        this.axios({
+          method: 'post',
+          url: process.env.API_URL + '/api/saveInternalNote',
+          data: {
+            sessionId: this.$route.params.sessionId,
+            internal_note: this.internalNote
+          },
+          withCredentials: true
+        }).then((response) => {
+          if (response.data.status) {
+            this.processing = false
+            console.log(response.data)
+            this.getOrderDetails()
+          }
+        }, (error) => {
+          console.log(error)
+        })
+      },
+      nl2br: function (str, isXhtml) {
+        let breakTag = (isXhtml || typeof isXhtml === 'undefined') ? '<br />' : '<br>'
+        return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2')
+      },
+      getHtml: function (val) {
+        return this.nl2br(val)
       }
     },
     created () {
@@ -220,10 +288,12 @@
 	@import '../../assets/style/setting';
 	
 	.summary-wrapper {
-		margin: 0 5rem;
 		padding: 5rem;
 		border: 1px solid $light-grey;
 		text-align: left;
+		@media screen and (max-width: 767px) {
+			padding: 1.5rem;
+		}
 		h3, p {
 			color: $brand-secondary;
 		}
@@ -231,13 +301,13 @@
 			font-size: 2.5rem;
 			font-weight: bold;
 			margin: 0;
+			@media screen and (max-width: 767px) {
+				font-size: 1.5rem;
+			}
 		}
 		.summary-header {
 			border-bottom: 1px solid $brand-primary;
 			& > .row {
-				& > div {
-					padding-left: 3.5rem;
-				}
 				&.highlight-detail {
 					& > div {
 						&:first-of-type {
@@ -312,6 +382,59 @@
 		}
 	}
 	
+	.note {
+		h5 {
+			display: inline-block;
+			float: left;
+		}
+		.add-edit {
+			float: left;
+			background: none;
+			border: none;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-size: 14px;
+			line-height: 1.1;
+			padding: 0 5px;
+			&:hover, &:focus {
+				cursor: pointer;
+			}
+			&:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+		}
+		.note-content {
+			border: 1px solid $brand-primary;
+			padding: 1rem;
+			text-align: left;
+		}
+		.note-input {
+			textarea {
+				border: none;
+				border-bottom: 1px solid $brand-primary;
+				width: calc(100% - 45px);
+				&:hover, &:focus {
+					outline: none !important;
+					border-bottom-color: $brand-secondary;
+				}
+			}
+			button {
+				border: none;
+				background: $brand-primary;
+				color: white;
+				float: right;
+				width: 45px;
+				height: 45px;
+				padding-top: 5px;
+				span {
+					margin: 2px;
+				}
+			}
+		}
+	}
+	
 	#processing {
 		position: absolute;
 		display: flex;
@@ -381,6 +504,17 @@
 			-webkit-transform: scale(1.0);
 			transform: scale(1.0);
 		}
+	}
+	
+	/* Enter and leave animations can use different */
+	/* durations and timing functions.              */
+	.slide-enter-active, .slide-leave-active {
+		transition: all .3s ease;
+	}
+	
+	.slide-enter, .slide-leave-to {
+		transform: translateY(-20px);
+		opacity: 0;
 	}
 
 </style>

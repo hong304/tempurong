@@ -1,9 +1,9 @@
 module.exports = {
   language: '中文',
   languageShort: '簡',
-  companyName: '金沙龍沙度假村',
+  companyName: '登步隆金沙龍蝦灣度假村',
   menu: {
-    companyName: '金沙龍沙<br>度假村',
+    companyName: '登步隆金沙龍蝦灣<br>度假村',
     quickMenu: '快捷主單',
     about: '關於我們',
     rooms: '房間',
@@ -27,7 +27,7 @@ module.exports = {
     master: '萬事達卡',
     visa: '維薩卡'
   },
-  copyright: '© 2017 金沙龍沙度假村 版權所有。',
+  copyright: '© 2017 登步隆金沙龍蝦灣度假村 版權所有。',
   pages: {
     home: {
       welcome: '歡迎來到瓜拉彭尤',
@@ -138,7 +138,8 @@ module.exports = {
       clientMobile: '聯絡電話',
       remark: '備註',
       additionalNotes: '附加資料',
-      totalAmount: '合計'
+      totalAmount: '合計',
+      sessionTimeOutMessage: '由於訂單已閒置超過十分鐘，請重新預訂。'
     },
     reservationsBooked: {
       pageTitle: '預訂確認',
@@ -155,7 +156,12 @@ module.exports = {
         refunded: '已退款'
       },
       refundTime: '退款日期',
-      refundAmount: '退款金額'
+      refundAmount: '退款金額',
+      payment: '付款方法',
+      paymentMethods: {
+        paypal: 'Paypal',
+        admin: '由行政人員直接預訂'
+      }
     },
     faq: {
       pageTitle: '常见问题'
@@ -163,6 +169,11 @@ module.exports = {
     policy: {
       pageTitle: '度假村政策',
       pageIntro: '当购买金沙龙虾湾度假村Tempurong Golden Beach Resort（TGBR）提供的任何住宿和/或旅行服务将构成您与TGBR之间的合同安排，并表示您接受此处列出的条款及细则。请确保您在预订前仔细阅读并了解这些条款及细则。<br><br>另请注意，度假村仅接受现金付款。请务必兑换足够金额以确保抵达时可以支付所有费用。'
+    },
+    admin: {
+      orderDetails: {
+        internalNote: '內部備註'
+      }
     }
   },
   datePicker: {
@@ -193,7 +204,9 @@ module.exports = {
     pay: '付款',
     yes: '是',
     no: '否',
-    okay: '確認'
+    okay: '確認',
+    refund: '退款',
+    skipPayment: '跳過付款步驟'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

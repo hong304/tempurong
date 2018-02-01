@@ -65,15 +65,6 @@
 							        role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
 							</button>
 						</div>
-						<!--<multiselect-->
-						<!--class="lang-select"-->
-						<!--v-model="language"-->
-						<!--:options="languageOptions"-->
-						<!--:searchable="false"-->
-						<!--:close-on-select="true"-->
-						<!--:showLabels="false"-->
-						<!--:placeholder="' '"-->
-						<!--&gt;</multiselect>-->
 					</div>
 				</div>
 			</collapse>

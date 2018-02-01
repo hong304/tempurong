@@ -85,12 +85,14 @@
     },
     props: {
       isMobile: this.isMobile,
-      orderDetails: this.orderDetails
+      orderDetails: this.orderDetails,
+      mattressUpdate: this.mattressUpdate
     },
     data () {
       return {
         show: !this.isMobile,
-        hasError: false
+        hasError: false,
+        roomsTotalCapacity: 0
       }
     },
     computed: {
@@ -102,19 +104,11 @@
       },
       totalNights: function () {
         return this.totalDays - 1
-      },
-      roomsTotalCapacity: function () {
-        let totalCapacity = 0
-        this.orderDetails.roomObjects.forEach(function (item) {
-          if (item.noOfRoom > 0) {
-            let roomCapacity = item.capacity
-            totalCapacity = totalCapacity + (roomCapacity * item.noOfRoom)
-            if (item.mattress) {
-              totalCapacity = totalCapacity + item.mattress
-            }
-          }
-        })
-        return totalCapacity
+      }
+    },
+    watch: {
+      mattressUpdate: function () {
+        this.calculateCapacity()
       }
     },
     methods: {
@@ -138,7 +132,23 @@
         } else {
           this.show = true
         }
+      },
+      calculateCapacity: function () {
+        let totalCapacity = 0
+        this.orderDetails.roomObjects.forEach(function (item) {
+          if (item.noOfRoom > 0) {
+            let roomCapacity = item.capacity
+            totalCapacity = totalCapacity + (roomCapacity * item.noOfRoom)
+            if (item.mattress) {
+              totalCapacity = totalCapacity + item.mattress
+            }
+          }
+        })
+        this.roomsTotalCapacity = totalCapacity
       }
+    },
+    mounted () {
+      this.calculateCapacity()
     }
   }
 </script>

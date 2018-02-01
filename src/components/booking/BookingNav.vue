@@ -339,6 +339,7 @@
 				margin: 0.5rem 1rem 1rem;
 			}
 			& > a {
+				display: block;
 				padding: 0 2rem;
 				color: $brand-primary;
 				&:hover, &:focus {

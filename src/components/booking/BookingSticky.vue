@@ -1,9 +1,14 @@
 <template>
 	<div class="booking-sticky" :class="{ shown: show, 'one-error': hasError  }">
-		<button type="button" @click="show=!show" class="btn btn-close"><span
-						:class="{ 'ti-angle-up': !show, 'ti-angle-down': show}"></span>
-		</button>
-		<div class="summary-shorthand">
+		<div class="summary-shorthand" :class="{ 'has-detail': show }">
+			<button type="button" @click="show=!show" class="btn btn-close"><span
+				:class="{ 'ti-angle-down': !show, 'ti-angle-up': show}"></span>
+			</button>
+			<div class="sticky-action">
+				<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
+					{{ $t('button.book') }}
+				</button>
+			</div>
 			<h2 class="total-price"><strong>{{ $t('components.booking.bookingSticky.total') }}</strong>
 				${{ orderDetails.totalPrice }} MYR
 			</h2>
@@ -66,11 +71,6 @@
 				<router-link :to="{ name: 'Policy' }" target="_blank">{{ $t('components.card.roomCard.resortPolicyRoute') }}
 				</router-link>
 			</p>
-		</div>
-		<div class="sticky-footer">
-			<button class="btn" :class="{ 'btn-main': !isMobile, 'btn-secondary': isMobile }" @click="goToContact">
-				{{ $t('button.book') }}
-			</button>
 		</div>
 	</div>
 </template>
@@ -166,9 +166,9 @@
 			position: fixed;
 			height: auto;
 			width: 100vw;
-			bottom: 0;
 			left: 0;
-			padding: calc(1.5rem) 1.5rem 1.5rem;
+			top: 50px;
+			padding: 1rem;
 			background-color: $brand-primary;
 			border-color: $brand-secondary transparent transparent;
 			overflow-y: scroll;
@@ -181,42 +181,6 @@
 				display: block;
 			}
 		}
-		/*@media screen and (max-width: 320px) {*/
-			/*top: calc(100vh - 16vh - 3.25rem);*/
-			/*&.two-error {*/
-				/*top: calc(100vh - 26vh - 3.25rem);*/
-			/*}*/
-			/*&.one-error {*/
-				/*top: calc(100vh - 21vh - 3.25rem);*/
-			/*}*/
-		/*}*/
-		/*@media screen and (min-width: 321px) and (max-width: 467px) {*/
-			/*top: calc(100vh - 15vh - 3.25rem);*/
-			/*&.two-error {*/
-				/*top: calc(100vh - 25vh - 3.25rem);*/
-			/*}*/
-			/*&.one-error {*/
-				/*top: calc(100vh - 20vh - 3.25rem);*/
-			/*}*/
-		/*}*/
-		/*@media screen and (min-width: 468px) and (max-width: 767px) {*/
-			/*top: calc(100vh - 14vh - 3.25rem);*/
-			/*&.two-error {*/
-				/*top: calc(100vh - 24vh - 3.25rem);*/
-			/*}*/
-			/*&.one-error {*/
-				/*top: calc(100vh - 19vh - 3.25rem);*/
-			/*}*/
-		/*}*/
-		/*@media screen and (min-width: 768px) and (max-width: 991px) {*/
-			/*top: calc(100vh - 12vh - 3.25rem);*/
-			/*&.two-error {*/
-				/*top: calc(100vh - 22vh - 3.25rem);*/
-			/*}*/
-			/*&.one-error {*/
-				/*top: calc(100vh - 17vh - 3.25rem);*/
-			/*}*/
-		/*}*/
 		@media screen and (min-width: 992px) {
 			.btn-close {
 				display: none;
@@ -225,13 +189,21 @@
 	}
 	
 	.summary-shorthand {
+		position: relative;
 		padding-bottom: 2rem;
 		margin-bottom: 2rem;
 		border-bottom: 1px solid $light-grey;
+		transition: margin 250ms linear, padding 250ms linear;
 		@media screen and (max-width: 767px) {
 			min-height: calc(8vh);
-			margin-bottom: 1.5rem;
-			padding-bottom: 1.5rem;
+			margin-bottom: 0;
+			padding-bottom: 0;
+			border-bottom-color: transparent;
+			&.has-detail {
+				margin-bottom: 1.5rem;
+				padding-bottom: 1.5rem;
+				border-bottom-color: $light-grey;
+			}
 		}
 		.total-price {
 			margin: 0;
@@ -309,13 +281,15 @@
 		}
 	}
 	
-	.sticky-footer {
+	.sticky-action {
 		@media screen and (max-width: 991px) {
-			position: fixed;
-			display: block;
-			width: 100vw;
-			left: 0;
-			bottom: 0;
+			position: absolute;
+			display: inline-block;
+			right: 0;
+			top: 0;
+			.btn-main {
+				border-radius: 0.75rem;
+			}
 		}
 	}
 	
@@ -342,11 +316,11 @@
 	
 	.btn-close {
 		position: absolute;
-		right: 0.5rem;
+		right: 0;
 		height: 25px;
 		width: 30px;
 		padding: 0.25rem;
-		top: 0;
+		bottom: 0;
 		font-size: 16px;
 		background: none;
 		border: none;

@@ -169,6 +169,10 @@ module.exports = {
       paymentMethods: {
         paypal: 'Paypal',
         admin: '由行政人员直接预订'
+      },
+      processModal: {
+        title: '处理中',
+        message: '请勿重新整理或离开此页直到处理程序完成。'
       }
     },
     faq: {

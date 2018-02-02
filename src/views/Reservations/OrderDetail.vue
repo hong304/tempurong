@@ -3,8 +3,10 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title  v-if="resData.status!=='refunded'" :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
-					<content-title v-if="resData.status==='refunded'" :contentTitle="$t('pages.reservationsDetails.cancelledTitle')"></content-title>
+					<content-title v-if="resData.status!=='refunded'"
+					               :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
+					<content-title v-if="resData.status==='refunded'"
+					               :contentTitle="$t('pages.reservationsDetails.cancelledTitle')"></content-title>
 				</div>
 			</div>
 		</section>
@@ -89,8 +91,8 @@
 													<div class="bounce2"></div>
 													<div class="bounce3"></div>
 												</div>
-												<h3>Processing</h3>
-												<p>Please don't refresh or close the page until the process is finished.</p>
+												<h3>{{$t('pages.reservationsDetails.processModal.title')}}</h3>
+												<p>{{$t('pages.reservationsDetails.processModal.message')}}</p>
 											</div>
 										</div>
 									</vue-modal>

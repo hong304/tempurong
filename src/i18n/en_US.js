@@ -170,6 +170,10 @@ module.exports = {
       paymentMethods: {
         paypal: 'Paypal',
         admin: 'Payment Skipped by Admin'
+      },
+      processModal: {
+        title: 'Processing',
+        message: 'Please don\'t refresh or close the page until the process is finished.'
       }
     },
     faq: {

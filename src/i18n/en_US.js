@@ -272,14 +272,14 @@ module.exports = {
         capacity: 'Max. {capacity} guests per room',
         extraMattressRemarks: '(If extra mattress is added, the capacity of that room is increased to {capacity})',
         mattressAndBreakfast: '(including extra {mattress} and {breakfast})'
+      },
+      enquiry: {
+        title: 'Leave a message',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email',
+        message: 'Message'
       }
-    },
-    enquiry: {
-      title: 'Leave a message',
-      firstName: 'First Name',
-      lastName: 'Last Name',
-      email: 'Email',
-      message: 'Message'
     }
   },
   error: {

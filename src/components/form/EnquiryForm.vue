@@ -9,28 +9,28 @@
 				</div>
 			</div>
 		</div>
-		<h5 v-html="$t('components.enquiry.title')"></h5>
+		<h5 v-html="$t('components.card.enquiry.title')"></h5>
 		<div class="row form-body my-5 m-0">
 			<div class="col-sm-8 col-xs-12 col-sm-offset-2">
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">
-						<input v-model="enquiry.firstName" v-bind:placeholder="$t('components.enquiry.firstName')"
+						<input v-model="enquiry.firstName" v-bind:placeholder="$t('components.card.enquiry.firstName')"
 									 :class="{ 'has-error': this.status.status === false && !enquiry.firstName }">
 					</div>
 					<div class="col-sm-6 col-xs-12">
-						<input v-model="enquiry.lastName" v-bind:placeholder="$t('components.enquiry.lastName')"
+						<input v-model="enquiry.lastName" v-bind:placeholder="$t('components.card.enquiry.lastName')"
 									 :class="{ 'has-error': this.status.status === false && !enquiry.lastName }">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<input v-model="enquiry.email" v-bind:placeholder="$t('components.enquiry.email')"
+						<input v-model="enquiry.email" v-bind:placeholder="$t('components.card.enquiry.email')"
 									 :class="{ 'has-error': this.status.status === false && !enquiry.email }">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-12">
-						<textarea v-model="enquiry.message" v-bind:placeholder="$t('components.enquiry.message')"
+						<textarea v-model="enquiry.message" v-bind:placeholder="$t('components.card.enquiry.message')"
 											:class="{ 'has-error': this.status.status === false && !enquiry.message }"></textarea>
 					</div>
 				</div>

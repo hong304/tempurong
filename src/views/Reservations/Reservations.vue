@@ -1,15 +1,17 @@
 <template>
 	<div class="container" id="reservations">
 		<section class="padding-of-section mt-5 py-3 py-sm-5">
-			<div class="row mb-0 mb-sm-5">
+			<div class="row mb-0 mb-sm-5" :class="{ 'top-margin': optionSelected }">
 				<div class="col-xs-12">
 					<content-title
 									v-if="!optionSelected"
 									:contentTitle="$t('pages.reservations.pageTitle')"
+									:contentStep="$t('pages.reservations.pageStep')"
 									:contentSubTitle="$t('pages.reservations.pageSubtitle')"
 					></content-title>
 					<content-title v-if="optionSelected"
 					               :contentTitle="$t('pages.reservations.pageTitle2')"
+												 :contentStep="$t('pages.reservations.pageStep2')"
 					               :contentSubTitle="$t('pages.reservations.pageSubtitle')"
 					></content-title>
 				</div>
@@ -298,7 +300,17 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-	
+
+	#reservations {
+		section {
+			div.top-margin {
+				@media screen and (max-width: 767px) {
+					margin-top: 5em;
+				}
+			}
+		}
+	}
+
 	.overlay-wrapper {
 		position: relative;
 		display: flex;

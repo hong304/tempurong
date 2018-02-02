@@ -65,7 +65,7 @@
 						</collapse>
 					</div>
 				</div>
-				<div class="row mt-5">
+				<div class="row mt-5 mx-0">
 					<div class="co-xs-12 text-right">
 						<router-link :to="{ name: 'Reservations' }" class="btn btn-main">{{ $t("button.bookNow") }}</router-link>
 					</div>
@@ -208,12 +208,13 @@
 		text-align: left;
 		color: $brand-secondary;
 		h3 {
-			margin: 0;
+			margin: 0.5em 0 0;
 			font-size: 2em;
 			font-weight: bold;
 			text-transform: uppercase;
 			span {
 				font-weight: 400;
+				display: block;
 			}
 		}
 		h4 {
@@ -221,7 +222,7 @@
 			font-size: 1.1em;
 		}
 		h5 {
-			margin: 0.25em 0 0;
+			margin: 0.5em 0 0;
 			font-size: 1.75em;
 			@media screen and (max-width: 767px) {
 				font-size: 1.35em;

@@ -56,7 +56,7 @@ module.exports = {
     },
     rooms: {
       pageTitle: 'Rooms',
-      pageIntro: 'We have a total of 13 rooms, 8 Sea View rooms and 5 Riverside rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.',
+      pageIntro: 'We have a total of 13 rooms, 8 Sea View rooms and 5 River View rooms. Each room can fit a family of 4-6 people depending on the type of room and is fitted with basic but comfortable lodgings. Each room has air conditioning and a hot shower. Please check the details of each room type to see which would be most fitting. If you have any questions, please don’t hesitate to contact us.',
       additionalCost: 'Extra mattress available at additional cost'
     },
     activities: {
@@ -74,7 +74,7 @@ module.exports = {
     food: {
       pageTitle: 'Food',
       pageSubtitle: 'Includes the freshest of ingredients',
-      pageIntro: 'We strive to cultivate much of our own produce on-site and aim to raise our own fish. Malaysia has such an abundance of vegetation that we gather from the wild and purchase from local village markets. Being right by the sea, we often have fresh clams, fish, prawns and even wild-caught chickens. Plan your vacations around meals and you’ll never be disappointed!',
+      pageIntro: 'We strive to cultivate much of our own produce on-site and aim to raise our own fish. Malaysia has such an abundance of vegetation that we gather from the wild and purchase from local village markets. Being right by the sea, we often have fresh clams, fish, prawns and even wild-caught chickens. Plan your vacation around meals and you’ll never be disappointed!',
       addOn: 'Special Dietary items available, just ask.',
       addOnContent: 'We have so many options for food, and can accomodate vegetarians, pescatarians, and more, so please check out our food options or reach out to us directly for ideas so that you don’t have to worry about a thing.<br><br>We are happy to accommodate to your preferences, we just need some notice ahead of time to prepare fresh!',
       haveQuestion: 'Have questions?'
@@ -121,12 +121,15 @@ module.exports = {
       moreInfo: 'Know more about the area?'
     },
     reservations: {
-      pageTitle: 'Step 1/5 : Reservations',
-      pageTitle2: 'Step 2/5 : Reservations',
+      pageTitle: 'Reservations',
+      pageStep: 'Step 1/5',
+      pageTitle2: 'Reservations',
+      pageStep2: 'Step 2/5',
       pageSubtitle: 'Your slice of paradise is waiting!'
     },
     reservationsContact: {
-      pageTitle: 'Step 3/5 : Contact Information',
+      pageTitle: 'Contact Information',
+      pageStep: 'Step 3/5',
       fillInContact: 'Please fill in all the following information.',
       firstName: 'First Name',
       lastName: 'Last Name',
@@ -139,7 +142,8 @@ module.exports = {
       tncCheckbox: 'I have read and agreed to the <a href="/policy" target="_blank">Resort Policy</a>, including the refund terms stated within.'
     },
     reservationsSummary: {
-      pageTitle: 'Step 4/5 : Booking Summary',
+      pageTitle: 'Booking Summary',
+      pageStep: 'Step 4/5',
       pageSubtitle: 'Your reservation is not complete until you complete payment.',
       clientName: 'Name',
       clientEmail: 'Email',
@@ -150,7 +154,8 @@ module.exports = {
       sessionTimeOutMessage: 'Oops, your session has timed out after 10 minutes. Please retry your booking from the beginning.'
     },
     reservationsBooked: {
-      pageTitle: 'Step 5/5 : Reservation Confirmed!',
+      pageTitle: 'Reservation Confirmed!',
+      pageStep: 'Step 5/5',
       thankYou: 'Thank you!',
       pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within 24 hours, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
     },

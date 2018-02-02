@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h2>{{contentTitle}}</h2>
+		<h2>{{contentTitle}}<span v-if="contentStep">{{contentStep}}</span></h2>
 		<h3 v-if="contentSubTitle">{{contentSubTitle}}</h3>
 	</div>
 </template>
@@ -15,6 +15,7 @@
           return 'I\'m default title.'
         }
       },
+      contentStep: false,
       contentSubTitle: false
     }
   }
@@ -32,6 +33,10 @@
 		margin-bottom: 2rem;
 		font-weight: bold;
 		color: $brand-secondary;
+		span {
+			display: block;
+			font-size: 0.7em;
+		}
 	}
 	h3 {
 		font-size: 2rem;

@@ -212,7 +212,7 @@ module.exports = {
     yes: 'Yes',
     no: 'No',
     okay: 'Okay',
-    refund: 'Refund',
+    refund: 'Cancel Reservation',
     skipPayment: 'Skip Payment Process'
   },
   dateUnit: {

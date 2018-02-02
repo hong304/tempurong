@@ -205,7 +205,7 @@ module.exports = {
     yes: '是',
     no: '否',
     okay: '確認',
-    refund: '退款',
+    refund: '取消訂單',
     skipPayment: '跳過付款步驟'
   },
   dateUnit: {

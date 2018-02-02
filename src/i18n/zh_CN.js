@@ -211,7 +211,7 @@ module.exports = {
     yes: '是',
     no: '否',
     okay: '确认',
-    refund: '退款',
+    refund: '取消订单',
     skipPayment: '跳过付款步骤'
   },
   dateUnit: {

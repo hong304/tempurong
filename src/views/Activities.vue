@@ -228,7 +228,6 @@
 	#activities {
 		.content-link {
 			color: $brand-secondary;
-			text-transform: uppercase;
 			text-decoration: underline;
 			font-weight: bold;
 		}

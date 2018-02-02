@@ -286,7 +286,7 @@ module.exports = {
     noCheckInOut: 'Please select check in and check out date.',
     noGuestSelected: 'Please select at least one guest.',
     noRoomSelected: 'Please select at least one room.',
-    guestAndRoomNoConflict: 'Total guest cannot larger than maximum capacity of all rooms.',
+    guestAndRoomNoConflict: 'Total guests cannot exceed the maximum capacity of all rooms.',
     email: 'Please insert valid email address.',
     tnc: 'Please agree to the terms and condition.',
     required: 'The {field} field is required.',

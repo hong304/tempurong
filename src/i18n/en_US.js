@@ -162,7 +162,7 @@ module.exports = {
     reservationsDetails: {
       pageTitle: 'Reservation Details',
       cancelledTitle: 'This booking has been cancelled',
-      confirmRefund: 'Are you sure you want to cancel and refund this booking?<br><span>Please refer to our <a href="/policy" target="_blank">Cancellation Policy</a> for refund amount details.</span>',
+      confirmRefund: 'Are you sure you want to cancel and refund this booking?<br><span style=\'font-size: 1.2rem;\'>Please refer to our <a href="/policy" target="_blank">Cancellation Policy</a> for refund amount details.</span>',
       reservationId: 'Reservation Number',
       reservationStatus: 'Reservation Status',
       status: {

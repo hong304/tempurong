@@ -148,7 +148,7 @@ module.exports = {
     },
     reservationsDetails: {
       pageTitle: '訂單資料',
-      confirmRefund: '您是否確定要取消訂單？<br><span>退款金額詳情請參閱我們的<a href="/policy" target="_blank">取消政策</a>。</span>',
+      confirmRefund: '您是否確定要取消訂單？<br><span style=\'font-size: 1.2rem;\'>退款金額詳情請參閱我們的<a href="/policy" target="_blank">取消政策</a>。</span>',
       reservationId: '訂單編號',
       reservationStatus: '訂單狀態',
       status: {

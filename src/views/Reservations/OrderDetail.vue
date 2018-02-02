@@ -367,12 +367,6 @@
 		animation-delay: -0.16s;
 	}
 	
-	.modal-title {
-		span {
-			font-size: 1.5rem;
-		}
-	}
-	
 	@-webkit-keyframes sk-bouncedelay {
 		0%, 80%, 100% {
 			-webkit-transform: scale(0)

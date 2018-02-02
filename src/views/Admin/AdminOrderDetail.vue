@@ -517,11 +517,5 @@
 		transform: translateY(-20px);
 		opacity: 0;
 	}
-	
-	.modal-title {
-		span {
-			font-size: 1.5rem;
-		}
-	}
 
 </style>

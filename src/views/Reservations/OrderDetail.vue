@@ -3,8 +3,10 @@
 		<section class="mt-5 py-5">
 			<div class="row">
 				<div class="col-xs-12">
-					<content-title  v-if="resData.status!=='refunded'" :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
-					<content-title v-if="resData.status==='refunded'" :contentTitle="$t('pages.reservationsDetails.cancelledTitle')"></content-title>
+					<content-title v-if="resData.status!=='refunded'"
+					               :contentTitle="$t('pages.reservationsDetails.pageTitle')"></content-title>
+					<content-title v-if="resData.status==='refunded'"
+					               :contentTitle="$t('pages.reservationsDetails.cancelledTitle')"></content-title>
 				</div>
 			</div>
 		</section>
@@ -71,14 +73,15 @@
 								
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
-										<h4 slot="header" class="modal-title" id="confirmModalLabel">
-											{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+										<h4 slot="header" class="modal-title" id="confirmModalLabel"
+										    v-html="$t('pages.reservationsDetails.confirmRefund')">
+										</h4>
 										<div slot="footer" class="text-center">
 											<button type="button" class="btn btn-border" @click="openModal = false">
-												{{ $t('button.no') }}
+												{{ $t('button.cancel') }}
 											</button>
 											<button type="button" class="btn btn-main" @click="refund()" :disabled="processing">
-												{{ $t('button.yes') }}
+												{{ $t('button.confirm') }}
 											</button>
 										</div>
 										<div id="processing" slot="processing" v-if="processing">
@@ -88,8 +91,8 @@
 													<div class="bounce2"></div>
 													<div class="bounce3"></div>
 												</div>
-												<h3>Processing</h3>
-												<p>Please don't refresh or close the page until the process is finished.</p>
+												<h3>{{$t('pages.reservationsDetails.processModal.title')}}</h3>
+												<p>{{$t('pages.reservationsDetails.processModal.message')}}</p>
 											</div>
 										</div>
 									</vue-modal>

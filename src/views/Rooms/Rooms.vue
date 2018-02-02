@@ -44,7 +44,10 @@
 							</li>
 						</ul>
 						<p v-if="item.add_bed">* {{ $t('pages.rooms.additionalCost') }}</p>
-						<button class="btn btn-main" @click="showDetails(index)">{{$t('button.moreDetails')}}</button>
+						<button class="btn btn-main" @click="showDetails(index)">
+							<span v-if="show[index]">{{$t('button.hideDetails')}}</span>
+							<span v-else>{{$t('button.moreDetails')}}</span>
+						</button>
 						<collapse class="mt-4" v-model="show[index]">
 							<div class="description" style="margin-bottom: 0">
 								<h5>{{ $t('components.card.roomCard.description') }}</h5>

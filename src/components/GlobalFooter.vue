@@ -55,8 +55,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 text-center">
           <p class="copy-right">{{ $t("copyright") }}</p>
+          <p class="small">Designed by <a href="https://buildonauts.com/" target="_blank" class="footer-link">Buildonauts Limited</a>.</p>
         </div>
       </div>
     </div>
@@ -139,6 +140,10 @@
           clear: both;
         }
       }
+    }
+    .footer-link {
+      color: white;
+      text-decoration: underline;
     }
   }
 </style>

@@ -156,7 +156,7 @@ module.exports = {
     reservationsDetails: {
       pageTitle: '订单资料',
       canalledTitle: '此订单已被取消',
-      confirmRefund: '您是否确定要取消订单？',
+      confirmRefund: '您是否确定要取消订单？<br>退款金额详情请参阅我们的<a href="/policy" target="_blank">取消政策</a>。',
       reservationId: '订单编号',
       reservationStatus: '订单状态',
       status: {
@@ -169,6 +169,10 @@ module.exports = {
       paymentMethods: {
         paypal: 'Paypal',
         admin: '由行政人员直接预订'
+      },
+      processModal: {
+        title: '处理中',
+        message: '请勿重新整理或离开此页直到处理程序完成。'
       }
     },
     faq: {
@@ -214,7 +218,9 @@ module.exports = {
     no: '否',
     okay: '确认',
     refund: '取消订单',
-    skipPayment: '跳过付款步骤'
+    skipPayment: '跳过付款步骤',
+    cancel: '取消',
+    confirm: '确认'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

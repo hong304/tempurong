@@ -157,7 +157,7 @@ module.exports = {
     reservationsDetails: {
       pageTitle: 'Reservation Details',
       cancelledTitle: 'This booking has been cancelled',
-      confirmRefund: 'Are you sure you want to cancel and refund this booking?',
+      confirmRefund: 'Are you sure you want to cancel and refund this booking?<br>Please refer to our <a href="/policy" target="_blank">Cancellation Policy</a> for refund amount details.',
       reservationId: 'Reservation Number',
       reservationStatus: 'Reservation Status',
       status: {
@@ -170,6 +170,10 @@ module.exports = {
       paymentMethods: {
         paypal: 'Paypal',
         admin: 'Payment Skipped by Admin'
+      },
+      processModal: {
+        title: 'Processing',
+        message: 'Please don\'t refresh or close the page until the process is finished.'
       }
     },
     faq: {
@@ -215,7 +219,9 @@ module.exports = {
     no: 'No',
     okay: 'Okay',
     refund: 'Cancel Reservation',
-    skipPayment: 'Skip Payment Process'
+    skipPayment: 'Skip Payment Process',
+    cancel: 'Cancel',
+    confirm: 'Confirm'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',
@@ -280,7 +286,7 @@ module.exports = {
     noCheckInOut: 'Please select check in and check out date.',
     noGuestSelected: 'Please select at least one guest.',
     noRoomSelected: 'Please select at least one room.',
-    guestAndRoomNoConflict: 'Total guest cannot larger than maximum capacity of all rooms.',
+    guestAndRoomNoConflict: 'Total guests cannot exceed the maximum capacity of all rooms.',
     email: 'Please insert valid email address.',
     tnc: 'Please agree to the terms and condition.',
     required: 'The {field} field is required.',

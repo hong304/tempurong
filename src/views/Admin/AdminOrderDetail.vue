@@ -21,7 +21,8 @@
 									<h3>{{ $t('pages.reservationsDetails.reservationId') }} : {{ resData.session }}</h3>
 									<h3>{{ $t('pages.reservationsDetails.reservationStatus')
 										}} : {{ $t('pages.reservationsDetails.status.' + resData.status) }}</h3>
-									<h3>{{ $t('pages.reservationsDetails.payment') }} : {{ $t('pages.reservationsDetails.paymentMethods.' + resData.payment_method ) }}</h3>
+									<h3>{{ $t('pages.reservationsDetails.payment')
+										}} : {{ $t('pages.reservationsDetails.paymentMethods.' + resData.payment_method) }}</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundAmount')
 										}} : $ {{ resData.refund_amount }} MYR</h3>
 									<h3 v-if="resData.status=='refunded'">{{ $t('pages.reservationsDetails.refundTime')
@@ -76,8 +77,8 @@
 								
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
-										<h4 slot="header" class="modal-title" id="confirmModalLabel">
-											{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+										<h4 slot="header" class="modal-title" id="confirmModalLabel"
+										    v-html="$t('pages.reservationsDetails.confirmRefund')"></h4>
 										<div slot="footer" class="text-center">
 											<button type="button" class="btn btn-border" @click="openModal = false">
 												{{ $t('button.no') }}
@@ -515,6 +516,12 @@
 	.slide-enter, .slide-leave-to {
 		transform: translateY(-20px);
 		opacity: 0;
+	}
+	
+	.modal-title {
+		span {
+			font-size: 1.5rem;
+		}
 	}
 
 </style>

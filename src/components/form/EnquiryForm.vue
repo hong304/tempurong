@@ -9,7 +9,7 @@
 				</div>
 			</div>
 		</div>
-		<h5>Leave us a message!</h5>
+		<h5 v-html="$t('components.enquiry.title')"></h5>
 		<div class="row form-body my-5 m-0">
 			<div class="col-sm-8 col-xs-12 col-sm-offset-2">
 				<div class="row">
@@ -46,7 +46,7 @@
 						</div>
 					</div>
 				</div>
-				<button class="btn btn-main mt-5" @click="submitForm()" :disable="submitted"><span>Send</span></button>
+				<button class="btn btn-main mt-5" @click="submitForm()" :disable="submitted"><span>{{$t('send')}}</span></button>
 			</div>
 		</div>
 	</div>

@@ -64,7 +64,7 @@
       return {
         checkIn: '',
         checkOut: '',
-        counterAdults: 0,
+        counterAdults: 1,
         counterChildren: 0,
         errorPeople: false
       }
@@ -339,6 +339,7 @@
 				margin: 0.5rem 1rem 1rem;
 			}
 			& > a {
+				display: block;
 				padding: 0 2rem;
 				color: $brand-primary;
 				&:hover, &:focus {

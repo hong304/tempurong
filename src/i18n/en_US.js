@@ -27,7 +27,7 @@ module.exports = {
     master: 'master-card',
     visa: 'visa-card'
   },
-  copyright: '© CopyRight 2017 Tempurong Golden Beach Resort. All Rights Reserved.',
+  copyright: '© CopyRight 2018 Tempurong Golden Beach Resort. All Rights Reserved.',
   pages: {
     home: {
       welcome: 'Welcome to Tempurong',
@@ -155,6 +155,7 @@ module.exports = {
     },
     reservationsDetails: {
       pageTitle: 'Reservation Details',
+      cancelledTitle: 'This booking has been cancelled',
       confirmRefund: 'Are you sure you want to cancel and refund this booking?',
       reservationId: 'Reservation Number',
       reservationStatus: 'Reservation Status',

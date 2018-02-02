@@ -27,7 +27,7 @@ module.exports = {
     master: '萬事達卡',
     visa: '維薩卡'
   },
-  copyright: '© 2017 登步隆金沙龍蝦灣度假村 版權所有。',
+  copyright: '© 2018 登步隆金沙龍蝦灣度假村 版權所有。',
   pages: {
     home: {
       welcome: '歡迎來到瓜拉彭尤',

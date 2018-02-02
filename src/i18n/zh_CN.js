@@ -27,7 +27,7 @@ module.exports = {
     master: '万事达卡',
     visa: '维萨卡'
   },
-  copyright: '© 2017 登步隆金沙湾龙虾度假村 版权所有。',
+  copyright: '© 2018 登步隆金沙湾龙虾度假村 版权所有。',
   pages: {
     home: {
       welcome: '欢迎来到瓜拉彭尤',
@@ -154,6 +154,7 @@ module.exports = {
     },
     reservationsDetails: {
       pageTitle: '订单资料',
+      canalledTitle: '此订单已被取消',
       confirmRefund: '您是否确定要取消订单？<br>退款金额详情请参阅我们的<a href="/policy" target="_blank">取消政策</a>。',
       reservationId: '订单编号',
       reservationStatus: '订单状态',

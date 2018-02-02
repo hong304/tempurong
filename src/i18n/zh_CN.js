@@ -267,10 +267,10 @@ module.exports = {
       },
       enquiry: {
         title: '給我們留言',
-        firstName: 'First Name',
-        lastName: 'Last Name',
-        email: 'Email',
-        message: 'Message'
+        firstName: '名字',
+        lastName: '姓氏',
+        email: '电邮',
+        message: '信息'
       }
     }
   },

@@ -155,7 +155,7 @@ module.exports = {
     },
     reservationsDetails: {
       pageTitle: 'Reservation Details',
-      confirmRefund: 'Are you sure you want to cancel and refund this booking?',
+      confirmRefund: 'Are you sure you want to cancel and refund this booking?<br>Please refer to our <a href="/policy" target="_blank">Cancellation Policy</a> for refund amount details.',
       reservationId: 'Reservation Number',
       reservationStatus: 'Reservation Status',
       status: {
@@ -213,7 +213,9 @@ module.exports = {
     no: 'No',
     okay: 'Okay',
     refund: 'Cancel Reservation',
-    skipPayment: 'Skip Payment Process'
+    skipPayment: 'Skip Payment Process',
+    cancel: 'Cancel',
+    confirm: 'Confirm'
   },
   dateUnit: {
     days: '{count} days | {count} days | {count} days',

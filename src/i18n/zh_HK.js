@@ -148,7 +148,7 @@ module.exports = {
     },
     reservationsDetails: {
       pageTitle: '訂單資料',
-      confirmRefund: '您是否確定要取消訂單？',
+      confirmRefund: '您是否確定要取消訂單？<br>退款金額詳情請參閱我們的<a href="/policy" target="_blank">取消政策</a>。',
       reservationId: '訂單編號',
       reservationStatus: '訂單狀態',
       status: {
@@ -206,7 +206,9 @@ module.exports = {
     no: '否',
     okay: '確認',
     refund: '取消訂單',
-    skipPayment: '跳過付款步驟'
+    skipPayment: '跳過付款步驟',
+    cancel: '取消',
+    confirm: '確認'
   },
   dateUnit: {
     days: '{count} 日 | {count} 日 | {count} 日',

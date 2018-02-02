@@ -70,14 +70,15 @@
 								
 								<transition name="fade">
 									<vue-modal v-if="openModal" @close="openModal = false" class="text-center">
-										<h4 slot="header" class="modal-title" id="confirmModalLabel">
-											{{ $t('pages.reservationsDetails.confirmRefund') }}</h4>
+										<h4 slot="header" class="modal-title" id="confirmModalLabel"
+										    v-html="$t('pages.reservationsDetails.confirmRefund')">
+										</h4>
 										<div slot="footer" class="text-center">
 											<button type="button" class="btn btn-border" @click="openModal = false">
-												{{ $t('button.no') }}
+												{{ $t('button.cancel') }}
 											</button>
 											<button type="button" class="btn btn-main" @click="refund()" :disabled="processing">
-												{{ $t('button.yes') }}
+												{{ $t('button.confirm') }}
 											</button>
 										</div>
 										<div id="processing" slot="processing" v-if="processing">

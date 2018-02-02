@@ -7,8 +7,8 @@
 					<div class="bounce2"></div>
 					<div class="bounce3"></div>
 				</div>
-				<h3>Processing</h3>
-				<p>Please don't refresh or close the page until the process is finished.</p>
+				<h3>{{$t('pages.reservationsDetails.processModal.title')}}</h3>
+				<p>{{$t('pages.reservationsDetails.processModal.message')}}</p>
 			</div>
 		</div>
 		<section class="mt-5 py-sm-5 py-3">

@@ -13,7 +13,7 @@
 					<img class="img-fluid" :src="imageSrc"/>
 				</div>
 				<div class="col-sm-8 col-xs-12">
-					<h3>Tempurong Golden Beach Resort</h3>
+					<h3 v-html="$t('companyName')"></h3>
 					<p v-html="$t('pages.about.pageIntro')"></p>
 				</div>
 			</div>

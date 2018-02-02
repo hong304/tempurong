@@ -2,6 +2,7 @@ module.exports = {
   language: 'English',
   languageShort: 'EN',
   companyName: 'Tempurong Golden Beach Resort',
+  send: 'Send',
   menu: {
     companyName: 'Tempurong <br> Golden Beach <br> Resort',
     quickMenu: 'Quick Menu',
@@ -270,6 +271,7 @@ module.exports = {
       }
     },
     enquiry: {
+      title: 'Leave a message',
       firstName: 'First Name',
       lastName: 'Last Name',
       email: 'Email',

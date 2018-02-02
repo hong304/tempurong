@@ -2,6 +2,7 @@ module.exports = {
   language: '中文',
   languageShort: '简',
   companyName: '登步隆金沙湾龙虾度假村',
+  send: '发送',
   menu: {
     companyName: '登步隆金沙龙虾湾<br>度假村',
     quickMenu: '快捷主单',
@@ -265,6 +266,13 @@ module.exports = {
         capacity: '每间房间可容纳{capacity}人',
         extraMattressRemarks: '（如果添加了额外床褥，则最多可容纳{capacity}人)',
         mattressAndBreakfast: '（已额外添加{mattress}和{breakfast})'
+      },
+      enquiry: {
+        title: '給我們留言',
+        firstName: 'First Name',
+        lastName: 'Last Name',
+        email: 'Email',
+        message: 'Message'
       }
     }
   },

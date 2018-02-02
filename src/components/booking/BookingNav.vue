@@ -64,7 +64,7 @@
       return {
         checkIn: '',
         checkOut: '',
-        counterAdults: 0,
+        counterAdults: 1,
         counterChildren: 0,
         errorPeople: false
       }

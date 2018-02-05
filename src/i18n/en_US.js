@@ -162,12 +162,14 @@ module.exports = {
     reservationsDetails: {
       pageTitle: 'Reservation Details',
       cancelledTitle: 'This booking has been cancelled',
+      cancelMessage: 'Are you sure you want to cancel without refund this booking?',
       confirmRefund: 'Are you sure you want to cancel and refund this booking?<br><span style=\'font-size: 1.2rem;\'>Please refer to our <a href="/policy" target="_blank">Cancellation Policy</a> for refund amount details.</span>',
       reservationId: 'Reservation Number',
       reservationStatus: 'Reservation Status',
       status: {
         completed: 'Paid',
-        refunded: 'Refunded'
+        refunded: 'Refunded',
+        cancelled: 'Cancelled'
       },
       refundTime: 'Refund Date',
       refundAmount: 'Refunded Amount',
@@ -226,6 +228,7 @@ module.exports = {
     refund: 'Cancel Reservation',
     skipPayment: 'Skip Payment Process',
     cancel: 'Cancel',
+    cancelwithoutrefund: 'Cancel Without Refund',
     confirm: 'Confirm'
   },
   dateUnit: {

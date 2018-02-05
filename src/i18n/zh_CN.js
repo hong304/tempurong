@@ -156,12 +156,14 @@ module.exports = {
     reservationsDetails: {
       pageTitle: '订单资料',
       canalledTitle: '此订单已被取消',
+      cancelMessage: '您是否确定要取消订单(不會退款)？',
       confirmRefund: '您是否确定要取消订单？<br><span style=\'font-size: 1.2rem;\'>退款金额详情请参阅我们的<a href="/policy" target="_blank">取消政策</a>。</span>',
       reservationId: '订单编号',
       reservationStatus: '订单状态',
       status: {
         completed: '已付款',
-        refunded: '已退款'
+        refunded: '已退款',
+        cancelled: '已取消'
       },
       refundTime: '退款日期',
       refundAmount: '退款金额',

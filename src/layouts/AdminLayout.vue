@@ -18,6 +18,12 @@
 			<div class="side-nav" v-if="!sideCollapsed">
 				<ul>
 					<li>
+						<router-link :to="{ name: 'Home' }" class="nav-link">
+							<span class="ti-home"></span>
+							<p>Home</p>
+						</router-link>
+					</li>
+					<li>
 						<router-link :to="{ name: 'OrderHistory' }" class="nav-link">
 							<span class="ti-list"></span>
 							<p>Order History</p>

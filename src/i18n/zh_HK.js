@@ -144,7 +144,7 @@ module.exports = {
     reservationsBooked: {
       pageTitle: '預訂確認',
       thankYou: '謝謝您！',
-      pageMsg: '您的訂單已經確認。您將會在短時間內收到我們的電郵。如果你在24小時後仍沒有收到我們的電郵，請先查看您的垃圾郵件夾，如還是沒有，請發電郵到<a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a> 與我們聯絡。'
+      pageMsg: '您的訂單已經確認。您將會在短時間內收到我們的電郵。如果你在1小時後仍沒有收到我們的電郵，請先查看您的垃圾郵件夾，如還是沒有，請發電郵到<a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a> 與我們聯絡。'
     },
     reservationsDetails: {
       pageTitle: '訂單資料',

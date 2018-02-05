@@ -158,7 +158,7 @@ module.exports = {
       pageTitle: 'Reservation Confirmed!',
       pageStep: 'Step 5/5',
       thankYou: 'Thank you!',
-      pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within 24 hours, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
+      pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within the next hour, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
     },
     reservationsDetails: {
       pageTitle: 'Reservation Details',

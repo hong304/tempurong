@@ -132,7 +132,7 @@ module.exports = {
       email: '电邮',
       countryCode: '区码',
       mobile: '联络电话',
-      remarks: '备注',
+      remarks: '如需预约任何活动或机场接送，请让我们知道',
       additionalNotes: '附加资料，如机场接送及感兴趣的活动',
       tnc: '条款及细则',
       tncCheckbox: '我已细阅并同意<a target="_blank" href="/policy">条款及细则和取消政策</a>。'
@@ -143,7 +143,7 @@ module.exports = {
       clientName: '姓名',
       clientEmail: '电邮',
       clientMobile: '联络电话',
-      remark: '备注',
+      remark: '活动或机场接送',
       additionalNotes: '附加资料',
       totalAmount: '合计',
       sessionTimeOutMessage: '由於订单已闲置超过十分钟，请重新预订。'

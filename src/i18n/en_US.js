@@ -137,8 +137,8 @@ module.exports = {
       email: 'Email',
       countryCode: 'Country Code',
       mobile: 'Contact Number',
-      remarks: 'Remarks',
-      additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
+      remarks: 'Please let us know here if you would like to book any activities or airport transfers',
+      additionalNotes: 'Additional notes',
       tnc: 'Terms & Conditions',
       tncCheckbox: 'I have read and agreed to the <a href="/policy" target="_blank">Resort Policy</a>, including the refund terms stated within.'
     },
@@ -149,7 +149,7 @@ module.exports = {
       clientName: 'Name',
       clientEmail: 'Email',
       clientMobile: 'Contact Number',
-      remark: 'Remarks',
+      remark: 'Airport pickup or Activities',
       additionalNotes: 'Additional Notes',
       totalAmount: 'Total Amount',
       sessionTimeOutMessage: 'Oops, your session has timed out after 10 minutes. Please retry your booking from the beginning.'

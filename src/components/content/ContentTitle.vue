@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<h2>{{contentTitle}}<span v-if="contentStep">{{contentStep}}</span></h2>
-		<h3 v-if="contentSubTitle">{{contentSubTitle}}</h3>
+		<h3 v-if="contentSubTitle" v-html="contentSubTitle"></h3>
+		<h4 v-if="contentSubTitleRemarks" v-html="contentSubTitleRemarks"></h4>
 	</div>
 </template>
 
@@ -16,13 +17,15 @@
         }
       },
       contentStep: false,
-      contentSubTitle: false
+      contentSubTitle: false,
+      contentSubTitleRemarks: false
     }
   }
 </script>
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
+	
 	h2 {
 		display: inline-block;
 		text-transform: uppercase;
@@ -38,10 +41,20 @@
 			font-size: 0.7em;
 		}
 	}
+	
 	h3 {
 		font-size: 2rem;
 		text-transform: uppercase;
 		font-weight: bold;
+		margin-top: 0.5rem;
+		margin-bottom: 3rem;
+		color: $brand-secondary;
+	}
+	
+	h4 {
+		font-size: 1.5rem;
+		/*text-transform: uppercase;*/
+		font-weight: normal;
 		margin-top: 0.5rem;
 		margin-bottom: 3rem;
 		color: $brand-secondary;

@@ -8,11 +8,13 @@
 									:contentTitle="$t('pages.reservations.pageTitle')"
 									:contentStep="$t('pages.reservations.pageStep')"
 									:contentSubTitle="$t('pages.reservations.pageSubtitle')"
+									:contentSubTitleRemarks="$t('pages.reservations.pageSubTitleRemarks')"
 					></content-title>
 					<content-title v-if="optionSelected"
 					               :contentTitle="$t('pages.reservations.pageTitle2')"
 												 :contentStep="$t('pages.reservations.pageStep2')"
 					               :contentSubTitle="$t('pages.reservations.pageSubtitle')"
+					               :contentSubTitleRemarks="$t('pages.reservations.pageSubTitleRemarks')"
 					></content-title>
 				</div>
 			</div>

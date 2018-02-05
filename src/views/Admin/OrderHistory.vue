@@ -62,7 +62,7 @@
     data () {
       return {
         apiUrl: process.env.API_URL + '/api/adminOrderHistory',
-        columns: ['id', 'first_name', 'last_name', 'email', 'check_in', 'check_out', 'guests', 'amount', 'created_at', 'status', 'detail', 'note'],
+        columns: ['id', 'first_name', 'last_name', 'email', 'check_in', 'check_out', 'guests', 'amount', 'created_at', 'payment_status', 'detail', 'note'],
         options: {
           orderBy: {ascending: false, column: 'created_at'},
           requestKeys: {

@@ -64,7 +64,8 @@
 							<button v-bind:class="{ active: ($i18n.locale === 'sc') }" @click="changeLanguage('sc')"
 							        role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
 							</button>
-							<router-link v-if="isAdmin" :to="{ name: 'AdminDashboard' }" class="admin-btn"><span class="ti-crown"></span></router-link>
+							<router-link v-if="isAdmin" :to="{ name: 'AdminDashboard' }" class="admin-btn"><span
+											class="ti-crown"></span></router-link>
 						</div>
 					</div>
 				</div>
@@ -117,6 +118,8 @@
         }).then((response) => {
           if (response.data.status) {
             this.isAdmin = true
+          } else {
+            this.isAdmin = false
           }
         }, (error) => {
           console.log(error)
@@ -125,6 +128,7 @@
     },
     mounted: function () {
       this.changeLanguage(this.$localStorage.get('locale', 'en'))
+      this.checkLogin()
     }
   }
 </script>
@@ -165,7 +169,7 @@
 			}
 		}
 	}
-
+	
 	.admin-btn {
 		margin-left: 15px;
 		border-left: 1px solid $brand-secondary !important;

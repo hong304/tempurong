@@ -246,6 +246,9 @@
             this.openModal = false
             this.refundModal = true
             this.refundMessage = response.data.message
+            if (response.data.refund_status === false) {
+              this.refundMessage = 'Sorry! No refund available for this booking. Please select option to “cancel without refund” to process cancellation.'
+            }
             this.getOrderDetails()
           }
         }, (error) => {

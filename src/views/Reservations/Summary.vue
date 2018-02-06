@@ -15,7 +15,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<content-title :contentTitle="$t('pages.reservationsSummary.pageTitle')"
-												 :contentStep="$t('pages.reservationsSummary.pageStep')"
+					               :contentStep="$t('pages.reservationsSummary.pageStep')"
 					               :contentSubTitle="$t('pages.reservationsSummary.pageSubtitle')"></content-title>
 				
 				</div>
@@ -305,7 +305,7 @@
       this.reservation()
       setTimeout(() => {
         this.timeOutModal = true
-      }, 10 * 60 * 60 * 1000)
+      }, 10 * 60 * 1000)
     }
   }
 </script>

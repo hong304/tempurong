@@ -64,6 +64,8 @@
 							<button v-bind:class="{ active: ($i18n.locale === 'sc') }" @click="changeLanguage('sc')"
 							        role="button">{{$i18n.getLocaleMessage('sc').languageShort}}
 							</button>
+							<router-link v-if="isAdmin" :to="{ name: 'AdminDashboard' }" class="admin-btn"><span
+											class="ti-crown"></span></router-link>
 						</div>
 					</div>
 				</div>
@@ -82,6 +84,7 @@
     },
     data () {
       return {
+        isAdmin: false,
         showNavbar: false,
         language: '',
         languageOptions: [this.$i18n.getLocaleMessage('en').language, this.$i18n.getLocaleMessage('sc').language]
@@ -106,10 +109,26 @@
         this.$i18n.locale = val
         this.showNavbar = false
         this.$localStorage.set('locale', val)
+      },
+      checkLogin: function () {
+        this.axios({
+          method: 'get',
+          url: process.env.API_URL + '/api/check-login',
+          withCredentials: true
+        }).then((response) => {
+          if (response.data.status) {
+            this.isAdmin = true
+          } else {
+            this.isAdmin = false
+          }
+        }, (error) => {
+          console.log(error)
+        })
       }
     },
     mounted: function () {
       this.changeLanguage(this.$localStorage.get('locale', 'en'))
+      this.checkLogin()
     }
   }
 </script>
@@ -148,6 +167,14 @@
 				height: 100%;
 				width: auto;
 			}
+		}
+	}
+	
+	.admin-btn {
+		margin-left: 15px;
+		border-left: 1px solid $brand-secondary !important;
+		@media screen and (max-width: 767px) {
+			margin-left: 0;
 		}
 	}
 	

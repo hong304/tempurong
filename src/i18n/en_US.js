@@ -125,7 +125,8 @@ module.exports = {
       pageStep: 'Step 1/5',
       pageTitle2: 'Reservations',
       pageStep2: 'Step 2/5',
-      pageSubtitle: 'Your slice of paradise is waiting!'
+      pageSubtitle: 'Your slice of paradise is waiting!',
+      pageSubTitleRemarks: 'We can only accept online bookings 2 days in advance.  For same day or next day bookings, please call us directly on <a href="tel:+60198809096">+60 198809096</a> or <a href="tel:+60198106828">+60 198106828</a> to arrange your stay.'
     },
     reservationsContact: {
       pageTitle: 'Contact Information',
@@ -136,8 +137,8 @@ module.exports = {
       email: 'Email',
       countryCode: 'Country Code',
       mobile: 'Contact Number',
-      remarks: 'Remarks',
-      additionalNotes: 'Additional notes (airport pickup, interested in activities etc.',
+      remarks: 'Please let us know here if you would like to book any activities or airport transfers',
+      additionalNotes: 'Additional notes',
       tnc: 'Terms & Conditions',
       tncCheckbox: 'I have read and agreed to the <a href="/policy" target="_blank">Resort Policy</a>, including the refund terms stated within.'
     },
@@ -148,7 +149,7 @@ module.exports = {
       clientName: 'Name',
       clientEmail: 'Email',
       clientMobile: 'Contact Number',
-      remark: 'Remarks',
+      remark: 'Airport pickup or Activities',
       additionalNotes: 'Additional Notes',
       totalAmount: 'Total Amount',
       sessionTimeOutMessage: 'Oops, your session has timed out after 10 minutes. Please retry your booking from the beginning.'
@@ -157,7 +158,7 @@ module.exports = {
       pageTitle: 'Reservation Confirmed!',
       pageStep: 'Step 5/5',
       thankYou: 'Thank you!',
-      pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within 24 hours, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
+      pageMsg: 'Yippee! Your reservation has been confirmed and you should receive an email shortly. If you do not receive any confirmations within the next hour, (please be sure to check your spam folder), contact us directly at <a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a>.<br><br>We look forward to seeing you then!'
     },
     reservationsDetails: {
       pageTitle: 'Reservation Details',

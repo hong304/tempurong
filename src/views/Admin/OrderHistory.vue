@@ -25,9 +25,9 @@
 					<v-server-table :url="apiUrl" :columns="columns" :options="options">
 						<p slot="guests" slot-scope="props" class="mb-0">{{ props.row.adults + props.row.children }}</p>
 						<router-link slot="detail" slot-scope="props"
-												 :to="{ name: 'AdminOrderDetail', params: {sessionId: props.row.session}}">
+						             :to="{ name: 'AdminOrderDetail', params: {sessionId: props.row.session}}">
 							<span class="ti-zoom-in"></span></router-link>
-
+						
 						<template slot="note" slot-scope="props">
 							<div v-if="props.row.remarks || props.row.addition_note">
 								<btn class="show-note" :id="'btn' + props.row.id"><span class="ti-comment-alt"></span></btn>
@@ -73,7 +73,10 @@
             page: 'page',
             byColumn: 'byColumn'
           },
-          pagination: { chunk: 10 },
+          headings: {
+            status: 'Payment status'
+          },
+          pagination: {chunk: 10},
           requestFunction: function (data) {
             return this.axios({
               method: 'post',
@@ -112,16 +115,16 @@
 
 <style lang="scss" scoped>
 	@import '../../assets/style/setting';
-
+	
 	h3 {
 		font-weight: bold;
 	}
-
+	
 	.button {
 		background: none;
 		border: none;
 	}
-
+	
 	.popover-content {
 		h5 {
 			color: $brand-secondary;
@@ -129,14 +132,14 @@
 			font-weight: bold;
 		}
 	}
-
+	
 	.show-note {
 		background: none;
 		border: none;
 		padding: 0;
 		color: #337ab7;
 	}
-
+	
 	#order-summarize {
 		ul {
 			list-style-type: none;
@@ -174,7 +177,7 @@
 
 <style lang="scss">
 	@import '../../assets/style/setting';
-
+	
 	.VueTables__search {
 		@media screen and (max-width: 320px) {
 			max-width: 150px;

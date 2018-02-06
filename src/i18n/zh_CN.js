@@ -132,7 +132,7 @@ module.exports = {
       email: '电邮',
       countryCode: '区码',
       mobile: '联络电话',
-      remarks: '备注',
+      remarks: '如需预约任何活动或机场接送，请让我们知道',
       additionalNotes: '附加资料，如机场接送及感兴趣的活动',
       tnc: '条款及细则',
       tncCheckbox: '我已细阅并同意<a target="_blank" href="/policy">条款及细则和取消政策</a>。'
@@ -143,7 +143,7 @@ module.exports = {
       clientName: '姓名',
       clientEmail: '电邮',
       clientMobile: '联络电话',
-      remark: '备注',
+      remark: '活动或机场接送',
       additionalNotes: '附加资料',
       totalAmount: '合计',
       sessionTimeOutMessage: '由於订单已闲置超过十分钟，请重新预订。'
@@ -151,7 +151,7 @@ module.exports = {
     reservationsBooked: {
       pageTitle: '步骤 5/5 : 成功预订',
       thankYou: '谢谢您！',
-      pageMsg: '您的订单已经确认。您将会在短时间内收到我们的电邮。如果你在24小时後仍没有收到我们的电邮，请先查看您的垃圾邮件夹，如还是没有，请发电邮到<a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a> 与我们联络。'
+      pageMsg: '您的订单已经确认。您将会在短时间内收到我们的电邮。如果你在1小时後仍没有收到我们的电邮，请先查看您的垃圾邮件夹，如还是没有，请发电邮到<a href="mailto:hello@tempuronggoldenbeachresort.com">hello@tempuronggoldenbeachresort.com</a> 与我们联络。'
     },
     reservationsDetails: {
       pageTitle: '订单资料',

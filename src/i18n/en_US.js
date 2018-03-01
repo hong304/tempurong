@@ -126,7 +126,7 @@ module.exports = {
       pageTitle2: 'Reservations',
       pageStep2: 'Step 2/5',
       pageSubtitle: 'Your slice of paradise is waiting!',
-      pageSubTitleRemarks: 'We can only accept online bookings 2 days in advance.  For same day or next day bookings, please call us directly on <a href="tel:+60198809096">+60 198809096</a> or <a href="tel:+60198106828">+60 198106828</a> to arrange your stay.'
+      pageSubTitleRemarks: 'We can only accept online bookings 2 days in advance.  For same day or next day bookings, please call us directly on <a href="tel:+60198809096">+60 198809096</a> or <a href="tel:+60198106829">+60 198106829</a> to arrange your stay.'
     },
     reservationsContact: {
       pageTitle: 'Contact Information',

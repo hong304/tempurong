@@ -81,6 +81,7 @@
         this.$localStorage.remove('orderDetails')
         this.$localStorage.remove('orderContact')
         this.$localStorage.remove('transactionId')
+        this.$localStorage.remove('sessionId')
       } else {
         this.$router.push({name: 'Reservations'})
       }
